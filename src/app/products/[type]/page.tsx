@@ -4,9 +4,9 @@ import { PinnedHero } from "@/components/pinned-hero";
 import { Container } from "@/components/primitives";
 import { SectionHead } from "@/components/editorial";
 import { ProductsExplorer } from "@/components/products-explorer";
-import { type Category } from "@/lib/systems";
+import { type NavGroup } from "@/lib/products";
 
-const TYPE_MAP: Record<string, { cat: Category; title: string; img: string; intro: string }> = {
+const TYPE_MAP: Record<string, { cat: NavGroup; title: string; img: string; intro: string }> = {
   windows: { cat: "Windows", title: "Windows", img: "/images/arch-1.jpg", intro: "Tilt & turn, fixed, casement and dual-action systems in aluminium and PVC." },
   doors: { cat: "Doors", title: "Doors", img: "/images/arch-3.jpg", intro: "Entrance, terrace and patio doors engineered for slim sightlines and performance." },
   sliding: { cat: "Sliding & Folding", title: "Sliding & Folding", img: "/images/arch-5.jpg", intro: "Lift & slide and minimal-frame systems that open rooms to the view." },
@@ -33,10 +33,10 @@ export default async function TypePage({ params }: { params: Promise<{ type: str
         <Container>
           <SectionHead label={info.title} title="Find your system." />
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-slate">
-            Narrow the {info.title.toLowerCase()} range by material, system family or certification.
+            Choose your material, then filter by brand, certification or opening.
           </p>
           <div className="mt-12">
-            <ProductsExplorer category={info.cat} />
+            <ProductsExplorer group={info.cat} />
           </div>
         </Container>
       </section>

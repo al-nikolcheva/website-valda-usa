@@ -5,7 +5,7 @@ import { Marquee } from "@/components/marquee";
 type Quote = { quote: string; name: string; role: string };
 
 const QUOTES: Quote[] = [
-  { quote: "They didn't just supply windows — they engineered the whole envelope with us and stood behind the numbers.", name: "M. Reyes", role: "Principal Architect · Miami" },
+  { quote: "They didn't just supply windows; they engineered the whole envelope with us and stood behind the numbers.", name: "M. Reyes", role: "Principal Architect · Miami" },
   { quote: "Factory-direct pricing changed our pro forma. Same performance, no distributor markup, one point of contact.", name: "D. Whitfield", role: "Developer · Austin" },
   { quote: "The FL approvals were held in their own name, so permitting was clean. That saved us weeks.", name: "S. Novak", role: "Project Architect · Chicago" },
   { quote: "Slim sightlines, HVHZ rated, delivered on schedule across the Atlantic. Exactly what was promised.", name: "L. Bianchi", role: "Facade Consultant · New York" },

@@ -15,12 +15,14 @@ export function PinnedHero({
   title,
   intro,
   image,
+  imagePosition = "center",
   children,
 }: {
   eyebrow: string;
   title: string;
   intro?: string;
   image: string;
+  imagePosition?: string;
   children: React.ReactNode;
 }) {
   const { scrollY } = useScroll();
@@ -33,14 +35,18 @@ export function PinnedHero({
     <>
       <section className="sticky top-0 flex h-[100svh] min-h-[560px] items-end overflow-hidden">
         <motion.div style={{ scale, y: imgY }} className="absolute inset-0">
-          <Image src={image} alt="" fill priority className="object-cover brightness-[0.8]" sizes="100vw" />
+          <Image src={image} alt="" fill priority className="object-cover brightness-[0.8]" style={{ objectPosition: imagePosition }} sizes="100vw" />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/30 to-ink/20" />
         <motion.div style={{ opacity, y: contentY }} className="relative z-10 w-full">
           <Container className="pb-20 pt-32">
-            <p className="caption text-white/75"><span className="text-blue-bright">/</span> {eyebrow}</p>
-            <h1 className="mt-5 max-w-4xl headline text-[clamp(2.4rem,5.2vw,4.4rem)] text-white">{title}</h1>
-            {intro && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85">{intro}</p>}
+            <div className="grid gap-8 md:grid-cols-2 md:items-end md:gap-16">
+              <div className="md:max-w-sm md:pb-2">
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/60">{eyebrow}</p>
+                {intro && <p className="mt-6 text-[17px] leading-[1.7] text-white/85">{intro}</p>}
+              </div>
+              <h1 className="headline text-[clamp(2.4rem,5.6vw,4.6rem)] leading-[1.02] text-white">{title}</h1>
+            </div>
           </Container>
         </motion.div>
       </section>

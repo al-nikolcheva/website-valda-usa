@@ -1,41 +1,53 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
 import { PinnedHero } from "@/components/pinned-hero";
 import { Container, Reveal } from "@/components/primitives";
-import { SectionHead } from "@/components/editorial";
+import { POSTS } from "@/lib/insights";
 
-export const metadata: Metadata = { title: "Insights" };
-
-const POSTS = [
-  { cat: "Technical", title: "What HVHZ large missile testing actually involves", img: "/images/hero.jpg", date: "Jun 2026" },
-  { cat: "Project showcase", title: "Inside the Mona Residence facade package", img: "/images/project-mona-1.jpg", date: "May 2026" },
-  { cat: "Factory to site", title: "From the Sofia line to a Florida opening in 14 weeks", img: "/images/project-milwaukee-1.jpg", date: "May 2026" },
-  { cat: "Technical", title: "Reading an FL Product Approval: the five numbers that matter", img: "/images/arch-3.jpg", date: "Apr 2026" },
-  { cat: "Market", title: "Why factory-direct pricing changes the pro forma", img: "/images/arch-1.jpg", date: "Apr 2026" },
-  { cat: "Sustainability", title: "Solar energy at our European facilities", img: "/images/project-twins-1.jpg", date: "Mar 2026" },
-];
+export const metadata: Metadata = {
+  title: "Insights",
+  description:
+    "How European windows are engineered and made, how VALDA exports worldwide, and how to choose systems for performance, comfort and certification in any market.",
+};
 
 export default function InsightsPage() {
+  const [featured, ...rest] = POSTS;
+
   return (
     <PinnedHero
       eyebrow="Insights"
       title="Field notes from the factory."
-      intro="Technical education, project showcases, and what we are seeing in the US market."
+      intro="How European windows are engineered and made, how we export worldwide, and how to choose the right system for any climate."
       image="/images/arch-4.jpg"
     >
-      <section className="py-20 md:py-28">
+      <section className="bg-pure py-20 md:py-28">
         <Container>
-          <SectionHead label="Latest" title="What we are writing about." />
-          <div className="mt-14 grid gap-x-6 gap-y-12 md:grid-cols-3">
-            {POSTS.map((p, i) => (
-              <Reveal key={p.title} delay={(i % 3) * 0.08}>
-                <Link href="/insights" className="group block">
+          {/* featured */}
+          <Link href={`/insights/${featured.slug}`} className="group grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div className="relative aspect-[16/11] overflow-hidden rounded-2xl">
+              <Image src={featured.cover} alt={featured.title} fill priority className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width:1024px) 100vw, 50vw" />
+            </div>
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-blue-bright">{featured.category} · {featured.dateLabel} · {featured.readMins} min read</p>
+              <h2 className="mt-4 headline text-[clamp(1.8rem,3.4vw,2.8rem)] leading-[1.05] tracking-[-0.02em] text-ink transition-colors group-hover:text-blue">{featured.title}</h2>
+              <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-slate">{featured.excerpt}</p>
+              <span className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-blue">Read the guide <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" /></span>
+            </div>
+          </Link>
+
+          {/* the rest */}
+          <div className="mt-20 grid gap-x-6 gap-y-12 md:grid-cols-3">
+            {rest.map((p, i) => (
+              <Reveal key={p.slug} delay={(i % 3) * 0.08}>
+                <Link href={`/insights/${p.slug}`} className="group block">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                    <Image src={p.img} alt="" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
+                    <Image src={p.cover} alt={p.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width:768px) 100vw, 33vw" />
                   </div>
-                  <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-blue-bright">{p.cat} · {p.date}</p>
-                  <h2 className="mt-2 headline text-xl leading-snug tracking-[-0.01em]">{p.title}</h2>
+                  <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-blue-bright">{p.category} · {p.dateLabel}</p>
+                  <h2 className="mt-2 headline text-xl leading-snug tracking-[-0.01em] text-ink transition-colors group-hover:text-blue">{p.title}</h2>
+                  <p className="mt-2 line-clamp-2 text-[14px] leading-relaxed text-slate">{p.excerpt}</p>
                 </Link>
               </Reveal>
             ))}

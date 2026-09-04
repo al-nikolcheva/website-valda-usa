@@ -102,7 +102,7 @@ export function ProjectsIndex() {
           {/* featured */}
           {featured && (
             <Link href={`/projects/${featured.slug}`} className="group mt-12 block">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-3xl md:aspect-[16/8]">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl md:aspect-[16/8]">
                 <Image
                   src={featured.img}
                   alt={featured.name}

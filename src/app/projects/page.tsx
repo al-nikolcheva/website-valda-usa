@@ -7,7 +7,7 @@ import { ProjectsIndex } from "@/components/projects-index";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Delivered windows, doors and facade projects across the USA and Europe — Juneau Village, GORA, American University of Malta and more.",
+  description: "Delivered windows, doors and facade projects across the USA and Europe: Juneau Village, GORA, American University of Malta and more.",
 };
 
 export default function ProjectsPage() {

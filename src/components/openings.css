@@ -1,0 +1,242 @@
+/* Ported from valda-opening-types.html — the .win 3D opening animation.
+   All selectors namespaced under .vw-openings and restyled to the VALDA site palette. */
+
+.vw-openings {
+  --ink: #14181d;
+  --muted: #5b6470;
+  --line: #e2e4e8;
+  --accent: #1f4e8c;
+  --sat: linear-gradient(135deg, #6a7178 0%, #474d55 28%, #373d45 58%, #454b53 84%, #2c323a 100%);
+}
+.vw-openings * { box-sizing: border-box; }
+
+.vw-openings .grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.vw-openings .card {
+  background: linear-gradient(180deg, #ffffff, #f4f5f7);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 16px 22px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow .35s ease, border-color .35s ease, transform .35s ease;
+}
+.vw-openings .card:hover {
+  box-shadow: 0 26px 54px -30px rgba(20, 25, 28, .4);
+  border-color: #cfd3d9;
+  transform: translateY(-3px);
+}
+
+.vw-openings .stage {
+  height: 262px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1600px;
+  perspective-origin: 50% 40%;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(72% 56% at 50% 38%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #f7f7f9 0%, #eef0f2 66%, #e6e8eb 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, .7), inset 0 -14px 26px rgba(40, 45, 55, .05);
+}
+.vw-openings .contact {
+  position: absolute; bottom: 40px; left: 50%; width: 150px; height: 18px;
+  transform: translateX(-50%); border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(15, 18, 20, .30), rgba(15, 18, 20, .10) 55%, transparent 72%);
+  filter: blur(3px); transition: width .8s ease, opacity .8s ease, transform .8s ease; pointer-events: none; z-index: 0;
+}
+.vw-openings .card.open .contact { width: 186px; opacity: .85; transform: translateX(-54%); }
+.vw-openings .floor {
+  position: absolute; left: 50%; bottom: 30px; width: 190px; height: 34px;
+  transform: translateX(-50%); border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 68%);
+  filter: blur(7px); pointer-events: none; z-index: 0;
+}
+.vw-openings .stage::after {
+  content: ""; position: absolute; inset: 0; z-index: 7; pointer-events: none; border-radius: 12px;
+  background: radial-gradient(120% 100% at 50% 42%, transparent 56%, rgba(30, 35, 45, .09) 100%);
+}
+
+/* ================= window ================= */
+.vw-openings .win { position: relative; width: 172px; height: 214px; transform-style: preserve-3d; transform: rotateX(3deg); z-index: 1; }
+.vw-openings .win.wide { width: 214px; height: 168px; }
+.vw-openings .win.door { width: 132px; height: 242px; }
+
+.vw-openings .jamb {
+  position: absolute; inset: 14px; border-radius: 2px; transform: translateZ(-14px);
+  background: linear-gradient(135deg, #30363d 0%, #1d2126 48%, #12151a 100%);
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, .7), inset 0 3px 6px rgba(0, 0, 0, .5);
+}
+.vw-openings .frame {
+  position: absolute; inset: 0; border-style: solid; border-width: 15px; border-radius: 6px; border-image: var(--sat) 1;
+  box-shadow: 0 1.5px 0 rgba(255, 255, 255, .34), -1px 0 0 rgba(255, 255, 255, .12),
+    inset 0 0 0 1px rgba(255, 255, 255, .22), inset 1px 1px 0 rgba(255, 255, 255, .18),
+    inset 0 0 7px rgba(0, 0, 0, .42), 0 24px 42px -20px rgba(0, 0, 0, .55);
+  pointer-events: none; z-index: 2;
+}
+.vw-openings .frame::before {
+  content: ""; position: absolute; inset: 13px; border-radius: 2px;
+  box-shadow: inset 0 0 0 1.5px #0c0e11, inset 0 2px 6px rgba(0, 0, 0, .55), inset 0 0 0 2.5px rgba(255, 255, 255, .08);
+}
+.vw-openings .sash {
+  position: absolute; inset: 14px; border-style: solid; border-width: 12px; border-radius: 3px; border-image: var(--sat) 1;
+  transform-style: preserve-3d; transform-origin: left center;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(255, 255, 255, .12);
+  transition: transform .9s cubic-bezier(.22, .61, .36, 1), box-shadow .9s ease; z-index: 3;
+}
+.vw-openings .leaf {
+  position: absolute; border-style: solid; border-width: 12px; border-radius: 3px; border-image: var(--sat) 1;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .45);
+}
+.vw-openings .glass {
+  position: absolute; inset: 0; border-radius: 1px; overflow: hidden;
+  background:
+    radial-gradient(135% 135% at 50% 50%, transparent 60%, rgba(255, 255, 255, .22) 88%),
+    linear-gradient(117deg, rgba(255, 255, 255, 0) 27%, rgba(255, 255, 255, .92) 35%, rgba(255, 255, 255, .12) 41%, rgba(255, 255, 255, 0) 49%),
+    linear-gradient(117deg, rgba(255, 255, 255, 0) 56%, rgba(255, 255, 255, .3) 63%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(55% 38% at 28% 20%, rgba(255, 255, 255, .55), transparent 62%),
+    radial-gradient(40% 26% at 71% 35%, rgba(255, 255, 255, .32), transparent 60%),
+    radial-gradient(52% 32% at 56% 76%, rgba(255, 255, 255, .16), transparent 60%),
+    linear-gradient(179deg, #e9f3f7 0%, #d0e4ec 28%, #aecfdd 46%, #9cc0d0 50%, #b7d6e0 55%, #c9dfe7 68%, #93b2bf 100%);
+  box-shadow: inset 0 0 0 2px #0d1013, inset 0 0 0 3px rgba(130, 160, 175, .22),
+    inset 0 0 22px rgba(16, 40, 56, .34), inset 0 -10px 18px rgba(16, 40, 56, .26), inset 0 3px 7px rgba(16, 40, 56, .32);
+}
+.vw-openings .glass::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(162deg, transparent 58%, rgba(255, 255, 255, .16) 73%, transparent 82%),
+    radial-gradient(120% 80% at 85% 95%, rgba(20, 44, 60, .2), transparent 46%),
+    radial-gradient(90% 60% at 12% 8%, rgba(255, 255, 255, .18), transparent 40%);
+}
+.vw-openings .handle {
+  position: absolute; width: 19px; height: 56px; right: -13px; top: 50%; transform: translateY(-50%); z-index: 6;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, .45));
+}
+.vw-openings .handle svg { width: 100%; height: 100%; display: block; }
+.vw-openings .fixed .handle { display: none; }
+.vw-openings .pull {
+  position: absolute; width: 9px; height: 74px; border-radius: 5px; z-index: 6; top: 50%; transform: translateY(-50%);
+  background: linear-gradient(90deg, #7b8186, #cfd4d8 30%, #868c91 55%, #41454a);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .35), 1px 2px 4px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+
+/* ---------- motions ---------- */
+.vw-openings .casement .sash { transform-origin: left center; }
+.vw-openings .card.open .casement .sash { transform: rotateY(-48deg); box-shadow: -26px 20px 34px rgba(0, 0, 0, .32), 0 0 0 1px rgba(0, 0, 0, .45); }
+
+.vw-openings .awning .sash { transform-origin: center top; }
+.vw-openings .awning .handle { right: 50%; top: auto; bottom: -1px; width: 19px; height: 52px; transform: translateX(50%); }
+.vw-openings .awning .handle svg { transform: scaleY(-1); }
+.vw-openings .card.open .awning .sash { transform: rotateX(40deg); box-shadow: 0 28px 32px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .45); }
+
+/* hopper — bottom-hung, tilts inward */
+.vw-openings .hopper .sash { transform-origin: center bottom; }
+.vw-openings .hopper .handle { right: 50%; top: -1px; bottom: auto; width: 19px; height: 52px; transform: translateX(50%); }
+.vw-openings .card.open .hopper .sash { transform: rotateX(-38deg); box-shadow: 0 -20px 30px rgba(0, 0, 0, .28), 0 0 0 1px rgba(0, 0, 0, .45); }
+
+/* folding / bi-fold — leaves concertina to one side */
+.vw-openings .folding .foldset { position: absolute; inset: 14px; display: flex; gap: 2px; transform-style: preserve-3d; z-index: 3; }
+.vw-openings .folding .fleaf {
+  flex: 1; position: relative; border-style: solid; border-width: 7px; border-radius: 2px; border-image: var(--sat) 1;
+  transform-style: preserve-3d; backface-visibility: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .42), inset 0 0 0 1px rgba(255, 255, 255, .12);
+  transition: transform 1s cubic-bezier(.22, .61, .36, 1), box-shadow 1s ease;
+}
+.vw-openings .folding .f1, .vw-openings .folding .f3 { transform-origin: left center; }
+.vw-openings .folding .f2, .vw-openings .folding .f4 { transform-origin: right center; }
+.vw-openings .card.open .folding .f1 { transform: rotateY(-62deg); }
+.vw-openings .card.open .folding .f2 { transform: rotateY(62deg); }
+.vw-openings .card.open .folding .f3 { transform: rotateY(-62deg); }
+.vw-openings .card.open .folding .f4 { transform: rotateY(62deg); box-shadow: -16px 14px 24px rgba(0, 0, 0, .28), 0 0 0 1px rgba(0, 0, 0, .42); }
+
+.vw-openings .tt .sash { transform-origin: left center; }
+.vw-openings .card.open .tt .sash { animation: vwo-ttseq 6s cubic-bezier(.5, .1, .4, 1) infinite; }
+@keyframes vwo-ttseq {
+  0%, 15%  { transform-origin: left center;   transform: rotateY(0deg); }
+  32%      { transform-origin: left center;   transform: rotateY(-48deg); }
+  45%      { transform-origin: left center;   transform: rotateY(0deg); }
+  47%, 60% { transform-origin: center bottom; transform: rotateX(0deg); }
+  76%      { transform-origin: center bottom; transform: rotateX(-15deg); }
+  88%      { transform-origin: center bottom; transform: rotateX(0deg); }
+  92%, 100%{ transform-origin: left center;   transform: rotateY(0deg); }
+}
+.vw-openings .tt .handle svg { transform-origin: 50% 30%; }
+.vw-openings .card.open .tt .handle svg { animation: vwo-hdlseq 6s cubic-bezier(.5, .1, .4, 1) infinite; }
+@keyframes vwo-hdlseq {
+  0%, 3%   { transform: rotate(0deg); }
+  10%, 40% { transform: rotate(90deg); }
+  45%, 49% { transform: rotate(0deg); }
+  56%, 85% { transform: rotate(180deg); }
+  90%, 100%{ transform: rotate(0deg); }
+}
+
+/* ================= door ================= */
+.vw-openings .doorleaf {
+  position: absolute; inset: 13px; border-style: solid; border-width: 11px; border-radius: 3px; border-image: var(--sat) 1;
+  transform-style: preserve-3d; transform-origin: left center;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(255, 255, 255, .12);
+  transition: transform .95s cubic-bezier(.22, .61, .36, 1), box-shadow .95s ease; z-index: 3;
+}
+.vw-openings .door .frame { border-width: 13px; }
+.vw-openings .door .jamb { inset: 12px; }
+.vw-openings .drail {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 34px; z-index: 2; border-radius: 0 0 1px 1px;
+  background: linear-gradient(135deg, #6a7178, #474d55 32%, #373d45 62%, #454b53 86%, #2c323a);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, .14), inset 0 8px 12px rgba(0, 0, 0, .3), 0 -1px 3px rgba(0, 0, 0, .35);
+}
+.vw-openings .threshold {
+  position: absolute; left: 6px; right: 6px; bottom: 2px; height: 7px; border-radius: 2px; z-index: 4;
+  background: linear-gradient(180deg, #8a9096, #4a4f55); box-shadow: 0 2px 4px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .4);
+}
+.vw-openings .pullbar {
+  position: absolute; right: -3px; top: 50%; transform: translateY(-50%); width: 8px; height: 158px; border-radius: 5px; z-index: 6;
+  background: linear-gradient(90deg, #797f84, #d3d8dc 32%, #878d92 56%, #3f444a);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .4), 1px 2px 5px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+.vw-openings .pullbar::before, .vw-openings .pullbar::after {
+  content: ""; position: absolute; right: 6px; width: 8px; height: 7px; background: #3c4147; border-radius: 2px 0 0 2px; box-shadow: -1px 1px 2px rgba(0, 0, 0, .4);
+}
+.vw-openings .pullbar::before { top: 16px; }
+.vw-openings .pullbar::after { bottom: 16px; }
+.vw-openings .card.open .door .doorleaf { transform: rotateY(-64deg); box-shadow: -32px 24px 42px rgba(0, 0, 0, .4), 0 0 0 1px rgba(0, 0, 0, .45); }
+
+/* sliding / lift & slide */
+.vw-openings .sliding .leaf, .vw-openings .sliding .sash,
+.vw-openings .liftslide .leaf, .vw-openings .liftslide .sash { top: 14px; bottom: 14px; width: calc(50% - 4px); }
+.vw-openings .sliding .fixedleaf, .vw-openings .liftslide .fixedleaf { left: 14px; }
+.vw-openings .sliding .sash, .vw-openings .liftslide .sash { left: auto; right: 14px; top: 14px; bottom: 14px; transform-origin: center; }
+.vw-openings .sliding .sash { transition: transform .95s cubic-bezier(.5, 0, .2, 1), box-shadow .9s ease; }
+.vw-openings .liftslide .sash { transition: transform 1.05s cubic-bezier(.5, .02, .3, 1), box-shadow .9s ease; }
+.vw-openings .sliding .pull { left: 2px; }
+.vw-openings .liftslide .handle { right: -13px; left: auto; top: 50%; transform: translateY(-50%); }
+.vw-openings .liftslide .handle svg { transform-origin: 50% 30%; transform: rotate(180deg); transition: transform .7s ease; }
+.vw-openings .card.open .sliding .sash { transform: translateX(calc(-96% + 4px)); box-shadow: -18px 10px 26px rgba(0, 0, 0, .28), 0 0 0 1px rgba(0, 0, 0, .45); }
+.vw-openings .card.open .liftslide .sash { animation: vwo-lsopen 2.1s cubic-bezier(.4, .05, .3, 1) forwards; box-shadow: -18px 14px 26px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .45); }
+.vw-openings .card.open .liftslide .handle svg { animation: vwo-lshandle 2.1s cubic-bezier(.4, .05, .3, 1) forwards; }
+@keyframes vwo-lsopen {
+  0%   { transform: translate(0, 0); }
+  32%  { transform: translate(0, -9px); }
+  100% { transform: translate(calc(-96% + 4px), -9px); }
+}
+@keyframes vwo-lshandle {
+  0%       { transform: rotate(180deg); }
+  32%, 100%{ transform: rotate(360deg); }
+}
+
+/* ---------- labels (VALDA look) ---------- */
+.vw-openings .row { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-top: 2px; padding: 0 4px; }
+.vw-openings .name { font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 5px; color: var(--ink); }
+.vw-openings .kind { font-family: var(--font-mono), ui-monospace, monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.vw-openings .symbol { flex: none; width: 50px; height: 58px; margin-top: 2px; }
+.vw-openings .symbol rect { fill: none; stroke: var(--ink); stroke-width: 2; }
+.vw-openings .symbol line, .vw-openings .symbol path { stroke: var(--accent); stroke-width: 1.6; fill: none; }
+.vw-openings .symbol .dash { stroke-dasharray: 3 3; }

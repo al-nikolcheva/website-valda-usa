@@ -24,9 +24,8 @@ const SITEMAP = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
   { label: "Projects", href: "/projects" },
-  { label: "Our Brand", href: "/our-brand" },
-  { label: "How We Work", href: "/how-we-work" },
-  { label: "Production", href: "/production" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ];

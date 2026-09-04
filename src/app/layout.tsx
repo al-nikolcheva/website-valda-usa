@@ -10,12 +10,21 @@ const interTight = Inter_Tight({ variable: "--font-inter-tight", subsets: ["lati
 const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://valdagroup.com"),
   title: {
     default: "VALDA — European windows, doors & facades for the USA",
     template: "%s — VALDA",
   },
   description:
-    "A European manufacturer of high-end aluminium and PVC windows, doors, sliding and facade systems for the USA. Engineered, tested and Florida Product Approved for the US market.",
+    "A family-owned European manufacturer of high-end aluminium and PVC windows, doors, sliding and facade systems. Engineered in Europe, delivered worldwide, and certified for the US market.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "VALDA",
+    url: "https://valdagroup.com",
+    title: "VALDA — European windows, doors & facades, engineered in Europe",
+    description: "A family-owned European manufacturer of aluminium and PVC windows, doors and facade systems. Engineered in Europe, delivered worldwide.",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

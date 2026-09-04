@@ -17,28 +17,22 @@ const NAV: Item[] = [
     label: "Products",
     href: "/products",
     sub: [
-      { label: "Aluminium", href: "/products/aluminum" },
-      { label: "PVC", href: "/products/pvc" },
-      { label: "Glass", href: "/products/glass" },
-      { label: "Bird-Friendly Glass", href: "/products/glass/bird-friendly" },
-      { label: "Impact Glass", href: "/products/glass/impact" },
-      { label: "Technical Information", href: "/technical-information" },
+      { label: "Windows", href: "/products/windows" },
+      { label: "Doors", href: "/products/doors" },
+      { label: "Sliding & Folding", href: "/products/sliding" },
+      { label: "Facades", href: "/products/facades" },
     ],
   },
   { label: "Projects", href: "/projects" },
   {
     label: "About Us",
-    href: "/our-brand",
+    href: "/about",
     sub: [
-      { label: "Our Brand", href: "/our-brand" },
-      { label: "Our History", href: "/our-brand/history" },
-      { label: "How We Work", href: "/how-we-work" },
-      { label: "Credentials", href: "/our-brand/credentials" },
+      { label: "About", href: "/about" },
+      { label: "Catalogue", href: "/catalogue" },
       { label: "FAQ", href: "/faq" },
-      { label: "Careers", href: "/careers" },
     ],
   },
-  { label: "Sustainability", href: "/sustainability" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ];
@@ -98,7 +92,7 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          {/* DESKTOP — full inline nav */}
+          {/* DESKTOP — inline nav */}
           <nav className="hidden items-center gap-0.5 lg:flex">
             {NAV.map((item) => {
               const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href! + "/"));
@@ -125,7 +119,7 @@ export function SiteHeader() {
                             key={s.href}
                             href={s.href}
                             className={cn(
-                              "block rounded-xl px-4 py-2.5 text-[14px] transition-colors",
+                              "block rounded-lg px-4 py-2.5 text-[14px] transition-colors",
                               pathname === s.href ? "bg-paper text-blue" : "text-ink/70 hover:bg-paper hover:text-ink",
                             )}
                           >
@@ -140,7 +134,18 @@ export function SiteHeader() {
             })}
           </nav>
 
-          <div className="flex items-center gap-4 md:gap-5">
+          <div className="flex items-center gap-2.5 md:gap-3">
+            {!open && (
+              <Link
+                href="/products/finder"
+                className={cn(
+                  "hidden h-10 items-center gap-1.5 rounded-full border px-5 text-[13px] font-medium transition-colors lg:inline-flex",
+                  glass ? "border-ink/20 text-ink hover:border-ink/50" : "border-white/40 text-white hover:bg-white/10",
+                )}
+              >
+                Find your system
+              </Link>
+            )}
             {!open && (
               <Link
                 href="/contact"
@@ -149,7 +154,7 @@ export function SiteHeader() {
                 Get a quote <ArrowRight size={14} />
               </Link>
             )}
-            {/* MOBILE — hamburger */}
+            {/* hamburger — mobile / tablet */}
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
@@ -162,7 +167,7 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {/* FULL-SCREEN OVERLAY MENU */}
+      {/* FULL-SCREEN OVERLAY MENU — editorial minimal */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -172,109 +177,85 @@ export function SiteHeader() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed inset-0 z-50 bg-ink text-white"
           >
-            <div className="h-full overflow-y-auto px-6 pt-[76px] md:px-10">
-              <div className="mx-auto grid w-full max-w-[1320px] gap-12 py-10 md:grid-cols-[1.3fr_0.7fr] md:gap-20 md:py-16">
-                {/* LEFT — nav */}
-                <nav className="flex flex-col">
-                  {NAV.map((item, i) => (
-                    <motion.div
-                      key={item.label}
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.05 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                      className="border-b border-white/10"
-                    >
-                      {item.sub ? (
-                        <>
-                          <div className="flex items-center justify-between">
-                            <Link
-                              href={item.href!}
-                              onClick={close}
-                              className="group flex flex-1 items-baseline gap-4 py-4 md:py-5"
-                            >
-                              <span className="font-mono text-[12px] text-white/40">0{i + 1}</span>
-                              <span className="headline text-[clamp(2rem,5.5vw,3.4rem)] leading-none transition-colors group-hover:text-blue-bright">
-                                {item.label}
-                              </span>
-                            </Link>
-                            <button
-                              onClick={() => setExpand(expand === item.label ? null : item.label)}
-                              aria-label={`Expand ${item.label}`}
-                              className="p-3 text-white/60 hover:text-white"
-                            >
-                              <Plus size={22} className={cn("transition-transform duration-300", expand === item.label && "rotate-45")} />
-                            </button>
-                          </div>
-                          <AnimatePresence initial={false}>
-                            {expand === item.label && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                                className="overflow-hidden"
-                              >
-                                <div className="flex flex-wrap gap-x-8 gap-y-1 pb-5 pl-10">
-                                  {item.sub.map((s) => (
-                                    <Link
-                                      key={s.href}
-                                      href={s.href}
-                                      onClick={close}
-                                      className="py-1.5 text-[15px] text-white/60 transition-colors hover:text-white"
-                                    >
-                                      {s.label}
-                                    </Link>
-                                  ))}
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </>
-                      ) : (
-                        <Link href={item.href!} onClick={close} className="group flex items-baseline gap-4 py-4 md:py-5">
-                          <span className="font-mono text-[12px] text-white/40">0{i + 1}</span>
-                          <span className="headline text-[clamp(2rem,5.5vw,3.4rem)] leading-none transition-colors group-hover:text-blue-bright">
-                            {item.label}
-                          </span>
-                        </Link>
-                      )}
-                    </motion.div>
-                  ))}
-                </nav>
-
-                {/* RIGHT — contact */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.25 }}
-                  className="flex flex-col justify-between gap-10"
-                >
-                  <div>
-                    <p className="caption text-white/45"><span className="text-blue-bright">/</span> Get in touch</p>
-                    <a href={`mailto:${SITE.email}`} className="mt-4 block headline text-lg text-white transition-colors hover:text-blue-bright">
-                      {SITE.email}
-                    </a>
-                    <div className="mt-7 space-y-4">
-                      {SITE.phones.map((p) => (
-                        <div key={p.region}>
-                          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/40">{p.region}</p>
-                          <p className="mt-0.5 text-[15px] text-white/80">{p.number}</p>
+            <div className="flex h-full flex-col overflow-y-auto px-6 pb-10 pt-[76px] md:px-16">
+              <nav className="mx-auto flex w-full max-w-[1040px] flex-1 flex-col justify-center py-10">
+                {NAV.map((item, i) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.06 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                    className="border-b border-white/10"
+                  >
+                    {item.sub ? (
+                      <>
+                        <div className="flex items-center justify-between gap-4">
+                          <Link href={item.href!} onClick={close} className="group block flex-1 py-4 md:py-5">
+                            <span className="headline text-[clamp(2rem,6vw,4rem)] leading-[1.02] text-white/85 transition-colors group-hover:text-white">
+                              {item.label}
+                            </span>
+                          </Link>
+                          <button
+                            onClick={() => setExpand(expand === item.label ? null : item.label)}
+                            aria-label={`Expand ${item.label}`}
+                            className="shrink-0 p-3 text-white/40 transition-colors hover:text-white"
+                          >
+                            <Plus size={24} className={cn("transition-transform duration-300", expand === item.label && "rotate-45")} />
+                          </button>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <Link
-                      href="/contact"
-                      onClick={close}
-                      className="inline-flex h-12 items-center gap-2 rounded-full bg-blue px-6 text-[14px] font-medium text-white transition-colors hover:bg-blue-bright"
-                    >
-                      Get a quote <ArrowRight size={16} />
-                    </Link>
-                    <p className="mt-6 text-[13px] text-white/40">{SITE.tagline}</p>
-                  </div>
-                </motion.div>
-              </div>
+                        <AnimatePresence initial={false}>
+                          {expand === item.label && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                              className="overflow-hidden"
+                            >
+                              <div className="flex flex-wrap gap-x-8 gap-y-2 pb-6">
+                                {item.sub.map((s) => (
+                                  <Link
+                                    key={s.href}
+                                    href={s.href}
+                                    onClick={close}
+                                    className="text-[15px] text-white/45 transition-colors hover:text-white"
+                                  >
+                                    {s.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <Link href={item.href!} onClick={close} className="group block py-4 md:py-5">
+                        <span className="headline text-[clamp(2rem,6vw,4rem)] leading-[1.02] text-white/85 transition-colors group-hover:text-white">
+                          {item.label}
+                        </span>
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+              </nav>
+
+              {/* slim contact line */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="mx-auto flex w-full max-w-[1040px] flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[13px] text-white/45"
+              >
+                <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-white">{SITE.email}</a>
+                <div className="flex items-center gap-5">
+                  <Link href="/products/finder" onClick={close} className="transition-colors hover:text-white">
+                    Find your system
+                  </Link>
+                  <Link href="/contact" onClick={close} className="inline-flex items-center gap-1.5 transition-colors hover:text-white">
+                    Get a quote <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         )}

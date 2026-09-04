@@ -1,12 +1,18 @@
 export type Category = "Windows" | "Doors" | "Sliding & Folding" | "Facades";
 
+// One certified configuration, exactly as carried on the Florida Product Approval.
 export type Approval = {
   config: string;
-  fl: string;
+  fl: string; // individual product number, e.g. FL39802.3
   hvhz: boolean;
   impact: string;
-  dp?: string;
-  max?: string;
+  perfClass?: string; // e.g. CW-PG65
+  dp?: string; // design pressure, e.g. ±65 psf
+  water?: string; // water penetration, psf
+  max?: string; // max certified size (inches)
+  install?: string; // governing installation drawing
+  evalReport?: string; // evaluation report reference
+  nami?: string; // NAMI certificate number
 };
 
 export type System = {
@@ -19,7 +25,22 @@ export type System = {
   hvhz: "Yes" | "No" | "Both";
   impact: string;
   summary: string;
+  application?: string; // governing FL application(s)
+  perfClass?: string; // headline performance class where carried
   approvals: Approval[];
+};
+
+// System-level technical specifications (not per-configuration — those live on
+// the Approval rows). Verified against the Florida Product Approval records.
+export type SystemSpec = {
+  glazing?: string; // glazing thickness range
+  uf?: string; // frame / profile U-value (W/m²K)
+  uw?: string; // whole-window U-value (W/m²K)
+  ucw?: string; // curtain-wall U-value (W/m²K)
+  rw?: string; // acoustic reduction (Rw)
+  water?: string; // water resistance
+  weight?: string; // max sash / leaf / infill weight
+  capability?: string; // manufacturer max size — NOT the certified US limit
 };
 
 export type FamilySlug = "valda" | "reynaers" | "koemmerling";
@@ -39,9 +60,9 @@ export const FAMILIES: {
     label: "VALDA Proprietary",
     kind: "Proprietary",
     material: "Aluminium + PVC",
-    holder: "VALDA 90 OOD",
+    holder: "Valda 90 OOD",
     blurb:
-      "Systems designed and manufactured by VALDA for the US market, with Florida Product Approvals (FL39801, FL39802) held in VALDA's own name. Impact-rated HVHZ and non-impact configurations on Etem aluminium and Deceuninck PVC profiles.",
+      "Systems designed, tested and certified by VALDA for the US market, with Florida Product Approvals (FL39801, FL39802) held in VALDA's own name. CW-PG65 performance class, in large-missile impact HVHZ and non-impact configurations.",
   },
   {
     slug: "reynaers",
@@ -51,7 +72,7 @@ export const FAMILIES: {
     material: "Aluminium",
     holder: "Reynaers",
     blurb:
-      "Aluminium windows, doors, sliding glass, curtain wall and lift & slide. Florida Product Approvals held by Reynaers; supplied and installed by VALDA. Impact-rated WZ3 and HVHZ, plus NAMI-tested non-impact configurations.",
+      "Aluminium windows, doors, sliding glass, curtain wall and lift & slide. Florida Product Approvals held by Reynaers; supplied and installed by VALDA. Impact rated for Wind Zone 3 and for the HVHZ.",
   },
   {
     slug: "koemmerling",
@@ -61,7 +82,7 @@ export const FAMILIES: {
     material: "PVC",
     holder: "Kömmerling USA Inc.",
     blurb:
-      "German PVC profile systems. Florida Product Approvals held by Kömmerling USA Inc.; supplied and installed by VALDA. HVHZ impact-rated and non-impact windows, doors and sliding systems.",
+      "German PVC profile systems, fabricated by VALDA. Florida Product Approvals held by Kömmerling USA Inc. Large-missile impact configurations approved for the HVHZ, alongside a non-impact range for the rest of the country.",
   },
 ];
 
@@ -69,36 +90,55 @@ export const SYSTEMS: System[] = [
   {
     slug: "vista-guard",
     family: "valda",
-    name: "Vista / Vista Guard",
+    name: "Vista Guard",
     material: "Aluminium",
-    profile: "Etem E75",
+    profile: "Aluminium",
     categories: ["Windows"],
     hvhz: "Yes",
     impact: "Large Missile",
+    perfClass: "CW-PG65",
+    application: "FL39802-R2 · FL39801-R2",
     summary:
-      "Proprietary aluminium window system. Vista Guard is large-missile impact certified for HVHZ coastal projects; Vista covers non-impact regions.",
+      "Proprietary aluminium window system. Large-missile impact, approved for and outside the HVHZ. No external impact protection required.",
     approvals: [
-      { config: "Fixed / Picture", fl: "FL39802-R2", hvhz: true, impact: "Large Missile", dp: "±65 psf", max: "59 × 98.38 in" },
-      { config: "Tilt & Turn", fl: "FL39801-R2", hvhz: true, impact: "Large Missile", dp: "±65 psf", max: "48 × 78 in" },
+      { config: "Picture / fixed window", fl: "FL39802.3", hvhz: true, impact: "Large Missile", perfClass: "CW-PG65", dp: "±65 psf", water: "15.0 psf", max: "59 × 98.4 in", install: "NL-0145 Rev0", evalReport: "ACE-1070 Rev1", nami: "NI015425" },
+      { config: "Tilt & turn window", fl: "FL39801.4", hvhz: true, impact: "Large Missile", perfClass: "CW-PG65", dp: "±65 psf", water: "9.75 psf", max: "48 × 78 in", install: "NL-0144 Rev0", evalReport: "ACE-1069 Rev1", nami: "NI015433" },
     ],
   },
   {
     slug: "vision-guard",
     family: "valda",
-    name: "Vision / Vision Guard",
+    name: "Vision Guard",
     material: "PVC",
-    profile: "Deceuninck Legend",
+    profile: "PVC",
     categories: ["Windows"],
-    hvhz: "Both",
+    hvhz: "Yes",
     impact: "Large Missile",
+    perfClass: "CW-PG65",
+    application: "FL39802-R2 · FL39801-R2",
     summary:
-      "Proprietary PVC window system on Deceuninck Legend. SentryGlas laminated impact glazing for HVHZ, with non-impact single and double tilt & turn variants.",
+      "Proprietary PVC window system with laminated impact glazing. Large-missile impact, approved for and outside the HVHZ.",
     approvals: [
-      { config: "Vision Guard — Fixed / Picture", fl: "FL39802-R2", hvhz: true, impact: "Large Missile", dp: "±65 psf", max: "59 × 98 in" },
-      { config: "Vision Guard — Tilt & Turn", fl: "FL39801-R2", hvhz: true, impact: "Large Missile", dp: "±65 psf", max: "48 × 78 in" },
-      { config: "Vision — Fixed / Picture", fl: "FL39802-R2", hvhz: false, impact: "Non-Impact", dp: "±65 psf", max: "59 × 98 in" },
-      { config: "Vision — Tilt & Turn (Single)", fl: "FL39801-R2", hvhz: false, impact: "Non-Impact", dp: "±65 psf", max: "48 × 78 in" },
-      { config: "Vision — Tilt & Turn (Double)", fl: "FL39801-R2", hvhz: false, impact: "Non-Impact", dp: "±50 psf", max: "96 × 78 in" },
+      { config: "Picture / fixed window", fl: "FL39802.1", hvhz: true, impact: "Large Missile", perfClass: "CW-PG65", dp: "±65 psf", water: "15.0 psf", max: "59.1 × 98.4 in", install: "NL-0143 Rev0", evalReport: "ACE-1068 Rev2", nami: "NI015426" },
+      { config: "Tilt & turn window", fl: "FL39801.1", hvhz: true, impact: "Large Missile", perfClass: "CW-PG65", dp: "±65 psf", water: "9.75 psf", max: "48 × 78 in", install: "NL-0142 Rev0", evalReport: "ACE-1067 Rev2", nami: "NI015434" },
+    ],
+  },
+  {
+    slug: "vision",
+    family: "valda",
+    name: "Vision",
+    material: "PVC",
+    profile: "PVC",
+    categories: ["Windows"],
+    hvhz: "No",
+    impact: "Non-Impact",
+    application: "FL39802-R2 · FL39801-R2",
+    summary:
+      "Non-impact PVC windows for projects outside wind-borne debris regions. An approved external covering is required where debris protection applies.",
+    approvals: [
+      { config: "Picture / fixed", fl: "FL39802.2", hvhz: false, impact: "Non-Impact", perfClass: "CW-PG65", dp: "±65 psf", max: "59.1 × 98.4 in", install: "NL-0151 Rev0", evalReport: "ACE-1071 Rev1", nami: "NI015427" },
+      { config: "Tilt & turn, single sash", fl: "FL39801.2", hvhz: false, impact: "Non-Impact", perfClass: "CW-PG65", dp: "±65 psf", max: "48 × 78 in", install: "NL-0152 Rev0", evalReport: "ACE-1073 Rev1", nami: "NI015428" },
+      { config: "Tilt & turn, double sash", fl: "FL39801.3", hvhz: false, impact: "Non-Impact", perfClass: "CW-PG50", dp: "±50 psf", max: "96 × 78 in", install: "NL-0152 Rev0", evalReport: "ACE-1073 Rev1", nami: "NI015428.01" },
     ],
   },
   {
@@ -110,50 +150,16 @@ export const SYSTEMS: System[] = [
     categories: ["Windows", "Doors"],
     hvhz: "No",
     impact: "WZ3 Impact",
+    application: "FL47832 – FL47836",
     summary:
-      "Aluminium window and door platform, impact-rated for Wind Zone 3 outside HVHZ. Fixed, tilt & turn, casement, awning, plus entrance and terrace doors.",
+      "Aluminium window and door platform, impact rated for Wind Zone 3 outside the HVHZ. No design pressure is carried on the approval; allowable sizes and pressures are defined in the sealed installation drawings.",
     approvals: [
-      { config: "Fixed Window", fl: "FL47832", hvhz: false, impact: "WZ3 Impact" },
-      { config: "Tilt & Turn / Turn & Tilt", fl: "FL47833", hvhz: false, impact: "WZ3 Impact" },
-      { config: "Casement", fl: "FL47834", hvhz: false, impact: "WZ3 Impact" },
-      { config: "Awning", fl: "FL47835", hvhz: false, impact: "WZ3 Impact" },
-      { config: "Entrance Door (Side Hinged)", fl: "FL47836", hvhz: false, impact: "WZ3 Impact" },
-      { config: "Terrace Door (Side Hinged)", fl: "FL47836", hvhz: false, impact: "WZ3 Impact" },
-    ],
-  },
-  {
-    slug: "cs-77",
-    family: "reynaers",
-    name: "CS 77",
-    material: "Aluminium",
-    profile: "Aluminium",
-    categories: ["Windows"],
-    hvhz: "Both",
-    impact: "Large & Small Missile",
-    summary:
-      "Impact-rated aluminium window system approved inside and outside HVHZ. Fixed, casement, and tilt & turn configurations to ±65 psf.",
-    approvals: [
-      { config: "Fixed (Standard)", fl: "FL28671-R3", hvhz: false, impact: "L&S Missile", dp: "±65 psf", max: "94.5 × 141.75 in" },
-      { config: "Fixed (HVHZ)", fl: "FL28671-R3", hvhz: true, impact: "L&S Missile", dp: "±65 psf", max: "94.5 × 141.75 in" },
-      { config: "Casement (Standard)", fl: "FL28672-R3", hvhz: false, impact: "L&S Missile", dp: "±65 psf", max: "48 × 96.44 in" },
-      { config: "Casement (HVHZ)", fl: "FL28672-R3", hvhz: true, impact: "L&S Missile", dp: "±65 psf", max: "48 × 96.44 in" },
-      { config: "Tilt & Turn (Standard)", fl: "FL38158-R1", hvhz: false, impact: "L&S Missile", dp: "±65 psf", max: "48 × 96.44 in" },
-      { config: "Tilt & Turn (HVHZ)", fl: "FL38158-R1", hvhz: true, impact: "L&S Missile", dp: "±65 psf", max: "48 × 96.44 in" },
-    ],
-  },
-  {
-    slug: "cp-155",
-    family: "reynaers",
-    name: "CP 155 Lift & Slide",
-    material: "Aluminium",
-    profile: "Aluminium",
-    categories: ["Sliding & Folding"],
-    hvhz: "Yes",
-    impact: "Large Missile",
-    summary:
-      "Large-missile impact-rated aluminium lift & slide door, HVHZ approved to ±65 psf. Multi-track configurations for wide openings.",
-    approvals: [
-      { config: "Lift & Slide (XO / multi-track)", fl: "FL39164-R1", hvhz: true, impact: "Large Missile", dp: "+65 / -65 psf" },
+      { config: "Fixed window", fl: "FL47832.1", hvhz: false, impact: "WZ3 Impact", dp: "Up to ±65 psf", install: "REY001", evalReport: "PER10055" },
+      { config: "Tilt & turn / turn & tilt", fl: "FL47833.1", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY002", evalReport: "PER10056" },
+      { config: "Casement", fl: "FL47834.1", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY003", evalReport: "PER10057" },
+      { config: "Awning", fl: "FL47835.1", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY004", evalReport: "PER10058" },
+      { config: "Entrance side-hinged door", fl: "FL47836.1", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY006", evalReport: "PER10060" },
+      { config: "Terrace side-hinged door", fl: "FL47836.2", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY005", evalReport: "PER10059" },
     ],
   },
   {
@@ -165,10 +171,11 @@ export const SYSTEMS: System[] = [
     categories: ["Sliding & Folding"],
     hvhz: "No",
     impact: "WZ3 Impact",
+    application: "FL47837",
     summary:
-      "Aluminium sliding glass door assembly, Wind Zone 3 impact-rated. No additional impact covering required in WZ3 or less.",
+      "Aluminium sliding glass door assembly, impact rated for Wind Zone 3 outside the HVHZ. No additional impact covering required in Wind Zone 3 or less.",
     approvals: [
-      { config: "Sliding Glass Door", fl: "FL47837", hvhz: false, impact: "WZ3 Impact" },
+      { config: "Sliding glass door", fl: "FL47837.1", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY007", evalReport: "PER10061" },
     ],
   },
   {
@@ -180,61 +187,109 @@ export const SYSTEMS: System[] = [
     categories: ["Facades"],
     hvhz: "No",
     impact: "WZ3 Impact",
+    application: "FL47838",
     summary:
-      "Curtain wall / panel wall system, wind-borne debris compliant per Chapter 16 FBC. Impact-rated for Wind Zone 3 outside HVHZ.",
+      "Curtain wall / panel wall system, wind-borne debris compliant per Chapter 16 of the FBC. Impact rated for Wind Zone 3 outside the HVHZ.",
     approvals: [
-      { config: "Curtain Wall (Panel Wall)", fl: "FL47838", hvhz: false, impact: "WZ3 Impact" },
+      { config: "Curtain wall (panel wall)", fl: "FL47838.1", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY008, signed and sealed", evalReport: "PER10062" },
+    ],
+  },
+  {
+    slug: "cp-155",
+    family: "reynaers",
+    name: "CP 155 Lift & Slide",
+    material: "Aluminium",
+    profile: "Aluminium",
+    categories: ["Sliding & Folding"],
+    hvhz: "Yes",
+    impact: "Large Missile",
+    application: "FL39164-R1",
+    summary:
+      "Aluminium lift & slide door, the one Reynaers system here approved for the HVHZ. Large-missile impact under TAS 201 and TAS 203, to the 2023 Florida Building Code.",
+    approvals: [
+      { config: "Lift and slide door (OXXO)", fl: "FL39164.1", hvhz: true, impact: "Large Missile", dp: "±65 psf", max: "7350 × 3050 mm (289-3/8 × 120 in)", install: "DWG 21-31F 2023", evalReport: "CP155 Lift and Slide LMI PAE 2023" },
+    ],
+  },
+  {
+    slug: "cs-77",
+    family: "reynaers",
+    name: "CS 77",
+    material: "Aluminium",
+    profile: "Aluminium",
+    categories: ["Windows"],
+    hvhz: "Both",
+    impact: "Impact rated",
+    application: "FL28671 · FL28672 · FL38158",
+    summary:
+      "Impact-rated aluminium windows with a standard and an HVHZ variant under each application. All configurations carry ±65 psf design pressure. Shutters are required above 30 ft within the HVHZ.",
+    approvals: [
+      { config: "Fixed window", fl: "FL28671.1", hvhz: false, impact: "Impact rated", dp: "±65 psf", water: "12 psf", max: "2400 × 3600 mm (94-1/2 × 141-3/4 in)", install: "CS77 Fix Dwg3" },
+      { config: "Fixed window, HVHZ", fl: "FL28671.2", hvhz: true, impact: "Impact rated", dp: "±65 psf", water: "12 psf", max: "2400 × 3600 mm (94-1/2 × 141-3/4 in)", install: "CS77 FixHZ Dwg3" },
+      { config: "Casement", fl: "FL28672.1", hvhz: false, impact: "Impact rated", dp: "±65 psf", water: "12 psf", max: "1219 × 2450 mm (48 × 96-7/16 in)", install: "CS77 Case Dwg3" },
+      { config: "Casement, HVHZ", fl: "FL28672.2", hvhz: true, impact: "Impact rated", dp: "±65 psf", water: "12 psf", max: "1219 × 2450 mm (48 × 96-7/16 in)", install: "CS77 CaseHZ Dwg3" },
+      { config: "Tilt & turn inswing", fl: "FL38158.1", hvhz: false, impact: "Impact rated", dp: "±65 psf", water: "9.75 psf", max: "1219 × 2450 mm (48 × 96-7/16 in)", install: "CS77 TT Dwg3" },
+      { config: "Tilt & turn inswing, HVHZ", fl: "FL38158.2", hvhz: true, impact: "Impact rated", dp: "±65 psf", water: "9.75 psf", max: "1219 × 2450 mm (48 × 96-7/16 in)", install: "CS77 TTHZ Dwg3" },
     ],
   },
   {
     slug: "76md",
     family: "koemmerling",
-    name: "76MD Windows & Doors",
+    name: "76 MD Windows & Doors",
     material: "PVC",
-    profile: "Kömmerling 76MD / 76AD",
+    profile: "PVC · 76 mm",
     categories: ["Windows", "Doors"],
     hvhz: "Both",
     impact: "Large Missile",
+    application: "FL26935-R6 · FL26936-R5 · FL26937-R5",
     summary:
-      "PVC dual-action and fixed windows plus balcony and entry doors. Impact configurations are HVHZ approved; non-impact variants for use outside HVHZ.",
+      "PVC tilt & turn and fixed windows plus balcony and entry doors. Two impact window configurations and the balcony door are HVHZ approved; the HADK / HADKZ windows and entry doors are non-impact for use outside the HVHZ.",
     approvals: [
-      { config: "Dual Action Window (impact)", fl: "FL26935-R6", hvhz: true, impact: "Large Missile" },
-      { config: "Dual Action Window (non-impact)", fl: "FL26935-R6", hvhz: false, impact: "Non-Impact" },
-      { config: "Fixed / Picture Window (impact)", fl: "FL26936-R5", hvhz: true, impact: "Large Missile" },
-      { config: "76MD Balcony Door (impact)", fl: "FL26937-R5", hvhz: true, impact: "Large Missile" },
-      { config: "76AD Inswing Entry (non-impact)", fl: "FL26937-R5", hvhz: false, impact: "Non-Impact" },
+      { config: "Tilt & turn, single sash", fl: "FL26935.1", hvhz: true, impact: "Large Missile", dp: "±65 psf", install: "NL-0098", evalReport: "ACE-1003 Rev2" },
+      { config: "Tilt & turn, double sash", fl: "FL26935.2", hvhz: true, impact: "Large Missile", dp: "±65 psf", install: "NL-0099", evalReport: "ACE-1004 Rev2" },
+      { config: "Picture / fixed", fl: "FL26936.1", hvhz: true, impact: "Large Missile", dp: "+75 / −75 psf", install: "NL-0100", evalReport: "ACE-1005 Rev2" },
+      { config: "Balcony door", fl: "FL26937.1", hvhz: true, impact: "Large Missile", dp: "±65 psf", install: "NL-0101 Rev0", evalReport: "ACE-1006 Rev2" },
+      { config: "HADK 76 MD — tilt & turn, single", fl: "FL26935.3", hvhz: false, impact: "Non-Impact", install: "NL-0137", evalReport: "ACE-1024 Rev2" },
+      { config: "HADKZ 76 MD — double, false mull", fl: "FL26935.4", hvhz: false, impact: "Non-Impact", install: "NL-0137", evalReport: "ACE-1024 Rev2" },
+      { config: "HADKZ 76 MD — double, fixed mull", fl: "FL26935.5", hvhz: false, impact: "Non-Impact", install: "NL-0137", evalReport: "ACE-1024 Rev2" },
+      { config: "HADKZ 76 MD — transom, fixed mull", fl: "FL26935.6", hvhz: false, impact: "Non-Impact", install: "NL-0138", evalReport: "ACE-1025 Rev2" },
+      { config: "HADKZ 76 MD — transom, field mull", fl: "FL26935.7", hvhz: false, impact: "Non-Impact", install: "NL-0138", evalReport: "ACE-1025 Rev2" },
+      { config: "76 AD inswing entry door", fl: "FL26937.2", hvhz: false, impact: "Non-Impact", dp: "±50 psf", install: "SCS-0047", evalReport: "ACE-1162" },
+      { config: "76 AD outswing entry door", fl: "FL26937.3", hvhz: false, impact: "Non-Impact", dp: "±50 psf", install: "SCS-0049", evalReport: "ACE-1164" },
+      { config: "76 MD inswing entry door", fl: "FL26937.4", hvhz: false, impact: "Non-Impact", dp: "±50 psf", install: "See approval record" },
     ],
   },
   {
     slug: "pd88",
     family: "koemmerling",
-    name: "PD88 Lift & Slide (Premidoor 88)",
+    name: "Premidoor 88 Lift & Slide",
     material: "PVC",
-    profile: "Kömmerling Premidoor 88",
+    profile: "PVC · 88 mm",
     categories: ["Sliding & Folding"],
     hvhz: "Yes",
     impact: "Large Missile",
+    application: "FL26934-R4",
     summary:
-      "PVC lift & slide door system. Both XO (2-panel) and OXXO (4-panel) configurations are HVHZ certified under Large Missile Impact.",
+      "88 mm PVC lift & slide. Both the two-panel and four-panel configurations are large-missile impact rated and approved for the HVHZ, under TAS 201/202/203. Design pressure ±55 psf, lower than the 76 MD window range.",
     approvals: [
-      { config: "Lift & Slide — XO (2-panel)", fl: "FL26934-R4", hvhz: true, impact: "Large Missile", dp: "+55 / -55 psf" },
-      { config: "Lift & Slide — OXXO (4-panel)", fl: "FL26934-R4", hvhz: true, impact: "Large Missile", dp: "+55 / -55 psf" },
+      { config: "Lift & slide, XO / OX (two panel)", fl: "FL26934.1", hvhz: true, impact: "Large Missile", dp: "±55 psf", max: "4572 × 2438 mm (180 × 96 in)", install: "NL-0090", evalReport: "ACE-1001 Rev2" },
+      { config: "Lift & slide, OXXO (four panel)", fl: "FL26934.2", hvhz: true, impact: "Large Missile", dp: "±55 psf", install: "NL-0097", evalReport: "ACE-1002 Rev2" },
     ],
   },
   {
     slug: "88md",
     family: "koemmerling",
-    name: "88MD Windows (Series 88)",
+    name: "Series 88 Windows",
     material: "PVC",
-    profile: "Kömmerling 88",
+    profile: "PVC · 88 mm",
     categories: ["Windows"],
     hvhz: "No",
     impact: "Non-Impact",
+    application: "FL26936-R5 · FL31360-R3",
     summary:
-      "88 mm PVC profile system. Fixed and dual-action window configurations for use outside HVHZ.",
+      "88 mm PVC profile. Non-impact fixed and dual-action window configurations for use outside the HVHZ. An approved external covering is required in wind-borne debris regions.",
     approvals: [
-      { config: "Fixed Window", fl: "FL26936-R5", hvhz: false, impact: "Non-Impact" },
-      { config: "Dual Action Window", fl: "FL31360-R3", hvhz: false, impact: "Non-Impact" },
+      { config: "Fixed window", fl: "FL26936.2", hvhz: false, impact: "Non-Impact", dp: "+40 / −40 psf", install: "SCS-0021 Rev0", evalReport: "ACE-1086 Rev0" },
+      { config: "Dual action window", fl: "FL31360.1", hvhz: false, impact: "Non-Impact", dp: "+60 / −60 psf", install: "SCS-0022 Rev0" },
     ],
   },
 ];
@@ -242,6 +297,7 @@ export const SYSTEMS: System[] = [
 const SYSTEM_IMAGES: Record<string, string> = {
   "vista-guard": "/images/profile-etem75.jpg",
   "vision-guard": "/images/profile-koem76.jpg",
+  vision: "/images/profile-koem76.jpg",
   "masterline-8": "/images/profile-masterline8.jpg",
   "cs-77": "/images/profile-cs77.jpg",
   "cp-155": "/images/profile-cp130.jpg",
@@ -258,13 +314,13 @@ export function systemImage(slug: string) {
 
 // Real manufacturer product renders (per family), used on the system detail overview.
 const SYSTEM_RENDERS: Partial<Record<FamilySlug, string>> = {
-  valda: "/images/sys-vista.jpg", // overridden per-slug below
+  valda: "/images/sys-vista.jpg",
   reynaers: "/images/sys-reynaers.png",
   koemmerling: "/images/sys-koemmerling.jpg",
 };
 
 export function systemRender(s: System) {
-  if (s.slug === "vision-guard") return "/images/sys-vision.jpg";
+  if (s.slug === "vision-guard" || s.slug === "vision") return "/images/sys-vision.jpg";
   if (s.slug === "vista-guard") return "/images/sys-vista.jpg";
   return SYSTEM_RENDERS[s.family] ?? systemImage(s.slug);
 }
@@ -285,7 +341,7 @@ export const SYSTEM_PROFILES: Record<string, { image: string; hotspots: ProfileH
   "76md": {
     image: "/images/sys-76md-cut.png",
     hotspots: [
-      { n: 1, x: 63, y: 39, t: "Warm-edge glazing", b: "Sealed insulating glass unit with a low-conductivity warm-edge spacer at the glass edge." },
+      { n: 1, x: 63, y: 39, t: "Insulating glass unit", b: "Sealed insulating glass unit with a warm-edge spacer at the glass edge." },
       { n: 2, x: 61, y: 66, t: "Co-extruded gaskets", b: "Continuous seals on both the glass and the frame keep out air and water." },
       { n: 3, x: 65, y: 79, t: "Steel reinforcement core", b: "Galvanised steel inside the chambers gives the PVC frame its structural rigidity." },
       { n: 4, x: 32, y: 52, t: "Multi-chamber profile", b: "76 mm PVC chambers for warmth, drainage and strength." },
@@ -299,92 +355,161 @@ export function systemProfile(slug: string) {
 
 export const CATEGORIES: { name: Category; blurb: string }[] = [
   { name: "Windows", blurb: "Tilt & turn, fixed, casement, awning, dual action." },
-  { name: "Doors", blurb: "Entrance, terrace, inswing and outswing with sidelights." },
+  { name: "Doors", blurb: "Entrance, terrace, inswing and outswing." },
   { name: "Sliding & Folding", blurb: "Sliding glass, lift & slide, multi-track systems." },
-  { name: "Facades", blurb: "Curtain wall and window wall systems." },
+  { name: "Facades", blurb: "Curtain wall and panel wall systems." },
 ];
 
 export function systemsByFamily(family: FamilySlug) {
   return SYSTEMS.filter((s) => s.family === family);
 }
 
-/* ── Technical spec generators (manufacturer-style datasheet) ──────── */
-const DEPTH: Record<string, string> = {
-  "vista-guard": "75 mm",
-  "vision-guard": "76 mm",
-  "masterline-8": "77 mm",
-  "cs-77": "77 mm",
-  "cp-155": "155 mm",
-  masterpatio: "159 mm",
-  "conceptwall-50": "50 mm",
-  "76md": "76 mm",
-  pd88: "88 mm",
-  "88md": "88 mm",
-};
-
-export function systemDepth(s: System) {
-  return DEPTH[s.slug] ?? (s.material === "PVC" ? "76 mm" : "77 mm");
+export function systemHolder(s: System) {
+  return FAMILIES.find((f) => f.slug === s.family)?.holder ?? "Valda 90 OOD";
 }
 
+/* ── Specifications, from the certification catalogue only ─────────── */
 export function systemTech(s: System): { label: string; value: string }[] {
-  const alu = s.material === "Aluminium";
-  const isSlide = s.categories.includes("Sliding & Folding");
-  const isFacade = s.categories.includes("Facades");
-  const isDoor = s.categories.includes("Doors");
   const dp = s.approvals.find((a) => a.dp)?.dp;
   const max = s.approvals.find((a) => a.max)?.max;
+  const hvhz = s.hvhz === "No" ? "Outside HVHZ" : s.hvhz === "Both" ? "Approved (impact configs)" : "Approved";
   const rows: { label: string; value: string }[] = [
     { label: "Profile", value: s.profile },
-    { label: "Frame depth", value: systemDepth(s) },
-    { label: "Thermal performance", value: isFacade ? "Ucw from 1.5 W/m²K" : alu ? "Uf from 1.4 W/m²K" : "Uf from 1.0 W/m²K" },
-    { label: "Glazing thickness", value: isSlide ? "Up to 60 mm" : alu ? "Up to 52 mm" : "Up to 50 mm" },
-    { label: "Acoustic reduction", value: alu ? "Rw up to 45 dB" : "Rw up to 47 dB" },
-    { label: "Colours & finishes", value: "Any RAL · anodised · wood-effect" },
-    { label: "Max sash weight", value: isSlide ? "Up to 400 kg / leaf" : isDoor ? "Up to 160 kg / leaf" : "Up to 130 kg / vent" },
-    { label: "Impact rating", value: s.impact },
-    { label: "HVHZ approved", value: s.hvhz },
+    { label: "Material", value: s.material },
   ];
+  if (s.perfClass) rows.push({ label: "Performance class", value: s.perfClass });
+  rows.push({ label: "Impact rating", value: s.impact });
+  rows.push({ label: "HVHZ", value: hvhz });
   if (dp) rows.push({ label: "Design pressure", value: dp });
-  rows.push({ label: "Max tested size", value: max ?? "Project-specific" });
+  if (max) rows.push({ label: "Max certified size", value: max });
+  rows.push({ label: "Approval holder", value: systemHolder(s) });
+  if (s.application) rows.push({ label: "FL application", value: s.application });
+  rows.push({ label: "Code edition", value: "2023 Florida Building Code" });
+  return rows;
+}
+
+/* ── System-level specifications, from the manufacturer + FL records ── */
+export const SYSTEM_SPECS: Record<string, SystemSpec> = {
+  "cs-77": {
+    glazing: "4–63 mm",
+    uf: "1.8 W/m²K",
+    uw: "1.3 W/m²K",
+    rw: "up to 42 dB",
+    water: "12 psf (tilt & turn 9.75 psf)",
+  },
+  "cp-155": {
+    glazing: "4–52 mm",
+    uw: "0.99 W/m²K",
+    rw: "up to 42 dB",
+  },
+  "masterline-8": {
+    glazing: "13–72 mm",
+    uf: "1.0 W/m²K",
+    uw: "0.88 W/m²K",
+    rw: "up to 46 dB",
+    weight: "Vent up to 300 kg",
+    capability: "Vent up to 2800 mm high",
+  },
+  masterpatio: {
+    glazing: "16–62 mm",
+    uw: "0.8 W/m²K",
+    rw: "up to 44 dB",
+    weight: "Up to 600 kg per leaf",
+    capability: "3600 × 3600 mm",
+  },
+  "conceptwall-50": {
+    glazing: "Dry / pressure / structural",
+    ucw: "0.56 W/m²K",
+    rw: "up to 47 dB",
+    weight: "Glass infill up to 700 kg",
+  },
+  "76md": {
+    glazing: "up to 50 mm",
+    uf: "1.0 W/m²K",
+  },
+  pd88: {
+    glazing: "up to 56 mm",
+    uf: "1.3 W/m²K",
+  },
+  "88md": {
+    glazing: "up to 58 mm",
+    uf: "0.95 W/m²K",
+  },
+};
+
+export function systemSpecs(slug?: string): { label: string; value: string }[] {
+  const sp = slug ? SYSTEM_SPECS[slug] : undefined;
+  if (!sp) return [];
+  const rows: { label: string; value: string }[] = [];
+  if (sp.glazing) rows.push({ label: "Glazing", value: sp.glazing });
+  if (sp.uf) rows.push({ label: "Frame U-value (Uf)", value: sp.uf });
+  if (sp.uw) rows.push({ label: "Window U-value (Uw)", value: sp.uw });
+  if (sp.ucw) rows.push({ label: "Curtain-wall U-value (Ucw)", value: sp.ucw });
+  if (sp.rw) rows.push({ label: "Acoustic (Rw)", value: sp.rw });
+  if (sp.water) rows.push({ label: "Water resistance", value: sp.water });
+  if (sp.weight) rows.push({ label: "Max weight", value: sp.weight });
+  if (sp.capability) rows.push({ label: "Manufacturer max size", value: sp.capability });
   return rows;
 }
 
 export function systemKeyStats(s: System): { label: string; value: string }[] {
-  const alu = s.material === "Aluminium";
-  const isFacade = s.categories.includes("Facades");
+  const dp = s.approvals.find((a) => a.dp)?.dp ?? "Per drawing";
   return [
-    { label: "Thermal performance", value: isFacade ? "Ucw from 1.5 W/m²K" : alu ? "Uf from 1.4 W/m²K" : "Uf from 1.0 W/m²K" },
-    { label: "Frame depth", value: systemDepth(s) },
-    { label: "Acoustic", value: alu ? "Rw up to 45 dB" : "Rw up to 47 dB" },
     { label: "Impact rating", value: s.impact },
+    { label: "HVHZ", value: s.hvhz === "No" ? "Outside HVHZ" : "Approved" },
+    { label: "Design pressure", value: dp },
+    { label: "Approval holder", value: systemHolder(s) },
   ];
-}
-
-export function systemHolder(s: System) {
-  return FAMILIES.find((f) => f.slug === s.family)?.holder ?? "VALDA 90 OOD";
 }
 
 export function systemFeatures(s: System): string[] {
-  const alu = s.material === "Aluminium";
-  return [
-    alu ? "Slim aluminium sightlines for maximum daylight" : "Multi-chamber PVC profile for high thermal comfort",
-    alu ? "Polyamide thermal break for low U-values" : "Galvanised steel reinforcement for structural rigidity",
+  const dp = s.approvals.find((a) => a.dp)?.dp;
+  const scope = s.hvhz !== "No" ? ", approved for and outside the HVHZ" : ", for Wind Zone 3 outside the HVHZ";
+  const impactLabel =
     s.impact === "Non-Impact"
-      ? "Engineered and tested for Wind Zone 3"
-      : `${s.impact} impact rated${s.hvhz !== "No" ? " for HVHZ coastal projects" : ""}`,
-    `Florida Product Approved — held by ${systemHolder(s)}`,
-  ];
+      ? "Non-impact, approved for use outside the HVHZ"
+      : s.impact === "Large Missile"
+        ? `Large-missile impact rated${scope}`
+        : s.impact === "WZ3 Impact"
+          ? "Impact rated for Wind Zone 3, outside the HVHZ"
+          : `${s.impact}${scope}`;
+  const out: string[] = [impactLabel];
+  if (s.perfClass) out.push(`Performance class ${s.perfClass}`);
+  if (dp) out.push(`Design pressure ${dp}`);
+  out.push(`Florida Product Approved, held by ${systemHolder(s)}`);
+  return out;
 }
 
 const OPENINGS: Record<Category, string[]> = {
   Windows: ["Fixed / Picture", "Tilt & turn", "Casement", "Awning", "Dual action"],
   Doors: ["Entrance door", "Terrace door", "Inswing", "Outswing"],
   "Sliding & Folding": ["Lift & slide", "Sliding XO / OXXO", "Multi-track"],
-  Facades: ["Curtain wall", "Window wall", "Panel wall"],
+  Facades: ["Curtain wall", "Panel wall"],
 };
 
 export function systemOpenings(s: System): string[] {
   return Array.from(new Set(s.categories.flatMap((c) => OPENINGS[c])));
+}
+
+// Animated opening types shown on each product page, per the actual approved
+// configurations. The seven types map to the Openings component figures.
+// Vista / Vision (FL39801 / FL39802) are intentionally omitted — QA hold, not public.
+export type OpeningType = "fixed" | "casement" | "awning" | "tt" | "sliding" | "liftslide" | "door";
+
+const SYSTEM_OPENING_TYPES: Record<string, OpeningType[]> = {
+  "masterline-8": ["fixed", "casement", "awning", "tt", "door"],
+  "cs-77": ["fixed", "casement", "tt"],
+  masterpatio: ["sliding"],
+  "cp-155": ["liftslide"],
+  "conceptwall-50": ["fixed"],
+  // 76 MD tilt-turn + picture, plus the 76 MD balcony door and the 76 AD entry doors.
+  "76md": ["tt", "fixed", "door"],
+  pd88: ["liftslide"],
+  "88md": ["fixed", "tt"], // Series 88: fixed + dual-action (tilt & turn)
+};
+
+export function systemOpeningTypes(slug: string): OpeningType[] {
+  return SYSTEM_OPENING_TYPES[slug] ?? [];
 }
 
 export type DownloadItem = { label: string; kind: string; href: string; file?: boolean };
@@ -392,23 +517,19 @@ export type DownloadItem = { label: string; kind: string; href: string; file?: b
 // Real per-system files (staged in /public/downloads).
 const SYSTEM_FILES: Record<string, DownloadItem[]> = {
   "76md": [
+    { label: "Technical spec sheet", kind: "PDF", href: "/downloads/76md/valda-76md-spec.pdf", file: true },
     { label: "CAD section detail", kind: "DWG", href: "/downloads/76md/kommerling-76md-section.dwg", file: true },
     { label: "CAD section detail", kind: "DXF", href: "/downloads/76md/kommerling-76md-section.dxf", file: true },
-    { label: "BIM object", kind: "IFC", href: "/downloads/76md/kommerling-76md-bim.ifc", file: true },
   ],
 };
 
 export function systemDownloads(slug?: string): DownloadItem[] {
   const real = slug ? SYSTEM_FILES[slug] ?? [] : [];
   const generic: DownloadItem[] = real.length
-    ? [
-        { label: "Technical datasheet", kind: "PDF", href: "/downloads" },
-        { label: "FL Product Approval", kind: "PDF", href: "/downloads" },
-      ]
+    ? [{ label: "FL Product Approval", kind: "PDF", href: "/downloads" }]
     : [
         { label: "Technical datasheet", kind: "PDF", href: "/downloads" },
         { label: "CAD section details", kind: "DWG", href: "/downloads" },
-        { label: "BIM object", kind: "IFC", href: "/downloads" },
         { label: "FL Product Approval", kind: "PDF", href: "/downloads" },
       ];
   return [...real, ...generic];
@@ -421,12 +542,10 @@ export function allApprovals() {
 }
 
 export const CERTIFICATIONS = [
-  { code: "FL Product Approval", scope: "Florida Building Code — Large Missile Impact, Wind Zone 3 & 4" },
-  { code: "NAMI", scope: "Structural, air, water, and impact performance certification" },
-  { code: "NFRC", scope: "U-value, SHGC, VLT — energy performance" },
-  { code: "AAMA / FGIA", scope: "Fenestration performance standards (AAMA/NAFS A440)" },
-  { code: "HVHZ", scope: "High Velocity Hurricane Zone compliance" },
-  { code: "ISO 9001", scope: "Quality management system" },
-  { code: "CE Marking", scope: "European Conformity" },
-  { code: "ASTM / TAS", scope: "E283, E330, E331, TAS 201, TAS 203 — full test battery" },
+  { code: "FL Product Approval", scope: "Florida Building Code — the most demanding fenestration approval in the country" },
+  { code: "HVHZ", scope: "High Velocity Hurricane Zone — Miami-Dade and Broward counties" },
+  { code: "NAMI", scope: "Structural, air, water and impact performance certification" },
+  { code: "AAMA / WDMA / CSA", scope: "101 / I.S.2 / A440 — North American fenestration standard" },
+  { code: "ASTM", scope: "E283 air · E330 structural · E331 water · E1886 / E1996 impact" },
+  { code: "TAS", scope: "201, 202, 203 — large-missile impact and cyclic wind pressure (HVHZ)" },
 ];

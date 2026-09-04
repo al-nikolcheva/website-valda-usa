@@ -44,7 +44,15 @@ export const PRODUCT_SECTIONS: Record<string, SectionData> = {
   },
 };
 
-export function ProductSection({ material, slug }: { material: keyof typeof PRODUCT_SECTIONS; slug?: string }) {
+export function ProductSection({
+  material,
+  slug,
+  index = "01",
+}: {
+  material: keyof typeof PRODUCT_SECTIONS;
+  slug?: string;
+  index?: string;
+}) {
   const base = PRODUCT_SECTIONS[material];
   const override = slug ? SYSTEM_PROFILES[slug] : undefined;
   const data = { ...base, image: override?.image ?? base.image, hotspots: override?.hotspots ?? base.hotspots };
@@ -52,21 +60,21 @@ export function ProductSection({ material, slug }: { material: keyof typeof PROD
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section className="bg-ink py-24 text-white md:py-32">
+    <section id="anatomy" className="scroll-mt-24 bg-ink py-24 text-white md:py-36">
       <Container>
-        <p className="caption text-white/70">
-          <span className="text-blue-bright">/</span> {data.eyebrow}
-        </p>
-        <h2 className="mt-4 max-w-3xl headline text-[clamp(1.9rem,4vw,3.4rem)] leading-[1.05] text-white">
-          {data.title}
-        </h2>
+        <div className="flex items-center gap-4 border-t border-white/15 pt-8">
+          <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-blue-bright">{index}</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">Inside the section</span>
+        </div>
+        <h2 className="mt-8 max-w-3xl headline text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.02] text-white">{data.title}</h2>
+        <p className="mt-6 max-w-lg text-[16px] leading-[1.7] text-white/60">{data.intro}</p>
 
         <div
-          className="mt-14 grid items-center gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-16"
+          className="mt-14 grid items-center gap-14 lg:grid-cols-2 lg:gap-20 md:mt-20"
           onMouseLeave={() => setActive(null)}
         >
           {/* SECTION ART + HOTSPOTS */}
-          <div className="relative mx-auto w-full max-w-[480px]">
+          <div className="relative mx-auto w-full max-w-[460px]">
             <div className={`relative ${isPhoto ? "aspect-[29/32]" : "aspect-square"}`}>
               {isPhoto ? (
                 <Image
@@ -132,8 +140,8 @@ export function ProductSection({ material, slug }: { material: keyof typeof PROD
             </div>
           </div>
 
-          {/* LEGEND */}
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
+          {/* LEGEND — editorial numbered rows */}
+          <div className="border-t border-white/10">
             {data.hotspots.map((h) => {
               const isActive = active === h.n;
               return (
@@ -143,20 +151,28 @@ export function ProductSection({ material, slug }: { material: keyof typeof PROD
                   onMouseEnter={() => setActive(h.n)}
                   onFocus={() => setActive(h.n)}
                   onClick={() => setActive((a) => (a === h.n ? null : h.n))}
-                  className={`flex flex-col items-start gap-3 p-6 text-left outline-none transition-colors duration-300 ${
-                    isActive ? "bg-blue" : "bg-ink hover:bg-white/[0.04]"
-                  }`}
+                  className="group flex w-full items-baseline gap-6 border-b border-white/10 py-5 text-left outline-none"
                 >
                   <span
-                    className={`flex h-7 w-7 items-center justify-center rounded-full font-mono text-[12px] transition-colors duration-300 ${
-                      isActive ? "bg-white text-blue" : "bg-white/10 text-white/80"
+                    className={`font-mono text-[13px] tabular-nums transition-colors duration-300 ${
+                      isActive ? "text-blue-bright" : "text-white/35"
                     }`}
                   >
-                    {h.n}
+                    {String(h.n).padStart(2, "0")}
                   </span>
-                  <span>
-                    <span className="block headline text-[17px] text-white">{h.t}</span>
-                    <span className={`mt-1.5 block text-[13px] leading-[1.7] ${isActive ? "text-white/85" : "text-white/55"}`}>
+                  <span className="flex-1">
+                    <span
+                      className={`block headline text-[18px] leading-tight transition-colors duration-300 ${
+                        isActive ? "text-white" : "text-white/80 group-hover:text-white"
+                      }`}
+                    >
+                      {h.t}
+                    </span>
+                    <span
+                      className={`mt-1.5 block max-w-sm text-[13.5px] leading-[1.7] transition-all duration-300 ${
+                        isActive ? "text-white/70" : "text-white/40"
+                      }`}
+                    >
                       {h.b}
                     </span>
                   </span>

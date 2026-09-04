@@ -1,0 +1,2680 @@
+{
+  "meta": {
+    "source": "Valda Product Data 2026",
+    "built": "2026-08-24",
+    "systems": 22,
+    "openings": 112,
+    "rules": [
+      "Never merge held='florida-approval' and held='aama-tested' into one list or one filter label.",
+      "Never render a uFactor or soundStcOitc that is absent - show thermalNote instead. Never write 'NFRC'.",
+      "Wherever an opening with waterLimited=true shows designPressure, show waterResistance beside it.",
+      "hvhz is per opening, not per system. Only badge openings where opening.hvhz is true.",
+      "designPressure varies per opening. If one system-level number is shown, prefix it 'up to'.",
+      "A null or missing field means no data exists. Omit the row - never render a dash or a zero."
+    ]
+  },
+  "systems": [
+    {
+      "slug": "conceptsystem-77",
+      "name": "ConceptSystem 77",
+      "brand": "Reynaers",
+      "category": "Window",
+      "certification": "Florida Product Approval FL28671, FL28672, FL38158",
+      "flNumbers": [
+        "FL28671",
+        "FL28672",
+        "FL38158"
+      ],
+      "impact": "Large & small missile — approved inside and outside HVHZ",
+      "hvhz": true,
+      "summary": {
+        "designPressure": "±65 psf",
+        "largestOpening": "94½ x 141¾ in.",
+        "waterResistance": "12 psf",
+        "uFactor": "0.24 / 0.18",
+        "soundStcOitc": "43 / 34"
+      },
+      "openingTypes": [
+        "Fixed",
+        "Casement",
+        "Tilt & Turn"
+      ],
+      "copy": {
+        "headline": "Hurricane certified, inside the strictest zone in the country",
+        "paragraph": "ConceptSystem 77 is Florida approved for large and small missile impact both inside and outside the High Velocity Hurricane Zone — Miami-Dade and Broward — at ±65 psf. Fixed lights to 94½ by 141¾ inches, casement and tilt & turn to 48 by 96⁷⁄₁₆. Triple glazing takes the U-factor to 0.18 and the wall to STC 43.",
+        "points": [
+          "Approved in and outside the HVHZ",
+          "Large & small missile",
+          "±65 psf",
+          "Fixed, casement and tilt & turn",
+          "U-factor to 0.18",
+          "STC 43"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\CS77",
+        "hasImages": true,
+        "cutImage": null
+      },
+      "openingCount": 6,
+      "openings": [
+        {
+          "opening": "Fixed",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL28671.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "+65 / -65 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "testedSize": "94½ x 141¾",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "G3983.02 / G4624.01"
+        },
+        {
+          "opening": "Fixed — HVHZ",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL28671.2",
+          "impact": "Large & small missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "+65 / -65 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "testedSize": "94½ x 141¾",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "G3983.02 / G4624.01"
+        },
+        {
+          "opening": "Casement",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL28672.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "+65 / -65 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "testedSize": "48 x 96⁷⁄₁₆",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "G3983.02 / G4624.01"
+        },
+        {
+          "opening": "Casement — HVHZ",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL28672.2",
+          "impact": "Large & small missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "+65 / -65 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "testedSize": "48 x 96⁷⁄₁₆",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "G3983.02 / G4624.01"
+        },
+        {
+          "opening": "Tilt & Turn",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL38158.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "+65 / -65 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "testedSize": "48 x 96⁷⁄₁₆",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "J8597.01-450-18"
+        },
+        {
+          "opening": "Tilt & Turn — HVHZ",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL38158.2",
+          "impact": "Large & small missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "+65 / -65 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "testedSize": "48 x 96⁷⁄₁₆",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "J8597.01-450-18"
+        }
+      ]
+    },
+    {
+      "slug": "masterline-8",
+      "name": "MasterLine 8",
+      "brand": "Reynaers",
+      "category": "Window & door",
+      "certification": "Florida Product Approval FL47832, FL47833, FL47834, FL47835, FL47836",
+      "flNumbers": [
+        "FL47832",
+        "FL47833",
+        "FL47834",
+        "FL47835",
+        "FL47836"
+      ],
+      "impact": "Large & small missile — Wind Zone 3",
+      "hvhz": false,
+      "summary": {
+        "designPressure": "Up to ±65 psf",
+        "largestOpening": "162 in. high",
+        "waterResistance": "15 psf",
+        "uFactor": "0.23 / 0.16",
+        "soundStcOitc": "50 / 44"
+      },
+      "openingTypes": [
+        "Fixed",
+        "Tilt & Turn",
+        "Casement",
+        "Awning",
+        "Entrance door",
+        "Terrace door"
+      ],
+      "copy": {
+        "headline": "A complete impact range, from fixed light to front door",
+        "paragraph": "MasterLine 8 is Florida approved across six products — fixed, tilt & turn, casement, awning, entrance door and terrace door — every one large and small missile rated for Wind Zone 3. Fixed lights reach 162 inches tall. The system is the quietest in the range at STC 50, and reaches a U-factor of 0.16 triple glazed.",
+        "points": [
+          "Six certified products",
+          "Large & small missile, Wind Zone 3",
+          "Fixed lights to 162 in. tall",
+          "STC 50",
+          "U-factor to 0.16",
+          "15 psf water"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\Masterline 8",
+        "hasImages": true,
+        "cutImage": null
+      },
+      "openingCount": 7,
+      "openings": [
+        {
+          "opening": "Fixed",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47832.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "65 psf at 36 in. · 52.5 psf at 72 in.",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.02 cfm/ft²",
+          "testedSize": "36–72 w x 60–162 h",
+          "glass": "3⁄16 – 2⁷⁄₁₆ in.",
+          "testReport": "L9407.01-303-44"
+        },
+        {
+          "opening": "Tilt & Turn",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47833.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "60 psf",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.05 cfm/ft²",
+          "testedSize": "24–90 w x 48–108 h",
+          "glass": "3⁄16 – 2⁷⁄₁₆ in.",
+          "testReport": "M7164.01-301-44"
+        },
+        {
+          "opening": "Casement",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47834.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "55–65 psf by sash",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "24–66 w x 48–96 h",
+          "glass": "3⁄16 – 2⁷⁄₁₆ in.",
+          "testReport": "L9408.01-303-44"
+        },
+        {
+          "opening": "Awning",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47835.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "65 psf at every size",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.06 cfm/ft²",
+          "testedSize": "18–54 w x 36–108 h",
+          "glass": "3⁄16 – 2⁷⁄₁₆ in.",
+          "testReport": "M7166.01-301-44"
+        },
+        {
+          "opening": "Entrance door",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47836.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "40 psf",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "testedSize": "36–54 w x 84–126 h",
+          "glass": "3⁄16 – 2⁷⁄₁₆ in.",
+          "testReport": "UW-00142"
+        },
+        {
+          "opening": "Terrace door",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47836.2",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "Outswing 60 · Inswing 50 psf",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.09 cfm/ft²",
+          "testedSize": "36–48 w x 84–126 h",
+          "glass": "3⁄16 – 2⁷⁄₁₆ in.",
+          "testReport": "H6408.01-109-47"
+        },
+        {
+          "opening": "Casement — outward",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG95",
+          "hvhz": false,
+          "designPressure": "±95.24 psf",
+          "waterResistance": "15.04 psf",
+          "waterLimited": false,
+          "airInfiltration": "≤0.3 Class A2",
+          "testedSize": "35 x 59",
+          "glass": "3⁄16 – 2⁷⁄₁₆ in.",
+          "testReport": "AI-05614-A1 / A2"
+        }
+      ]
+    },
+    {
+      "slug": "masterpatio",
+      "name": "MasterPatio",
+      "brand": "Reynaers",
+      "category": "Sliding door",
+      "certification": "Florida Product Approval FL47837",
+      "flNumbers": [
+        "FL47837"
+      ],
+      "impact": "Large & small missile — Wind Zone 3",
+      "hvhz": false,
+      "summary": {
+        "designPressure": "±60 psf",
+        "largestOpening": "141¾ x 118⅛ in.",
+        "waterResistance": "12 psf",
+        "uFactor": "0.30 / 0.21",
+        "soundStcOitc": "44 / —"
+      },
+      "openingTypes": [
+        "XO",
+        "XXP",
+        "XXO",
+        "XXXX (1 to 4 track)"
+      ],
+      "copy": {
+        "headline": "Impact rated sliding, one to four tracks",
+        "paragraph": "MasterPatio is the Florida approved impact slider — XO, XXP, XXO and XXXX from one to four tracks, at ±60 psf, with panels to 84 by 150 inches and glass units up to 2½ inches thick. Large and small missile rated for Wind Zone 3.",
+        "points": [
+          "Large & small missile, Wind Zone 3",
+          "±60 psf",
+          "One to four tracks",
+          "Panels to 84 x 150 in.",
+          "Glass to 2½ in.",
+          "STC 44"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\MasterPatio",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 4,
+      "openings": [
+        {
+          "opening": "Sliding XO — 1 track",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47837.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "60 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.08 cfm/ft²",
+          "testedSize": "Panel 36–84 w x 96–150 h",
+          "glass": "5⁄8 – 2½ in.",
+          "testReport": "REY007"
+        },
+        {
+          "opening": "Sliding XXP — 2 track",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47837.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "60 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.08 cfm/ft²",
+          "testedSize": "Panel 36–84 w x 96–150 h",
+          "glass": "5⁄8 – 2½ in.",
+          "testReport": "REY007"
+        },
+        {
+          "opening": "Sliding XXO — 3 track",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47837.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "60 psf · 35 psf reinforced",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.08 cfm/ft²",
+          "testedSize": "Panel 36–84 w x 96–150 h",
+          "glass": "5⁄8 – 2½ in.",
+          "testReport": "REY007"
+        },
+        {
+          "opening": "Sliding XXXX — 4 track",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47837.1",
+          "impact": "Large & small missile",
+          "hvhz": false,
+          "designPressure": "60 psf · 35 psf reinforced",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.08 cfm/ft²",
+          "testedSize": "Panel 36–84 w x 96–150 h",
+          "glass": "5⁄8 – 2½ in.",
+          "testReport": "REY007"
+        }
+      ]
+    },
+    {
+      "slug": "conceptpatio-155",
+      "name": "ConceptPatio 155",
+      "brand": "Reynaers",
+      "category": "Lift & slide door",
+      "certification": "Florida Product Approval FL39164",
+      "flNumbers": [
+        "FL39164"
+      ],
+      "impact": "Large missile — approved for HVHZ",
+      "hvhz": true,
+      "summary": {
+        "designPressure": "±65 psf",
+        "largestOpening": "137¹³⁄₁₆ x 106⁵⁄₁₆ in.",
+        "waterResistance": "12 psf",
+        "uFactor": "0.34 / 0.28",
+        "soundStcOitc": "40 / 35"
+      },
+      "openingTypes": [
+        "2-rail",
+        "3-rail",
+        "monorail",
+        "multirail"
+      ],
+      "copy": {
+        "headline": "Lift & slide, certified for Miami-Dade",
+        "paragraph": "ConceptPatio 155 is the lift & slide door approved for the High Velocity Hurricane Zone at ±65 psf, large missile rated. The panel lifts clear of its seals before it travels, so very heavy glass — up to 3,306 lbs on a fixed panel — moves with one hand and seals tightly when lowered.",
+        "points": [
+          "Approved for the HVHZ",
+          "Large missile",
+          "±65 psf",
+          "Fixed panels to 3,306 lbs",
+          "Lift & slide action",
+          "U-factor to 0.28"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\ConceptPatio 155",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 5,
+      "openings": [
+        {
+          "opening": "Lift & slide",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL39164.1",
+          "impact": "Large missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "+65 / -65 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.16 cfm/ft²",
+          "testedSize": "Per drawing 21-31F",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "BW-RNV-20-001"
+        },
+        {
+          "opening": "Sliding XO",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG60",
+          "hvhz": false,
+          "designPressure": "±60 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "testedSize": "122 x 94½",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "K0111.01-301-47"
+        },
+        {
+          "opening": "Sliding XXX — 3 rail, zero threshold",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class R-PG20",
+          "hvhz": false,
+          "designPressure": "±20 psf",
+          "waterResistance": "4.6 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.16 cfm/ft²",
+          "testedSize": "150 x 118",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "E1032.03-301-47"
+        },
+        {
+          "opening": "Sliding XXXX — 4 rail",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class LC-PG30",
+          "hvhz": false,
+          "designPressure": "±30 psf",
+          "waterResistance": "4.6 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.15 cfm/ft²",
+          "testedSize": "197 x 118",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "E1032.04-301-47"
+        },
+        {
+          "opening": "Double slider OX",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class LC-PG30",
+          "hvhz": false,
+          "designPressure": "±30 psf · LC-PG40 downsized",
+          "waterLimited": false,
+          "airInfiltration": "0.06 cfm/ft²",
+          "testedSize": "98½ x 141¾",
+          "glass": "3⁄16 – 2¹⁄₁₆ in.",
+          "testReport": "14-0050A"
+        }
+      ]
+    },
+    {
+      "slug": "conceptwall-50",
+      "name": "ConceptWall 50",
+      "brand": "Reynaers",
+      "category": "Curtain wall",
+      "certification": "Florida Product Approval FL47838",
+      "flNumbers": [
+        "FL47838"
+      ],
+      "impact": "Impact rated — Wind Zone 3",
+      "hvhz": false,
+      "summary": {
+        "designPressure": "±60 psf",
+        "largestOpening": "Mullion depth to 11¹³⁄₁₆ in.",
+        "waterResistance": "15 psf",
+        "uFactor": "0.23 / 0.14",
+        "soundStcOitc": "41 / 35"
+      },
+      "openingTypes": [
+        "Pressure plate",
+        "structurally glued",
+        "structurally clamped"
+      ],
+      "copy": {
+        "headline": "Impact rated curtain wall",
+        "paragraph": "ConceptWall 50 is Florida approved curtain wall for Wind Zone 3, at 60 psf glass load with 15 psf water resistance and air infiltration of 0.02 cfm/ft². Pressure plate, structurally glued and structurally clamped variants, with mullion depths to 11¹³⁄₁₆ inches and triple glazing to a U-factor of 0.14.",
+        "points": [
+          "Impact rated, Wind Zone 3",
+          "60 psf glass load",
+          "15 psf water",
+          "U-factor to 0.14",
+          "Three glazing methods",
+          "STC 41"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\ConceptWall 50",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 4,
+      "openings": [
+        {
+          "opening": "Curtain wall — STD",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL47838.1",
+          "impact": "Impact rated",
+          "hvhz": false,
+          "designPressure": "60 psf glass load",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.02 cfm/ft²",
+          "testedSize": "Daylight 28–82 w, from 82 h",
+          "glass": "¼ – 2⅜ in.",
+          "testReport": "E5916.01-120-32"
+        },
+        {
+          "opening": "Curtain wall — TT",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Performance mock-up",
+          "hvhz": false,
+          "designPressure": "60 psf design load",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.033 cfm/ft²",
+          "testedSize": "13ft-9in x 19ft",
+          "glass": "¼ – 2⅜ in.",
+          "testReport": "AC-00426-A"
+        },
+        {
+          "opening": "Curtain wall — structurally clamped",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Performance mock-up",
+          "hvhz": false,
+          "designPressure": "60 psf design load",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.07 cfm/ft²",
+          "testedSize": "19ft-8in x 23ft-11in",
+          "glass": "¼ – 2⅜ in.",
+          "testReport": "E5916.02-120-32"
+        },
+        {
+          "opening": "Parallel opening window insert",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Test report",
+          "hvhz": false,
+          "waterResistance": "15.25 psf",
+          "waterLimited": false,
+          "testedSize": "50 x 82",
+          "glass": "¼ – 2⅜ in.",
+          "testReport": "73134"
+        }
+      ]
+    },
+    {
+      "slug": "masterline-10",
+      "name": "MasterLine 10",
+      "brand": "Reynaers",
+      "category": "Window & door",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 — Class AW-PG70",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "Class AW-PG70",
+        "largestOpening": "118⅛ x 55⅛ in.",
+        "waterResistance": "15 psf",
+        "uFactor": "— / 0.14",
+        "soundStcOitc": "50 / 44"
+      },
+      "openingTypes": [
+        "Fixed",
+        "Tilt & Turn",
+        "Casement",
+        "Awning",
+        "Door"
+      ],
+      "copy": {
+        "headline": "The commercial grade, at AW-PG70",
+        "paragraph": "MasterLine 10 is certified to Class AW-PG70 — the architectural window class, the top of the North American performance ladder — across fixed, tilt & turn, casement, awning and door. Air infiltration of 0.01 cfm/ft², STC 50 and a triple-glazed U-factor of 0.14.",
+        "points": [
+          "Class AW-PG70",
+          "Air infiltration 0.01 cfm/ft²",
+          "STC 50",
+          "U-factor 0.14 triple",
+          "Five opening types",
+          "Glass to 3¹⁄₁₆ in."
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\MasterLine 10",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 4,
+      "openings": [
+        {
+          "opening": "Fixed",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG70",
+          "hvhz": false,
+          "designPressure": "Class AW-PG70",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 cfm/ft²",
+          "testedSize": "110¼ x 47¼",
+          "glass": "¹³⁄₁₆ – 3¹⁄₁₆ in.",
+          "testReport": "System data"
+        },
+        {
+          "opening": "Tilt & Turn",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG70",
+          "hvhz": false,
+          "designPressure": "Class AW-PG70",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 cfm/ft²",
+          "testedSize": "110¼ x 47¼",
+          "glass": "¹³⁄₁₆ – 3¹⁄₁₆ in.",
+          "testReport": "System data"
+        },
+        {
+          "opening": "Casement",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG70",
+          "hvhz": false,
+          "designPressure": "Class AW-PG70",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 cfm/ft²",
+          "testedSize": "110¼ x 47¼",
+          "glass": "¹³⁄₁₆ – 3¹⁄₁₆ in.",
+          "testReport": "System data"
+        },
+        {
+          "opening": "Side hinged door",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG70",
+          "hvhz": false,
+          "designPressure": "Class AW-PG70",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 cfm/ft²",
+          "testedSize": "118⅛ x 55⅛",
+          "glass": "¹³⁄₁₆ – 3¹⁄₁₆ in.",
+          "testReport": "System data"
+        }
+      ]
+    },
+    {
+      "slug": "slimline-38",
+      "name": "SlimLine 38",
+      "brand": "Reynaers",
+      "category": "Window & door",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 — Class AW-PG100",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "Class AW-PG100",
+        "largestOpening": "110¼ x 47¼ in.",
+        "waterResistance": "12 psf",
+        "uFactor": "0.23 / 0.16",
+        "soundStcOitc": "44 / 35"
+      },
+      "openingTypes": [
+        "Fixed",
+        "Casement in & out",
+        "Awning",
+        "Hopper",
+        "Dual action",
+        "Doors"
+      ],
+      "copy": {
+        "headline": "The narrowest sightline, at the highest class",
+        "paragraph": "SlimLine 38 carries Class AW-PG100 on fixed, casement in and out, and awning — the highest performance grade in the Reynaers window range — in the slimmest frame. Six opening types in all, including hopper, tilt & turn and low-sill doors.",
+        "points": [
+          "Class AW-PG100",
+          "Narrowest sightline",
+          "Six opening types",
+          "12.11 psf water",
+          "STC 44",
+          "U-factor to 0.16"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\SlimLine 38",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 9,
+      "openings": [
+        {
+          "opening": "Fixed",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG100",
+          "hvhz": false,
+          "designPressure": "Class AW-PG100",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "testedSize": "59 x 98",
+          "glass": "5⁄8 – 2³⁄₁₆ in.",
+          "testReport": "10583.01-301-44"
+        },
+        {
+          "opening": "Fixed — outside gasket",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG40",
+          "hvhz": false,
+          "designPressure": "±40.10 psf",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.03 cfm/ft²",
+          "testedSize": "59 x 98",
+          "glass": "5⁄8 – 2³⁄₁₆ in.",
+          "testReport": "D9653.04-301-47"
+        },
+        {
+          "opening": "Casement — outward",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG100",
+          "hvhz": false,
+          "designPressure": "Class AW-PG100",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "35 x 59",
+          "glass": "5⁄8 – 2³⁄₁₆ in.",
+          "testReport": "10584.01-301-44"
+        },
+        {
+          "opening": "Casement — inward",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG100",
+          "hvhz": false,
+          "designPressure": "Class AW-PG100",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "35 x 59",
+          "glass": "5⁄8 – 2³⁄₁₆ in.",
+          "testReport": "12711.01-301-44"
+        },
+        {
+          "opening": "Awning",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG100",
+          "hvhz": false,
+          "designPressure": "Class AW-PG100",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.09 cfm/ft²",
+          "testedSize": "59 x 35",
+          "glass": "5⁄8 – 2³⁄₁₆ in.",
+          "testReport": "10585.01-301-44"
+        },
+        {
+          "opening": "Hopper",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG65",
+          "hvhz": false,
+          "designPressure": "Class CW-PG65",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 cfm/ft²",
+          "testedSize": "35 x 59",
+          "glass": "5⁄8 – 2³⁄₁₆ in.",
+          "testReport": "E5717.01-301-44"
+        },
+        {
+          "opening": "Tilt & Turn",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG60",
+          "hvhz": false,
+          "designPressure": "±60.15 psf",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.06 cfm/ft²",
+          "testedSize": "59 x 98",
+          "glass": "5⁄8 – 2³⁄₁₆ in.",
+          "testReport": "E5362.01-301-44"
+        },
+        {
+          "opening": "Door — outward, low sill",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class C-PG40",
+          "hvhz": false,
+          "designPressure": "±40.10 psf",
+          "waterResistance": "11.28 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.05 cfm/ft²",
+          "testedSize": "47 x 94",
+          "glass": "3⁄8 – 2³⁄₁₆ in.",
+          "testReport": "E5360.02-301-44"
+        },
+        {
+          "opening": "Door — inward, low sill",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class C-PG30",
+          "hvhz": false,
+          "designPressure": "±30.08 psf",
+          "waterResistance": "4.59 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.20 cfm/ft²",
+          "testedSize": "47 x 94",
+          "glass": "3⁄8 – 2³⁄₁₆ in.",
+          "testReport": "E5361.02-301-44"
+        }
+      ]
+    },
+    {
+      "slug": "conceptsystem-68",
+      "name": "ConceptSystem 68",
+      "brand": "Reynaers",
+      "category": "Window & door",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 — Class AW-PG100 to AW-PG110",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "Up to AW-PG110",
+        "largestOpening": "60 x 99 in.",
+        "waterResistance": "15.66 psf",
+        "uFactor": "— / —",
+        "soundStcOitc": "— / —"
+      },
+      "openingTypes": [
+        "Fixed",
+        "Casement",
+        "Hopper",
+        "Dual action",
+        "Combination",
+        "Side hinged doors"
+      ],
+      "copy": {
+        "headline": "Tested to +120 psf",
+        "paragraph": "ConceptSystem 68 reaches Class AW-PG110 on the fixed light, tested to +120.3 / −110.3 psf — the highest structural figure anywhere in the range. Ten certified configurations across windows and side-hinged doors, with water resistance to 15.66 psf.",
+        "points": [
+          "Class AW-PG110",
+          "Tested to +120.3 psf",
+          "Ten configurations",
+          "15.66 psf water",
+          "Windows and doors"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\ConceptSystem 68",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 12,
+      "openings": [
+        {
+          "opening": "Fixed",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG110",
+          "hvhz": false,
+          "designPressure": "+120.3 / -110.3 psf",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "testedSize": "59 x 98",
+          "testReport": "E6060.01-301-44"
+        },
+        {
+          "opening": "Fixed — large format",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG75",
+          "hvhz": false,
+          "designPressure": "±75 psf",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "testedSize": "60 x 99",
+          "testReport": "L15-878-3442aR2"
+        },
+        {
+          "opening": "Casement",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG100",
+          "hvhz": false,
+          "designPressure": "Class AW-PG100",
+          "waterResistance": "15.66 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "35 x 59",
+          "testReport": "F3997.01-301-44"
+        },
+        {
+          "opening": "Hopper",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG40",
+          "hvhz": false,
+          "designPressure": "Class AW-PG40",
+          "waterResistance": "15.66 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "59 x 35",
+          "testReport": "E5719.01-301-44"
+        },
+        {
+          "opening": "Dual action",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG40",
+          "hvhz": false,
+          "designPressure": "±40 psf",
+          "waterResistance": "8 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "60 x 99",
+          "testReport": "13-0060-1"
+        },
+        {
+          "opening": "Combination",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Gateway ratings",
+          "hvhz": false,
+          "designPressure": "AW-PG40 DAW + AW-PG75 fixed",
+          "waterResistance": "10 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.02 cfm/ft²",
+          "testedSize": "94½ x 90½",
+          "testReport": "13-0088"
+        },
+        {
+          "opening": "Door — outward, frame all round",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG90",
+          "hvhz": false,
+          "designPressure": "Class CW-PG90",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.05 cfm/ft²",
+          "testedSize": "47 x 96",
+          "testReport": "E1244.01-301-44"
+        },
+        {
+          "opening": "Door — inward",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG50",
+          "hvhz": false,
+          "designPressure": "±50.13 psf",
+          "waterResistance": "7.52 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.27 cfm/ft²",
+          "testedSize": "47 x 94",
+          "testReport": "F5621.01-301-44"
+        },
+        {
+          "opening": "Door — outward",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG50",
+          "hvhz": false,
+          "designPressure": "±50.13 psf",
+          "waterResistance": "9.4 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.30 cfm/ft²",
+          "testedSize": "47 x 94",
+          "testReport": "F5622.01-301-44"
+        },
+        {
+          "opening": "Door — inward, standard sill",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class R-PG20",
+          "hvhz": false,
+          "designPressure": "±30 psf",
+          "waterResistance": "3.13 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "47 x 96",
+          "testReport": "E1242.02-301-44"
+        },
+        {
+          "opening": "Door — inward, low sill",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class R-PG20",
+          "hvhz": false,
+          "designPressure": "±30.08 psf",
+          "waterResistance": "3.13 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.23 cfm/ft²",
+          "testedSize": "47 x 96",
+          "testReport": "E1243.01-301-44"
+        },
+        {
+          "opening": "Door — outward, low sill",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class R-PG15",
+          "hvhz": false,
+          "designPressure": "Class R-PG15",
+          "waterResistance": "2.92 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.02 cfm/ft²",
+          "testedSize": "47 x 95",
+          "testReport": "E1246.01-301-44"
+        }
+      ]
+    },
+    {
+      "slug": "hi-finity",
+      "name": "Hi-Finity",
+      "brand": "Reynaers",
+      "category": "Sliding door",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 — Class CW-PG60 / AW-PG60",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "Class CW-PG60",
+        "largestOpening": "157½ x 137¹³⁄₁₆ in.",
+        "waterResistance": "12 psf",
+        "uFactor": "0.28 / 0.21",
+        "soundStcOitc": "45 / 37"
+      },
+      "openingTypes": [
+        "2-rail",
+        "3-rail",
+        "4-rail"
+      ],
+      "copy": {
+        "headline": "Nineteen feet of sliding glass",
+        "paragraph": "Hi-Finity is the large-format slider — Class CW-PG60 at 122 by 118 inches, and certified out to 197 by 138 inches in a four-panel OXXO. Panels to 1,653 lbs, fixed lights to 2,645 lbs, on a zero threshold. STC 45.",
+        "points": [
+          "Class CW-PG60",
+          "OXXO to 197 x 138 in.",
+          "Panels to 1,653 lbs",
+          "Zero threshold",
+          "STC 45",
+          "U-factor to 0.21"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\Hi-Finity",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 5,
+      "openings": [
+        {
+          "opening": "Sliding XO — zero threshold",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG60",
+          "hvhz": false,
+          "designPressure": "±60.15 psf",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "≤0.3 Class A2",
+          "testedSize": "122 x 118",
+          "glass": "1⁷⁄₁₆ – 2⅛ in.",
+          "testReport": "AI-05505-A1"
+        },
+        {
+          "opening": "Sliding XO — zero threshold (NAFS 08)",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class AW-PG60",
+          "hvhz": false,
+          "designPressure": "±60.15 psf",
+          "waterResistance": "12.11 psf",
+          "waterLimited": false,
+          "airInfiltration": "≤0.3 Class A2",
+          "testedSize": "122 x 118",
+          "glass": "1⁷⁄₁₆ – 2⅛ in.",
+          "testReport": "AI-05505-A2"
+        },
+        {
+          "opening": "Sliding XO — large format",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG30",
+          "hvhz": false,
+          "designPressure": "±30.1 psf",
+          "waterResistance": "8.00 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.08 cfm/ft²",
+          "testedSize": "189 x 118",
+          "glass": "1⁷⁄₁₆ – 2⅛ in.",
+          "testReport": "D9653.05-301-47"
+        },
+        {
+          "opening": "Sliding OXXO",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class LC-PG25",
+          "hvhz": false,
+          "designPressure": "±25 psf",
+          "waterResistance": "5.25 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "197 x 138",
+          "glass": "1⁷⁄₁₆ – 2⅛ in.",
+          "testReport": "D9653.06-301-47"
+        },
+        {
+          "opening": "Sliding XO — maximum panel",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class R-PG15",
+          "hvhz": false,
+          "designPressure": "±15 psf",
+          "waterResistance": "2.9 psf",
+          "waterLimited": false,
+          "testedSize": "190.4 x 136.7",
+          "glass": "1⁷⁄₁₆ – 2⅛ in.",
+          "testReport": "L14-878-3954aR1"
+        }
+      ]
+    },
+    {
+      "slug": "slimpatio-68",
+      "name": "SlimPatio 68",
+      "brand": "Reynaers",
+      "category": "Sliding door",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 — Class CW-PG60",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "Class CW-PG60",
+        "largestOpening": "118⅛ x 90⁹⁄₁₆ in.",
+        "waterResistance": "9 psf",
+        "uFactor": "0.28 / 0.23",
+        "soundStcOitc": "40 / 33"
+      },
+      "openingTypes": [
+        "2-rail",
+        "3-rail",
+        "pocket",
+        "open corner"
+      ],
+      "copy": {
+        "headline": "A slim slider at commercial class",
+        "paragraph": "SlimPatio 68 is Class CW-PG60 at 122 by 98 inches with a ¹⁵⁄₁₆ inch sightline, in two-rail, three-rail, pocket and open-corner configurations. Air infiltration 0.08 cfm/ft².",
+        "points": [
+          "Class CW-PG60",
+          "Pocket and open corner",
+          "Panels to 551 lbs",
+          "STC 40",
+          "U-factor to 0.23"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\SlimPatio 68",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 1,
+      "openings": [
+        {
+          "opening": "Sliding XO",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG60",
+          "hvhz": false,
+          "designPressure": "±60 psf",
+          "waterResistance": "9 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.08 cfm/ft²",
+          "testedSize": "122 x 98",
+          "glass": "¹⁵⁄₁₆ – 1½ in.",
+          "testReport": "K0111.03-301-47"
+        }
+      ]
+    },
+    {
+      "slug": "conceptpatio-68",
+      "name": "ConceptPatio 68",
+      "brand": "Reynaers",
+      "category": "Sliding door",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 — Class CW-PG60",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "Class CW-PG60",
+        "largestOpening": "94½ x 84 in.",
+        "waterResistance": "12 psf",
+        "uFactor": "— / —",
+        "soundStcOitc": "— / —"
+      },
+      "openingTypes": [
+        "XO sliding"
+      ],
+      "copy": {
+        "headline": "Straightforward sliding, commercial rated",
+        "paragraph": "ConceptPatio 68 is the XO slider at Class CW-PG60, 94½ by 84 inches, with 12 psf water resistance.",
+        "points": [
+          "Class CW-PG60",
+          "±60 psf",
+          "12 psf water",
+          "XO sliding"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\ConceptPatio 68",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 1,
+      "openings": [
+        {
+          "opening": "Sliding XO",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Class CW-PG60",
+          "hvhz": false,
+          "designPressure": "±60 psf",
+          "waterResistance": "12 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.15 cfm/ft²",
+          "testedSize": "94½ x 84",
+          "testReport": "K0111.02-301-47"
+        }
+      ]
+    },
+    {
+      "slug": "conceptfolding-77",
+      "name": "ConceptFolding 77",
+      "brand": "Reynaers",
+      "category": "Folding door",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 — PG55",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "PG55",
+        "largestOpening": "118⅛ x 47¼ in. per leaf",
+        "waterResistance": "8 psf",
+        "uFactor": "0.35 / 0.27",
+        "soundStcOitc": "— / —"
+      },
+      "openingTypes": [
+        "Up to 8 leaves"
+      ],
+      "copy": {
+        "headline": "Up to eight leaves, folded away",
+        "paragraph": "ConceptFolding 77 opens a wall completely — up to eight leaves, each to 47¼ by 118⅛ inches, certified at PG55. Rw 45 dB acoustic and a U-factor of 0.27 triple glazed.",
+        "points": [
+          "PG55",
+          "Up to eight leaves",
+          "Leaves to 47¼ x 118⅛ in.",
+          "Rw 45 dB",
+          "Glass to 2½ in."
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\ConceptFolding 77",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 1,
+      "openings": [
+        {
+          "opening": "Folding — up to 8 leaves",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "PG55",
+          "hvhz": false,
+          "designPressure": "±55 psf",
+          "waterResistance": "8.35 psf",
+          "waterLimited": false,
+          "testedSize": "108 x 108 tested · leaf 47¼ x 118⅛",
+          "glass": "¼ – 2½ in.",
+          "testReport": "L13-878-3040c"
+        }
+      ]
+    },
+    {
+      "slug": "masterwall",
+      "name": "MasterWall",
+      "brand": "Reynaers",
+      "category": "Window wall",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 performance mock-up",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "±60 psf",
+        "largestOpening": "148 x 261 in.",
+        "waterResistance": "15 psf",
+        "uFactor": "— / —",
+        "soundStcOitc": "— / —"
+      },
+      "openingTypes": [
+        "Unitised window wall"
+      ],
+      "copy": {
+        "headline": "Unitised window wall, floor by floor",
+        "paragraph": "MasterWall is the unitised window wall system, performance mock-up tested at ±60 psf with a 90 psf overload, 15 psf water and air infiltration of 0.043 cfm/ft², at 148 by 261 inches.",
+        "points": [
+          "±60 psf, 90 psf overload",
+          "15 psf water",
+          "Units to 148 x 261 in.",
+          "Unitised installation"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\reynaers\\MasterWall",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 1,
+      "openings": [
+        {
+          "opening": "Unitised window wall",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "approval": "Performance mock-up",
+          "hvhz": false,
+          "designPressure": "±60 psf · 90 psf overload",
+          "waterResistance": "15 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.043 cfm/ft²",
+          "testedSize": "148 x 261",
+          "testReport": "AC-00433-A"
+        }
+      ]
+    },
+    {
+      "slug": "vision-guard",
+      "name": "Vision Guard",
+      "brand": "Valda",
+      "category": "PVC / vinyl",
+      "certification": "Florida Product Approval FL39802.1 and FL39801.1 · NAMI NI015426, NI015434",
+      "flNumbers": [
+        "FL39801",
+        "FL39802"
+      ],
+      "impact": "Large missile · Wind Zone 4, Missile Level D · approved in and outside the HVHZ",
+      "hvhz": true,
+      "summary": {
+        "designPressure": "±65 psf",
+        "largestOpening": "59.063 x 98.433",
+        "waterResistance": "15.0 psf"
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "Picture",
+        "Tilt & Turn"
+      ],
+      "copy": {
+        "headline": "Hurricane certified, in vinyl",
+        "paragraph": "Vision Guard is our impact-certified vinyl window, approved by the State of Florida for use inside and outside the High Velocity Hurricane Zone. Rated to ±65 psf and tested against a 9 lb timber missile at Wind Zone 4, Missile Level D, with SentryGlas laminated glazing that holds the pane in its frame even when it breaks. Picture windows to 59 by 98 inches, tilt & turn to 48 by 78.",
+        "points": [
+          "Approved in and outside the HVHZ",
+          "Large missile, Wind Zone 4",
+          "±65 psf, proof-loaded to 97.5",
+          "Air infiltration 0.002 cfm/ft²",
+          "SentryGlas by Kuraray",
+          "NAMI certified"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\valda\\Vision Guard",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 2,
+      "openings": [
+        {
+          "opening": "Picture (fixed)",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL39802.1",
+          "impact": "Large missile · Wind Zone 4 · Missile Level D · HVHZ",
+          "hvhz": true,
+          "designPressure": "+65 / -65 psf",
+          "structuralTest": "±97.5 psf",
+          "waterResistance": "15.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.002 cfm/ft²",
+          "testedSize": "59.063 x 98.433",
+          "glass": "Insulating glass: ¼ in. heat-strengthened + 3⁄16 in. heat-strengthened + 0.090 in. SentryGlas by Kuraray + 3⁄16 in. heat-strengthened",
+          "certificate": "NI015426"
+        },
+        {
+          "opening": "Tilt & Turn",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL39801.1",
+          "impact": "Large missile · Wind Zone 4 · Missile Level D · HVHZ",
+          "hvhz": true,
+          "designPressure": "+65 / -65 psf",
+          "structuralTest": "±97.5 psf",
+          "waterResistance": "9.75 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.014 cfm/ft²",
+          "testedSize": "48 x 78",
+          "sashSize": "43 x 73",
+          "glass": "¼ in. tempered exterior + 3⁄16 in. annealed + 0.090 in. SentryGlas by Kuraray + 3⁄16 in. annealed",
+          "certificate": "NI015434"
+        }
+      ]
+    },
+    {
+      "slug": "vista-guard",
+      "name": "Vista Guard",
+      "brand": "Valda",
+      "category": "Aluminium",
+      "certification": "Florida Product Approval FL39802.3 and FL39801.4 · NAMI NI015425, NI015433",
+      "flNumbers": [
+        "FL39801",
+        "FL39802"
+      ],
+      "impact": "Large missile · Wind Zone 4, Missile Level D · approved in and outside the HVHZ",
+      "hvhz": true,
+      "summary": {
+        "designPressure": "±65 psf",
+        "largestOpening": "59 x 98.375",
+        "waterResistance": "15.0 psf"
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "Picture",
+        "Tilt & Turn"
+      ],
+      "copy": {
+        "headline": "The same protection, in aluminium",
+        "paragraph": "Vista Guard is the aluminium counterpart to Vision Guard — the same ±65 psf design pressure, the same Wind Zone 4 large missile certification, the same approval inside and outside the HVHZ, in a thermally broken aluminium frame for slimmer sightlines. Picture windows to 59 by 98⅜ inches, tilt & turn to 48 by 78.",
+        "points": [
+          "Aluminium frame, slimmer profile",
+          "Approved in and outside the HVHZ",
+          "Large missile, Wind Zone 4",
+          "±65 psf",
+          "Air infiltration 0.002 cfm/ft²",
+          "NAMI certified"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\valda\\Vista Guard",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 2,
+      "openings": [
+        {
+          "opening": "Picture (fixed)",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL39802.3",
+          "impact": "Large missile · Wind Zone 4 · Missile Level D · HVHZ",
+          "hvhz": true,
+          "designPressure": "+65 / -65 psf",
+          "structuralTest": "±97.5 psf",
+          "waterResistance": "15.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.002 cfm/ft²",
+          "testedSize": "59 x 98.375",
+          "glass": "Insulating glass: ¼ in. heat-strengthened + 3⁄16 in. heat-strengthened + 0.090 in. SentryGlas by Kuraray + 3⁄16 in. heat-strengthened",
+          "certificate": "NI015425"
+        },
+        {
+          "opening": "Tilt & Turn",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL39801.4",
+          "impact": "Large missile · Wind Zone 4 · Missile Level D · HVHZ",
+          "hvhz": true,
+          "designPressure": "+65 / -65 psf",
+          "structuralTest": "±97.5 psf",
+          "waterResistance": "9.75 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.004 cfm/ft²",
+          "testedSize": "48 x 78",
+          "sashSize": "43 x 73",
+          "glass": "¼ in. tempered exterior + 3⁄16 in. annealed + 0.090 in. SentryGlas by Kuraray + 3⁄16 in. annealed",
+          "certificate": "NI015433"
+        }
+      ]
+    },
+    {
+      "slug": "vision",
+      "name": "Vision",
+      "brand": "Valda",
+      "category": "PVC / vinyl",
+      "certification": "Florida Product Approval FL39802.2, FL39801.2 and FL39801.3 · NAMI NI015427, NI015428, NI015428.01",
+      "flNumbers": [
+        "FL39801",
+        "FL39802"
+      ],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "±65 psf single · ±50 psf double",
+        "largestOpening": "96 x 78 (double)",
+        "waterResistance": "15.0 psf"
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "Picture",
+        "Tilt & Turn single",
+        "Tilt & Turn double"
+      ],
+      "copy": {
+        "headline": "Florida certified, without the impact premium",
+        "paragraph": "Vision is our non-impact vinyl window, Florida approved at ±65 psf with 15 psf water resistance — the same structural performance as the impact range, for locations outside the wind-borne debris region. Available as a picture window to 59 by 98 inches, a tilt & turn to 48 by 78, and a twin tilt & turn to 96 by 78 inches.",
+        "points": [
+          "Florida Product Approval",
+          "±65 psf single, ±50 psf double",
+          "15 psf water resistance",
+          "Laminated insulating glass",
+          "Twin unit to 96 in. wide",
+          "NAMI certified"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\valda\\Vision",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 3,
+      "openings": [
+        {
+          "opening": "Picture (fixed)",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL39802.2",
+          "hvhz": false,
+          "designPressure": "+65 / -65 psf",
+          "structuralTest": "±97.5 psf",
+          "waterResistance": "15.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.008 cfm/ft²",
+          "testedSize": "59.063 x 98.433",
+          "glass": "Insulating glass: 5⁄32 in. heat-strengthened + 0.015 in. PVB + 5⁄32 in. heat-strengthened, both panes laminated",
+          "certificate": "NI015427"
+        },
+        {
+          "opening": "Tilt & Turn — single",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL39801.2",
+          "hvhz": false,
+          "designPressure": "+65 / -65 psf",
+          "structuralTest": "±97.5 psf",
+          "waterResistance": "9.75 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.010 cfm/ft²",
+          "testedSize": "48 x 78",
+          "sashSize": "43 x 73",
+          "glass": "Insulating glass, annealed",
+          "certificate": "NI015428"
+        },
+        {
+          "opening": "Tilt & Turn — double",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL39801.3",
+          "hvhz": false,
+          "designPressure": "+50 / -50 psf",
+          "structuralTest": "±75.0 psf",
+          "waterResistance": "9.75 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.30 cfm/ft²",
+          "testedSize": "96 x 78",
+          "sashSize": "46.5 x 75.5",
+          "glass": "Insulating glass, annealed",
+          "certificate": "NI015428.01"
+        }
+      ]
+    },
+    {
+      "slug": "series-76-md",
+      "name": "Series 76 MD",
+      "brand": "Kömmerling",
+      "category": "PVC / vinyl",
+      "certification": "Florida Product Approval FL26935.1, FL26935.2, FL26936.1, FL26937.1",
+      "flNumbers": [
+        "FL26935",
+        "FL26936",
+        "FL26937"
+      ],
+      "impact": "Large missile · approved in and outside the HVHZ",
+      "hvhz": true,
+      "summary": {
+        "designPressure": "+75/−75 psf fixed · ±65 psf opening",
+        "largestOpening": "102.44 x 63.5 (twin) · 59 x 98.5 (fixed)",
+        "waterResistance": "20.0 psf on the fixed window"
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "Picture",
+        "Tilt & Turn single",
+        "Tilt & Turn double",
+        "Balcony door"
+      ],
+      "copy": {
+        "headline": "Hurricane certified vinyl, across five product types",
+        "paragraph": "Series 76 MD is the impact-certified core of the Kömmerling range, approved inside and outside the High Velocity Hurricane Zone — a picture window at +75/−75 psf with 20 psf water resistance, the highest water figure in the whole portfolio; tilt & turn windows in single and twin at ±65 psf; and a dual-action balcony door at ±65 psf. Twin units reach 102 inches wide.",
+        "points": [
+          "Approved in and outside the HVHZ",
+          "Large missile impact",
+          "+75/−75 psf on the fixed window",
+          "20 psf water resistance",
+          "Twin units to 102 in. wide",
+          "SentryGlas interlayer"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\Komerling\\76 MD",
+        "hasImages": true,
+        "cutImage": null
+      },
+      "openingCount": 23,
+      "openings": [
+        {
+          "opening": "Picture (fixed) window",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26936.1",
+          "impact": "Large missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "± 75.0 psf",
+          "structuralTest": "± 112.5 psf",
+          "waterResistance": "20.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "59 x 98.5",
+          "glass": "1.2 in. unit: ¼ in. tempered + two ³⁄₁₆ in. laminated + 0.090 in. interlayer + ⅜ in. spacer",
+          "profiles": "Frame 76171 (V310, 2.0 mm) · bead 6338",
+          "testReport": "NCTL-210-4097-01",
+          "certificate": "Keystone 1129-107_R2"
+        },
+        {
+          "opening": "Tilt & Turn — single",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.1",
+          "impact": "Large missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "± 65.0 psf",
+          "structuralTest": "± 97.5 psf",
+          "waterResistance": "15.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "47.5 x 71.25",
+          "glass": "1.2 in. unit: ¼ in. tempered + two ³⁄₁₆ in. laminated + 0.090 in. interlayer + ⅜ in. spacer",
+          "profiles": "Frame 76171 (V310, 2.0) · sash 76271 (V308, 2.5) · beads 2435_2, 2454",
+          "testReport": "NCTL-210-4099-01",
+          "certificate": "Keystone 1129-103 · 1129-104"
+        },
+        {
+          "opening": "Tilt & Turn — twin, welded mullion",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.2",
+          "impact": "Large missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "± 65.0 psf",
+          "structuralTest": "± 97.5 psf",
+          "waterResistance": "12.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "102.44 x 63.5",
+          "glass": "1.2 in. unit: ¼ in. tempered + two ³⁄₁₆ in. laminated + 0.090 in. interlayer + ⅜ in. spacer",
+          "profiles": "Frame 76171 (V310, 2.0) · sash 76271 (V308, 2.5) · mullion 76372 (V319, 2.5) · beads 2435_2, 2454",
+          "testReport": "NCTL-210-4100-01",
+          "certificate": "Keystone 1129-101 · 1129-102"
+        },
+        {
+          "opening": "Dual-action balcony door",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26937.1",
+          "impact": "Large missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "± 65.0 psf",
+          "structuralTest": "± 97.5 psf",
+          "waterResistance": "15.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "46 x 83",
+          "glass": "1.2 in. unit: ¼ in. tempered + two ³⁄₁₆ in. laminated + 0.090 in. interlayer + ⅜ in. spacer",
+          "profiles": "Frame 76171 (V310, 2.0) · sash 76271 (V308, 2.5) · beads 2435_2, 2454",
+          "testReport": "NCTL-210-4101-01",
+          "certificate": "Keystone 1129-105 · 1129-106"
+        },
+        {
+          "opening": "ADA low sill inswing door — limited water rating",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26937.4",
+          "hvhz": false,
+          "designPressure": "± 50.13 psf",
+          "structuralTest": "± 75.19 psf",
+          "waterResistance": "Limited — for covered openings",
+          "waterLimited": true,
+          "airInfiltration": "0.30 cfm/ft²",
+          "forcedEntry": "AAMA 1304",
+          "testedSize": "48 x 96",
+          "sashSize": "45 x 93.31",
+          "glass": "1 in. unit: two ³⁄₁₆ in. tempered",
+          "profiles": "Frame 76171 (V310, 2.0) · sash 76272 (V314, 2.0) · bead 76501",
+          "testReport": "PRI 2569T0011.02",
+          "certificate": "Keystone 1129-148"
+        },
+        {
+          "opening": "ADA low sill inswing door with sidelite — limited water rating",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26937.4",
+          "hvhz": false,
+          "designPressure": "± 50.13 psf",
+          "structuralTest": "± 75.19 psf",
+          "waterResistance": "Limited — for covered openings",
+          "waterLimited": true,
+          "airInfiltration": "0.28 cfm/ft²",
+          "forcedEntry": "AAMA 1304",
+          "testedSize": "96 x 96",
+          "sashSize": "44.75 x 92.5",
+          "glass": "1 in. unit: two ³⁄₁₆ in. tempered",
+          "profiles": "Frame 76172 (V314, 2.0) · sash 76272 (V314, 2.0) · mullion 76373 (V322, 2.5) · pilaster 93002 (V260) · beads 76501, 2630",
+          "testReport": "PRI 2569T0017.01",
+          "certificate": "Keystone 1129-150"
+        },
+        {
+          "opening": "Tilt & Turn — Class LC-PG60 / CW-PG45",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 60.0 psf",
+          "structuralTest": "± 90.0 psf",
+          "waterResistance": "9.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "60 x 98.75",
+          "glass": "1 in. unit: two ¼ in. tempered + ½ in. spacer",
+          "profiles": "Frame 76171 (V310, 2.0) · sash 76271 (V308, 2.5) · beads 2435_2, 76527",
+          "testReport": "NCTL-210-4159-01",
+          "certificate": "Keystone 1129-118 · 1129-119"
+        },
+        {
+          "opening": "Tilt & Turn — Class R-PG50",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 50.13 psf",
+          "structuralTest": "± 75.19 psf",
+          "waterResistance": "7.52 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.03 – 0.04 cfm/ft²",
+          "forcedEntry": "ASTM F588 Type \"B\" Grade 10",
+          "testedSize": "60 x 60 · 96 x 48",
+          "glass": "⅞ in. unit: two ³⁄₁₆ in. tempered",
+          "profiles": "Frame 76171 (V309, 1.5) · sash 76271 (V306, 1.5) · mullion 76372 (V319, 2.5) · bead 76501",
+          "testReport": "PRI 2569T0018 (Dec 2025)",
+          "certificate": "Keystone 1129-151_R0 · 1129-152_R0"
+        },
+        {
+          "opening": "ADA inswing side hinged door — Class LC-PG55",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 55.11 psf",
+          "structuralTest": "± 82.71 psf",
+          "waterResistance": "15.2 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 cfm/ft²",
+          "testedSize": "47.25 x 101.30",
+          "sashSize": "42.83 x 98.43",
+          "glass": "1 in. unit: two ⁵⁄₃₂ in. tempered",
+          "profiles": "Frame 76172 (V314, 2.0) · sash 76272 (V314, 2.0) · bead 76501",
+          "testReport": "Intertek 106449148COQ-001L2 (Jun 2026)",
+          "certificate": "Keystone certificate not yet issued"
+        },
+        {
+          "opening": "ADA outswing side hinged door — Class LC-PG55",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 55.11 psf",
+          "structuralTest": "± 82.71 psf",
+          "waterResistance": "15.2 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.10 cfm/ft²",
+          "testedSize": "47.25 x 101.30",
+          "sashSize": "42.83 x 98.43",
+          "glass": "1 in. unit: two ⁵⁄₃₂ in. tempered",
+          "profiles": "Frame 76172 (V314, 2.0) · sash 76283 (V314, 2.0) · bead 76501",
+          "testReport": "Intertek 106449148COQ-001L2 (Jun 2026)",
+          "certificate": "Keystone certificate not yet issued"
+        },
+        {
+          "opening": "Picture (fixed) window — Class CW-PG50",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 50.10 psf",
+          "structuralTest": "± 75.2 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Grade 40",
+          "testedSize": "66 x 110 · 72 x 120 · 104 x 84",
+          "glass": "1 in. unit: two ¼ in. tempered + ½ in. spacer",
+          "profiles": "Frame 76171 (5103S1 / V329, 1.22) · bead 2630",
+          "testReport": "Intertek 102617581COQ-001K / -001D / -001L"
+        },
+        {
+          "opening": "Picture with transom — Class CW-PG45",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 45.1 psf",
+          "structuralTest": "± 67.7 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Grade 40",
+          "testedSize": "78 x 120",
+          "glass": "~1 in. unit: two ³⁄₁₆ in. annealed + ⁹⁄₁₆ in. spacer",
+          "profiles": "Frame 76171 (5103S1 / V329, 1.22) · field mullion 542140 (5421S2, 3.36) · bead 2630",
+          "testReport": "Intertek 102617581COQ-001G"
+        },
+        {
+          "opening": "Picture with transom, field mullion — Class LC-PG45 / CW-PG40",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 45.1 / ± 40.1 psf",
+          "structuralTest": "± 67.7 / ± 60.1 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Grade 40",
+          "testedSize": "100 x 96",
+          "glass": "~1 in. unit: two ¼ in. annealed + ⁹⁄₁₆ in. spacer",
+          "profiles": "Frame 76171 (5103S1 / V329, 1.22) · field mullion 542140 (5421S2, 3.36) · bead 2630",
+          "testReport": "Intertek 102617581COQ-001N / -001J"
+        },
+        {
+          "opening": "Tilt & Turn — Class CW-PG55",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 55.1 psf",
+          "structuralTest": "± 82.7 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Grade 20",
+          "testedSize": "60 x 60 · 42 x 84",
+          "glass": "~1 in. unit: two ³⁄₁₆ in. annealed",
+          "profiles": "Frame 76171 (V329 / 5103S1) · sash 76270 (V315, 2.0) · bead 76501",
+          "testReport": "Intertek 102617581COQ-001E · 102965754COQ-001A"
+        },
+        {
+          "opening": "Awning — Class CW-PG45",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 45.1 psf",
+          "structuralTest": "± 67.7 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Grade 20",
+          "testedSize": "70 x 74 · 62 x 84",
+          "glass": "~1 in. unit: two ³⁄₁₆ in. annealed + ⁹⁄₁₆ in. spacer",
+          "profiles": "Frame 76171 (5103S1 / V329, 1.22) · sash 76270 (V315, 2.0) · bead 76501",
+          "testReport": "Intertek 102617581COQ-001A / -001B"
+        },
+        {
+          "opening": "Dual-action side hinged door — Class R-PG85",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 85.2 psf",
+          "structuralTest": "± 127.8 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Pass",
+          "testedSize": "43 x 98",
+          "glass": "~1 in. unit: two ⁵⁄₃₂ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame 76171 (5103S1, 1.22) · sash 76272 (V314 / V326, 2.0) · bead 76501",
+          "testReport": "Intertek 102561015COQ-001A"
+        },
+        {
+          "opening": "Tilt & Turn with fixed light — Class CW-PG30 to CW-PG60",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 30.1 to ± 60.1 psf",
+          "structuralTest": "± 45.1 to ± 90.2 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "T&T Grade 20 · fixed Grade 40",
+          "testedSize": "136 x 74 · 60 x 120 · 144 x 73 · 144 x 84",
+          "glass": "~1 in. unit: two ⁵⁄₃₂ to ¼ in. tempered",
+          "profiles": "Frame 76171 (5103S1 / V329, 1.22) · sash 76270 (V315, 2.0) · welded mullion 76372 (V319, 2.5) · beads 76501, 2630",
+          "testReport": "Intertek 102617581COQ-001H / -001I / -001O / -001P / -001Q / -001R"
+        },
+        {
+          "opening": "ADA outswing side hinged door — Class CW-PG70",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 70.20 psf",
+          "structuralTest": "± 105.3 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 psf",
+          "forcedEntry": "Pass",
+          "testedSize": "43 x 98",
+          "glass": "~1 in. unit: two ⁵⁄₃₂ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame 76171 (5103S1, 1.22) · frame bottom 76174M (V299, 1.5) · sash 76283 (V326, 2.0) · bead 76501",
+          "testReport": "Intertek 102561015COQ-001K"
+        },
+        {
+          "opening": "ADA side hinged door with transom — Class R-PG70 / R-PG75",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 70.2 psf",
+          "structuralTest": "± 105.3 / ± 112.8 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Pass",
+          "testedSize": "43 x 122",
+          "glass": "~1 in. unit: two ⁵⁄₃₂ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame 76171 (5103S1, 1.22) · frame bottom 76174M / 76171M · sash 76272 / 76283 (V314, V326) · welded mullion 76372 (V319, 2.5) · beads 76501, 2630",
+          "testReport": "Intertek 102561015COQ-001C / -001D"
+        },
+        {
+          "opening": "Dual-action double door, floating mullion — Class R-PG55",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 55.1 psf",
+          "structuralTest": "± 82.7 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 psf",
+          "forcedEntry": "Pass",
+          "testedSize": "84 x 98",
+          "glass": "~1 in. unit: two ⁵⁄₃₂ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame 76171 (5103S1, 1.22) · sash 76272 (V314 / V326, 2.0) · mullion 76472 (V317, 2.0) · bead 76501",
+          "testReport": "Intertek 102561015COQ-001B"
+        },
+        {
+          "opening": "Side hinged double door, floating mullion — Class R-PG45 to R-PG50",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 45.1 to ± 50.1 psf",
+          "structuralTest": "± 67.7 to ± 75.2 psf",
+          "waterResistance": "12.1 – 15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Pass",
+          "testedSize": "84 x 98",
+          "glass": "~1 in. unit: two ⁵⁄₃₂ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame 76171 (5103S1, 1.22) · frame bottom 76174M / 76171M · sash 76272 / 76283 (V314, V314C, V326) · mullion 76472 (V317, 2.0) · bead 76501",
+          "testReport": "Intertek 102561015COQ-001E / -001F · 102750661COQ-001A"
+        },
+        {
+          "opening": "Side hinged double door with transom and sidelite — Class R-PG40 to R-PG55",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 40.1 to ± 55.2 psf",
+          "structuralTest": "± 60.2 to ± 82.7 psf",
+          "waterResistance": "12.1 – 15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Pass",
+          "testedSize": "144 x 122",
+          "glass": "~1 in. unit: two ⁵⁄₃₂ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame 76171 (5103S1, 1.22) · frame bottom 76174M (V299, 1.5) · sash 76272 / 76283 (V314C, 2.2) · welded mullion 76372 (V319 + V261) · mullion 76472 (V317) · field mullion 542140 · beads 76501, 2630",
+          "testReport": "Intertek 102561015COQ-001G / -001H · 103322286COQ-001B"
+        },
+        {
+          "opening": "Tilt-slide door — Class R-PG30 to R-PG70",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 30.1 to ± 70.2 psf",
+          "structuralTest": "± 45.1 to ± 105.3 psf",
+          "waterResistance": "12.1 – 15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "Pass at 1.6 and 6.3 psf",
+          "forcedEntry": "Pass",
+          "testedSize": "96 x 84 · 132 x 98 · 216 x 98",
+          "glass": "~1 in. unit: two ³⁄₁₆ to ¼ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame top/bottom 76172 (V314, 2.0) · frame side 76171 (5103S1, 1.22) · sash 76272 (V326, 2.0) · mullions 76372 (V319), 76472 (V317) · field mullion 542140 · beads 76501, 2630",
+          "testReport": "Intertek 102561015COQ-001I / -001J / -001L / -001M"
+        }
+      ]
+    },
+    {
+      "slug": "series-76-md-hadk-hadkz",
+      "name": "Series 76 MD — HADK / HADKZ",
+      "brand": "Kömmerling",
+      "category": "PVC / vinyl",
+      "certification": "Florida Product Approval FL26935.3 to FL26935.7",
+      "flNumbers": [
+        "FL26935"
+      ],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "±65 psf single · ±50 to ±60 psf double · ±100 psf downsized",
+        "largestOpening": "80 x 118",
+        "waterResistance": "15.0 psf"
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "Tilt & Turn single",
+        "double false mull",
+        "double fixed mull",
+        "with transom, fixed or field mull"
+      ],
+      "copy": {
+        "headline": "Tilt & turn, in every combination",
+        "paragraph": "The HADK and HADKZ range covers tilt & turn in seven certified configurations — single, twin with a false mull, twin with a fixed mull, and both with a transom above on a fixed or field mull. Class AW-PG65 at 40 by 78 inches, and tested to ±100 psf at reduced size. Units to 80 by 118 inches.",
+        "points": [
+          "Seven certified configurations",
+          "Class AW-PG65",
+          "±100 psf downsized",
+          "Units to 80 x 118 in.",
+          "Transom options",
+          "15 psf water"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\Komerling\\Series 76 MD — HADK / HADKZ",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 8,
+      "openings": [
+        {
+          "opening": "Tilt & Turn — single, Class CW-PG65",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.3",
+          "hvhz": false,
+          "designPressure": "± 65.0 psf",
+          "structuralTest": "± 97.5 psf",
+          "waterResistance": "15.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "40 x 78",
+          "glass": "1.2 in. unit: two ³⁄₁₆ in. strengthened + ⅞ in. spacer",
+          "profiles": "Frame 76171 (V307, 2.0) · sash 76271 (V307, 2.0) · beads 76501, 2454",
+          "testReport": "NCTL-210-4176-1",
+          "certificate": "Keystone 1129-120 · 1129-121"
+        },
+        {
+          "opening": "Tilt & Turn — single, Class CW-PG100 downsized",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.3",
+          "hvhz": false,
+          "designPressure": "± 100.0 psf",
+          "structuralTest": "± 150.0 psf",
+          "waterResistance": "15.0 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "24 x 24",
+          "glass": "1.2 in. unit: two ³⁄₁₆ in. strengthened + ⅞ in. spacer",
+          "profiles": "Frame 76171 (V307, 2.0) · sash 76271 (V307, 2.0) · beads 76501, 2454",
+          "testReport": "NCTL-210-4176-1",
+          "certificate": "Keystone 1129-122"
+        },
+        {
+          "opening": "Tilt & Turn — twin, floating mullion, Class LC-PG55 / CW-PG50",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.4",
+          "hvhz": false,
+          "designPressure": "± 55.0 psf",
+          "structuralTest": "± 82.5 psf",
+          "waterResistance": "10.5 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.02 – 0.06 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "72 x 72",
+          "sashSize": "34.375 x 69",
+          "glass": "1.2 in. unit: two ³⁄₁₆ in. strengthened + ⅞ in. spacer",
+          "profiles": "Frame 76171 (V307, 2.0) · sash 76271 (V307, 2.0) · mullion 76472 (V317, 2.0) · beads 76501, 2454",
+          "testReport": "NCTL-210-4176-2",
+          "certificate": "Keystone 1129-123 · 1129-124 · 1129-125 · 1129-126"
+        },
+        {
+          "opening": "Tilt & Turn — twin, floating mullion, Class LC-PG70 downsized",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.4",
+          "hvhz": false,
+          "designPressure": "± 100.0 psf",
+          "structuralTest": "± 150.0 psf",
+          "waterResistance": "10.5 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.02 – 0.06 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "36 x 36",
+          "sashSize": "16.25 x 33",
+          "glass": "1.2 in. unit: two ³⁄₁₆ in. strengthened + ⅞ in. spacer",
+          "profiles": "Frame 76171 (V307, 2.0) · sash 76271 (V307, 2.0) · mullion 76472 (V317, 2.0) · beads 76501, 2454",
+          "testReport": "NCTL-210-4176-2",
+          "certificate": "Keystone 1129-127 · 1129-128"
+        },
+        {
+          "opening": "Tilt & Turn — twin, fixed mullion, Class LC-PG60 / CW-PG50",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.5",
+          "hvhz": false,
+          "designPressure": "± 60.0 psf",
+          "structuralTest": "± 90.0 psf",
+          "waterResistance": "10.5 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 – 0.10 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "80 x 78",
+          "sashSize": "38 x 75",
+          "glass": "1.2 in. unit: two ³⁄₁₆ in. strengthened + ⅞ in. spacer",
+          "profiles": "Frame 76171 (V307, 2.0) · sash 76271 (V308, 2.5) · mullion 76372 (V319, 2.5) · beads 76501, 2454",
+          "testReport": "NCTL-210-4176-3",
+          "certificate": "Keystone 1129-129 · 1129-130 · 1129-131 · 1129-132"
+        },
+        {
+          "opening": "Tilt & Turn — twin, fixed mullion, Class LC-PG70 downsized",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.5",
+          "hvhz": false,
+          "designPressure": "± 100.0 psf",
+          "structuralTest": "± 150.0 psf",
+          "waterResistance": "10.5 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 – 0.10 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "48 x 36",
+          "sashSize": "22 x 33",
+          "glass": "1.2 in. unit: two ³⁄₁₆ in. strengthened + ⅞ in. spacer",
+          "profiles": "Frame 76171 (V307, 2.0) · sash 76271 (V308, 2.5) · mullion 76372 (V319, 2.5) · beads 76501, 2454",
+          "testReport": "NCTL-210-4176-3",
+          "certificate": "Keystone 1129-133 · 1129-134"
+        },
+        {
+          "opening": "Tilt & Turn with fixed light — Class R-PG50 vent, LC-PG30 fixed",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.6",
+          "hvhz": false,
+          "designPressure": "± 50.0 psf vent · ± 30.0 psf fixed",
+          "structuralTest": "± 75.0 / ± 45.0 psf",
+          "waterResistance": "10.5 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "72 x 108",
+          "sashSize": "34.375 x 69",
+          "glass": "1.2 in. unit: two ³⁄₁₆ in. strengthened + ⅞ in. spacer",
+          "profiles": "Frame 76171 (V307, 2.0) · sash 76271 (V307, 2.0) · mullion 76372 (V319, 2.5) · beads 76501, 2454, 2630, 2638",
+          "testReport": "NCTL-210-4176-4",
+          "certificate": "Keystone 1129-135 · 1129-136 · 1129-137 · 1129-138"
+        },
+        {
+          "opening": "Tilt & Turn with transom — Class R-PG50 vent, LC-PG30 transom",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26935.7",
+          "hvhz": false,
+          "designPressure": "± 50.0 psf vent · ± 30.0 psf transom",
+          "structuralTest": "± 75.0 / ± 45.0 psf",
+          "waterResistance": "10.5 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "80 x 118",
+          "sashSize": "Vent 36.39 x 74.39 · fixed panel 80 x 39.37",
+          "glass": "1.2 in. unit: two ³⁄₁₆ in. strengthened + ⅞ in. spacer",
+          "profiles": "Frame 76171 (V310, 2.0) · sash 76271 (V307, 2.0) · transom 76605 (V331, 2.5) · beads 76501, 2454, 2630, 2638",
+          "testReport": "NCTL-210-4176-5",
+          "certificate": "Keystone 1129-139 · 1129-140 · 1129-141 · 1129-142"
+        }
+      ]
+    },
+    {
+      "slug": "series-76-ad",
+      "name": "Series 76 AD",
+      "brand": "Kömmerling",
+      "category": "PVC / vinyl",
+      "certification": "Florida Product Approval FL26937.2, FL26937.3",
+      "flNumbers": [
+        "FL26937"
+      ],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "±50 psf",
+        "largestOpening": "96 x 96 (with sidelite)",
+        "waterResistance": "Limited — for covered openings",
+        "waterLimited": true
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "Inswing entry door",
+        "Outswing entry door",
+        "Inswing with sidelite"
+      ],
+      "copy": {
+        "headline": "Entry doors, in or out, with a low ADA sill",
+        "paragraph": "Series 76 AD covers the entry door inswing, outswing and inswing with a sidelite, Florida approved at ±50 psf with an ADA-compliant low sill. Door leaves to 48 by 96 inches, sidelite units to 96 by 96. Passes AAMA 1304 forced entry.",
+        "points": [
+          "Florida Product Approval",
+          "±50 psf",
+          "ADA low sill",
+          "Inswing, outswing and sidelite",
+          "Units to 96 x 96 in.",
+          "AAMA 1304 forced entry"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\Komerling\\Series 76 AD",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 3,
+      "openings": [
+        {
+          "opening": "Inswing entry door — limited water rating",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26937.2",
+          "hvhz": false,
+          "designPressure": "± 50.13 psf",
+          "structuralTest": "± 75.19 psf",
+          "waterResistance": "Limited — for covered openings",
+          "waterLimited": true,
+          "airInfiltration": "0.28 cfm/ft²",
+          "forcedEntry": "AAMA 1304",
+          "testedSize": "48 x 96",
+          "sashSize": "43.5 x 93.31",
+          "glass": "1 in. unit: two ³⁄₁₆ in. tempered",
+          "profiles": "Frame 76102 (V314, 2.0) · sash 76204 (V314, 2.0) · bead 76501",
+          "testReport": "PRI 2569T0010.02",
+          "certificate": "Keystone 1129-146"
+        },
+        {
+          "opening": "Inswing entry door with sidelite — limited water rating",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26937.2",
+          "hvhz": false,
+          "designPressure": "± 50.13 psf",
+          "structuralTest": "± 75.19 psf",
+          "waterResistance": "Limited — for covered openings",
+          "waterLimited": true,
+          "airInfiltration": "0.04 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "96 x 96",
+          "sashSize": "44.75 x 93.38",
+          "glass": "1 in. unit: two ³⁄₁₆ in. tempered",
+          "profiles": "Frame 76102 (V314, 2.0) · sash 76204 (V314, 2.0) · mullion 76303 (V322, 2.5) · pilaster 93002 (V260) · bead 76501",
+          "testReport": "PRI 2569T0016.01",
+          "certificate": "Keystone 1129-149"
+        },
+        {
+          "opening": "Outswing entry door — limited water rating",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26937.3",
+          "hvhz": false,
+          "designPressure": "± 50.13 psf",
+          "structuralTest": "± 75.19 psf",
+          "waterResistance": "Limited — for covered openings",
+          "waterLimited": true,
+          "airInfiltration": "0.06 cfm/ft²",
+          "forcedEntry": "AAMA 1304",
+          "testedSize": "48 x 96",
+          "sashSize": "43.5 x 93.31",
+          "glass": "1 in. unit: two ³⁄₁₆ in. tempered",
+          "profiles": "Frame 76102 (V314, 2.0) · sash 76205 (V314, 2.0) · bead 76501",
+          "testReport": "PRI 2569T0012.02",
+          "certificate": "Keystone 1129-147"
+        }
+      ]
+    },
+    {
+      "slug": "premidoor-88",
+      "name": "Premidoor 88",
+      "brand": "Kömmerling",
+      "category": "PVC / vinyl",
+      "certification": "Florida Product Approval FL26934.1, FL26934.2",
+      "flNumbers": [
+        "FL26934"
+      ],
+      "impact": "Large missile · approved in and outside the HVHZ",
+      "hvhz": true,
+      "summary": {
+        "designPressure": "±55 psf",
+        "largestOpening": "255.9 x 114.17 (OXXO)",
+        "waterResistance": "8.25 psf"
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "Lift & slide XO / OX",
+        "Lift & slide OXXO"
+      ],
+      "copy": {
+        "headline": "Twenty-one feet of glass that lifts and slides",
+        "paragraph": "Premidoor 88 is the impact-certified lift & slide door — the panel lifts off its seals before it moves, so very large glass travels with one hand and seals tightly when lowered. Approved inside and outside the HVHZ at ±55 psf, with XO openings to 180 inches wide and a four-panel OXXO to 255.9 inches — over twenty-one feet.",
+        "points": [
+          "Approved in and outside the HVHZ",
+          "Large missile impact",
+          "±55 psf",
+          "XO to 180 in. wide",
+          "OXXO to 255.9 in.",
+          "Lift & slide action"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\Komerling\\Premidoor 88",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 7,
+      "openings": [
+        {
+          "opening": "Lift & slide — XO / OX",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26934.1",
+          "impact": "Large missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "± 55.0 psf",
+          "structuralTest": "± 82.5 psf",
+          "waterResistance": "8.25 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "180 x 96.06",
+          "glass": "1.18 in. unit: ¼ in. tempered + two ³⁄₁₆ in. strengthened + 0.090 in. interlayer + ⅜ in. spacer",
+          "profiles": "Frame 2880 · sash 2883",
+          "testReport": "NCTL-210-4082-01 · drawings NL-0090, L17-0028",
+          "certificate": "Keystone 1129-108"
+        },
+        {
+          "opening": "Lift & slide — OXXO, four panel",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26934.2",
+          "impact": "Large missile · HVHZ",
+          "hvhz": true,
+          "designPressure": "± 55.0 psf",
+          "structuralTest": "± 82.5 psf",
+          "waterResistance": "8.25 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "ASTM F588 Grade 10",
+          "testedSize": "255.9 x 114.17",
+          "glass": "1.18 in. unit: ¼ in. tempered + two ³⁄₁₆ in. strengthened + 0.090 in. interlayer + ⅜ in. spacer",
+          "profiles": "Frame 2880 · sash 2883",
+          "testReport": "NCTL-210-4098-01 · drawings NL-0097, L17-0036",
+          "certificate": "Keystone 1129-109 · 1129-143"
+        },
+        {
+          "opening": "Sliding XO — Class LC-PG45 / 52 / 60",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 45.11 to ± 60.15 psf",
+          "waterResistance": "15.30 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 – 0.02 cfm/ft²",
+          "forcedEntry": "Type A Grade 40",
+          "testedSize": "120 x 98",
+          "glass": "1 in. unit: two ³⁄₁₆ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame 2880 · sash 2883",
+          "testReport": "Intertek D9319.01-750-44"
+        },
+        {
+          "opening": "Sliding XO — Class R-PG40 / LC-PG35",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 35.09 / ± 40.10 psf",
+          "waterResistance": "15.25 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 cfm/ft²",
+          "forcedEntry": "Type A Grade 40",
+          "testedSize": "256 x 100",
+          "glass": "1½ in. triple unit: three ¼ in. tempered + ¾ in. spacer",
+          "profiles": "Frame 2880 · sash 2883",
+          "testReport": "Intertek E3262.01-750-44-r1"
+        },
+        {
+          "opening": "Sliding OXXO — Class R-PG55 / LC-PG30-35",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 30.08 to ± 60.15 psf",
+          "waterResistance": "12.95 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.04 cfm/ft²",
+          "forcedEntry": "Type C Grade 40",
+          "testedSize": "256 x 114",
+          "glass": "1 in. unit: two ³⁄₁₆ in. tempered + ⅝ in. spacer",
+          "profiles": "Frame 2880 · sash 2883",
+          "testReport": "Intertek D9999.01-750-44-R0"
+        },
+        {
+          "opening": "Sliding XO — Class R-PG55 / LC-PG30",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 30.08 / ± 55.14 psf",
+          "waterResistance": "15.04 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.06 cfm/ft²",
+          "forcedEntry": "Type A Grade 40",
+          "testedSize": "144 x 120",
+          "glass": "1¹⁄₁₆ in. unit: two ¼ in. tempered",
+          "profiles": "Frame 2880 · sash 2883",
+          "testReport": "Intertek S0331.01-750-44-R0 (Aug 2025)"
+        },
+        {
+          "opening": "Sliding OXXO — Class LC-PG60",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 60.15 psf",
+          "waterResistance": "12.95 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.08 cfm/ft²",
+          "forcedEntry": "Type C Grade 40",
+          "testedSize": "244 x 120",
+          "glass": "1¹⁄₁₆ in. unit: two ¼ in. tempered",
+          "profiles": "Frame 2880 · sash 2883",
+          "testReport": "Intertek S0332.01-750-44-R0 (Sep 2025)"
+        }
+      ]
+    },
+    {
+      "slug": "series-88",
+      "name": "Series 88",
+      "brand": "Kömmerling",
+      "category": "PVC / vinyl",
+      "certification": "Florida Product Approval FL26936.2, FL31360.1",
+      "flNumbers": [
+        "FL26936",
+        "FL31360"
+      ],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "±40 psf fixed · ±60 psf dual action",
+        "largestOpening": "59.06 x 120 (fixed)",
+        "waterResistance": "15.04 psf"
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "Fixed",
+        "Dual action (tilt & turn)"
+      ],
+      "copy": {
+        "headline": "Triple glazed, Florida approved",
+        "paragraph": "Series 88 is the 88 mm triple-glazed system — a fixed window at ±40 psf reaching 59 by 120 inches, and a dual-action tilt & turn at ±60 psf, both at 15.04 psf water resistance and Florida approved.",
+        "points": [
+          "Florida Product Approval",
+          "±60 psf dual action",
+          "Fixed lights to 120 in. tall",
+          "15.04 psf water",
+          "Triple glazed",
+          "88 mm depth"
+        ]
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\Komerling\\Series 88",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 2,
+      "openings": [
+        {
+          "opening": "Fixed window — Class CW-PG40",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL26936.2",
+          "hvhz": false,
+          "designPressure": "± 40.10 psf",
+          "structuralTest": "± 60.15 psf",
+          "waterResistance": "15.04 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 – 0.06 cfm/ft²",
+          "forcedEntry": "ASTM F588 Type \"D\" Grade 10",
+          "testedSize": "59.06 x 120",
+          "glass": "1½ in. triple unit: three ³⁄₁₆ in. tempered",
+          "profiles": "Frame 88172 (V389, 2.0) · bead 2636",
+          "testReport": "PRI 2569T0002",
+          "certificate": "Keystone 1129-144_R0"
+        },
+        {
+          "opening": "Dual action tilt & turn — Class CW-PG60",
+          "held": "florida-approval",
+          "heldLabel": "Florida approved",
+          "approval": "FL31360.1",
+          "hvhz": false,
+          "designPressure": "± 60.15 psf",
+          "structuralTest": "± 90.23 psf",
+          "waterResistance": "15.04 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.01 – 0.02 cfm/ft²",
+          "forcedEntry": "ASTM F588 Type \"B\" Grade 10",
+          "testedSize": "59.06 x 98.5",
+          "sashSize": "49.56 x 91.56",
+          "glass": "1½ in. triple unit: three ³⁄₁₆ in. tempered",
+          "profiles": "Frame 88172 (V389, 2.0) · sash 88278 (V307, 2.0) · bead 76516",
+          "testReport": "PRI 2569T0001",
+          "certificate": "Keystone 1129-145_R0"
+        }
+      ]
+    },
+    {
+      "slug": "premislide-76",
+      "name": "PremiSlide 76",
+      "brand": "Kömmerling",
+      "category": "Sliding door",
+      "certification": "AAMA/WDMA/CSA 101/I.S.2/A440 — Class LC-PG50",
+      "flNumbers": [],
+      "hvhz": false,
+      "summary": {
+        "designPressure": "Class LC-PG50",
+        "largestOpening": "174 x 96 in.",
+        "waterResistance": "15.25 psf"
+      },
+      "thermalNote": "Thermal data on request",
+      "openingTypes": [
+        "2 panel",
+        "4 panel"
+      ],
+      "copy": {
+        "headline": null,
+        "paragraph": null,
+        "points": []
+      },
+      "images": {
+        "folder": "VALDA Brand Assets\\Website images\\Products\\Widnows\\Komerling\\PremiSlide 76",
+        "hasImages": false,
+        "cutImage": null
+      },
+      "openingCount": 2,
+      "openings": [
+        {
+          "opening": "Sliding door — Class LC-PG50",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 50.13 psf",
+          "structuralTest": "± 75.19 psf",
+          "waterResistance": "15.25 psf",
+          "waterLimited": false,
+          "airInfiltration": "0.02 cfm/ft²",
+          "forcedEntry": "Pass",
+          "testedSize": "94 x 82",
+          "glass": "1 in. unit: two ¼ in. tempered",
+          "profiles": "Frame 76168 (V547, 2.0 · 158 mm) · sash 76211 (V314 / V454, 2.0) · mullion 76303 (V322 + V280) · bead 76501",
+          "testReport": "Intertek S6889.04-750-44 (May 2025)"
+        },
+        {
+          "opening": "Sliding door, four panel — Class R-PG25/35 · LC-PG30",
+          "held": "aama-tested",
+          "heldLabel": "AAMA tested",
+          "hvhz": false,
+          "designPressure": "± 25.06 to ± 40.10 psf",
+          "structuralTest": "± 37.59 psf",
+          "waterResistance": "8.35 psf",
+          "waterLimited": false,
+          "airInfiltration": "<0.01 cfm/ft²",
+          "forcedEntry": "Pass",
+          "testedSize": "174 x 96",
+          "sashSize": "85.63 x 92.75",
+          "glass": "1 in. unit: two ¼ in. tempered",
+          "profiles": "Frame 76168 (V547, 2.0 · 158 mm) · sash 76211 (V314 / V454, 2.0) · mullion 76303 (V322 + V280) · bead 76501",
+          "testReport": "Intertek S6889.03-750-44 (May 2025)"
+        }
+      ]
+    }
+  ]
+}

@@ -15,8 +15,7 @@ export const SITE = {
 export const NAV = [
   { label: "Products", href: "/products" },
   { label: "Projects", href: "/projects" },
-  { label: "Our Brand", href: "/our-brand" },
-  { label: "How We Work", href: "/how-we-work" },
+  { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },
 ];
 
@@ -33,18 +32,16 @@ export const FOOTER_COLUMNS = [
   {
     title: "Company",
     links: [
-      { label: "Our Brand", href: "/our-brand" },
-      { label: "How We Work", href: "/how-we-work" },
+      { label: "About", href: "/about" },
       { label: "Projects", href: "/projects" },
       { label: "Insights", href: "/insights" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
-    title: "Compliance",
+    title: "More",
     links: [
-      { label: "Certifications", href: "/our-brand/credentials" },
-      { label: "FL approval directory", href: "/our-brand/credentials" },
-      { label: "Contact", href: "/contact" },
+      { label: "FAQ", href: "/faq" },
     ],
   },
 ];

@@ -6,35 +6,31 @@ import { PinnedHero } from "@/components/pinned-hero";
 import { Container, Reveal } from "@/components/primitives";
 import { SectionHead } from "@/components/editorial";
 import { Button } from "@/components/ui/button";
-import { SYSTEMS, type Category } from "@/lib/systems";
+const TYPES: { name: string; href: string; img: string; desc: string }[] = [
+  { name: "Windows", href: "/products/windows", img: "/images/arch-1.jpg", desc: "Tilt & turn, fixed, casement and dual-action in aluminium and PVC." },
+  { name: "Doors", href: "/products/doors", img: "/images/arch-3.jpg", desc: "Entrance, terrace and patio doors with slim, disappearing sightlines." },
+  { name: "Sliding & Folding", href: "/products/sliding", img: "/images/arch-5.jpg", desc: "Lift & slide and minimal-frame systems that open rooms to the view." },
+  { name: "Facades & Curtain Walls", href: "/products/facades", img: "/images/hero.jpg", desc: "Curtain wall and window wall systems for larger envelopes." },
+];
 
 export const metadata: Metadata = {
   title: "Products",
-  description: "High-end aluminium and PVC windows, doors, sliding and facade systems. Browse by type, then filter by material, system family and certification.",
+  description: "High-end aluminium and PVC windows, doors, sliding and facade systems, engineered and certified for the USA.",
 };
-
-const TYPES: { name: string; href: string; cat: Category; img: string; desc: string }[] = [
-  { name: "Windows", href: "/products/windows", cat: "Windows", img: "/images/arch-1.jpg", desc: "Tilt & turn, fixed, casement and dual-action in aluminium and PVC." },
-  { name: "Doors", href: "/products/doors", cat: "Doors", img: "/images/arch-3.jpg", desc: "Entrance, terrace and patio doors with slim, disappearing sightlines." },
-  { name: "Sliding & Folding", href: "/products/sliding", cat: "Sliding & Folding", img: "/images/arch-5.jpg", desc: "Lift & slide and minimal-frame systems that open rooms to the view." },
-  { name: "Facades & Curtain Walls", href: "/products/facades", cat: "Facades", img: "/images/hero.jpg", desc: "Curtain wall and window wall systems for larger envelopes." },
-];
-
-const count = (cat: Category) => SYSTEMS.filter((s) => s.categories.includes(cat)).length;
 
 export default function ProductsPage() {
   return (
     <PinnedHero
       eyebrow="Products"
       title="Systems for every opening."
-      intro="High-end aluminium and PVC systems, engineered and certified for the USA. Start with the type of opening — filter by material, family and certification inside."
+      intro="High-end aluminium and PVC systems, engineered and certified for the USA. Choose the type of opening to see the systems."
       image="/images/arch-1.jpg"
     >
       <section className="bg-white py-24 md:py-32">
         <Container>
           <SectionHead label="The range" title="What are you building?" />
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-slate">
-            Choose an opening type to explore the systems — then narrow by material, system family or certification.
+            Choose an opening type to see the systems, then narrow by material or certification.
           </p>
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {TYPES.map((t, i) => (
@@ -46,9 +42,8 @@ export default function ProductsPage() {
                     <span className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 opacity-0 transition-all duration-300 group-hover:opacity-100">
                       <ArrowUpRight size={19} className="text-ink" />
                     </span>
-                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
+                    <div className="absolute inset-x-0 bottom-0 p-6">
                       <h2 className="headline text-2xl text-white md:text-3xl">{t.name}</h2>
-                      <span className="mb-1 shrink-0 font-mono text-[10px] uppercase tracking-[0.12em] text-white/70">{count(t.cat)} systems</span>
                     </div>
                   </div>
                   <p className="mt-4 max-w-md text-[15px] leading-relaxed text-slate">{t.desc}</p>
@@ -64,9 +59,12 @@ export default function ProductsPage() {
         <Container className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <p className="caption text-slate"><span className="text-blue-bright">/</span> Not sure which system?</p>
-            <h2 className="mt-3 max-w-xl headline text-2xl tracking-[-0.01em] md:text-3xl">Send us your wind zone and opening schedule.</h2>
+            <h2 className="mt-3 max-w-xl headline text-2xl tracking-[-0.01em] md:text-3xl">Answer a few quick questions and we&apos;ll match you.</h2>
           </div>
-          <Button href="/contact" variant="blue">Request a consultation <ArrowRight size={16} /></Button>
+          <div className="flex flex-wrap gap-3">
+            <Button href="/products/finder" variant="blue">Find your system <ArrowRight size={16} /></Button>
+            <Button href="/contact" variant="outline">Talk to us</Button>
+          </div>
         </Container>
       </section>
     </PinnedHero>

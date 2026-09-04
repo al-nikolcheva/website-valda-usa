@@ -1,181 +1,125 @@
 "use client";
 
 import { useState } from "react";
-import { type System, systemTech, systemHolder } from "@/lib/systems";
+import { type System, systemHolder, systemSpecs } from "@/lib/systems";
 
-const STANDARDS_IMPACT = [
-  "AAMA/WDMA/CSA 101/I.S.2/A440",
-  "ASTM E1886 — Impact (large missile)",
-  "ASTM E1996 — Wind-borne debris",
-  "TAS 201 — Large missile impact",
-  "TAS 203 — Cyclic pressure",
-  "ASTM E283 / E330 / E331 — Air · structural · water",
-];
-const STANDARDS_NONIMPACT = [
-  "AAMA/WDMA/CSA 101/I.S.2/A440",
-  "ASTM E283 — Air infiltration",
-  "ASTM E330 — Structural load",
-  "ASTM E331 — Water penetration",
-];
-
+/**
+ * Client-facing performance + approvals block. Deliberately trimmed: specifiers
+ * care about design pressure & max size per opening (with its FL number), and the
+ * handful of standards that actually mean something — not every certification code.
+ */
 export function ProductTabs({ system }: { system: System }) {
-  const tabs = ["Overview", "Specifications", "Performance", "Certifications"] as const;
-  const [active, setActive] = useState<(typeof tabs)[number]>("Overview");
-
   const impactCfgs = system.approvals.filter((a) => a.impact !== "Non-Impact");
   const nonImpactCfgs = system.approvals.filter((a) => a.impact === "Non-Impact");
   const hasBoth = impactCfgs.length > 0 && nonImpactCfgs.length > 0;
   const [mode, setMode] = useState<"impact" | "nonimpact">(impactCfgs.length ? "impact" : "nonimpact");
 
-  const perfList = !hasBoth ? system.approvals : mode === "impact" ? impactCfgs : nonImpactCfgs;
-  const showImpactData = hasBoth ? mode === "impact" : impactCfgs.length > 0;
-  const dp = perfList.find((a) => a.dp)?.dp ?? "See drawing";
-  const maxSize = perfList.find((a) => a.max)?.max ?? "See drawing";
-  const tech = systemTech(system);
+  const rows = !hasBoth ? system.approvals : mode === "impact" ? impactCfgs : nonImpactCfgs;
+  const showImpact = hasBoth ? mode === "impact" : impactCfgs.length > 0;
+
+  const specs = systemSpecs(system.slug);
+  const hasCapability = specs.some((r) => r.label === "Manufacturer max size");
+
+  // the standards that specifiers recognise — grouped in plain language
+  const standards: { label: string; value: string }[] = [];
+  if (showImpact) {
+    standards.push({
+      label: "Large-missile impact",
+      value: system.hvhz !== "No" ? "ASTM E1886 / E1996 · TAS 201 / 202 / 203" : "ASTM E1886 / E1996",
+    });
+  }
+  standards.push({ label: "Air, water & structural", value: "ASTM E283 / E330 / E331" });
+  standards.push({ label: "Fenestration standard", value: "AAMA / WDMA / CSA 101 / I.S.2 / A440" });
+  if (system.hvhz !== "No") standards.push({ label: "HVHZ", value: "Miami-Dade & Broward approved" });
 
   return (
     <div>
-      {/* tab bar + HVHZ toggle */}
-      <div className="flex flex-col gap-4 border-b border-mist md:flex-row md:items-end md:justify-between">
-        <div className="flex flex-wrap gap-8">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              onClick={() => setActive(t)}
-              className={`relative -mb-px pb-4 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors ${
-                active === t ? "text-ink" : "text-slate hover:text-ink"
-              }`}
-            >
-              {t}
-              {active === t && <span className="absolute inset-x-0 bottom-0 h-[2px] bg-blue" />}
-            </button>
-          ))}
+      {/* ── SPECIFICATIONS ────────────────────────────── */}
+      {specs.length > 0 && (
+        <div className="mb-16">
+          <p className="border-b border-mist pb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ink">Specifications</p>
+          <dl className="grid gap-x-16 sm:grid-cols-2">
+            {specs.map((r) => (
+              <div key={r.label} className="flex items-baseline justify-between gap-6 border-b border-mist py-4">
+                <dt className="text-[14px] text-slate">{r.label}</dt>
+                <dd className="text-right text-[15px] font-medium text-ink">{r.value}</dd>
+              </div>
+            ))}
+          </dl>
+          {hasCapability && (
+            <p className="mt-4 text-[12px] leading-relaxed text-slate">
+              Manufacturer max is the system&apos;s capability, not a certified US limit. Certified sizes are shown per opening below.
+            </p>
+          )}
         </div>
+      )}
 
-        {system.hvhz !== "No" &&
-          (hasBoth ? (
-            <div className="mb-3 inline-flex rounded-full border border-mist p-0.5 text-[12px] font-medium">
+      {/* ── PERFORMANCE BY OPENING ────────────────────── */}
+      <div className="flex flex-col gap-4 border-b border-mist pb-4 sm:flex-row sm:items-end sm:justify-between">
+        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">Performance by opening</p>
+        <div className="flex items-center gap-4">
+          {system.perfClass && (
+            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-slate">Class {system.perfClass}</span>
+          )}
+          {hasBoth && (
+            <div className="inline-flex rounded-full border border-mist p-0.5 text-[12px] font-medium">
               <button
-                onClick={() => {
-                  setMode("impact");
-                  setActive("Performance");
-                }}
-                className={`rounded-full px-3.5 py-1.5 transition-colors ${mode === "impact" ? "bg-blue text-white" : "text-slate hover:text-ink"}`}
+                onClick={() => setMode("impact")}
+                className={`rounded-full px-3 py-1 transition-colors ${mode === "impact" ? "bg-blue text-white" : "text-slate hover:text-ink"}`}
               >
-                HVHZ · Impact
+                Impact / HVHZ
               </button>
               <button
-                onClick={() => {
-                  setMode("nonimpact");
-                  setActive("Performance");
-                }}
-                className={`rounded-full px-3.5 py-1.5 transition-colors ${mode === "nonimpact" ? "bg-blue text-white" : "text-slate hover:text-ink"}`}
+                onClick={() => setMode("nonimpact")}
+                className={`rounded-full px-3 py-1 transition-colors ${mode === "nonimpact" ? "bg-blue text-white" : "text-slate hover:text-ink"}`}
               >
                 Non-impact
               </button>
             </div>
-          ) : (
-            <button
-              onClick={() => setActive("Performance")}
-              className="mb-3 inline-flex items-center gap-1.5 self-start rounded-full bg-blue/10 px-3.5 py-1.5 text-[12px] font-medium text-blue transition-colors hover:bg-blue/15"
-            >
-              View HVHZ / impact performance
-            </button>
-          ))}
+          )}
+        </div>
       </div>
 
-      <div className="pt-8">
-        {active === "Overview" && (
-          <div className="grid gap-x-12 gap-y-3 sm:grid-cols-2">
-            <p className="sm:col-span-2 max-w-2xl text-[15px] leading-relaxed text-slate">{system.summary}</p>
-            <Row k="Material" v={system.material} />
-            <Row k="Profile" v={system.profile} />
-            <Row k="Impact rating" v={system.impact} />
-            <Row k="HVHZ" v={system.hvhz === "No" ? "Outside HVHZ" : "Approved"} />
-            <Row k="Categories" v={system.categories.join(", ")} />
-            <Row k="Configurations" v={`${system.approvals.length} FL-approved`} />
-          </div>
-        )}
-
-        {active === "Specifications" && (
-          <div className="grid gap-x-12 gap-y-3 sm:grid-cols-2">
-            {tech.map((row) => (
-              <Row key={row.label} k={row.label} v={row.value} />
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[560px] text-left">
+          <thead>
+            <tr className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate">
+              <th className="py-3 pr-4 font-medium">Configuration</th>
+              <th className="py-3 pr-4 font-medium">Design pressure</th>
+              <th className="py-3 pr-4 font-medium">Max size</th>
+              <th className="py-3 font-medium">Approval</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((a, i) => (
+              <tr key={i} className="border-t border-mist">
+                <td className="py-4 pr-4 text-[15px] text-ink">{a.config}</td>
+                <td className="py-4 pr-4 font-mono text-[13px] text-ink">{a.dp ?? "Wind Zone 3"}</td>
+                <td className="py-4 pr-4 font-mono text-[13px] text-slate">{a.max ?? "Being confirmed"}</td>
+                <td className="py-4 font-mono text-[13px] text-blue">{a.fl}</td>
+              </tr>
             ))}
-          </div>
-        )}
-
-        {active === "Performance" && (
-          <div>
-            {system.hvhz !== "No" && (
-              <p className="mb-5 text-[13px] text-slate">
-                Showing{" "}
-                <span className="font-medium text-ink">
-                  {showImpactData ? "impact / HVHZ" : "non-impact"}
-                </span>{" "}
-                configurations — design pressure to {dp}, max size {maxSize}.
-              </p>
-            )}
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[520px] text-sm">
-                <thead>
-                  <tr className="text-left font-mono text-[10px] uppercase tracking-[0.1em] text-slate">
-                    <th className="border-b border-mist py-3 pr-4 font-medium">Configuration</th>
-                    <th className="border-b border-mist py-3 pr-4 font-medium">Impact</th>
-                    <th className="border-b border-mist py-3 pr-4 font-medium">Design pressure</th>
-                    <th className="border-b border-mist py-3 font-medium">Max size</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {perfList.map((a, i) => (
-                    <tr key={i}>
-                      <td className="border-b border-mist py-3 pr-4">{a.config}</td>
-                      <td className="border-b border-mist py-3 pr-4 text-slate">{a.impact}</td>
-                      <td className="border-b border-mist py-3 pr-4 font-mono text-xs">{a.dp ?? "See drawing"}</td>
-                      <td className="border-b border-mist py-3 font-mono text-xs">{a.max ?? "See drawing"}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-
-        {active === "Certifications" && (
-          <div className="grid gap-x-12 gap-y-8 sm:grid-cols-2">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate">
-                Florida Product Approvals — held by {systemHolder(system)}
-              </p>
-              <div className="mt-3 flex flex-col gap-2">
-                {[...new Map(system.approvals.map((a) => [a.fl, a])).values()].map((a, i) => (
-                  <div key={i} className="flex items-baseline justify-between gap-4 border-b border-mist pb-2">
-                    <span className="text-[14px]">{a.impact === "Non-Impact" ? "Non-impact configurations" : "Impact / HVHZ configurations"}</span>
-                    <span className="font-mono text-xs text-blue">{a.fl}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate">Tested to</p>
-              <ul className="mt-3 space-y-2">
-                {(showImpactData ? STANDARDS_IMPACT : STANDARDS_NONIMPACT).map((st) => (
-                  <li key={st} className="text-[14px] text-slate">{st}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
+          </tbody>
+        </table>
       </div>
-    </div>
-  );
-}
 
-function Row({ k, v }: { k: string; v: string }) {
-  return (
-    <div className="flex items-baseline justify-between gap-4 border-b border-mist py-2.5">
-      <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-slate">{k}</span>
-      <span className="text-right text-[14px]">{v}</span>
+      {/* ── TESTED & APPROVED TO ──────────────────────── */}
+      <div className="mt-16">
+        <p className="border-b border-mist pb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+          Tested &amp; approved to
+        </p>
+        <dl className="grid gap-x-16 sm:grid-cols-2">
+          {standards.map((st) => (
+            <div key={st.label} className="flex items-baseline justify-between gap-4 border-b border-mist py-4">
+              <dt className="text-[15px] text-ink">{st.label}</dt>
+              <dd className="text-right font-mono text-[12px] text-slate">{st.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-5 text-[13px] leading-relaxed text-slate">
+          Florida Product Approvals held by {systemHolder(system)}, to the 2023 Florida Building Code.
+        </p>
+      </div>
     </div>
   );
 }

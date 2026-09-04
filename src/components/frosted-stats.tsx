@@ -42,7 +42,7 @@ export function FrostedStats({
         <SectionHead index={index} label={label} title={title} light />
         <motion.div
           style={{ scale, y: cardY, opacity: cardOpacity }}
-          className="mt-10 rounded-3xl border border-white/15 bg-white/10 p-8 shadow-2xl backdrop-blur-xl md:p-12"
+          className="mt-10 rounded-2xl border border-white/15 bg-white/10 p-8 shadow-2xl backdrop-blur-xl md:p-12"
         >
           <div className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4">
             {stats.map(([n, l]) => (
