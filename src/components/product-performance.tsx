@@ -6,14 +6,17 @@ import { type Opening, type ProductSystem, groupedOpenings } from "@/lib/product
 import { SYM } from "@/components/openings";
 import type { OpeningType } from "@/components/openings";
 
-// A real, quotable water figure — never the "limited / covered" placeholder.
+// A real, quotable water figure, never the "limited / covered" placeholder.
 const realWater = (o: Opening): string | null =>
   o.waterResistance && !o.waterLimited && !/limit|cover/i.test(o.waterResistance) ? o.waterResistance : null;
 
+// Product data may contain em-dashes; never render them.
+const nd = (t: string) => t.replace(/\s*—\s*/g, ", ");
+
 // Strip cautionary suffixes the data bakes into opening names (e.g.
-// "ADA low sill inswing door — limited water rating").
+// "ADA low sill inswing door, limited water rating").
 const cleanOpening = (name: string) =>
-  name.replace(/\s*[—–-]\s*(limited water rating|(for\s+)?covered(\s+openings?)?)\s*$/i, "").trim();
+  nd(name.replace(/\s*[—–-]\s*(limited water rating|(for\s+)?covered(\s+openings?)?)\s*$/i, "").trim());
 
 /* ─────────────────────────  shared helpers  ───────────────────────── */
 
@@ -26,7 +29,7 @@ function family(label: string): Family {
   if (/tilt.*turn|turn.*tilt|dual.?action/.test(t)) return { key: "tt", name: "Tilt & turn", desc: "Tilts in at the top to vent safely, or swings fully open like a door." };
   if (/awning/.test(t)) return { key: "awning", name: "Awning", desc: "Top-hinged and opens outward, so it can stay open in the rain." };
   if (/casement/.test(t)) return { key: "casement", name: "Casement", desc: "Side-hinged and swings wide open for maximum fresh air." };
-  if (/fixed|picture/.test(t)) return { key: "fixed", name: "Fixed / picture", desc: "A sealed window that doesn't open — all glass, slim frame, best views." };
+  if (/fixed|picture/.test(t)) return { key: "fixed", name: "Fixed / picture", desc: "A sealed window that doesn't open: all glass, slim frame, best views." };
   if (/balcony|door|entry|hinged|fold/.test(t)) return { key: "door", name: "Doors", desc: "Hinged terrace, balcony and entrance doors." };
   return { key: "fixed", name: label, desc: "" };
 }
@@ -51,7 +54,7 @@ function areaIn(size?: string): number {
 
 /* ─────────────────────────  AT A GLANCE (homeowner)  ───────────────────────── */
 
-function GlanceCards({ system }: { system: ProductSystem }) {
+export function GlanceCards({ system }: { system: ProductSystem }) {
   // group openings by family, keep the biggest tested size per family
   const map = new Map<string, { fam: Family; impact: boolean; hvhz: boolean; sealed: boolean; big?: string }>();
   for (const o of system.openings) {
@@ -67,7 +70,7 @@ function GlanceCards({ system }: { system: ProductSystem }) {
 
   return (
     <div>
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map(({ fam, impact, hvhz, sealed, big }) => {
           const feet = toFeet(big);
           const chips: { label: string; tone: "impact" | "size" | "seal" }[] = [];
@@ -75,18 +78,18 @@ function GlanceCards({ system }: { system: ProductSystem }) {
           if (feet) chips.push({ label: `Opens up to ${feet}`, tone: "size" });
           if (sealed) chips.push({ label: "Weather-sealed", tone: "seal" });
           return (
-            <div key={fam.key} className="flex flex-col rounded-2xl border border-mist bg-white p-6">
+            <div key={fam.key} className="flex flex-col rounded-lg bg-panel p-6">
               <div className="flex items-center gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-paper">
-                  <svg viewBox="0 0 52 60" className="h-7 w-7 [&_line.dash]:stroke-blue [&_line]:stroke-ink [&_path]:stroke-ink [&_rect]:stroke-ink" fill="none" strokeWidth={2.4} dangerouslySetInnerHTML={{ __html: SYM[fam.key] }} />
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white">
+                  <svg viewBox="0 0 52 60" className="h-7 w-7 [&_line.dash]:stroke-mute [&_line]:stroke-char [&_path]:stroke-char [&_rect]:stroke-char" fill="none" strokeWidth={2.4} dangerouslySetInnerHTML={{ __html: SYM[fam.key] }} />
                 </span>
-                <h4 className="headline text-[18px] text-ink">{fam.name}</h4>
+                <h4 className="sw-h text-[24px] text-char">{fam.name}</h4>
               </div>
-              {fam.desc && <p className="mt-4 text-[14px] leading-relaxed text-slate">{fam.desc}</p>}
+              {fam.desc && <p className="mt-4 text-[16px] leading-6 text-slate">{fam.desc}</p>}
               <ul className="mt-5 flex flex-col gap-2">
                 {chips.map((c) => (
-                  <li key={c.label} className="flex items-center gap-2 text-[13px] text-ink">
-                    {c.tone === "impact" ? <ShieldCheck size={14} className="shrink-0 text-blue" /> : <Check size={13} className="shrink-0 text-blue" />}
+                  <li key={c.label} className="flex items-center gap-2 text-[14px] text-char">
+                    {c.tone === "impact" ? <ShieldCheck size={14} className="shrink-0 text-blue" /> : <Check size={13} className="shrink-0 text-mute" />}
                     {c.label}
                   </li>
                 ))}
@@ -95,7 +98,7 @@ function GlanceCards({ system }: { system: ProductSystem }) {
           );
         })}
       </div>
-      <p className="mt-6 text-[13px] leading-relaxed text-slate">
+      <p className="mt-6 text-[14px] leading-[22px] text-slate">
         Sizes shown are the largest tested. Switch to the full specification for exact figures, or ask us for a size and pressure check on your openings.
       </p>
     </div>
@@ -124,29 +127,30 @@ function SpecRow({ o, cols }: { o: Opening; cols: { water: boolean; size: boolea
   const colCount = 3 + (cols.water ? 1 : 0) + (cols.size ? 1 : 0);
   return (
     <>
-      <tr onClick={() => expandable && setOpen((v) => !v)} className={`border-t border-mist ${expandable ? "cursor-pointer transition-colors hover:bg-paper/70" : ""}`}>
-        <td className="py-4 pr-6 text-[15px] text-ink">
+      <tr
+        onClick={() => expandable && setOpen((v) => !v)}
+        className={`border-b border-char/10 ${expandable ? "cursor-pointer transition-colors hover:bg-char/[0.03]" : ""}`}
+      >
+        <td className="py-4 pr-6 text-[14px] leading-[22px] text-char">
           <span className="flex items-center gap-2">
-            {expandable && <ChevronDown size={13} className={`shrink-0 text-slate/60 transition-transform ${open ? "rotate-180" : ""}`} />}
+            {expandable && <ChevronDown size={14} className={`shrink-0 text-mute transition-transform ${open ? "rotate-180 text-char" : ""}`} />}
             {cleanOpening(o.opening)}
-            {o.hvhz && <span className="rounded-full bg-blue/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] text-blue">HVHZ</span>}
+            {o.hvhz && <span className="rounded-md bg-char px-1.5 py-0.5 text-[11px] leading-4 text-white">HVHZ</span>}
           </span>
         </td>
-        <td className="py-4 pr-6 font-mono text-[13px]">
-          <span className="text-slate">{o.approval ?? ""}</span>
-        </td>
-        <td className="py-4 pr-6 font-mono text-[13px] text-ink">{o.designPressure ?? ""}</td>
-        {cols.water && <td className="py-4 pr-6 font-mono text-[13px] text-slate">{realWater(o) ?? ""}</td>}
-        {cols.size && <td className="py-4 font-mono text-[13px] text-slate">{o.testedSize ?? ""}</td>}
+        <td className="py-4 pr-6 text-[14px] tabular-nums text-slate">{o.approval ?? ""}</td>
+        <td className="py-4 pr-6 text-[14px] tabular-nums text-char">{o.designPressure ?? ""}</td>
+        {cols.water && <td className="py-4 pr-6 text-[14px] tabular-nums text-slate">{realWater(o) ?? ""}</td>}
+        {cols.size && <td className="py-4 text-[14px] tabular-nums text-slate">{o.testedSize ?? ""}</td>}
       </tr>
       {open && expandable && (
-        <tr className="bg-paper/60">
-          <td colSpan={colCount} className="px-4 pb-6 pt-1 sm:px-6">
-            <dl className="grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+        <tr className="border-b border-char/10">
+          <td colSpan={colCount} className="pb-4 pt-2">
+            <dl className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {details.map((f) => (
-                <div key={f.key}>
-                  <dt className="font-mono text-[9px] uppercase tracking-[0.14em] text-slate/70">{f.label}</dt>
-                  <dd className="mt-1 font-mono text-[12px] text-ink">{String(o[f.key])}</dd>
+                <div key={f.key} className="rounded-lg bg-panel p-4">
+                  <dt className="text-[14px] leading-[22px] text-mute">{f.label}</dt>
+                  <dd className="mt-2 text-[14px] leading-[22px] tabular-nums text-char">{nd(String(o[f.key]))}</dd>
                 </div>
               ))}
             </dl>
@@ -160,8 +164,8 @@ function SpecRow({ o, cols }: { o: Opening; cols: { water: boolean; size: boolea
 function HeldBadge({ label }: { label: string }) {
   const florida = label === "Florida approved";
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold tracking-tight ring-1 ${florida ? "bg-blue/10 text-blue ring-blue/25" : "bg-slate/10 text-slate ring-slate/25"}`}>
-      <ShieldCheck size={13} strokeWidth={2.4} /> {label}
+    <span className="inline-flex h-8 items-center gap-2 rounded-lg bg-panel px-3 text-[14px] text-char">
+      <span className={`h-1.5 w-1.5 rounded-full ${florida ? "bg-blue" : "bg-mute"}`} /> {label}
     </span>
   );
 }
@@ -171,17 +175,17 @@ function SpecTable({ rows, label }: { rows: Opening[]; label: string }) {
   const florida = label === "Florida approved";
   const cols = { water: rows.some((r) => realWater(r)), size: rows.some((r) => has(r, "testedSize")) };
   return (
-    <div className="mt-6">
+    <div className="mt-8">
       <HeldBadge label={label} />
       <div className="mt-4 overflow-x-auto">
-        <table className="w-full min-w-[520px] text-left">
+        <table className="w-full min-w-[560px] text-left">
           <thead>
-            <tr className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate">
-              <th className="py-3 pr-6 font-medium">Configuration</th>
-              <th className="py-3 pr-6 font-medium">{florida ? "FL approval" : "Class"}</th>
-              <th className="py-3 pr-6 font-medium">Design pressure</th>
-              {cols.water && <th className="py-3 pr-6 font-medium">Water</th>}
-              {cols.size && <th className="py-3 font-medium">Tested size</th>}
+            <tr className="border-b border-char/10 text-[14px] leading-[22px] text-mute">
+              <th className="py-3 pr-6 font-normal">Configuration</th>
+              <th className="py-3 pr-6 font-normal">{florida ? "FL approval" : "Class"}</th>
+              <th className="py-3 pr-6 font-normal">Design pressure</th>
+              {cols.water && <th className="py-3 pr-6 font-normal">Water</th>}
+              {cols.size && <th className="py-3 font-normal">Tested size</th>}
             </tr>
           </thead>
           <tbody>{rows.map((r, i) => <SpecRow key={i} o={r} cols={cols} />)}</tbody>
@@ -195,13 +199,19 @@ function SpecGroup({ label, count, florida, aama, collapsible }: { label: string
   const [open, setOpen] = useState(!collapsible);
   if (count === 0) return null;
   return (
-    <div className="border-t border-mist pt-8">
-      <button type="button" onClick={() => collapsible && setOpen((v) => !v)} className={`flex w-full items-center justify-between ${collapsible ? "group" : "cursor-default"}`}>
-        <h3 className="font-mono text-[12px] uppercase tracking-[0.16em] text-ink">{label} <span className="text-slate/60">· {count}</span></h3>
+    <div>
+      <button
+        type="button"
+        onClick={() => collapsible && setOpen((v) => !v)}
+        className={`flex w-full items-baseline justify-between gap-6 text-left ${collapsible ? "group" : "cursor-default"}`}
+      >
+        <h3 className="sw-h text-[28px] text-char md:text-[32px]">
+          {label} <span className="text-mute">/{String(count).padStart(2, "0")}</span>
+        </h3>
         {collapsible && (
-          <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-blue transition-colors group-hover:text-blue-bright">
+          <span className="inline-flex shrink-0 items-center gap-1.5 text-[14px] text-char transition-colors group-hover:text-blue">
             {open ? "Hide" : `Show all ${count}`}
-            <ChevronDown size={13} className={`transition-transform ${open ? "rotate-180" : ""}`} />
+            <ChevronDown size={14} className={`transition-transform ${open ? "rotate-180" : ""}`} />
           </span>
         )}
       </button>
@@ -218,12 +228,9 @@ function SpecGroup({ label, count, florida, aama, collapsible }: { label: string
 function FullSpec({ system }: { system: ProductSystem }) {
   const g = groupedOpenings(system);
   return (
-    <div>
-      <p className="text-[13px] leading-relaxed text-slate">Tap any row for the full test detail.</p>
-      <div className="mt-8 space-y-10">
-        <SpecGroup label="Impact rated" count={g.impactCount} florida={g.impact.florida} aama={g.impact.aama} collapsible={false} />
-        <SpecGroup label="Non-impact" count={g.nonImpactCount} florida={g.nonImpact.florida} aama={g.nonImpact.aama} collapsible={false} />
-      </div>
+    <div className="space-y-20">
+      <SpecGroup label="Impact rated" count={g.impactCount} florida={g.impact.florida} aama={g.impact.aama} collapsible={false} />
+      <SpecGroup label="Non-impact" count={g.nonImpactCount} florida={g.nonImpact.florida} aama={g.nonImpact.aama} collapsible={false} />
     </div>
   );
 }
@@ -233,11 +240,11 @@ function FullSpec({ system }: { system: ProductSystem }) {
 export function ProductPerformance({ system }: { system: ProductSystem }) {
   return (
     <div>
-      <p className="max-w-2xl text-[15px] leading-relaxed text-slate">
+      <p className="max-w-xl text-[16px] font-medium leading-6 text-char">
         Every configuration below is individually tested and certified, with its Florida approval number, design
         pressure and tested size. Tap a row for the full test detail and document references.
       </p>
-      <div className="mt-8">
+      <div className="mt-14">
         <FullSpec system={system} />
       </div>
     </div>

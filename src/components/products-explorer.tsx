@@ -6,13 +6,14 @@ import Link from "next/link";
 import { ArrowUpRight, SlidersHorizontal, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ProfileThumb } from "@/components/profile-thumb";
+import { cn } from "@/lib/utils";
 import { PRODUCTS, navGroups, groupOfType, cutImage, type NavGroup, type ProductSystem } from "@/lib/products";
 
 // Design pressure already reads "Up to …" on some systems — don't double it.
 const dpLabel = (dp: string) => (/^up to/i.test(dp.trim()) ? dp : `Up to ${dp}`);
 
-const materialOf = (s: ProductSystem): "Aluminium" | "PVC" =>
-  /pvc|vinyl/i.test(s.category) ? "PVC" : "Aluminium";
+const materialOf = (s: ProductSystem): "Aluminum" | "PVC" =>
+  /pvc|vinyl/i.test(s.category) ? "PVC" : "Aluminum";
 
 const impactShort = (s: ProductSystem) =>
   s.impact ? s.impact.split("—")[0].split("·")[0].trim() : "Non-impact";
@@ -53,7 +54,7 @@ const FILTERS: { key: FilterKey; label: string; options: string[] }[] = [
 const brandLabel = (b: string) => (b === "Valda" ? "VALDA" : b);
 
 export function ProductsExplorer({ group }: { group?: NavGroup }) {
-  const [material, setMaterial] = useState<"All" | "Aluminium" | "PVC">("All");
+  const [material, setMaterial] = useState<"All" | "Aluminum" | "PVC">("All");
   const [filters, setFilters] = useState<Record<FilterKey, string | null>>({ brand: null, cert: null, opening: null });
   const [open, setOpen] = useState(false);
 
@@ -67,7 +68,7 @@ export function ProductsExplorer({ group }: { group?: NavGroup }) {
   // Only offer material tabs / filter options that exist in this category.
   const materials = useMemo(() => {
     const present = new Set(base.map(materialOf));
-    return (["Aluminium", "PVC"] as const).filter((m) => present.has(m));
+    return (["Aluminum", "PVC"] as const).filter((m) => present.has(m));
   }, [base]);
   const availableFilters = useMemo(() => {
     return FILTERS.map((f) => {
@@ -92,17 +93,23 @@ export function ProductsExplorer({ group }: { group?: NavGroup }) {
     [base, material, filters, group],
   );
 
+  const countLabel = `${list.length} system${list.length === 1 ? "" : "s"}`;
+
   return (
     <div>
-      {/* material tab (left) + filters (right) */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="inline-flex items-center gap-1 rounded-full border border-mist bg-paper p-1">
+      {/* material segments (left) + filters (right) */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-1.5">
           {(["All", ...materials] as const).map((m) => (
             <button
               key={m}
               type="button"
               onClick={() => setMaterial(m)}
-              className={`rounded-full px-6 py-2.5 text-[14px] font-medium transition-colors ${material === m ? "bg-ink text-white" : "text-slate hover:text-ink"}`}
+              aria-pressed={material === m}
+              className={cn(
+                "h-10 rounded-lg px-4 text-[14px] leading-[22px] transition-colors duration-300",
+                material === m ? "bg-char text-white" : "bg-panel text-char hover:bg-char/10",
+              )}
             >
               {m}
             </button>
@@ -113,21 +120,25 @@ export function ProductsExplorer({ group }: { group?: NavGroup }) {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[14px] font-medium transition-colors ${open || filterCount ? "border-ink bg-ink text-white" : "border-mist text-ink hover:border-ink/40"}`}
+            aria-expanded={open}
+            className={cn(
+              "inline-flex h-10 items-center gap-2 rounded-lg px-4 text-[14px] leading-[22px] transition-colors duration-300",
+              open || filterCount ? "bg-char text-white" : "bg-panel text-char hover:bg-char/10",
+            )}
           >
             <SlidersHorizontal size={15} /> Filters
             {filterCount > 0 && (
-              <span className="grid h-5 min-w-5 place-items-center rounded-full bg-white px-1 text-[11px] font-semibold text-ink">{filterCount}</span>
+              <span className="grid h-5 min-w-5 place-items-center rounded-md bg-white px-1 text-[12px] text-char">{filterCount}</span>
             )}
           </button>
 
           {open && (
             <>
               <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-              <div className="absolute right-0 z-20 mt-3 w-[min(88vw,360px)] rounded-2xl border border-mist bg-pure p-6 shadow-[0_24px_60px_-24px_rgba(14,18,23,0.4)]">
+              <div className="absolute right-0 z-20 mt-2 w-[min(calc(100vw-40px),360px)] rounded-lg bg-white p-6 shadow-[0_16px_40px_-20px_rgba(34,34,36,0.25)]">
                 <div className="flex items-center justify-between">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-slate">Filters</p>
-                  <button type="button" onClick={() => setOpen(false)} className="text-slate transition-colors hover:text-ink" aria-label="Close filters">
+                  <p className="text-[14px] leading-[22px] text-mute">Filters</p>
+                  <button type="button" onClick={() => setOpen(false)} className="text-mute transition-colors hover:text-char" aria-label="Close filters">
                     <X size={16} />
                   </button>
                 </div>
@@ -135,8 +146,8 @@ export function ProductsExplorer({ group }: { group?: NavGroup }) {
                 <div className="mt-5 space-y-6">
                   {availableFilters.map((facet) => (
                     <div key={facet.key}>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-slate">{facet.label}</p>
-                      <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                      <p className="text-[14px] leading-[22px] text-char">{facet.label}</p>
+                      <div className="mt-2 flex flex-wrap items-center gap-1.5">
                         <Chip active={!filters[facet.key]} onClick={() => set(facet.key, null)}>All</Chip>
                         {facet.options.map((o) => (
                           <Chip key={o} active={filters[facet.key] === o} onClick={() => set(facet.key, o)}>
@@ -148,9 +159,16 @@ export function ProductsExplorer({ group }: { group?: NavGroup }) {
                   ))}
                 </div>
 
-                <div className="mt-6 flex items-center justify-between border-t border-mist pt-4">
-                  <button type="button" onClick={reset} disabled={!anyActive} className="text-[12px] font-medium text-blue underline-offset-4 hover:underline disabled:pointer-events-none disabled:text-slate/50">Clear all</button>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-slate">{list.length} system{list.length === 1 ? "" : "s"}</span>
+                <div className="mt-6 flex items-center justify-between rounded-lg bg-panel px-4 py-3">
+                  <button
+                    type="button"
+                    onClick={reset}
+                    disabled={!anyActive}
+                    className="text-[14px] text-char underline-offset-4 transition-colors hover:text-blue hover:underline disabled:pointer-events-none disabled:text-mute"
+                  >
+                    Clear all
+                  </button>
+                  <span className="text-[14px] text-mute">{countLabel}</span>
                 </div>
               </div>
             </>
@@ -158,7 +176,9 @@ export function ProductsExplorer({ group }: { group?: NavGroup }) {
         </div>
       </div>
 
-      <motion.div layout className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <p className="mt-6 text-[14px] leading-[22px] text-mute">{countLabel}</p>
+
+      <motion.div layout className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {list.map((s) => (
             <motion.div
@@ -171,31 +191,39 @@ export function ProductsExplorer({ group }: { group?: NavGroup }) {
             >
               <Link
                 href={`/products/system/${s.slug}${group ? `?category=${encodeURIComponent(group)}` : ""}`}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all duration-300 hover:border-blue/30 hover:shadow-[0_18px_40px_-24px_rgba(14,18,23,0.35)]"
+                className="group flex h-full flex-col rounded-lg bg-panel p-5 md:p-6"
               >
-                <div className="relative flex aspect-[16/11] items-center justify-center overflow-hidden bg-gradient-to-br from-mist/70 via-paper to-white">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="rounded-md bg-white px-2 py-0.5 text-[12px] text-char">{materialOf(s)}</span>
+                    {s.hvhz && <span className="rounded-md bg-white px-2 py-0.5 text-[12px] text-char">HVHZ</span>}
+                  </div>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-char text-white transition-colors duration-300 group-hover:bg-blue">
+                    <ArrowUpRight size={16} />
+                  </span>
+                </div>
+
+                <div className="relative my-4 flex aspect-[16/11] items-center justify-center">
                   {cutImage(s.slug) ? (
                     <Image
                       src={cutImage(s.slug)!}
                       alt={`${s.name} section`}
                       fill
-                      className="object-contain p-7 transition-transform duration-500 group-hover:scale-[1.04] [filter:drop-shadow(0_14px_28px_rgba(20,24,29,0.16))]"
+                      className="object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-[1.04]"
                       sizes="(max-width:768px) 100vw, 33vw"
                     />
                   ) : (
                     <ProfileThumb material={materialOf(s)} className="h-[78%] w-[78%]" />
                   )}
-                  {s.hvhz && <span className="absolute left-4 top-4 font-mono text-[9px] uppercase tracking-[0.16em] text-blue">HVHZ</span>}
-                  <ArrowUpRight size={18} className="absolute right-4 top-4 text-slate opacity-0 transition-all duration-300 group-hover:text-blue group-hover:opacity-100" />
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="headline text-lg text-ink">{s.name}</h3>
-                    <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.12em] text-slate">{brandLabel(s.brand)}</span>
-                  </div>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-slate/70">{s.category}</p>
-                  <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-slate">{s.copy.headline}</p>
-                  <div className="mt-auto flex flex-wrap gap-x-7 gap-y-3 border-t border-ink/10 pt-4">
+
+                <div className="flex flex-1 flex-col">
+                  <h3 className="sw-h text-[24px] text-char">{s.name}</h3>
+                  <p className="mt-1 text-[14px] leading-[22px] text-mute">
+                    {brandLabel(s.brand)} · {s.category}
+                  </p>
+                  <p className="mt-3 line-clamp-2 text-[14px] leading-[22px] text-slate">{s.copy.headline}</p>
+                  <div className="mt-auto flex flex-wrap gap-x-8 gap-y-3 pt-5">
                     <Spec label="Impact" value={impactShort(s)} />
                     {s.summary.designPressure && <Spec label="Design pressure" value={dpLabel(s.summary.designPressure)} />}
                   </div>
@@ -207,9 +235,15 @@ export function ProductsExplorer({ group }: { group?: NavGroup }) {
       </motion.div>
 
       {list.length === 0 && (
-        <div className="mt-12 rounded-2xl border border-dashed border-ink/15 py-20 text-center">
-          <p className="text-[15px] text-slate">No systems match those filters.</p>
-          <button type="button" onClick={reset} className="mt-3 text-[13px] font-medium text-blue underline-offset-4 hover:underline">Clear filters</button>
+        <div className="mt-4 rounded-lg bg-panel py-20 text-center">
+          <p className="text-[16px] leading-6 text-slate">No systems match those filters.</p>
+          <button
+            type="button"
+            onClick={reset}
+            className="mt-3 text-[14px] text-char underline-offset-4 transition-colors hover:text-blue hover:underline"
+          >
+            Clear filters
+          </button>
         </div>
       )}
     </div>
@@ -221,7 +255,11 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-3.5 py-1.5 text-[12px] font-medium transition-colors ${active ? "bg-ink text-white" : "text-slate hover:text-ink"}`}
+      aria-pressed={active}
+      className={cn(
+        "h-9 rounded-lg px-3 text-[14px] transition-colors duration-300",
+        active ? "bg-char text-white" : "bg-panel text-char hover:bg-char/10",
+      )}
     >
       {children}
     </button>
@@ -231,8 +269,8 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
 function Spec({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-mono text-[9px] uppercase tracking-[0.1em] text-slate/70">{label}</div>
-      <div className="mt-1 text-[13px] font-medium text-ink">{value}</div>
+      <div className="text-[12px] leading-[18px] text-mute">{label}</div>
+      <div className="mt-0.5 text-[14px] leading-[22px] text-char">{value}</div>
     </div>
   );
 }

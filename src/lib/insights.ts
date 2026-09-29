@@ -29,35 +29,35 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
-    slug: "how-aluminium-window-profiles-are-made",
-    title: "How an Aluminium Window Profile Is Made: From Billet to Frame",
+    slug: "how-aluminum-window-profiles-are-made",
+    title: "How Aluminum Window Profiles Are Made",
     description:
-      "Inside aluminium window manufacturing: the extrusion press, the alloy and temper, the thermal break, and the powder-coat or anodised finish that follows.",
+      "Inside aluminum window manufacturing: the extrusion press, the alloy and temper, the thermal break, and the powder-coat or anodised finish that follows.",
     category: "Manufacturing",
     date: "2026-08-26",
     dateLabel: "Aug 2026",
     readMins: 6,
-    cover: "/images/manufacturing.png",
-    keywords: ["how aluminium windows are made", "aluminium extrusion", "window profile manufacturing", "thermal break", "powder coating windows"],
-    excerpt: "A window frame starts life as a solid cylinder of aluminium. Here is how it becomes a slim, thermally-broken profile.",
+    cover: "/images/manufacturing.webp",
+    keywords: ["how aluminum windows are made", "aluminum extrusion", "window profile manufacturing", "thermal break", "powder coating windows"],
+    excerpt: "A window frame starts life as a solid cylinder of aluminum. Here is how it becomes a slim, thermally-broken profile.",
     body: [
-      { type: "p", text: "An aluminium window profile begins as a plain cylinder of alloy called a billet. Everything that makes the finished frame strong, slim and energy efficient happens in the steps between that raw metal and the unit on your wall. Here is the journey." },
+      { type: "p", text: "An aluminum window profile begins as a plain cylinder of alloy called a billet. Everything that makes the finished frame strong, slim and energy efficient happens in the steps between that raw metal and the unit on your wall. Here is the journey." },
       { type: "h2", text: "1. The billet and the alloy" },
-      { type: "p", text: "Window profiles are extruded from a 6000-series aluminium alloy, chosen because it balances strength, corrosion resistance and how cleanly it flows through a die. The billet is heated to around 500 degrees Celsius, hot enough to become soft and formable without melting." },
+      { type: "p", text: "Window profiles are extruded from a 6000-series aluminum alloy, chosen because it balances strength, corrosion resistance and how cleanly it flows through a die. The billet is heated to around 500 degrees Celsius, hot enough to become soft and formable without melting." },
       { type: "h2", text: "2. The extrusion press" },
       { type: "p", text: "A hydraulic ram then forces the softened billet through a hardened steel die, the way toothpaste is squeezed from a tube. The shape cut into the die becomes the cross-section of the profile, every chamber, groove and gasket channel. This is where a slim sightline is won or lost, because the whole geometry is defined here." },
       { type: "h2", text: "3. Cooling and tempering" },
-      { type: "p", text: "As the profile emerges it is quenched, then stretched straight and cut to length. It is still relatively soft, so it is aged in an oven to reach its final temper, typically T5 or T6. Only after ageing does the aluminium reach full strength." },
+      { type: "p", text: "As the profile emerges it is quenched, then stretched straight and cut to length. It is still relatively soft, so it is aged in an oven to reach its final temper, typically T5 or T6. Only after ageing does the aluminum reach full strength." },
       { type: "h2", text: "4. The thermal break" },
-      { type: "p", text: "A bare metal frame would conduct heat and cold straight through the wall. To stop that, two separate profiles, an inner and an outer, are joined by polyamide strips that are rolled into channels and crimped tight. This thermal break interrupts the path of heat, which is what lets a slim aluminium window still insulate well." },
-      { type: "quote", text: "The thermal break is the reason a modern aluminium window can be both slim and warm. Without it, the metal would carry the outside temperature straight indoors." },
+      { type: "p", text: "A bare metal frame would conduct heat and cold straight through the wall. To stop that, two separate profiles, an inner and an outer, are joined by polyamide strips that are rolled into channels and crimped tight. This thermal break interrupts the path of heat, which is what lets a slim aluminum window still insulate well." },
+      { type: "quote", text: "The thermal break is the reason a modern aluminum window can be both slim and warm. Without it, the metal would carry the outside temperature straight indoors." },
       { type: "h2", text: "5. The finish" },
       { type: "p", text: "Finally the profile is finished. Powder coating applies a durable colored layer, baked on for a hard, weather-resistant surface available in effectively any RAL. Anodising instead grows a protective oxide layer for a natural metallic look. Both protect the frame for decades, including in coastal air." },
       { type: "p", text: "From there the profiles are machined, the corners assembled, and the glazing fitted. VALDA runs this process across our European factories, which is why the systems arrive with the precision and finish of European engineering." },
     ],
     faqs: [
-      { q: "What aluminium alloy are windows made from?", a: "Most window profiles use a 6000-series alloy, which extrudes cleanly and offers a good balance of strength and corrosion resistance. It is then heat-treated to a T5 or T6 temper for full strength." },
-      { q: "What is a thermal break in a window?", a: "It is an insulating barrier, usually polyamide strips, that joins the inner and outer aluminium profiles. It interrupts the flow of heat and cold through the metal, so a slim aluminium frame can still insulate well." },
+      { q: "What aluminum alloy are windows made from?", a: "Most window profiles use a 6000-series alloy, which extrudes cleanly and offers a good balance of strength and corrosion resistance. It is then heat-treated to a T5 or T6 temper for full strength." },
+      { q: "What is a thermal break in a window?", a: "It is an insulating barrier, usually polyamide strips, that joins the inner and outer aluminum profiles. It interrupts the flow of heat and cold through the metal, so a slim aluminum frame can still insulate well." },
       { q: "Is powder coating or anodising better?", a: "Both are durable, long-lasting finishes. Powder coating offers almost any color and a matte or satin look; anodising gives a natural metallic finish and a very hard surface. The right choice depends on the look you want." },
     ],
     related: ["how-pvc-window-profiles-are-made", "engineered-in-europe-delivered-worldwide"],
@@ -65,20 +65,20 @@ export const POSTS: Post[] = [
 
   {
     slug: "engineered-in-europe-delivered-worldwide",
-    title: "Engineered in Europe, Delivered Worldwide: The VALDA Export Model",
+    title: "Engineered in Europe, Delivered Worldwide",
     description:
-      "VALDA is a family-owned European manufacturer that exports globally. How three Bulgarian factories, European engineering and a factory-direct model reach projects around the world.",
+      "How VALDA's two Bulgarian factories, European engineering and a factory-direct model deliver windows and doors to projects around the world.",
     category: "Company",
     date: "2026-08-25",
     dateLabel: "Aug 2026",
     readMins: 5,
-    cover: "/images/veliko-tarnovo.jpg",
+    cover: "/images/deliver-loading.webp",
     keywords: ["European window manufacturer", "window exporter", "factory direct windows", "Bulgarian window factory", "import European windows"],
     excerpt: "VALDA is not a local dealer with a warehouse. It is a European manufacturer that makes its own systems and ships them worldwide.",
     body: [
       { type: "p", text: "It is worth being clear about what VALDA is. Not a distributor, not a rebrander, but a manufacturer. The company designs and produces its own window, door and facade systems in Europe, and exports them to projects around the world. That single fact shapes everything about the quality and the price." },
       { type: "h2", text: "Family-owned since 1998" },
-      { type: "p", text: "VALDA started in 1998, hand-making windows in a small garage in Bulgaria. It is still one hundred percent family-owned, with no outside investors. Nearly three decades later it runs three factories, two in Sofia and one in Veliko Tarnovo, with more than three hundred production specialists." },
+      { type: "p", text: "VALDA started in 1998, hand-making windows in a small garage in Bulgaria. It is still one hundred percent family-owned, with no outside investors. Nearly three decades later it runs two factories, in Sofia and Veliko Tarnovo, with more than three hundred production specialists." },
       { type: "h2", text: "European engineering as standard" },
       { type: "p", text: "Manufacturing in Europe means building to European standards from the start: precise extrusion, fusion-welded corners, thermally-broken frames and rigorous factory quality control. That engineering baseline travels with every unit, wherever it ships." },
       { type: "h2", text: "A factory-direct export model" },
@@ -93,19 +93,19 @@ export const POSTS: Post[] = [
       { q: "What does factory-direct mean for buyers?", a: "VALDA manufactures and exports its own systems, so there are fewer intermediaries between the production line and the finished opening. That keeps quality consistent and reduces the markups of a long supply chain." },
       { q: "Does VALDA only sell to Europe?", a: "No. VALDA exports worldwide. The same European-engineered systems are shipped and supported internationally, including across the United States." },
     ],
-    related: ["how-aluminium-window-profiles-are-made", "windows-for-the-whole-united-states"],
+    related: ["how-aluminum-window-profiles-are-made", "windows-for-the-whole-united-states"],
   },
 
   {
     slug: "how-pvc-window-profiles-are-made",
-    title: "How a PVC Window Profile Is Made: Compound, Extrusion and Steel",
+    title: "How PVC Window Profiles Are Made",
     description:
-      "Inside PVC window manufacturing: the compound, twin-screw extrusion, the multi-chamber profile, the galvanised steel reinforcement and the fusion-welded corners that make it strong.",
+      "Inside PVC window manufacturing: the compound, extrusion, multi-chamber profile, steel reinforcement and fusion-welded corners that make it strong.",
     category: "Manufacturing",
     date: "2026-08-24",
     dateLabel: "Aug 2026",
     readMins: 6,
-    cover: "/images/valda-facility.png",
+    cover: "/images/valda-facility.webp",
     keywords: ["how PVC windows are made", "uPVC extrusion", "multi-chamber profile", "steel reinforcement PVC", "welded window corners"],
     excerpt: "PVC windows are often dismissed as the budget option. The way they are actually made explains why a good one performs so well.",
     body: [
@@ -128,19 +128,19 @@ export const POSTS: Post[] = [
       { q: "Do PVC windows have steel inside?", a: "Yes. Galvanised steel is inserted into the main chamber of the profile to give the frame rigidity, particularly on larger windows and doors. The steel provides structure while the PVC insulates and weathers." },
       { q: "Are welded corners better than mechanical joints?", a: "Fusion-welded corners fuse the profile into one continuous frame, which is stronger and more airtight than corners that are screwed or bracketed together." },
     ],
-    related: ["how-aluminium-window-profiles-are-made", "aluminium-vs-pvc-windows-hurricane"],
+    related: ["how-aluminum-window-profiles-are-made", "aluminum-vs-pvc-windows-hurricane"],
   },
 
   {
     slug: "beyond-hurricanes-heat-cold-noise",
-    title: "Beyond Hurricanes: Windows Engineered for Heat, Cold and Noise",
+    title: "Windows for Heat, Cold and Noise, Not Just Storms",
     description:
-      "Impact resistance is one property among many. How thermal insulation, solar control and acoustic glazing make a window perform in any climate, from a Texas summer to a Chicago winter.",
+      "Impact resistance is only one property. How thermal insulation, solar control and acoustic glass make a window perform in any US climate.",
     category: "Performance",
     date: "2026-08-23",
     dateLabel: "Aug 2026",
     readMins: 6,
-    cover: "/images/hero-villa.jpg",
+    cover: "/images/home-cream-brick.webp",
     keywords: ["energy efficient windows", "window U-value", "soundproof windows", "solar control glazing", "thermal insulation windows"],
     excerpt: "Storm resistance gets the headlines, but for most homes the windows work hardest against heat, cold and noise every single day.",
     body: [
@@ -161,19 +161,19 @@ export const POSTS: Post[] = [
       { q: "Can windows reduce outside noise?", a: "Yes. Laminated glass and panes of differing thickness disrupt sound waves, so a well-specified window can noticeably reduce traffic, aircraft and city noise." },
       { q: "How do windows keep a house cool in hot climates?", a: "A low-emissivity coating reflects much of the sun's heat back outside while still letting light through, which reduces cooling loads in hot regions without darkening the glass." },
     ],
-    related: ["windows-for-the-whole-united-states", "aluminium-vs-pvc-windows-hurricane"],
+    related: ["windows-for-the-whole-united-states", "aluminum-vs-pvc-windows-hurricane"],
   },
 
   {
     slug: "windows-for-the-whole-united-states",
-    title: "Windows for the Whole United States, Not Just the Coast",
+    title: "Windows for the Whole USA, Not Just the Coast",
     description:
-      "VALDA serves projects across the US, from Florida to California, Texas, Chicago and New York. Each climate asks something different from a window, and European systems can meet all of them.",
+      "Every US climate asks something different from a window. How European systems handle heat, cold, humidity and wind, from coast to coast.",
     category: "Market",
     date: "2026-08-22",
     dateLabel: "Aug 2026",
     readMins: 5,
-    cover: "/images/hero-gora.jpg",
+    cover: "/images/home-us-porch.webp",
     keywords: ["European windows USA", "windows for hot climate", "windows for cold climate", "high performance windows America", "import windows US"],
     excerpt: "Florida gets the attention because of hurricanes, but a window in Chicago or Phoenix has an entirely different job to do.",
     body: [
@@ -199,9 +199,9 @@ export const POSTS: Post[] = [
 
   {
     slug: "european-quality-ce-marking-and-iso",
-    title: "European Quality, Certified: CE Marking, EN Standards and ISO",
+    title: "CE Marking, EN Standards and ISO, Explained",
     description:
-      "Beyond country-specific approvals, European windows are backed by CE marking, the EN 14351 standard and ISO management systems. What each one actually certifies.",
+      "European windows are backed by CE marking, the EN 14351 standard and ISO management systems. What each one actually certifies, in plain terms.",
     category: "Certification",
     date: "2026-08-21",
     dateLabel: "Aug 2026",
@@ -231,29 +231,29 @@ export const POSTS: Post[] = [
       { q: "What does ISO 9001 certify?", a: "ISO 9001 certifies a quality management system, meaning the processes a manufacturer uses to keep production consistent and controlled. It certifies the organisation and its processes rather than a single product." },
       { q: "Is European certification enough for the US market?", a: "European standards set a strong quality baseline, but each market also has its own approvals. A product is typically backed by European certification and then confirmed with the specific approvals required for the destination market." },
     ],
-    related: ["engineered-in-europe-delivered-worldwide", "how-aluminium-window-profiles-are-made"],
+    related: ["engineered-in-europe-delivered-worldwide", "how-aluminum-window-profiles-are-made"],
   },
 
   {
-    slug: "aluminium-vs-pvc-windows-hurricane",
-    title: "Aluminium vs. PVC Windows: How to Choose",
+    slug: "aluminum-vs-pvc-windows-hurricane",
+    title: "Aluminum vs. PVC Windows: How to Choose",
     description:
-      "Aluminium and PVC both make excellent windows. The right choice comes down to sightlines, budget, insulation and environment. A clear side-by-side for any project.",
+      "Aluminum and PVC both make excellent windows. The right choice comes down to sightlines, budget, insulation and climate. A clear side-by-side.",
     category: "Guides",
     date: "2026-08-05",
     dateLabel: "Aug 2026",
     readMins: 6,
-    cover: "/images/arch-4.jpg",
-    keywords: ["aluminium vs PVC windows", "aluminum vs vinyl windows", "best window material", "window frame comparison", "impact window material"],
+    cover: "/images/facade-brick.webp",
+    keywords: ["aluminum vs PVC windows", "aluminum vs vinyl windows", "best window material", "window frame comparison", "impact window material"],
     excerpt: "Both materials perform. The decision is really about look, budget and the environment right outside your wall.",
     body: [
-      { type: "p", text: "One of the first choices on any window project is the frame material. The good news is that both aluminium and PVC can be engineered to a high performance class and, where needed, fully impact rated. The decision is not really about capability, it is about sightlines, budget, insulation and how harsh the environment is right outside." },
-      { type: "h2", text: "Where aluminium wins" },
+      { type: "p", text: "One of the first choices on any window project is the frame material. The good news is that both aluminum and PVC can be engineered to a high performance class and, where needed, fully impact rated. The decision is not really about capability, it is about sightlines, budget, insulation and how harsh the environment is right outside." },
+      { type: "h2", text: "Where aluminum wins" },
       { type: "ul", items: [
-        "Strength. Aluminium carries higher structural loads, which suits tall openings, large glass and exposed sites.",
+        "Strength. Aluminum carries higher structural loads, which suits tall openings, large glass and exposed sites.",
         "Slim sightlines. Thinner frames mean more glass and a cleaner, more modern look.",
-        "Big spans. Sliding and facade systems that open a whole wall are almost always aluminium.",
-        "Longevity and finish. Powder-coated aluminium holds its color for decades and comes in effectively any RAL.",
+        "Big spans. Sliding and facade systems that open a whole wall are almost always aluminum.",
+        "Longevity and finish. Powder-coated aluminum holds its color for decades and comes in effectively any RAL.",
       ] },
       { type: "h2", text: "Where PVC wins" },
       { type: "ul", items: [
@@ -263,24 +263,24 @@ export const POSTS: Post[] = [
         "Low upkeep. A wipe-down is generally all it needs.",
       ] },
       { type: "h2", text: "The environment question" },
-      { type: "p", text: "Very close to the water, both materials work but age differently. Quality powder-coated aluminium resists corrosion well and is the standard for high-rise and architectural coastal work. PVC never corrodes at all, which makes it a low-maintenance favorite right on the shoreline. Either is a sound choice when the system is engineered and finished for the exposure." },
+      { type: "p", text: "Very close to the water, both materials work but age differently. Quality powder-coated aluminum resists corrosion well and is the standard for high-rise and architectural coastal work. PVC never corrodes at all, which makes it a low-maintenance favorite right on the shoreline. Either is a sound choice when the system is engineered and finished for the exposure." },
       { type: "h2", text: "So which should you choose?" },
-      { type: "p", text: "Lead with your priority. If you want the slimmest frames, the largest glass or a facade-scale opening, choose aluminium. If value and insulation top your list, or the home sits in harsh air, PVC is hard to beat. Both can be specified to the same performance class." },
-      { type: "p", text: "VALDA builds both, from slim aluminium systems to high-performance PVC, all engineered in Europe. Not sure which fits your project? Our finder narrows it down in a minute, or we can talk it through." },
+      { type: "p", text: "Lead with your priority. If you want the slimmest frames, the largest glass or a facade-scale opening, choose aluminum. If value and insulation top your list, or the home sits in harsh air, PVC is hard to beat. Both can be specified to the same performance class." },
+      { type: "p", text: "VALDA builds both, from slim aluminum systems to high-performance PVC, all engineered in Europe. Not sure which fits your project? Our finder narrows it down in a minute, or we can talk it through." },
     ],
     faqs: [
-      { q: "Are PVC windows as strong as aluminium?", a: "PVC windows are reinforced with galvanised steel and can meet high performance classes, including impact ratings. Aluminium carries higher structural loads, which matters most on very large or tall openings." },
-      { q: "Which lasts longer near the coast, aluminium or PVC?", a: "Both last for decades when engineered for the exposure. Powder-coated aluminium resists corrosion and is the norm for coastal high-rise work; PVC does not corrode at all and needs almost no maintenance." },
-      { q: "Is aluminium or PVC more energy efficient?", a: "Multi-chamber PVC is a better natural insulator, but modern thermally-broken aluminium closes much of the gap. Glazing choice usually affects energy performance more than the frame material." },
+      { q: "Are PVC windows as strong as aluminum?", a: "PVC windows are reinforced with galvanised steel and can meet high performance classes, including impact ratings. Aluminum carries higher structural loads, which matters most on very large or tall openings." },
+      { q: "Which lasts longer near the coast, aluminum or PVC?", a: "Both last for decades when engineered for the exposure. Powder-coated aluminum resists corrosion and is the norm for coastal high-rise work; PVC does not corrode at all and needs almost no maintenance." },
+      { q: "Is aluminum or PVC more energy efficient?", a: "Multi-chamber PVC is a better natural insulator, but modern thermally-broken aluminum closes much of the gap. Glazing choice usually affects energy performance more than the frame material." },
     ],
-    related: ["how-aluminium-window-profiles-are-made", "how-pvc-window-profiles-are-made"],
+    related: ["how-aluminum-window-profiles-are-made", "how-pvc-window-profiles-are-made"],
   },
 
   {
     slug: "are-impact-windows-required-in-florida",
-    title: "Are Impact Windows Required in Florida? A 2026 County Guide",
+    title: "Are Impact Windows Required in Florida? (2026)",
     description:
-      "Where impact windows are legally required in Florida, how the High-Velocity Hurricane Zone and the Wind-Borne Debris Region differ, and what the 2026 code change means for your project.",
+      "Where Florida law requires impact windows, how the HVHZ and Wind-Borne Debris Region differ, and what the 2026 code change means for you.",
     category: "US Market",
     date: "2026-07-28",
     dateLabel: "Jul 2026",
@@ -313,9 +313,9 @@ export const POSTS: Post[] = [
 
   {
     slug: "hvhz-vs-florida-product-approval",
-    title: "HVHZ vs. Florida Product Approval: What Actually Gets You Permitted",
+    title: "HVHZ vs. Florida Product Approval, Explained",
     description:
-      "Florida Product Approval, Miami-Dade NOA and HVHZ approval are not interchangeable. What each one means, why a statewide number can fail in the hurricane zone, and how to read an FL approval.",
+      "Florida Product Approval, Miami-Dade NOA and HVHZ approval are not the same. What each means and how to read an FL approval for your permit.",
     category: "US Market",
     date: "2026-07-20",
     dateLabel: "Jul 2026",
@@ -354,14 +354,14 @@ export const POSTS: Post[] = [
 
   {
     slug: "impact-windows-vs-hurricane-shutters",
-    title: "Impact Windows vs. Hurricane Shutters: Cost, Protection and Daily Life",
+    title: "Impact Windows vs. Hurricane Shutters",
     description:
-      "Impact windows and hurricane shutters both satisfy code, but they differ on cost over time, convenience, insurance and resale. A practical comparison for homeowners.",
+      "Impact windows and hurricane shutters both meet code, but differ on long-term cost, convenience, insurance and resale. A practical comparison.",
     category: "US Market",
     date: "2026-07-12",
     dateLabel: "Jul 2026",
     readMins: 5,
-    cover: "/images/project-milwaukee-1.jpg",
+    cover: "/images/home-coast-sunset.webp",
     keywords: ["impact windows vs shutters", "hurricane shutters vs impact windows", "cost of impact windows", "hurricane protection", "insurance discount impact windows"],
     excerpt: "Both protect your openings and both pass code. The difference is how they feel to live with, and what they cost over the years.",
     body: [
@@ -380,7 +380,7 @@ export const POSTS: Post[] = [
       ] },
       { type: "h2", text: "Who each one suits" },
       { type: "p", text: "Shutters make sense on a tight budget or where you want to keep existing windows. Impact windows make sense when you want protection that works without you, plus the quieter, more secure, more efficient home that comes with it." },
-      { type: "p", text: "VALDA impact systems are certified for the US market in both aluminium and PVC. Tell us about your home and we will help you weigh it up." },
+      { type: "p", text: "VALDA impact systems are certified for the US market in both aluminum and PVC. Tell us about your home and we will help you weigh it up." },
     ],
     faqs: [
       { q: "Are impact windows better than hurricane shutters?", a: "Both meet code. Impact windows protect permanently with no deployment and add noise reduction, UV protection, security and possible insurance savings. Shutters cost less up front but must be closed before every storm." },
@@ -392,9 +392,9 @@ export const POSTS: Post[] = [
 
   {
     slug: "hvhz-large-missile-impact-testing",
-    title: "What HVHZ Large-Missile Impact Testing Actually Involves",
+    title: "How HVHZ Large-Missile Impact Testing Works",
     description:
-      "Inside the Miami-Dade TAS 201, 202 and 203 protocols: the nine-pound missile, the cyclic pressure runs and what a pass really proves about a hurricane-zone window.",
+      "Inside the Miami-Dade TAS 201, 202 and 203 tests: the 9 lb missile, 9,000 pressure cycles and what a pass really proves about a window.",
     category: "Technical",
     date: "2026-07-05",
     dateLabel: "Jul 2026",

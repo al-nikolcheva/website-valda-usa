@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/primitives";
 import { Button } from "@/components/ui/button";
 import { POSTS, getPost, type Block } from "@/lib/insights";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbLd } from "@/lib/seo";
 
 const BASE = "https://valdagroup.com";
 
@@ -36,27 +38,35 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+function Chip({ children }: { children: React.ReactNode }) {
+  return <span className="inline-block rounded-md bg-panel px-2 py-0.5 text-[12px] text-char">{children}</span>;
+}
+
 function BlockView({ b }: { b: Block }) {
   switch (b.type) {
     case "h2":
-      return <h2 className="mt-14 headline text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] tracking-[-0.01em] text-ink">{b.text}</h2>;
+      return <h2 className="sw-h mt-16 text-[28px] text-char md:text-[32px]">{b.text}</h2>;
     case "h3":
-      return <h3 className="mt-10 text-[19px] font-semibold tracking-[-0.01em] text-ink">{b.text}</h3>;
+      return <h3 className="sw-h mt-10 text-[22px] text-char">{b.text}</h3>;
     case "ul":
       return (
-        <ul className="mt-5 space-y-3">
+        <ul className="mt-6 space-y-3">
           {b.items.map((it, i) => (
-            <li key={i} className="flex gap-3 text-[17px] leading-[1.7] text-slate">
-              <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue" />
+            <li key={i} className="flex gap-3 text-[18px] leading-[30px] text-char/80">
+              <span className="mt-[13px] h-1.5 w-1.5 shrink-0 rounded-full bg-mute" />
               <span>{it}</span>
             </li>
           ))}
         </ul>
       );
     case "quote":
-      return <blockquote className="mt-10 border-l-2 border-blue pl-6 text-[clamp(1.15rem,2vw,1.4rem)] font-medium leading-[1.4] tracking-[-0.01em] text-ink">{b.text}</blockquote>;
+      return (
+        <blockquote className="sw-h mt-12 rounded-lg bg-panel p-6 text-[22px] leading-[1.35] text-char md:p-8 md:text-[24px]">
+          {b.text}
+        </blockquote>
+      );
     default:
-      return <p className="mt-6 text-[17px] leading-[1.75] text-slate">{b.text}</p>;
+      return <p className="mt-6 text-[18px] leading-[30px] text-char/80">{b.text}</p>;
   }
 }
 
@@ -85,85 +95,95 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     "@type": "FAQPage",
     mainEntity: p.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
   } : null;
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Insights", item: `${BASE}/insights` },
-      { "@type": "ListItem", position: 2, name: p.title, item: `${BASE}/insights/${p.slug}` },
-    ],
-  };
+  const crumbsLd = breadcrumbLd([
+    ["Home", "/"],
+    ["Insights", "/insights"],
+    [p.title, `/insights/${p.slug}`],
+  ]);
 
   return (
-    <main className="bg-pure pb-24 pt-28 md:pt-32">
-      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
-      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+    <main className="bg-white pt-28 md:pt-36">
+      <JsonLd data={articleLd} />
+      {faqLd && <JsonLd data={faqLd} />}
+      <JsonLd data={crumbsLd} />
 
       <Container>
-        <article className="mx-auto max-w-2xl">
-          <Link href="/insights" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-slate transition-colors hover:text-ink">
+        {/* header */}
+        <div className="mx-auto max-w-[880px]">
+          <Link href="/insights" className="inline-flex items-center gap-2 text-[14px] leading-[22px] text-mute transition-colors hover:text-char">
             <ArrowLeft size={14} /> Insights
           </Link>
-
-          <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.16em] text-blue-bright">{p.category} · {p.dateLabel} · {p.readMins} min read</p>
-          <h1 className="mt-4 headline text-[clamp(2rem,4.6vw,3.2rem)] leading-[1.03] tracking-[-0.025em] text-ink">{p.title}</h1>
-          <p className="mt-6 text-[18px] leading-[1.6] text-slate">{p.excerpt}</p>
-
-          <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-2xl">
-            <Image src={p.cover} alt={p.title} fill priority className="object-cover" sizes="(max-width:768px) 100vw, 700px" />
+          <div className="mt-10 flex flex-wrap gap-1.5">
+            <Chip>{p.category}</Chip>
+            <Chip>{p.readMins} min read</Chip>
           </div>
-
-          <div className="mt-4">
-            {p.body.map((b, i) => (
-              <BlockView key={i} b={b} />
-            ))}
+          <h1 className="sw-h mt-6 text-[clamp(2.2rem,4.8vw,3.75rem)] leading-[1.08] text-char">{p.title}</h1>
+          <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-16">
+            <p className="max-w-[560px] text-[16px] font-medium leading-6 text-char">{p.excerpt}</p>
+            <p className="shrink-0 text-[14px] leading-[22px] text-mute">{p.dateLabel}</p>
           </div>
+        </div>
+
+        <div className="relative mx-auto mt-12 aspect-[16/9] w-full max-w-[1200px] overflow-hidden rounded-lg md:mt-16">
+          <Image src={p.cover} alt={p.title} fill priority className="object-cover" sizes="(max-width:1240px) 100vw, 1200px" />
+        </div>
+
+        {/* body */}
+        <article className="mx-auto max-w-[680px] pb-28 pt-8 md:pb-36 md:pt-12">
+          {p.body.map((b, i) => (
+            <BlockView key={i} b={b} />
+          ))}
 
           {p.faqs && p.faqs.length > 0 && (
-            <section className="mt-16 border-t border-mist pt-10">
-              <h2 className="headline text-[clamp(1.5rem,2.6vw,2rem)] tracking-[-0.01em] text-ink">Frequently asked</h2>
-              <div className="mt-8 space-y-8">
+            <section className="mt-20">
+              <p className="text-[14px] leading-[22px] text-mute">FAQ</p>
+              <h2 className="sw-h mt-6 text-[28px] text-char md:text-[32px]">Frequently asked</h2>
+              <div className="mt-8 space-y-3">
                 {p.faqs.map((f) => (
-                  <div key={f.q}>
-                    <h3 className="text-[17px] font-semibold text-ink">{f.q}</h3>
-                    <p className="mt-2 text-[16px] leading-[1.7] text-slate">{f.a}</p>
+                  <div key={f.q} className="rounded-lg bg-panel p-6">
+                    <h3 className="text-[18px] font-medium leading-7 text-char">{f.q}</h3>
+                    <p className="mt-3 text-[16px] leading-6 text-slate">{f.a}</p>
                   </div>
                 ))}
               </div>
             </section>
           )}
 
-          <div className="mt-16 flex flex-col items-start gap-5 rounded-2xl bg-ink p-8 text-white sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="headline text-[22px] tracking-[-0.01em]">Planning a project?</h2>
-              <p className="mt-2 text-[14px] text-white/70">Tell us about your openings and we will match the right certified system.</p>
-            </div>
-            <div className="flex shrink-0 flex-wrap gap-3">
+          <div className="mt-20 rounded-lg bg-char p-6 text-white md:p-8">
+            <h2 className="sw-h text-[28px] text-white">Planning a project?</h2>
+            <p className="mt-3 max-w-md text-[16px] leading-6 text-white/70">Tell us about your openings and we will match the right certified system.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/products/finder" variant="light">Find your system <ArrowRight size={15} /></Button>
               <Button href="/contact" variant="outlineLight">Talk to us</Button>
             </div>
           </div>
         </article>
+      </Container>
 
-        {related.length > 0 && (
-          <div className="mx-auto mt-20 max-w-4xl border-t border-mist pt-12">
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-slate">Keep reading</p>
-            <div className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2">
+      {related.length > 0 && (
+        <section className="bg-panel py-28 md:py-36">
+          <Container>
+            <p className="text-[14px] leading-[22px] text-mute">Keep reading</p>
+            <h2 className="sw-h mt-8 text-[clamp(2.2rem,4.4vw,3.5rem)] text-char">Related Guides</h2>
+            <div className="mt-14 grid gap-3 sm:grid-cols-2 md:mt-20 md:gap-4">
               {related.map((r) => (
-                <Link key={r.slug} href={`/insights/${r.slug}`} className="group block">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
+                <Link key={r.slug} href={`/insights/${r.slug}`} className="group flex flex-col rounded-lg bg-white p-2">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
                     <Image src={r.cover} alt={r.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width:768px) 100vw, 50vw" />
+                    <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-md bg-char text-white transition-colors duration-300 group-hover:bg-blue">
+                      <ArrowUpRight size={16} />
+                    </span>
                   </div>
-                  <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-blue-bright">{r.category}</p>
-                  <h3 className="mt-2 headline text-[20px] leading-snug tracking-[-0.01em] text-ink transition-colors group-hover:text-blue">{r.title}</h3>
+                  <div className="p-4">
+                    <Chip>{r.category}</Chip>
+                    <h3 className="sw-h mt-4 text-[24px] text-char">{r.title}</h3>
+                  </div>
                 </Link>
               ))}
             </div>
-          </div>
-        )}
-      </Container>
+          </Container>
+        </section>
+      )}
     </main>
   );
 }

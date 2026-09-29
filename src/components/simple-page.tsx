@@ -22,26 +22,32 @@ export function SimplePage({
 }) {
   return (
     <PinnedHero eyebrow={eyebrow} title={title} intro={intro} image={image}>
-      <section className="bg-white py-24 md:py-32">
+      <section className="bg-white py-28 md:py-36">
         <Container>
+          <div className="flex items-baseline justify-between text-[14px] leading-[22px] text-mute">
+            <p>{eyebrow}</p>
+            <p>/01</p>
+          </div>
           <Reveal>
-            <p className="max-w-3xl statement text-[clamp(1.3rem,2.4vw,2rem)] text-ink">{body}</p>
+            <p className="sw-h mt-8 max-w-4xl text-[clamp(1.6rem,3vw,2.5rem)] text-char">{body}</p>
           </Reveal>
           {points && (
-            <div className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {points.map((p, i) => (
                 <Reveal key={p.t} delay={(i % 3) * 0.06}>
-                  <div className="border-t border-ink/15 pt-5">
-                    <span className="caption text-blue">{String(i + 1).padStart(2, "0")}</span>
-                    <h3 className="mt-4 headline text-xl text-ink">{p.t}</h3>
-                    <p className="mt-3 text-[14px] leading-[1.75] text-slate">{p.b}</p>
+                  <div className="flex h-full min-h-[240px] flex-col justify-between rounded-lg bg-panel p-6">
+                    <span className="text-[14px] text-mute">/{String(i + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3 className="sw-h text-[24px] text-char">{p.t}</h3>
+                      <p className="mt-2 text-[14px] leading-[22px] text-slate">{p.b}</p>
+                    </div>
                   </div>
                 </Reveal>
               ))}
             </div>
           )}
           <div className="mt-14">
-            <Button href="/contact" variant="blue">Get a quote <ArrowRight size={16} /></Button>
+            <Button href="/contact">Get a quote <ArrowRight size={16} /></Button>
           </div>
         </Container>
       </section>

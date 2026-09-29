@@ -18,16 +18,16 @@ type SectionData = {
 };
 
 export const PRODUCT_SECTIONS: Record<string, SectionData> = {
-  aluminium: {
+  aluminum: {
     eyebrow: "The section · engineered in layers",
     title: "What holds the performance.",
-    intro: "Every VALDA aluminium system is a stack of engineered layers. Explore the section.",
+    intro: "Every VALDA aluminum system is a stack of engineered layers. Explore the section.",
     core: "thermal",
     hotspots: [
       { n: 1, x: 24, y: 15.5, t: "Warm-edge glazing", b: "Sealed double unit with a low-conductivity spacer at the edge." },
       { n: 2, x: 50, y: 22, t: "Co-extruded gaskets", b: "Continuous EPDM seals on both the glass and the frame." },
       { n: 3, x: 40, y: 48.5, t: "Polyamide thermal break", b: "The insulated zone that splits inside from outside." },
-      { n: 4, x: 64, y: 64, t: "Multi-chamber profile", b: "Aluminium chambers for rigidity, drainage and reinforcement." },
+      { n: 4, x: 64, y: 64, t: "Multi-chamber profile", b: "Aluminum chambers for rigidity, drainage and reinforcement." },
     ],
   },
   pvc: {
@@ -238,7 +238,7 @@ function SectionArt({ core, active }: { core: "thermal" | "steel"; active: numbe
         <circle cx="300" cy="135" r="11" fill="#1c2127" stroke="#3a6dba" strokeWidth={active === 2 ? 2.5 : 0} />
       </g>
 
-      {/* ── aluminium / PVC multi-chamber frame — hotspot 4 ── */}
+      {/* ── aluminum / PVC multi-chamber frame — hotspot 4 ── */}
       <g>
         <rect x="150" y="150" width="300" height="320" rx="10" fill="url(#ps-metal)" stroke="#5f6671" strokeWidth="2.5" />
         {/* chamber dividers */}

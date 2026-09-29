@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from "lucide-react";
 
 // react-pageflip touches `document` on mount, so keep it out of SSR.
 const HTMLFlipBook = dynamic(() => import("react-pageflip"), {
   ssr: false,
-  loading: () => <div className="aspect-[16/9] w-full animate-pulse rounded-xl bg-mist" />,
+  loading: () => <div className="aspect-[16/9] w-full animate-pulse rounded-lg bg-white" />,
 });
 
 export function CatalogueFlipbook({ pages }: { pages: string[] }) {
@@ -16,11 +16,24 @@ export function CatalogueFlipbook({ pages }: { pages: string[] }) {
   const [page, setPage] = useState(0);
   const [fs, setFs] = useState(false);
   const total = pages.length;
+  // The book's width comes from its container. minWidth must stay above half the container
+  // (forces single-page view) but below the container itself, or it overflows on phones.
+  const wrap = useRef<HTMLDivElement>(null);
+  const [w, setW] = useState(0);
+  useEffect(() => {
+    const el = wrap.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setW(Math.round(e.contentRect.width / 40) * 40));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const minW = Math.max(200, Math.ceil(w * 0.55));
 
   const flip = useCallback((dir: "prev" | "next") => {
     const api = book.current?.pageFlip?.();
     if (!api) return;
-    dir === "prev" ? api.flipPrev() : api.flipNext();
+    if (dir === "prev") api.flipPrev();
+    else api.flipNext();
   }, []);
 
   const controls = useMemo(
@@ -31,11 +44,11 @@ export function CatalogueFlipbook({ pages }: { pages: string[] }) {
           onClick={() => flip("prev")}
           disabled={page <= 0}
           aria-label="Previous page"
-          className="grid h-11 w-11 place-items-center rounded-full border border-ink/15 text-ink transition-colors hover:bg-ink hover:text-white disabled:pointer-events-none disabled:opacity-30"
+          className={`grid h-11 w-11 place-items-center rounded-md transition-colors duration-300 disabled:pointer-events-none disabled:opacity-30 ${fs ? "bg-white text-char hover:bg-white/85" : "bg-char text-white hover:bg-blue"}`}
         >
           <ChevronLeft size={18} />
         </button>
-        <span className="min-w-[92px] text-center font-mono text-[11px] uppercase tracking-[0.14em] text-slate">
+        <span className={`min-w-[92px] text-center text-[14px] leading-[22px] tabular-nums ${fs ? "text-white/70" : "text-mute"}`}>
           Page {Math.min(page + 1, total)} / {total}
         </span>
         <button
@@ -43,41 +56,41 @@ export function CatalogueFlipbook({ pages }: { pages: string[] }) {
           onClick={() => flip("next")}
           disabled={page >= total - 1}
           aria-label="Next page"
-          className="grid h-11 w-11 place-items-center rounded-full border border-ink/15 text-ink transition-colors hover:bg-ink hover:text-white disabled:pointer-events-none disabled:opacity-30"
+          className={`grid h-11 w-11 place-items-center rounded-md transition-colors duration-300 disabled:pointer-events-none disabled:opacity-30 ${fs ? "bg-white text-char hover:bg-white/85" : "bg-char text-white hover:bg-blue"}`}
         >
           <ChevronRight size={18} />
         </button>
       </div>
     ),
-    [flip, page, total],
+    [flip, page, total, fs],
   );
 
   return (
-    <div className={fs ? "fixed inset-0 z-50 flex flex-col items-center justify-center bg-ink/95 p-4 backdrop-blur md:p-10" : ""}>
+    <div className={fs ? "fixed inset-0 z-50 flex flex-col items-center justify-center bg-char/95 p-4 backdrop-blur md:p-10" : ""}>
       <div className="w-full max-w-[1040px]">
         <div className="flex justify-end">
           <button
             type="button"
             onClick={() => setFs((v) => !v)}
-            className={`mb-3 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors ${fs ? "text-white/70 hover:text-white" : "text-slate hover:text-ink"}`}
+            className={`mb-3 inline-flex h-8 items-center gap-1.5 rounded-md px-3 text-[14px] leading-[22px] transition-colors duration-300 ${fs ? "bg-white/10 text-white hover:bg-white hover:text-char" : "bg-white text-char hover:text-blue"}`}
           >
             {fs ? <><Minimize2 size={13} /> Close</> : <><Maximize2 size={13} /> Full screen</>}
           </button>
         </div>
 
-        <div className="select-none">
+        <div ref={wrap} className="select-none">
+          {w > 0 && (
+            <>
           {/* @ts-expect-error react-pageflip's types don't model children/ref cleanly */}
           <HTMLFlipBook
+            key={w}
             width={1000}
             height={562}
             size="stretch"
-            /* minWidth > half the container (max-w 1040) forces single-page
-               (portrait) at every width — the pages are already landscape 16:9.
-               In portrait the page width follows the parent, so this never
-               overflows on mobile. */
-            minWidth={700}
+            minWidth={minW}
             maxWidth={1040}
-            minHeight={394}
+            minHeight={Math.round(minW * 0.5625)}
+            startPage={page}
             maxHeight={585}
             maxShadowOpacity={0.4}
             drawShadow
@@ -98,10 +111,12 @@ export function CatalogueFlipbook({ pages }: { pages: string[] }) {
               </div>
             ))}
           </HTMLFlipBook>
+            </>
+          )}
         </div>
 
         {controls}
-        <p className={`mt-3 text-center text-[12px] ${fs ? "text-white/50" : "text-slate/70"}`}>Drag a corner or use the arrows to turn the page.</p>
+        <p className={`mt-3 text-center text-[14px] leading-[22px] ${fs ? "text-white/50" : "text-mute"}`}>Drag a corner or use the arrows to turn the page.</p>
       </div>
     </div>
   );

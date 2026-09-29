@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, LayoutGrid, MapPin } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { PROJECTS, type Project } from "@/lib/projects";
 
@@ -16,42 +16,41 @@ function bucket(market: string) {
   return "Residential";
 }
 
-function Meta({ p, i, light = false }: { p: Project; i: number; light?: boolean }) {
+function Chips({ p }: { p: Project }) {
   return (
-    <div className={`mt-4 flex items-start justify-between gap-4 border-t pt-4 ${light ? "border-white/20" : "border-ink/12"}`}>
-      <div>
-        <p className={`caption ${light ? "text-white/65" : "text-slate"}`}>
-          {String(i + 1).padStart(2, "0")} · {p.market}
-        </p>
-        <h3 className={`mt-1.5 headline text-[clamp(1.3rem,2.4vw,1.9rem)] leading-[1.05] ${light ? "text-white" : "text-ink"}`}>
-          {p.name}
-        </h3>
-      </div>
-      <p className={`shrink-0 text-right text-[13px] ${light ? "text-white/70" : "text-slate"}`}>
-        {p.location}
-        <span className={`mt-0.5 block font-mono text-[11px] ${light ? "text-white/50" : "text-slate/70"}`}>{p.year}</span>
-      </p>
+    <div className="flex flex-wrap gap-1.5">
+      <span className="inline-block rounded-md bg-panel px-2 py-0.5 text-[12px] text-char">Completed {p.year}</span>
+      <span className="inline-block rounded-md bg-panel px-2 py-0.5 text-[12px] text-char">{p.market}</span>
     </div>
   );
 }
 
-function Card({ p, i, ratio }: { p: Project; i: number; ratio: string }) {
+// Grid card: white card holding a rounded photo and the project info.
+function Card({ p }: { p: Project }) {
   return (
-    <Link href={`/projects/${p.slug}`} className="group block">
-      <div className={`relative ${ratio} overflow-hidden rounded-2xl`}>
+    <Link href={`/projects/${p.slug}`} className="group flex h-full flex-col rounded-lg bg-white p-2">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
         <Image
           src={p.img}
           alt={p.name}
           fill
-          className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
           sizes="(max-width:768px) 100vw, 50vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/25 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        <span className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 opacity-0 transition-all duration-300 group-hover:opacity-100">
-          <ArrowUpRight size={18} className="text-ink" />
+        <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-md bg-char text-white transition-colors duration-300 group-hover:bg-blue">
+          <ArrowUpRight size={16} />
         </span>
       </div>
-      <Meta p={p} i={i} />
+      <div className="flex flex-1 flex-col p-4 md:p-5">
+        <Chips p={p} />
+        <h3 className="sw-h mt-4 text-[24px] text-char md:text-[28px]">{p.name}</h3>
+        <p className="mt-3 flex items-center gap-2 text-[14px] text-char/80">
+          <MapPin size={15} className="shrink-0 text-mute" /> {p.location}
+        </p>
+        <p className="mt-1.5 flex items-start gap-2 text-[14px] text-char/80">
+          <LayoutGrid size={15} className="mt-[3px] shrink-0 text-mute" /> {p.systems}
+        </p>
+      </div>
     </Link>
   );
 }
@@ -65,13 +64,11 @@ export function ProjectsIndex() {
   );
 
   const [featured, ...rest] = list;
-  const left = rest.filter((_, i) => i % 2 === 0);
-  const right = rest.filter((_, i) => i % 2 === 1);
 
   return (
     <div>
       {/* filter tabs */}
-      <div className="flex flex-wrap items-center gap-2.5 border-b border-ink/10 pb-8">
+      <div className="flex flex-wrap items-center gap-2">
         {FILTERS.map((f) => {
           const active = filter === f;
           const count = f === "All" ? PROJECTS.length : PROJECTS.filter((p) => bucket(p.market) === f).length;
@@ -80,12 +77,13 @@ export function ProjectsIndex() {
               key={f}
               type="button"
               onClick={() => setFilter(f)}
-              className={`rounded-full px-5 py-2 text-[13px] font-medium transition-colors ${
-                active ? "bg-blue text-white" : "border border-mist text-slate hover:border-blue/40 hover:text-ink"
+              aria-pressed={active}
+              className={`inline-flex h-10 items-center rounded-lg px-4 text-[14px] transition-colors duration-300 ${
+                active ? "bg-char text-white" : "bg-white text-char hover:text-blue"
               }`}
             >
               {f}
-              <span className={`ml-1.5 font-mono text-[10px] ${active ? "text-white/70" : "text-slate/60"}`}>{count}</span>
+              <span className={`ml-2 text-[12px] ${active ? "text-white/55" : "text-mute"}`}>{count}</span>
             </button>
           );
         })}
@@ -99,48 +97,48 @@ export function ProjectsIndex() {
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* featured */}
+          {/* featured: large photo with floating white info card */}
           {featured && (
-            <Link href={`/projects/${featured.slug}`} className="group mt-12 block">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl md:aspect-[16/8]">
-                <Image
-                  src={featured.img}
-                  alt={featured.name}
-                  fill
-                  priority
-                  className="object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.03]"
-                  sizes="100vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-7 md:p-12">
-                  <div className="flex max-w-5xl flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                    <div>
-                      <p className="caption text-white/70">Featured · {featured.market}</p>
-                      <h2 className="mt-3 headline text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-white">{featured.name}</h2>
-                      <p className="mt-3 max-w-md text-[15px] leading-relaxed text-white/80">{featured.summary}</p>
-                    </div>
-                    <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-medium text-ink transition-transform group-hover:translate-x-1">
-                      View project <ArrowUpRight size={16} />
-                    </span>
-                  </div>
-                </div>
+            <Link
+              href={`/projects/${featured.slug}`}
+              className="group relative mt-8 block h-[78svh] min-h-[560px] overflow-hidden rounded-lg md:mt-10 md:max-h-[760px]"
+            >
+              <Image
+                src={featured.img}
+                alt={`${featured.name}, ${featured.location}`}
+                fill
+                priority
+                className="object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-105"
+                sizes="(max-width:768px) 100vw, 1360px"
+              />
+              <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-md bg-char text-white transition-colors duration-300 group-hover:bg-blue md:right-6 md:top-6">
+                <ArrowUpRight size={16} />
+              </span>
+              <div className="absolute bottom-3 left-3 w-[min(calc(100%-24px),380px)] rounded-lg bg-white p-6 md:bottom-6 md:left-6 md:p-7">
+                <Chips p={featured} />
+                <h2 className="sw-h mt-5 text-[28px] text-char md:text-[32px]">{featured.name}</h2>
+                <p className="mt-3 text-[16px] leading-6 text-slate">{featured.summary}</p>
+                <p className="mt-4 flex items-center gap-2 text-[14px] text-char/80">
+                  <MapPin size={15} className="shrink-0 text-mute" /> {featured.location}
+                </p>
+                <p className="mt-2 flex items-start gap-2 text-[14px] text-char/80">
+                  <LayoutGrid size={15} className="mt-[3px] shrink-0 text-mute" /> {featured.systems}
+                </p>
+                <span className="mt-6 inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-lg bg-char px-5 text-[14px] text-white transition-colors duration-300 group-hover:bg-black">
+                  View project <ArrowUpRight size={16} />
+                </span>
               </div>
             </Link>
           )}
 
-          {/* staggered asymmetric grid */}
-          <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2 md:gap-y-20">
-            <div className="space-y-14 md:space-y-20">
-              {left.map((p, i) => (
-                <Card key={p.slug} p={p} i={list.indexOf(p)} ratio={i % 2 === 0 ? "aspect-[4/5]" : "aspect-[4/3]"} />
+          {/* grid */}
+          {rest.length > 0 && (
+            <div className="mt-3 grid gap-3 md:mt-4 md:grid-cols-2 md:gap-4">
+              {rest.map((p) => (
+                <Card key={p.slug} p={p} />
               ))}
             </div>
-            <div className="space-y-14 md:mt-28 md:space-y-20">
-              {right.map((p, i) => (
-                <Card key={p.slug} p={p} i={list.indexOf(p)} ratio={i % 2 === 0 ? "aspect-[4/3]" : "aspect-[4/5]"} />
-              ))}
-            </div>
-          </div>
+          )}
         </motion.div>
       </AnimatePresence>
     </div>

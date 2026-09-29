@@ -66,13 +66,22 @@ const META: Record<OpeningType, { name: string; kind: string }> = {
 function OpeningCard({ type }: { type: OpeningType }) {
   const [open, setOpen] = useState(false);
   const m = META[type];
+  const toggle = () => setOpen((o) => !o);
   return (
     <div
       className={`card${open ? " open" : ""}`}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onClick={() => setOpen((o) => !o)}
+      role="button"
+      tabIndex={0}
+      aria-pressed={open}
+      onClick={toggle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      }}
     >
+      <span className="cue" aria-hidden>{open ? "Tap to close" : "Tap to open"}</span>
       <div
         className="stage"
         dangerouslySetInnerHTML={{ __html: `<div class="floor"></div>${WIN[type]}<div class="contact"></div>` }}

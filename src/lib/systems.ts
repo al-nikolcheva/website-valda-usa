@@ -19,7 +19,7 @@ export type System = {
   slug: string;
   family: FamilySlug;
   name: string;
-  material: "Aluminium" | "PVC";
+  material: "Aluminum" | "PVC";
   profile: string;
   categories: Category[];
   hvhz: "Yes" | "No" | "Both";
@@ -59,7 +59,7 @@ export const FAMILIES: {
     brand: "VALDA",
     label: "VALDA Proprietary",
     kind: "Proprietary",
-    material: "Aluminium + PVC",
+    material: "Aluminum + PVC",
     holder: "Valda 90 OOD",
     blurb:
       "Systems designed, tested and certified by VALDA for the US market, with Florida Product Approvals (FL39801, FL39802) held in VALDA's own name. CW-PG65 performance class, in large-missile impact HVHZ and non-impact configurations.",
@@ -69,10 +69,10 @@ export const FAMILIES: {
     brand: "Reynaers",
     label: "Reynaers Systems",
     kind: "Partner system",
-    material: "Aluminium",
+    material: "Aluminum",
     holder: "Reynaers",
     blurb:
-      "Aluminium windows, doors, sliding glass, curtain wall and lift & slide. Florida Product Approvals held by Reynaers; supplied and installed by VALDA. Impact rated for Wind Zone 3 and for the HVHZ.",
+      "Aluminum windows, doors, sliding glass, curtain wall and lift & slide. Florida Product Approvals held by Reynaers; supplied and installed by VALDA. Impact rated for Wind Zone 3 and for the HVHZ.",
   },
   {
     slug: "koemmerling",
@@ -91,15 +91,15 @@ export const SYSTEMS: System[] = [
     slug: "vista-guard",
     family: "valda",
     name: "Vista Guard",
-    material: "Aluminium",
-    profile: "Aluminium",
+    material: "Aluminum",
+    profile: "Aluminum",
     categories: ["Windows"],
     hvhz: "Yes",
     impact: "Large Missile",
     perfClass: "CW-PG65",
     application: "FL39802-R2 · FL39801-R2",
     summary:
-      "Proprietary aluminium window system. Large-missile impact, approved for and outside the HVHZ. No external impact protection required.",
+      "Proprietary aluminum window system. Large-missile impact, approved for and outside the HVHZ. No external impact protection required.",
     approvals: [
       { config: "Picture / fixed window", fl: "FL39802.3", hvhz: true, impact: "Large Missile", perfClass: "CW-PG65", dp: "±65 psf", water: "15.0 psf", max: "59 × 98.4 in", install: "NL-0145 Rev0", evalReport: "ACE-1070 Rev1", nami: "NI015425" },
       { config: "Tilt & turn window", fl: "FL39801.4", hvhz: true, impact: "Large Missile", perfClass: "CW-PG65", dp: "±65 psf", water: "9.75 psf", max: "48 × 78 in", install: "NL-0144 Rev0", evalReport: "ACE-1069 Rev1", nami: "NI015433" },
@@ -145,14 +145,14 @@ export const SYSTEMS: System[] = [
     slug: "masterline-8",
     family: "reynaers",
     name: "MasterLine 8",
-    material: "Aluminium",
-    profile: "Aluminium 6060-T66",
+    material: "Aluminum",
+    profile: "Aluminum 6060-T66",
     categories: ["Windows", "Doors"],
     hvhz: "No",
     impact: "WZ3 Impact",
     application: "FL47832 – FL47836",
     summary:
-      "Aluminium window and door platform, impact rated for Wind Zone 3 outside the HVHZ. No design pressure is carried on the approval; allowable sizes and pressures are defined in the sealed installation drawings.",
+      "Aluminum window and door platform, impact rated for Wind Zone 3 outside the HVHZ. No design pressure is carried on the approval; allowable sizes and pressures are defined in the sealed installation drawings.",
     approvals: [
       { config: "Fixed window", fl: "FL47832.1", hvhz: false, impact: "WZ3 Impact", dp: "Up to ±65 psf", install: "REY001", evalReport: "PER10055" },
       { config: "Tilt & turn / turn & tilt", fl: "FL47833.1", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY002", evalReport: "PER10056" },
@@ -166,14 +166,14 @@ export const SYSTEMS: System[] = [
     slug: "masterpatio",
     family: "reynaers",
     name: "MasterPatio",
-    material: "Aluminium",
-    profile: "Aluminium 6060-T66",
+    material: "Aluminum",
+    profile: "Aluminum 6060-T66",
     categories: ["Sliding & Folding"],
     hvhz: "No",
     impact: "WZ3 Impact",
     application: "FL47837",
     summary:
-      "Aluminium sliding glass door assembly, impact rated for Wind Zone 3 outside the HVHZ. No additional impact covering required in Wind Zone 3 or less.",
+      "Aluminum sliding glass door assembly, impact rated for Wind Zone 3 outside the HVHZ. No additional impact covering required in Wind Zone 3 or less.",
     approvals: [
       { config: "Sliding glass door", fl: "FL47837.1", hvhz: false, impact: "WZ3 Impact", dp: "Wind Zone 3", install: "REY007", evalReport: "PER10061" },
     ],
@@ -182,8 +182,8 @@ export const SYSTEMS: System[] = [
     slug: "conceptwall-50",
     family: "reynaers",
     name: "ConceptWall 50",
-    material: "Aluminium",
-    profile: "Aluminium 6060-T66",
+    material: "Aluminum",
+    profile: "Aluminum 6060-T66",
     categories: ["Facades"],
     hvhz: "No",
     impact: "WZ3 Impact",
@@ -198,14 +198,14 @@ export const SYSTEMS: System[] = [
     slug: "cp-155",
     family: "reynaers",
     name: "CP 155 Lift & Slide",
-    material: "Aluminium",
-    profile: "Aluminium",
+    material: "Aluminum",
+    profile: "Aluminum",
     categories: ["Sliding & Folding"],
     hvhz: "Yes",
     impact: "Large Missile",
     application: "FL39164-R1",
     summary:
-      "Aluminium lift & slide door, the one Reynaers system here approved for the HVHZ. Large-missile impact under TAS 201 and TAS 203, to the 2023 Florida Building Code.",
+      "Aluminum lift & slide door, the one Reynaers system here approved for the HVHZ. Large-missile impact under TAS 201 and TAS 203, to the 2023 Florida Building Code.",
     approvals: [
       { config: "Lift and slide door (OXXO)", fl: "FL39164.1", hvhz: true, impact: "Large Missile", dp: "±65 psf", max: "7350 × 3050 mm (289-3/8 × 120 in)", install: "DWG 21-31F 2023", evalReport: "CP155 Lift and Slide LMI PAE 2023" },
     ],
@@ -214,14 +214,14 @@ export const SYSTEMS: System[] = [
     slug: "cs-77",
     family: "reynaers",
     name: "CS 77",
-    material: "Aluminium",
-    profile: "Aluminium",
+    material: "Aluminum",
+    profile: "Aluminum",
     categories: ["Windows"],
     hvhz: "Both",
     impact: "Impact rated",
     application: "FL28671 · FL28672 · FL38158",
     summary:
-      "Impact-rated aluminium windows with a standard and an HVHZ variant under each application. All configurations carry ±65 psf design pressure. Shutters are required above 30 ft within the HVHZ.",
+      "Impact-rated aluminum windows with a standard and an HVHZ variant under each application. All configurations carry ±65 psf design pressure. Shutters are required above 30 ft within the HVHZ.",
     approvals: [
       { config: "Fixed window", fl: "FL28671.1", hvhz: false, impact: "Impact rated", dp: "±65 psf", water: "12 psf", max: "2400 × 3600 mm (94-1/2 × 141-3/4 in)", install: "CS77 Fix Dwg3" },
       { config: "Fixed window, HVHZ", fl: "FL28671.2", hvhz: true, impact: "Impact rated", dp: "±65 psf", water: "12 psf", max: "2400 × 3600 mm (94-1/2 × 141-3/4 in)", install: "CS77 FixHZ Dwg3" },
@@ -339,7 +339,7 @@ export function systemModel(slug: string): string | null {
 export type ProfileHotspot = { n: number; x: number; y: number; t: string; b: string };
 export const SYSTEM_PROFILES: Record<string, { image: string; hotspots: ProfileHotspot[] }> = {
   "76md": {
-    image: "/images/sys-76md-cut.png",
+    image: "/images/sys-76md-cut.webp",
     hotspots: [
       { n: 1, x: 63, y: 39, t: "Insulating glass unit", b: "Sealed insulating glass unit with a warm-edge spacer at the glass edge." },
       { n: 2, x: 61, y: 66, t: "Co-extruded gaskets", b: "Continuous seals on both the glass and the frame keep out air and water." },

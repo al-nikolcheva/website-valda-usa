@@ -4,7 +4,7 @@ export const SITE = {
   tagline: "Engineered in Sofia. Delivered worldwide.",
   domain: "valdagroup.com",
   est: "1998",
-  email: "al.nikolcheva@valdagroup.com",
+  email: "info@valdagroup.com",
   phones: [
     { region: "United States", number: "+1 689 280 2337" },
     { region: "United Kingdom", number: "+44 7495 418 555" },

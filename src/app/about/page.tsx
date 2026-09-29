@@ -1,176 +1,183 @@
 import type { Metadata } from "next";
-import { PinnedHero } from "@/components/pinned-hero";
-import { HeritageTimeline } from "@/components/heritage-timeline";
-import { ProcessShowcase } from "@/components/process-showcase";
+import { pageMeta } from "@/lib/seo";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
+import { COMPANY } from "@/lib/company";
 import { Container, Reveal } from "@/components/primitives";
-import { LineReveal } from "@/components/line-reveal";
+import { SwHead } from "@/components/sw/head";
+import { SwButton } from "@/components/sw/button";
+import { CountUp } from "@/components/count-up";
+import { StoryTimeline } from "@/components/about/story-timeline";
+import { FactoryHero } from "@/components/about/hero";
+import { FactoryExplorer } from "@/components/factory-board/factory";
 
-export const metadata: Metadata = {
-  title: "About Us",
+export const metadata: Metadata = pageMeta({
+  title: "About VALDA, European Window Manufacturer",
   description:
-    "VALDA is a family-owned European manufacturer of premium aluminium and PVC windows, doors and façade systems, founded in a Bulgarian garage in 1998, now two factories strong and certified for the US market.",
+    "VALDA is a family-owned European maker of aluminum and PVC windows, doors and facades, founded in 1998 with two factories in Bulgaria, supplying the USA.",
+  path: "/about",
+  image: COMPANY.images.poster,
+});
+
+const { images, story, factories, numbers, values, certifications } = COMPANY;
+const FILM = "/media/valda-film-720.mp4";
+
+const FACTORY_IMAGES: Record<string, { src: string; alt: string }> = {
+  Sofia: { src: images.facility, alt: "Aerial view of the VALDA factory in Sofia" },
+  "Veliko Tarnovo": { src: images.fortress, alt: "Tsarevets fortress, Veliko Tarnovo" },
 };
 
-const MILESTONES = [
-  { year: "1998", title: "Two founders, one machine", body: "VALDA begins in a small Bulgarian garage with two founders, a single machine, and every window made by hand.", img: "/images/tarnovo.png", pos: "center 25%" },
-  { year: "2004", title: "The first factory", body: "The garage becomes a real factory, with a repeatable production line and VALDA's first proper team.", img: "/images/manufacturing.png" },
-  { year: "2012", title: "Everything in-house", body: "Two factories run in parallel, backed by a smaller third. Profiles, our own glass and aluminium coating are all made under one roof in Sofia and Veliko Tarnovo.", img: "/images/hero-gora.jpg" },
-  { year: "2016", title: "Into the United States", body: "VALDA enters the US market, adapting its European systems to American structural, thermal and code requirements.", img: "/images/project-milwaukee-1.jpg" },
-  { year: "2020", title: "Hurricane certified", body: "VALDA systems are tested and approved for the High-Velocity Hurricane Zone, the most demanding standard in the US.", img: "/images/arch-5.jpg" },
-  { year: "2026", title: "Growing across the US", body: "Expanding Florida approvals and US project work, shipping more systems factory-direct across the country.", img: "/images/project-milwaukee-2.jpg" },
-];
-
-const STATS: [string, string][] = [
-  ["26+", "Years, since 1998"],
-  ["2", "Factories in Bulgaria"],
-  ["300+", "Production specialists"],
-  ["100%", "Family-owned"],
-];
-
-const USPS = [
-  { t: "Everything in-house", b: "Profiles, our own glass (cutting to impact-rated) and aluminium coating: every stage made under our own roof." },
-  { t: "Family-owned since 1998", b: "Privately held, never investor-run, run by the same family. Many of our team have been here over twenty years." },
-  { t: "European-made, US-certified", b: "Engineered to European standards and approved for the US market, HVHZ included, with engineering support on American ground." },
-  { t: "We handle the shipping", b: "Flexible on colour, hardware and glass, and fast because we make it. We pack, document and deliver factory-direct to your site." },
-];
-
-const CERTS = [
-  { name: "Florida Product Approved", img: "/images/cert/cert-florida.png" },
-  { name: "NAMI", img: "/images/cert/cert-nami.png" },
-  { name: "AAMA / WDMA / CSA", img: "/images/cert/cert-aama.png" },
-  { name: "ISO 9001", img: "/images/cert/cert-iso.png" },
-];
 
 export default function AboutPage() {
   return (
-    <PinnedHero
-      eyebrow="About us"
-      title="A family business that grew up."
-      intro="A family-owned European manufacturer of aluminium and PVC windows, doors and façade systems, founded in 1998 and still run by the family that built it."
-      image="/images/valda-facility.png"
-    >
-      {/* ABOUT — the story */}
-      <section className="bg-white py-24 md:py-36">
+    <>
+      <FactoryHero />
+
+      {/* ── /01 WHO WE ARE ────────────────────────────── */}
+      <section className="bg-white py-28 md:py-36">
         <Container>
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate">Our story</p>
-            <p className="mt-8 max-w-4xl statement text-[clamp(1.7rem,3.4vw,3rem)] leading-[1.18] text-ink">
-              <LineReveal text="In 1998, two founders started VALDA in a small Bulgarian garage with one machine, and every window made by hand." />
-            </p>
-          </Reveal>
-          <div className="mt-14 grid gap-x-16 gap-y-8 md:mt-16 md:grid-cols-2">
-            <Reveal>
-              <p className="text-[16px] leading-[1.9] text-slate">
-                That garage became an office, then a showroom, then a factory, and today, two factories with a smaller third supporting them. Everything is still made in-house: aluminium and PVC windows, doors and façades, our own glass from laminated to impact-rated, and our own aluminium coating line, all under one roof in Sofia and Veliko Tarnovo.
+          <SwHead label="Who we are" n="01" layout="stacked" title="From a garage to two factories." />
+          <div className="mt-14 grid gap-12 md:mt-20 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-7">
+              <p className="statement text-[clamp(1.6rem,3vw,2.5rem)] text-char">
+                A family-owned European manufacturer of aluminum and PVC windows, doors, sliding systems and facades, shipped factory direct to the USA.
               </p>
             </Reveal>
-            <Reveal delay={0.1}>
-              <p className="text-[16px] leading-[1.9] text-slate">
-                What hasn&apos;t changed is how we work. VALDA is still family-owned, still run by the family that started it, and much of our team has been here more than twenty years. We make every window as if our name is on it, because it is, and we stay close to every client, from the first drawing to the final delivery.
-              </p>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
-
-      {/* WHY VALDA — USPs */}
-      <section className="bg-paper py-20 md:py-28">
-        <Container>
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate">Why VALDA</p>
-            <h2 className="mt-6 max-w-2xl headline text-[clamp(1.8rem,3.4vw,2.8rem)] leading-[1.1] text-ink">
-              Why architects and contractors choose us.
-            </h2>
-          </Reveal>
-          <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-            {USPS.map((u, i) => (
-              <Reveal key={u.t} delay={(i % 4) * 0.06}>
-                <div className="border-t border-ink/15 pt-5">
-                  <span className="font-mono text-[12px] text-blue">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-4 headline text-xl text-ink">{u.t}</h3>
-                  <p className="mt-3 text-[14px] leading-[1.8] text-slate">{u.b}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* HERITAGE — scroll-driven timeline over the Tsarevets fortress */}
-      <HeritageTimeline milestones={MILESTONES} />
-
-      {/* TODAY — short closing + compact figures */}
-      <section className="bg-white py-24 md:py-32">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-12 md:items-end md:gap-10">
-            <div className="md:col-span-7">
-              <Reveal>
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate">Today</p>
-                <h2 className="mt-6 max-w-xl headline text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.08] text-ink">
-                  Made in-house, shipped worldwide.
-                </h2>
-                <p className="mt-7 max-w-xl text-[16px] leading-[1.85] text-slate">
-                  Every profile, pane and coating is made in Sofia and Veliko Tarnovo, on European machinery from LISEC, FOREL, EMMEGI, ROTOX and SCHIRMER. We pack, document and ship factory-direct to your site ourselves, so the unit that arrives is the one we&apos;re accountable for. Most of what we make leaves Bulgaria for Europe and the United States.
-                </p>
-              </Reveal>
+            <div className="space-y-5 lg:col-span-4 lg:col-start-9 lg:pt-3">
+              {story.body.map((p, i) => (
+                <Reveal key={i} delay={0.08 * i}>
+                  <p className={i === 0 ? "text-[17px] font-medium leading-7 text-char" : "text-[16px] leading-6 text-slate"}>{p}</p>
+                </Reveal>
+              ))}
             </div>
-            <Reveal delay={0.1} className="md:col-span-4 md:col-start-9">
-              <div className="grid grid-cols-2 gap-x-8 gap-y-9 border-t border-ink/10 pt-9">
-                {STATS.map(([v, l]) => (
-                  <div key={l}>
-                    <div className="headline text-3xl text-ink md:text-4xl">{v}</div>
-                    <div className="mt-1.5 text-[13px] leading-snug text-slate">{l}</div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
           </div>
         </Container>
       </section>
 
-      {/* HOW WE WORK — moved from the homepage */}
-      <ProcessShowcase />
+      {/* ── /02 INSIDE THE FACTORY (interactive model) ── */}
+      <FactoryExplorer n="02" />
 
-      {/* TRUST — certified & accredited for the US */}
-      <section className="bg-paper py-20 md:py-28">
+      {/* ── /03 OUR TWO FACTORIES ─────────────────────── */}
+      <section className="bg-white py-28 md:py-36">
         <Container>
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate">Certified &amp; accredited</p>
-            <h2 className="mt-6 max-w-2xl headline text-[clamp(1.8rem,3.4vw,2.8rem)] leading-[1.1] text-ink">
-              Approved for the United States.
-            </h2>
-            <p className="mt-6 max-w-xl text-[16px] leading-[1.8] text-slate">
-              Statewide Florida Product Approvals, clearing the HVHZ where carried, plus NAMI and the AAMA, WDMA, CSA and ASTM test battery.
-            </p>
-          </Reveal>
-          <div className="mt-14 grid grid-cols-3 items-center gap-x-10 gap-y-10 border-t border-ink/10 pt-12 sm:grid-cols-4 lg:grid-cols-7">
-            {CERTS.map(({ name, img }) => (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img key={name} src={img} alt={name} className="h-12 w-auto object-contain md:h-14" />
+          <SwHead label="Our two factories" n="03" layout="stacked" title="Sofia and Veliko Tarnovo." />
+          <div className="mt-14 grid gap-10 md:mt-20 md:grid-cols-2 md:gap-6">
+            {factories.map((f, i) => {
+              const img = FACTORY_IMAGES[f.name];
+              return (
+                <Reveal key={f.name} delay={0.08 * i}>
+                  <article>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-char md:aspect-[5/4]">
+                      {img && <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />}
+                      <span className="absolute left-4 top-4 flex items-center gap-1.5 rounded-md bg-white px-2 py-1 text-[12px] text-char">
+                        <MapPin size={13} /> {f.name}, Bulgaria
+                      </span>
+                    </div>
+                    <div className="mt-6 flex items-baseline justify-between gap-6">
+                      <h3 className="sw-h text-[clamp(1.75rem,2.6vw,2.25rem)] text-char">{f.name}</h3>
+                      <span className="text-[14px] leading-[22px] text-mute">Factory {String(i + 1).padStart(2, "0")}</span>
+                    </div>
+                    <p className="mt-3 max-w-[460px] text-[16px] leading-6 text-slate">{f.note}</p>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-char/10 pt-10 md:mt-24 lg:grid-cols-4">
+            {numbers.map((s) => (
+              <div key={s.label}>
+                <p className="sw-h text-[clamp(2.6rem,5vw,4rem)] leading-none text-char tabular-nums">
+                  <CountUp value={s.value} suffix={s.suffix} />
+                </p>
+                <p className="mt-3 text-[14px] leading-[22px] text-mute">{s.label}</p>
+              </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* FILM — full-bleed, cinematic (Simpas-style) */}
-      <section className="relative overflow-hidden bg-ink">
-        <video
-          src="/media/valda-film.mp4"
-          poster="/images/valda-poster.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="h-[72vh] min-h-[440px] w-full object-cover md:h-[88vh]"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-ink/15" />
-        <Container className="pointer-events-none absolute inset-x-0 bottom-0 z-10 pb-10 md:pb-14">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/65">The film</p>
-          <h2 className="mt-3 headline text-[clamp(1.8rem,4vw,3rem)] leading-[1.05] text-white">See how we make it.</h2>
+      {/* ── /04 TIMELINE ──────────────────────────────── */}
+      <section className="bg-panel py-28 md:py-36">
+        <Container>
+          <SwHead label="Timeline" n="04" title="How we got here" />
+          <div className="mt-14 md:mt-20">
+            <StoryTimeline />
+          </div>
         </Container>
       </section>
 
-    </PinnedHero>
+      {/* ── /05 WHAT WE STAND FOR ─────────────────────── */}
+      <section className="bg-white py-28 md:py-36">
+        <Container>
+          <SwHead label="Values" n="05" title="What we stand for" />
+          <ul className="mt-14 border-t border-char/10 md:mt-20">
+            {values.map((v, i) => (
+              <li key={v.title} className="border-b border-char/10">
+                <Reveal y={12} delay={0.04 * i}>
+                  <div className="grid gap-2 py-7 md:grid-cols-[160px_1fr_1fr] md:items-baseline md:gap-8 md:py-9">
+                    <p className="text-[14px] leading-[22px] text-mute">/{String(i + 1).padStart(2, "0")}</p>
+                    <h3 className="sw-h text-[clamp(1.5rem,2.4vw,2rem)] text-char">{v.title}</h3>
+                    <p className="max-w-[480px] text-[16px] leading-6 text-slate">{v.body}</p>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* ── /06 CERTIFIED FOR THE USA ─────────────────── */}
+      <section className="bg-panel py-28 md:py-36">
+        <Container>
+          <SwHead label="Certification" n="06" title="Certified for the USA" />
+          <div className="mt-14 grid grid-cols-2 gap-3 md:mt-20 md:gap-4 lg:grid-cols-4">
+            {certifications.map((c) => (
+              <div key={c.name} className="flex aspect-[3/2] flex-col items-center justify-center gap-4 rounded-lg bg-white p-5">
+                <div className="relative h-14 w-full md:h-16">
+                  <Image src={c.img} alt={c.name} fill className="object-contain" sizes="200px" />
+                </div>
+                <p className="text-center text-[13px] leading-5 text-slate">{c.name}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-[16px] leading-6 text-slate">Certificates and test reports on request.</p>
+            <Link
+              href="/certifications"
+              className="inline-flex items-center gap-1.5 text-[14px] leading-[22px] text-char underline-offset-4 hover:text-blue hover:underline"
+            >
+              See certifications <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── /07 THE FILM (full video, with sound and controls) ── */}
+      <section className="bg-white py-28 md:py-36">
+        <Container>
+          <SwHead label="The VALDA film" n="07" title="See how we make it." />
+          <Reveal className="mt-14 md:mt-20">
+            <div className="overflow-hidden rounded-lg bg-char">
+              <video
+                className="aspect-video w-full"
+                src={FILM}
+                poster={images.poster}
+                controls
+                playsInline
+                preload="none"
+              />
+            </div>
+          </Reveal>
+          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-[16px] leading-6 text-slate">Inside our factories in Sofia and Veliko Tarnovo · 2:52</p>
+            <SwButton href="/contact" className="self-start sm:self-auto">
+              Start a project <ArrowRight size={15} />
+            </SwButton>
+          </div>
+        </Container>
+      </section>
+    </>
   );
 }

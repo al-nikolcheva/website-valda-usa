@@ -2,13 +2,21 @@ import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Download, FileText } from "lucide-react";
+import { pageMeta } from "@/lib/seo";
+import { ArrowUpRight, Download } from "lucide-react";
 import { PinnedHero } from "@/components/pinned-hero";
 import { Container } from "@/components/primitives";
+import { SwHead } from "@/components/sw/head";
 import { PRODUCTS, navGroup, type NavGroup, type ProductSystem } from "@/lib/products";
 import { SITE_DOCS, CATALOGUE_READERS, systemPack } from "@/lib/downloads";
 
-export const metadata: Metadata = { title: "Downloads" };
+export const metadata: Metadata = pageMeta({
+  title: "Downloads: Catalogues, Datasheets & CAD",
+  description:
+    "Download VALDA catalogues, datasheets and CAD sections for European aluminum and PVC windows, doors and sliding systems, or read the catalogue online.",
+  path: "/downloads",
+  image: "/images/project-twins-1.jpg",
+});
 
 function fileExists(file: string): { exists: boolean; size?: string } {
   try {
@@ -46,31 +54,37 @@ export default function DownloadsPage() {
   })).filter((x) => x.systems.length);
 
   return (
-    <PinnedHero eyebrow="Resources" title="Downloads" intro="Catalogues, datasheets, Florida approvals, CAD and specifications — for every VALDA system." image="/images/project-twins-1.jpg">
-      {/* site-wide documents — only shown when files exist */}
+    <PinnedHero eyebrow="Resources" title="Downloads" intro="Catalogues, datasheets, Florida approvals, CAD and specifications for every VALDA system." image="/images/project-twins-1.jpg">
+      {/* /01 site-wide documents: only shown when files exist */}
       {docs.length > 0 && (
-        <section className="bg-pure pt-20 md:pt-28">
+        <section className="bg-white py-28 md:py-36">
           <Container>
-            <p className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.22em] text-slate">
-              <span className="tabular-nums text-blue-bright">01</span>
-              <span className="h-px w-8 bg-slate/30" /> Catalogues & charts
-            </p>
-            <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-mist bg-mist sm:grid-cols-2 lg:grid-cols-3">
+            <SwHead label="Catalogues & charts" n="01" layout="stacked" title="Catalogues & Colour Charts" />
+            <div className="mt-14 grid gap-3 sm:grid-cols-2 md:mt-20 md:gap-4 lg:grid-cols-3">
               {docs.map((d) => (
-                <div key={d.file} className="flex flex-col justify-between gap-6 bg-pure p-6">
-                  <div>
-                    <FileText size={20} className="text-slate" />
-                    <h3 className="mt-4 text-[16px] font-medium text-ink">{d.label}</h3>
-                    <p className="mt-1.5 text-[13px] leading-relaxed text-slate">{d.desc}</p>
+                <div key={d.file} className="flex flex-col justify-between gap-8 rounded-lg bg-panel p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="sw-h text-[24px] text-char">{d.label}</h3>
+                      <p className="mt-3 text-[16px] leading-6 text-slate">{d.desc}</p>
+                    </div>
                   </div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                    {CATALOGUE_READERS[d.file] && (
-                      <Link href={CATALOGUE_READERS[d.file]} className="inline-flex items-center gap-1.5 text-[13px] font-medium text-blue underline-offset-4 hover:underline">
-                        Read online <ArrowRight size={13} />
-                      </Link>
-                    )}
-                    <a href={`/downloads/${d.file}`} download className="inline-flex w-fit items-center gap-2 rounded-full bg-ink px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-blue">
-                      <Download size={14} /> Download {d.size && <span className="font-mono text-[11px] text-white/60">{d.size}</span>}
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      {d.size && <span className="text-[14px] leading-[22px] text-mute">PDF · {d.size}</span>}
+                      {CATALOGUE_READERS[d.file] && (
+                        <Link href={CATALOGUE_READERS[d.file]} className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-0.5 text-[12px] text-char transition-colors hover:text-blue">
+                          Read online <ArrowUpRight size={12} />
+                        </Link>
+                      )}
+                    </div>
+                    <a
+                      href={`/downloads/${d.file}`}
+                      download
+                      aria-label={`Download ${d.label}`}
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-char text-white transition-colors duration-300 hover:bg-blue"
+                    >
+                      <Download size={16} />
                     </a>
                   </div>
                 </div>
@@ -81,36 +95,32 @@ export default function DownloadsPage() {
       )}
 
       {/* per-system packs */}
-      <section className={`bg-paper py-20 md:py-28 ${docs.length > 0 ? "" : "mt-4"}`}>
+      <section className="bg-panel py-28 md:py-36">
         <Container>
-          <p className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.22em] text-slate">
-            <span className="tabular-nums text-blue-bright">{sysNum}</span>
-            <span className="h-px w-8 bg-slate/30" /> By system
-          </p>
-          <h2 className="mt-6 max-w-2xl headline text-[clamp(1.7rem,3.4vw,2.6rem)] leading-[1.04] tracking-[-0.01em] text-ink">
-            The technical pack for every system.
-          </h2>
+          <SwHead label="By system" n={sysNum} layout="stacked" title={<span className="block max-w-[640px]">The technical pack for every system.</span>} />
 
-          <div className="mt-12 space-y-12">
+          <div className="mt-14 space-y-12 md:mt-20 md:space-y-16">
             {byGroup.map(({ group, systems }) => (
               <div key={group}>
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-slate">{group}</p>
-                <div className="mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+                <p className="text-[14px] leading-[22px] text-mute">{group}</p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
                   {systems.map((s) => {
                     const n = availableDocs(s);
                     return (
                       <Link
                         key={s.slug}
                         href={`/downloads/${s.slug}`}
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-mist bg-pure px-5 py-4 transition-colors hover:border-blue/30"
+                        className="group flex items-center justify-between gap-4 rounded-lg bg-white p-5"
                       >
-                        <span>
-                          <span className="text-[15px] font-medium text-ink">{s.name}</span>
-                          <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.12em] text-slate">
+                        <span className="min-w-0">
+                          <span className="block text-[16px] font-medium leading-6 text-char">{s.name}</span>
+                          <span className="mt-0.5 block text-[14px] leading-[22px] text-mute">
                             {n > 0 ? `${n} document${n > 1 ? "s" : ""}` : s.brand}
                           </span>
                         </span>
-                        <ArrowRight size={16} className="shrink-0 text-slate transition-all group-hover:translate-x-0.5 group-hover:text-blue" />
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-char text-white transition-colors duration-300 group-hover:bg-blue">
+                          <ArrowUpRight size={16} />
+                        </span>
                       </Link>
                     );
                   })}

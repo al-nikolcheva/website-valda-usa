@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, Plus, ArrowRight, ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { Logo } from "@/components/logo";
 import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +16,7 @@ const NAV: Item[] = [
     label: "Products",
     href: "/products",
     sub: [
+      { label: "Find your system", href: "/products/finder" },
       { label: "Windows", href: "/products/windows" },
       { label: "Doors", href: "/products/doors" },
       { label: "Sliding & Folding", href: "/products/sliding" },
@@ -24,6 +24,14 @@ const NAV: Item[] = [
     ],
   },
   { label: "Projects", href: "/projects" },
+  {
+    label: "Certifications",
+    href: "/certifications",
+    sub: [
+      { label: "All certifications", href: "/certifications" },
+      { label: "How we test", href: "/testing" },
+    ],
+  },
   {
     label: "About Us",
     href: "/about",
@@ -73,27 +81,23 @@ export function SiteHeader() {
         className={cn(
           "fixed inset-x-0 top-0 z-[60] transition-colors duration-300",
           glass
-            ? "border-b border-ink/[0.06] bg-white/80 text-ink shadow-[0_4px_30px_-14px_rgba(14,18,23,0.18)] backdrop-blur-xl"
+            ? "border-b border-char/[0.06] bg-white/85 text-char backdrop-blur-xl"
             : "bg-transparent",
           !glass && "text-white",
         )}
       >
-        {!glass && !open && (
-          <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-ink/45 via-ink/15 to-transparent" />
-        )}
-
-        <div className="mx-auto flex h-[76px] w-full max-w-[1320px] items-center justify-between px-6 md:px-10">
-          <Link href="/" onClick={close} className="flex shrink-0 items-center gap-3">
-            <Logo className="h-8 w-8" />
-            <span className="flex flex-col">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={glass ? "/images/wordmark-dark.png" : "/images/wordmark-white.png"} alt="VALDA" className="h-[15px] w-auto" />
-              <span className={cn("mt-[5px] h-[2px] w-full", glass ? "bg-blue" : "bg-white")} />
-            </span>
+        <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between px-5 md:px-10">
+          <Link href="/" onClick={close} aria-label="VALDA home" className="flex shrink-0 items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={glass ? "/valda-logo-ink.svg" : "/valda-logo-white.svg"}
+              alt="VALDA"
+              className="h-11 w-auto md:h-12"
+            />
           </Link>
 
           {/* DESKTOP — inline nav */}
-          <nav className="hidden items-center gap-0.5 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {NAV.map((item) => {
               const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href! + "/"));
               return (
@@ -101,9 +105,9 @@ export function SiteHeader() {
                   <Link
                     href={item.href!}
                     className={cn(
-                      "flex items-center gap-1 rounded-full px-3.5 py-2 text-[14px] font-medium transition-colors xl:px-4",
-                      glass ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white",
-                      active && (glass ? "text-ink" : "text-white"),
+                      "flex items-center gap-1 py-2 text-[14px] font-normal transition-colors",
+                      glass ? "text-char/60 hover:text-char" : "text-white/80 hover:text-white",
+                      active && (glass ? "text-char" : "text-white"),
                     )}
                   >
                     {item.label}
@@ -113,7 +117,7 @@ export function SiteHeader() {
                   </Link>
                   {item.sub && (
                     <div className="invisible absolute left-0 top-full pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                      <div className="min-w-[220px] rounded-2xl border border-ink/[0.06] bg-white p-2 shadow-[0_20px_50px_-20px_rgba(14,18,23,0.35)]">
+                      <div className="min-w-[220px] rounded-lg border border-char/[0.06] bg-white p-2 shadow-[0_20px_50px_-20px_rgba(14,18,23,0.3)]">
                         {item.sub.map((s) => (
                           <Link
                             key={s.href}
@@ -137,21 +141,13 @@ export function SiteHeader() {
           <div className="flex items-center gap-2.5 md:gap-3">
             {!open && (
               <Link
-                href="/products/finder"
+                href="/contact"
                 className={cn(
-                  "hidden h-10 items-center gap-1.5 rounded-full border px-5 text-[13px] font-medium transition-colors lg:inline-flex",
-                  glass ? "border-ink/20 text-ink hover:border-ink/50" : "border-white/40 text-white hover:bg-white/10",
+                  "hidden h-11 items-center rounded-lg px-5 text-[14px] transition-colors sm:inline-flex",
+                  glass ? "bg-char text-white hover:bg-black" : "bg-white text-char hover:bg-white/85",
                 )}
               >
-                Find your system
-              </Link>
-            )}
-            {!open && (
-              <Link
-                href="/contact"
-                className="hidden h-10 items-center gap-1.5 rounded-full bg-blue px-5 text-[13px] font-medium text-white transition-colors hover:bg-blue-bright sm:inline-flex"
-              >
-                Get a quote <ArrowRight size={14} />
+                Start a project
               </Link>
             )}
             {/* hamburger — mobile / tablet */}

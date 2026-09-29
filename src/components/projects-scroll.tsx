@@ -7,7 +7,7 @@ import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 import { Container } from "@/components/primitives";
 import { PROJECTS } from "@/lib/projects";
 
-export function ProjectsScroll({ dark = false }: { dark?: boolean }) {
+export function ProjectsScroll({ dark = false, n }: { dark?: boolean; n?: string }) {
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false });
   const items = PROJECTS.slice(0, 6);
@@ -56,7 +56,9 @@ export function ProjectsScroll({ dark = false }: { dark?: boolean }) {
       <Container>
         <div className="flex items-end justify-between gap-6">
           <div>
-            <p className={`font-mono text-[11px] uppercase tracking-[0.2em] ${dark ? "text-white/60" : "text-slate"}`}>Selected work</p>
+            <p className={`flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.2em] ${dark ? "text-white/60" : "text-slate"}`}>
+              {n && <span className="tabular-nums text-blue-bright">{n}</span>} Selected work
+            </p>
             <h2 className={`mt-6 headline text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.08] ${dark ? "text-white" : "text-ink"}`}>Our projects</h2>
           </div>
           <div className="hidden items-center gap-3 md:flex">

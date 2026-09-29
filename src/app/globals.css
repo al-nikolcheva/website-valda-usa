@@ -1,18 +1,29 @@
 @import "tailwindcss";
 
+/*
+ * Design system — calibrated to the Scandiwest template:
+ * white pages, #222224 charcoal, soft greys, Inter Tight throughout,
+ * medium-weight tight headings, plain 14px muted labels, 8px radii.
+ * VALDA signal blue is kept as a small accent only (links, focus, selection).
+ * Legacy token names (ink/slate/paper/mist) are remapped so every page follows.
+ */
 @theme {
-  --color-ink: #14181d;
-  --color-slate: #5b6470;
-  --color-mist: #e2e4e8;
-  --color-paper: #f4f5f7;
+  --color-ink: #222224;
+  --color-slate: #6f6f72;
+  --color-mist: #e3e3e3;
+  --color-paper: #f4f4f4;
   --color-pure: #ffffff;
   --color-blue: #1f4e8c;
   --color-blue-bright: #3a6dba;
   --color-champagne: #a6a182;
 
+  --color-char: #222224;   /* primary text, dark panels, primary buttons */
+  --color-mute: #a3a3a5;   /* labels, /NN markers, inactive states */
+  --color-panel: #f4f4f4;  /* light grey section panels */
+
   --font-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
 
   --animate-marquee: marquee 28s linear infinite;
 }
@@ -26,41 +37,52 @@
   .lenis.lenis-stopped { overflow: clip; }
   body {
     background: var(--color-pure);
-    color: var(--color-ink);
+    color: var(--color-char);
     font-family: var(--font-sans);
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   ::selection { background: var(--color-blue); color: #fff; }
+  :focus-visible { outline: 2px solid var(--color-blue); outline-offset: 2px; }
 }
 
+/* Headings: Inter Tight medium, tight tracking (Scandiwest). */
 @utility headline {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.022em;
-  line-height: 1.06;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.14;
 }
-@utility caption {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-slate);
+@utility sw-h {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.14;
 }
 @utility statement {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.18;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+}
+/* Labels: plain 14px muted text — no mono, no caps. */
+@utility caption {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-mute);
 }
 @utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-slate);
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-mute);
 }
 
 @keyframes marquee {

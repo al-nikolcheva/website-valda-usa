@@ -1,111 +1,77 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-
-function IgIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={className} aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-function LiIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21h-4z" />
-    </svg>
-  );
-}
-import { Logo } from "@/components/logo";
 import { SITE } from "@/lib/site";
+import { SwButton } from "@/components/sw/button";
 
-const SITEMAP = [
-  { label: "Home", href: "/" },
+/* ── Config ─────────────────────────────────────────────────── */
+const CLOSING = "Have a project in mind? Let’s build what comes next.";
+const LOCATION = ["Factories in Sofia & Veliko Tarnovo", "Bulgaria, European Union"];
+const LINKS = [
   { label: "Products", href: "/products" },
   { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
+  { label: "Catalogue", href: "/catalogue" },
   { label: "FAQ", href: "/faq" },
-  { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ];
-
 const SOCIAL = [
-  { label: "Instagram", href: "#", Icon: IgIcon },
-  { label: "LinkedIn", href: "#", Icon: LiIcon },
+  { label: "Instagram", href: "#" },
+  { label: "LinkedIn", href: "#" },
 ];
+/* ───────────────────────────────────────────────────────────── */
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden bg-blue text-white">
-      <div className="relative z-10 mx-auto w-full max-w-[1320px] px-6 md:px-12">
-        {/* CTA band */}
-        <div className="flex flex-col items-start justify-between gap-8 border-b border-white/15 py-20 md:flex-row md:items-center">
-          <h2 className="max-w-2xl headline text-[clamp(2rem,4vw,3.4rem)] text-white">We&apos;d love to work together to build your next project.</h2>
-          <Link href="/contact" className="inline-flex h-12 shrink-0 items-center gap-2 rounded-full bg-white px-7 text-[14px] font-medium text-blue transition-colors hover:bg-white/85">
-            Get in touch <ArrowRight size={16} />
-          </Link>
-        </div>
-
-        {/* columns */}
-        <div className="grid gap-12 py-16 md:grid-cols-[1.7fr_1fr_1fr]">
+    <footer className="relative overflow-hidden bg-char text-white">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 md:px-10">
+        {/* top: closing line + contact */}
+        <div className="grid gap-12 border-b border-white/12 py-20 md:grid-cols-[1fr_auto] md:py-24">
           <div>
-            <Link href="/" className="flex items-center gap-3 text-white">
-              <Logo className="h-9 w-9" />
-              <span className="flex flex-col">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/wordmark-white.png" alt="VALDA" className="h-[18px] w-auto" />
-                <span className="mt-[6px] h-[2px] w-full bg-white" />
-              </span>
-            </Link>
-            <p className="mt-7 max-w-xs text-[15px] leading-relaxed text-white/65">
-              European-engineered windows, doors and facade systems, certified and delivered factory direct to the USA.
-            </p>
-            <div className="mt-6 space-y-1.5 text-[14px] text-white/65">
+            <h2 className="sw-h max-w-[480px] text-[clamp(1.9rem,3vw,2.4rem)] text-white">{CLOSING}</h2>
+            <SwButton href="/contact" variant="white" className="mt-8">Start the conversation</SwButton>
+          </div>
+          <div className="flex flex-col justify-between gap-10 text-[15px] md:min-w-[260px]">
+            <div className="space-y-1.5">
+              <a href={`mailto:${SITE.email}`} className="block text-white transition-colors hover:text-white/70">{SITE.email}</a>
               {SITE.phones.map((p) => (
-                <p key={p.region}>{p.region}: <span className="text-white/85">{p.number}</span></p>
+                <a key={p.region} href={`tel:${p.number.replace(/\s/g, "")}`} className="block text-white/60 transition-colors hover:text-white">
+                  {p.number} <span className="text-white/35">· {p.region}</span>
+                </a>
               ))}
-              <a href={`mailto:${SITE.email}`} className="block text-white/85 hover:text-white">{SITE.email}</a>
             </div>
-          </div>
-
-          <div>
-            <p className="caption text-white/45">Sitemap</p>
-            <ul className="mt-5 space-y-3">
-              {SITEMAP.map((l) => (
-                <li key={l.label}><Link href={l.href} className="text-[15px] text-white/75 transition-colors hover:text-white">{l.label}</Link></li>
+            <p className="text-white">
+              {LOCATION.map((l) => (
+                <span key={l} className="block">{l}</span>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="caption text-white/45">Social</p>
-            <ul className="mt-5 space-y-3">
-              {SOCIAL.map(({ label, href, Icon }) => (
-                <li key={label}>
-                  <a href={href} className="inline-flex items-center gap-3 text-[15px] text-white/75 transition-colors hover:text-white">
-                    <Icon className="h-[18px] w-[18px]" /> {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            </p>
           </div>
         </div>
 
-        {/* bottom bar */}
-        <div className="flex flex-col gap-3 border-t border-white/15 py-7 md:flex-row md:items-center md:justify-between">
-          <p className="caption text-white/45">{SITE.legal} · Engineered in Sofia · Delivered worldwide</p>
-          <p className="caption text-white/45">© 2026 {SITE.legal}</p>
+        {/* bottom row */}
+        <div className="flex flex-col gap-5 py-7 text-[14px] md:flex-row md:items-center md:justify-between">
+          <p className="text-mute">© 2026 {SITE.legal}. All rights reserved.</p>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+            {LINKS.map((l) => (
+              <Link key={l.href} href={l.href} className="text-white/80 transition-colors hover:text-white">{l.label}</Link>
+            ))}
+          </nav>
+          <div className="flex gap-6">
+            {SOCIAL.map((s) => (
+              <a key={s.label} href={s.href} className="text-white/80 transition-colors hover:text-white">{s.label}</a>
+            ))}
+          </div>
         </div>
 
-        {/* spacer so the watermark has room */}
-        <div className="h-[7vw] md:h-[6vw]" />
+        {/* room for the watermark */}
+        <div className="h-[16vw] md:h-[15vw]" />
       </div>
 
-      {/* giant watermark */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-0 select-none overflow-hidden leading-[0.72]">
-        <span className="block translate-y-[24%] text-center headline text-[26vw] text-white/[0.07]">VALDA</span>
-      </div>
+      {/* giant faint wordmark */}
+      <p
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 translate-y-[18%] select-none text-center font-display text-[30vw] font-normal leading-none tracking-[-0.02em] text-[#6f6f72]/[0.14]"
+      >
+        VALDA
+      </p>
     </footer>
   );
 }

@@ -1,9 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
-import { ArrowRight, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { Container } from "@/components/primitives";
 import { CatalogueFlipbook } from "@/components/catalogue-flipbook";
+
+// Both catalogues, shown as a clear switcher so customers see each one.
+const CATALOGUES = [
+  { dir: "main", href: "/catalogue", label: "Catalogue" },
+  { dir: "technical", href: "/catalogue/technical", label: "Technical catalogue" },
+];
 
 /** Page images for a catalogue, read from /public/catalogue/<dir>. */
 export function catalogueImages(dir: string): string[] {
@@ -35,7 +41,6 @@ export function CatalogueView({
   intro,
   dir,
   pdf,
-  alt,
 }: {
   eyebrow: string;
   tag: string;
@@ -49,38 +54,48 @@ export function CatalogueView({
   const size = pdfSize(pdf);
 
   return (
-    <section className="min-h-screen bg-paper pb-24 pt-28 md:pt-32">
+    <section className="min-h-screen bg-white pb-28 pt-28 md:pb-36 md:pt-36">
       <Container>
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex items-baseline justify-between">
+          <p className="text-[14px] leading-[22px] text-mute">{eyebrow}</p>
+          <p className="text-[14px] leading-[22px] text-mute">/{tag}</p>
+        </div>
+        <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-16">
           <div>
-            <p className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.22em] text-slate">
-              <span className="tabular-nums text-blue-bright">{tag}</span>
-              <span className="h-px w-8 bg-slate/30" /> {eyebrow}
-            </p>
-            <h1 className="mt-6 headline text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.0] tracking-[-0.025em] text-ink">{title}</h1>
-            <p className="mt-5 max-w-xl text-[16px] leading-[1.7] text-slate">{intro}</p>
+            <h1 className="sw-h text-[clamp(2.5rem,5.2vw,4.25rem)] leading-[1.06] text-char">{title}</h1>
+            <p className="mt-6 max-w-xl text-[16px] leading-6 text-slate">{intro}</p>
           </div>
-          <div className="flex shrink-0 flex-col items-start gap-3 md:items-end">
-            <a
-              href={pdf}
-              download
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[14px] font-medium text-white transition-colors hover:bg-blue"
-            >
-              <Download size={16} /> Download PDF {size && <span className="font-mono text-[11px] text-white/60">{size}</span>}
-            </a>
-            {alt && (
-              <Link href={alt.href} className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-slate transition-colors hover:text-ink">
-                {alt.label} <ArrowRight size={13} />
-              </Link>
-            )}
-          </div>
+          <a
+            href={pdf}
+            download
+            className="inline-flex h-[52px] shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-char px-5 text-[14px] leading-[22px] text-white transition-colors duration-300 hover:bg-black md:self-auto"
+          >
+            <Download size={16} /> Download PDF {size && <span className="text-white/55">{size}</span>}
+          </a>
         </div>
 
-        <div className="mt-14">
+        {/* which catalogue: both shown, clearly titled */}
+        <div className="mt-12 inline-flex max-w-full flex-wrap items-center gap-1 rounded-lg bg-panel p-1">
+          {CATALOGUES.map((c) => {
+            const active = c.dir === dir;
+            return (
+              <Link
+                key={c.dir}
+                href={c.href}
+                aria-current={active ? "page" : undefined}
+                className={`inline-flex h-10 items-center rounded-md px-4 text-[14px] transition-colors duration-300 ${active ? "bg-char text-white" : "text-slate hover:text-char"}`}
+              >
+                {c.label}
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="mt-4 rounded-lg bg-panel px-3 py-6 md:px-10 md:py-12">
           {pages.length > 0 ? (
             <CatalogueFlipbook pages={pages} />
           ) : (
-            <div className="rounded-2xl border border-mist bg-pure px-8 py-20 text-center text-[15px] text-slate">This catalogue is being prepared.</div>
+            <div className="px-8 py-20 text-center text-[16px] leading-6 text-slate">This catalogue is being prepared.</div>
           )}
         </div>
       </Container>

@@ -1,85 +1,83 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { Container } from "@/components/primitives";
-import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 
-export function HomeHero() {
-  const { scrollY } = useScroll();
-  // hero stays pinned while the page scrolls over it — gently zoom + dissolve as it is covered
-  const scale = useTransform(scrollY, [0, 900], [1.2, 1.34]);
-  const imgY = useTransform(scrollY, [0, 900], ["0%", "10%"]);
-  const contentOpacity = useTransform(scrollY, [0, 420], [1, 0]);
-  const contentY = useTransform(scrollY, [0, 420], ["0%", "-14%"]);
+/* ── Config ─────────────────────────────────────────────────── */
+const HERO_IMAGE = "/images/arch-1.jpg";
+const HEADLINE = "European windows and doors, built for the US.";
+// Featured project in the floating card (bottom-left).
+const FEATURED = {
+  href: "/projects/juneau-village",
+  img: "/images/project-milwaukee-1.jpg",
+  year: "2025",
+  name: "Juneau Village",
+  location: "Milwaukee, USA",
+};
+/* ───────────────────────────────────────────────────────────── */
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
+/** Frosted-glass featured-project card (bottom-left of the hero). */
+export function FeaturedCard() {
   return (
-    <section className="pointer-events-none fixed inset-0 -z-10 h-[100svh] overflow-hidden bg-ink">
-      <motion.div style={{ scale, y: imgY }} className="absolute inset-0">
-        <video
-          src="/media/hero-loop.mp4"
-          poster="/images/hero-gora.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="h-full w-full object-cover object-[10%_50%]"
-        />
-      </motion.div>
-
-      {/* darken shade for legibility */}
-      <div className="absolute inset-0 bg-ink/35" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/20" />
-
-      <motion.div style={{ opacity: contentOpacity, y: contentY }} className="pointer-events-auto absolute inset-0 flex flex-col justify-end">
-        <Container className="pb-16 md:pb-20">
-          <motion.div
-            initial={{ y: 24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="grid items-end gap-10 lg:grid-cols-[1.45fr_1fr] lg:gap-20"
-          >
-            {/* left — eyebrow + headline + actions */}
-            <div>
-              <p className="mb-7 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.24em] text-white/70">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-bright" /> A European manufacturer, delivered worldwide
-              </p>
-              <h1 className="headline text-[clamp(2.7rem,6.6vw,5.6rem)] leading-[0.98] text-white">
-                Windows, doors and facades, engineered in Europe.
-              </h1>
-              <div className="mt-9 flex flex-wrap items-center gap-6">
-                <Button href="/contact" variant="blue">Get a quote <ArrowRight size={16} /></Button>
-                <Link href="/projects" className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/85 underline-offset-4 hover:text-white hover:underline">
-                  See our projects
-                </Link>
-              </div>
-            </div>
-
-            {/* right — supporting line + credentials */}
-            <div className="lg:pb-2">
-              <p className="max-w-md text-[16px] leading-[1.7] text-white/80">
-                Family-owned since 1998. High-end aluminium and PVC systems, made in our own European factories and delivered factory direct, worldwide.
-              </p>
-              <div className="mt-7 flex gap-10 border-t border-white/15 pt-5">
-                <Stat n="26+" k="Years" />
-                <Stat n="3" k="Factories" />
-                <Stat n="Worldwide" k="Delivered" />
-              </div>
-            </div>
-          </motion.div>
-        </Container>
-      </motion.div>
-    </section>
+    <Link
+      href={FEATURED.href}
+      className="group block w-[min(92vw,340px)] rounded-lg border border-white/20 bg-black/10 p-5 text-white backdrop-blur-xl transition-colors hover:bg-white/20"
+    >
+      <div className="flex items-center justify-between text-[13px] text-white/75">
+        <span>Featured project</span>
+        <span>Completed {FEATURED.year}</span>
+      </div>
+      <p className="sw-h mt-6 text-[26px]">{FEATURED.name}</p>
+      <p className="mt-1 text-[14px] text-white/75">{FEATURED.location}</p>
+      <span className="mt-5 flex items-center justify-between border-t border-white/20 pt-4 text-[14px]">
+        View project
+        <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+      </span>
+    </Link>
   );
 }
 
-function Stat({ n, k }: { n: string; k: string }) {
+/** `card` swaps the bottom-left featured-project card (defaults to the current one). */
+export function HomeHero({ card }: { card?: React.ReactNode } = {}) {
   return (
-    <div>
-      <p className="headline text-[clamp(1.4rem,2.4vw,2rem)] leading-none text-white">{n}</p>
-      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/55">{k}</p>
-    </div>
+    <section className="relative h-[100svh] min-h-[640px] overflow-hidden rounded-b-lg bg-char">
+      <Image src={HERO_IMAGE} alt="Modern house glazed with VALDA aluminum windows" fill priority className="object-cover" sizes="100vw" />
+
+      {/* soft shading for the nav (top) and the headline/card (bottom) */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/30 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-black/45 to-transparent" />
+
+      {/* giant wordmark */}
+      <motion.p
+        aria-hidden
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, ease }}
+        className="pointer-events-none absolute inset-x-0 top-[9vh] select-none text-center font-display text-[24vw] font-normal leading-none tracking-[-0.02em] text-white/85 md:top-[7vh]"
+      >
+        VALDA
+      </motion.p>
+
+      <div className="absolute inset-x-0 bottom-0 mx-auto flex w-full max-w-[1440px] flex-col-reverse items-start gap-6 px-5 pb-6 md:flex-row md:items-end md:justify-between md:px-10 md:pb-10">
+        {/* floating featured-project card */}
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.3, ease }}>
+          {card ?? <FeaturedCard />}
+        </motion.div>
+
+        {/* headline, bottom-right */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.15, ease }}
+          className="sw-h max-w-[440px] text-[clamp(2.4rem,4.2vw,3.5rem)] text-white"
+        >
+          {HEADLINE}
+        </motion.h1>
+      </div>
+    </section>
   );
 }

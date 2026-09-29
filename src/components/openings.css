@@ -1,10 +1,11 @@
-/* Ported from valda-opening-types.html — the .win 3D opening animation.
-   All selectors namespaced under .vw-openings and restyled to the VALDA site palette. */
+/* Ported from valda-opening-types.html: the .win 3D opening animation.
+   All selectors namespaced under .vw-openings and restyled to the Scandiwest look
+   (flat white cards, grey stage, Inter Tight labels, blue as a tiny accent only). */
 
 .vw-openings {
-  --ink: #14181d;
-  --muted: #5b6470;
-  --line: #e2e4e8;
+  --ink: #222224;
+  --muted: #a3a3a5;
+  --panel: #f4f4f4;
   --accent: #1f4e8c;
   --sat: linear-gradient(135deg, #6a7178 0%, #474d55 28%, #373d45 58%, #454b53 84%, #2c323a 100%);
 }
@@ -12,41 +13,53 @@
 
 .vw-openings .grid {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
 }
 
+/* Scandiwest card: flat white on the grey panel section, 8px radius */
 .vw-openings .card {
-  background: linear-gradient(180deg, #ffffff, #f4f5f7);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 16px 16px 22px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px 8px 24px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: box-shadow .35s ease, border-color .35s ease, transform .35s ease;
 }
-.vw-openings .card:hover {
-  box-shadow: 0 26px 54px -30px rgba(20, 25, 28, .4);
-  border-color: #cfd3d9;
-  transform: translateY(-3px);
+.vw-openings .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* tap-to-open affordance */
+.vw-openings .cue {
+  position: absolute; top: 18px; right: 18px; z-index: 8;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px; line-height: 16px;
+  color: var(--ink); background: #ffffff;
+  padding: 4px 8px; border-radius: 6px;
+  transition: color .3s ease;
+  pointer-events: none;
 }
+.vw-openings .cue::before {
+  content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--muted);
+  transition: background .3s ease;
+}
+.vw-openings .card.open .cue::before { background: var(--accent); }
 
 .vw-openings .stage {
-  height: 262px;
+  height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
   perspective: 1600px;
   perspective-origin: 50% 40%;
-  margin-bottom: 12px;
-  border-radius: 12px;
+  margin-bottom: 20px;
+  border-radius: 6px;
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(72% 56% at 50% 38%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 70%),
-    linear-gradient(180deg, #f7f7f9 0%, #eef0f2 66%, #e6e8eb 100%);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, .7), inset 0 -14px 26px rgba(40, 45, 55, .05);
+    radial-gradient(72% 56% at 50% 38%, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #f4f4f4 0%, #efefef 66%, #e9e9e9 100%);
+  transition: background .5s ease;
 }
 .vw-openings .contact {
   position: absolute; bottom: 40px; left: 50%; width: 150px; height: 18px;
@@ -233,10 +246,12 @@
 }
 
 /* ---------- labels (VALDA look) ---------- */
-.vw-openings .row { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-top: 2px; padding: 0 4px; }
-.vw-openings .name { font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 5px; color: var(--ink); }
-.vw-openings .kind { font-family: var(--font-mono), ui-monospace, monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0; }
-.vw-openings .symbol { flex: none; width: 50px; height: 58px; margin-top: 2px; }
+.vw-openings .row { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 0 12px; }
+.vw-openings .name { font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif; font-size: 24px; line-height: 1.15; font-weight: 500; letter-spacing: -.02em; margin: 0 0 8px; color: var(--ink); }
+.vw-openings .kind { font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif; font-size: 14px; line-height: 22px; color: var(--muted); margin: 0; }
+.vw-openings .symbol { flex: none; width: 40px; height: 46px; margin-top: 2px; }
 .vw-openings .symbol rect { fill: none; stroke: var(--ink); stroke-width: 2; }
-.vw-openings .symbol line, .vw-openings .symbol path { stroke: var(--accent); stroke-width: 1.6; fill: none; }
+.vw-openings .symbol line, .vw-openings .symbol path { stroke: var(--muted); stroke-width: 1.6; fill: none; transition: stroke .3s ease; }
+.vw-openings .card:hover .symbol line, .vw-openings .card:hover .symbol path,
+.vw-openings .card.open .symbol line, .vw-openings .card.open .symbol path { stroke: var(--accent); }
 .vw-openings .symbol .dash { stroke-dasharray: 3 3; }

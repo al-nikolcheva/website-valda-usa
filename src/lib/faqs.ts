@@ -3,7 +3,7 @@
 export const FAQS: { q: string; a: string }[] = [
   {
     q: "Where are your products manufactured?",
-    a: "In our own factories in Europe. VALDA is a family-owned manufacturer with two factories in Bulgaria, producing aluminium and PVC windows, doors and facade systems since 1998.",
+    a: "In our own factories in Europe. VALDA is a family-owned manufacturer with two factories in Bulgaria, producing aluminum and PVC windows, doors and facade systems since 1998.",
   },
   {
     q: "Are your products certified for the US?",

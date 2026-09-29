@@ -8,7 +8,7 @@ import { createElement, useEffect, useState } from "react";
  * `src`/`alt` are set as attributes via a ref because model-viewer observes the
  * `src` attribute (React would otherwise set it as a property that doesn't load).
  */
-export function ModelViewer({ src, alt }: { src: string; alt: string }) {
+export function ModelViewer({ src, alt, orbit }: { src: string; alt: string; orbit?: string }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -35,7 +35,8 @@ export function ModelViewer({ src, alt }: { src: string; alt: string }) {
       }
     },
     "camera-controls": true,
-    "auto-rotate": true,
+    ...(orbit ? { "camera-orbit": orbit } : {}),
+    "auto-rotate": !orbit,
     "auto-rotate-delay": 400,
     "rotation-per-second": "22deg",
     "interaction-prompt": "none",

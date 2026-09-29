@@ -145,6 +145,7 @@ export function cutImage(slug: string): string | null {
 // Interactive 3D profile models exported to /public/models.
 const SYSTEM_MODELS: Record<string, string> = {
   "series-76-md": "/models/76md.glb",
+  "vista-guard": "/models/vista-guard.glb",
 };
 
 export function systemModel(slug: string): string | null {

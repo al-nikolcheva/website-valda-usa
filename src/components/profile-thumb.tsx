@@ -1,9 +1,9 @@
 /**
  * Compact, static profile cross-section used as a card thumbnail.
- * Aluminium shows a polyamide thermal break; PVC shows steel reinforcement.
+ * Aluminum shows a polyamide thermal break; PVC shows steel reinforcement.
  */
-export function ProfileThumb({ material, className = "" }: { material: "Aluminium" | "PVC"; className?: string }) {
-  const alu = material === "Aluminium";
+export function ProfileThumb({ material, className = "" }: { material: "Aluminum" | "PVC"; className?: string }) {
+  const alu = material === "Aluminum";
   return (
     <svg viewBox="0 0 200 180" className={className} role="img" aria-label={`${material} profile section`}>
       <defs>
@@ -28,7 +28,7 @@ export function ProfileThumb({ material, className = "" }: { material: "Aluminiu
       <rect x="20" y="126" width="22" height="14" rx="2" fill="#7c828c" />
 
       {/* gasket */}
-      <path d="M46 78 h12 v24 h-12 z" fill="#14181d" />
+      <path d="M46 78 h12 v24 h-12 z" fill="#222224" />
 
       {/* multi-chamber frame */}
       <rect x="58" y="34" width="118" height="112" rx="7" fill="url(#pt-metal)" stroke="#5f6671" strokeWidth="2" />
@@ -39,11 +39,11 @@ export function ProfileThumb({ material, className = "" }: { material: "Aluminiu
         <rect x="122" y="96" width="42" height="38" rx="3" />
       </g>
 
-      {/* core: thermal break (aluminium) or steel reinforcement (PVC) */}
+      {/* core: thermal break (aluminum) or steel reinforcement (PVC) */}
       {alu ? (
         <>
-          <rect x="58" y="84" width="118" height="12" fill="#1b2026" />
-          <g stroke="#3a6dba" strokeOpacity="0.55" strokeWidth="1.6">
+          <rect x="58" y="84" width="118" height="12" fill="#222224" />
+          <g stroke="#a3a3a5" strokeOpacity="0.7" strokeWidth="1.6">
             {Array.from({ length: 9 }).map((_, i) => (
               <line key={i} x1={64 + i * 13} y1="84" x2={58 + i * 13} y2="96" />
             ))}
@@ -51,8 +51,8 @@ export function ProfileThumb({ material, className = "" }: { material: "Aluminiu
         </>
       ) : (
         <>
-          <rect x="80" y="54" width="26" height="22" rx="2" fill="#5b6470" stroke="#2c333d" strokeWidth="2.5" />
-          <rect x="130" y="54" width="22" height="22" rx="2" fill="#5b6470" stroke="#2c333d" strokeWidth="2.5" />
+          <rect x="80" y="54" width="26" height="22" rx="2" fill="#6f6f72" stroke="#222224" strokeWidth="2.5" />
+          <rect x="130" y="54" width="22" height="22" rx="2" fill="#6f6f72" stroke="#222224" strokeWidth="2.5" />
         </>
       )}
     </svg>
