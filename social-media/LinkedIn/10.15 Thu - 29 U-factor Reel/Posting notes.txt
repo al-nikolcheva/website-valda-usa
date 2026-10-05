@@ -1,8 +1,6 @@
 Reel · Thu 15 Oct 2026
 POST AT: 11:00 AM ET
 
-FIRST COMMENT: post the text in First comment.txt as a comment straight after publishing (Buffer adds it automatically).
-
 VIDEO: upload Reel.mp4 as a native video, not a link.
 
 TAG (type @ and pick the official page or account; check the handle before posting):

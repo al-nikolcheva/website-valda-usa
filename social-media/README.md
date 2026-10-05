@@ -10,7 +10,6 @@ Three posts a week (Tue, Thu, Fri), blended: products, educational, blog carouse
 Folders are named `MM.DD Day - NN Title`, so they sort in posting order. Each one has:
 
 - `Caption.txt` keyword-first caption with hashtags
-- `First comment.txt` (LinkedIn) the link to post as the first comment
 - `Posting notes.txt` posting time, tags, location, collaborator, document title and alt text per slide
 
 ## Posting times (US Eastern)
@@ -26,7 +25,7 @@ Folders are named `MM.DD Day - NN Title`, so they sort in posting order. Each on
 - Instagram allows 5 hashtags per post, caption and comments combined. More than 5 can block publishing or hide the post from Explore. We use 4 topic tags plus #VALDA.
 - LinkedIn: 3 topic tags plus #VALDA. Hashtags do little for reach there; the text is what gets read.
 - The first line carries the main keyword. Instagram search and Google (which now indexes public business accounts) read it like a title.
-- No links in the LinkedIn post body. The article link goes in the first comment.
+- LinkedIn: the article link goes at the end of the post, after the value (first comments need a paid Buffer plan).
 - Instagram: put the article in the bio link that week and share the post to Stories with a link sticker.
 - End with a question. Comments count for more than likes on both platforms.
 - Add the alt text from `Posting notes.txt` to every image.

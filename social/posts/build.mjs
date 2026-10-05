@@ -10,13 +10,11 @@ function writeText(p,plat,dir,slides){
   const kind=x=>({photo:'Photo of ',photoType:'Photo of ',card:'Photo of ',photoSlide:'Photo: ',inSitu:'Photo: ',over:'Photo with text: ',systems:'Drawing of a window with text: ',drawing:'Drawing of a window with text: ',sand:'Window profile section with text: ',darkCut:'Window profile section with text: ',section:'Window profile section with text: '}[x.t]||'Text slide: ');
   const alt=slides.map((x,i)=>`Slide ${i+1}: ${kind(x)}${[x.label,x.h,x.d||x.lead||x.cap,x.c].map(strip).filter(Boolean).join('. ')}`.replace(/\.\./g,'.'));
   const cap = plat==='LinkedIn'
-    ? `${p.caption}${p.link?'\n\nMore in the first comment.':''}\n\n${p.li} #VALDA`
+    ? `${p.caption}\n\n${p.link?'Read more: '+p.link:'valdagroup.com'}\n\n${p.li} #VALDA`
     : `${p.caption}${p.link?'\n\nMore via the link in bio.':''}\n\n${p.ig} #VALDA`;
   fs.writeFileSync(path.join(dir,'Caption.txt'), cap+'\n');
-  if (plat==='LinkedIn') fs.writeFileSync(path.join(dir,'First comment.txt'), (p.link?`Read more: ${p.link}`:'Explore the systems: https://valdagroup.com')+'\n');
   const notes=[`${p.arm} · ${p.parked?'Parked, not scheduled':p.day+' '+p.date+' 2026'}${p.note?' · '+p.note:''}`,
     `POST AT: ${timeFor(p,plat)}`,'',
-    ...(plat==='LinkedIn'?['FIRST COMMENT: post the text in First comment.txt as a comment straight after publishing (Buffer adds it automatically).','']:[]),
     ...(plat==='Instagram'&&p.link?[`LINK: put ${p.link} in the bio link (or Linktree) for the week, and share the post to Stories with a link sticker.`,'']:[]),
     ...(p.video?[plat==='Instagram'?'REEL: upload Reel.mp4, pick a trending track at low volume, choose a cover frame with the title, and keep "Also share to feed" on.':'VIDEO: upload Reel.mp4 as a native video, not a link.','']:[]),
     'TAG (type @ and pick the official page or account; check the handle before posting):',

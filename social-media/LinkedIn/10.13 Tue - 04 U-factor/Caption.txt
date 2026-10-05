@@ -8,6 +8,6 @@ Quoting a European window? Divide the Uw value by 5.678 to get the US U-factor.
 
 Which figure do you check first on a spec sheet?
 
-More in the first comment.
+Read more: https://valdagroup.com/insights/what-u-factor-tells-you
 
 #energyefficiency #buildingscience #architects #VALDA
