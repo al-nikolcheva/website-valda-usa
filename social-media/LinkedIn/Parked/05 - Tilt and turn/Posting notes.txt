@@ -1,0 +1,14 @@
+What we have · Parked, not scheduled
+POST AT: not scheduled
+
+FIRST COMMENT: post the text in First comment.txt as a comment straight after publishing (Buffer adds it automatically).
+
+TAG (type @ and pick the official page or account; check the handle before posting):
+- Reynaers Aluminium (MasterLine 8)
+
+DOCUMENT TITLE (carousel): Tilt and turn | VALDA
+
+ALT TEXT (add per image for accessibility and search):
+Slide 1: Window profile section with text: One window, two ways to open. Tilt and turn · MasterLine 8 · Reynaers
+Slide 2: Text slide: How it works. One handle, two positions.
+Slide 3: Text slide: MasterLine 8. Six products, one impact rated range. Fixed, tilt and turn, casement, awning, entrance and terrace doors. Large and small missile rated for Wind Zone 3.
