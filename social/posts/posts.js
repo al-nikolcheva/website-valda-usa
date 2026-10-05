@@ -1,0 +1,155 @@
+// All Oct-Nov 2026 posts. Edit text here, then run `node build.mjs`.
+// Orange [brackets] are placeholders to fill before posting.
+const P='../../public/', A='../assets/';
+const CLOSE_URL='valdagroup.com';
+window.POSTS=[
+// ---------------- W1 ----------------
+{n:1,date:'06 Oct',day:'Tue',arm:'Educational',title:'Aluminium or PVC',slides:[
+ {t:'charQ',h:'Aluminium or PVC?',d:'How to choose your window frame. A 60 second guide.',c:'Guide /01',img:P+'images/hero-glass.png'},
+ {t:'compare',label:'The difference',h:'It comes down to the frame.',lead:'Both hold glass. The difference is the material around it.',a:{k:'Aluminium',v:'Strong and slim.',img:P+'images/product-sliding.png'},b:{k:'PVC',v:'Warm and cost efficient.',img:P+'images/home-us-porch.webp'}},
+ {t:'split',label:'When aluminium wins',h:'Choose aluminium when...',img:P+'images/sliding-deck.png',chip:'Aluminium',items:['You want slim sightlines and more glass.','The opening is large or structural.','The look is modern and design led.'],card:{k:'Sightline · SlimPatio 68',v:'15/16 in',blue:1}},
+ {t:'split',flip:1,label:'When PVC wins',h:'Choose PVC when...',img:P+'images/home-cream-brick.webp',chip:'PVC',items:['Thermal performance is the priority.','The budget needs to work harder.','Low maintenance matters most.'],card:{k:'In short',v:'Warm, efficient, easy to live with.'}},
+ {t:'close',img:P+'images/hero-villa.jpg',label:'Your turn',h:'Still unsure? Start with the opening.',lead:'Large spans and slim frames point to aluminium. Energy and value point to PVC. Size and sightline decide it.',q:'What are you specifying, and why?',rest:'Tell us in the comments.'},
+],caption:'Aluminium or PVC? It is the first question on almost every project, and the answer is simpler than it looks. Slim sightlines and large openings point one way. Thermal performance and value point the other. Here is how we talk it through with architects and homeowners. What do you specify, and why?'},
+
+{n:2,date:'08 Oct',day:'Thu',arm:'What we have',title:'VALDA Vista',slides:[
+ {t:'sand',h:'Built to disappear.',d:'VALDA Vista Guard. Slim aluminium, rated for the hurricane coast.',c:'Vista Guard · VALDA',img:A+'vista-cut.png'},
+ {t:'split',label:'The idea',h:'Less frame. More view.',img:P+'images/product-windows.png',chip:'Built to disappear',items:['A thermally broken aluminium frame.','Slimmer than its PVC counterpart, Vision Guard.','Picture and tilt and turn configurations.'],card:{k:'Tilt and turn',v:'48 x 78 in'}},
+ {t:'section',label:'In detail',h:'Inside the profile.',img:A+'vista-cut.png',items:['Laminated insulating glass with a SentryGlas interlayer','Powder coated aluminium frame','Polyamide thermal break','EPDM gaskets, frame and glass']},
+ {t:'specs',label:'Performance',h:'Slim, not light duty.',big:{k:'Design pressure · picture and tilt and turn',v:'±65 psf'},cards:[['Impact','Wind Zone 4'],['Approval','In and outside HVHZ'],['Largest picture window','59 x 98 3/8 in'],['Air infiltration · picture','0.002 cfm/ft²']]},
+ {t:'close',img:P+'images/home-coast-sunset.webp',label:'Specify',h:'Specifying on the coast? Start with Vista Guard.',lead:'Florida Product Approval FL39802 and FL39801. NAMI certified. No shutters or external impact protection needed.',q:'Got an opening in mind?',rest:'Tell us the size in the comments.'},
+],caption:'Some windows are meant to be looked at. Vista Guard is meant to be looked through. A thermally broken aluminium frame keeps the profile slim, so the glass does the work, and it still holds ±65 psf with large missile impact approval for Wind Zone 4, in and outside the HVHZ. No shutters needed. Got an opening in mind? Tell us the size in the comments.'},
+
+{n:3,date:'09 Oct',day:'Fri',arm:'Projects',title:'GORA',slides:[
+ {t:'photo',h:'GORA, Sofia',d:'Residential · 2023',img:P+'images/proj-gora.jpg'},
+ {t:'photoSlide',img:P+'images/proj-gora.jpg',zoom:1.2,origin:'20% 92%',chip:'Sofia, Bulgaria',cap:'Large glazed openings on every elevation.'},
+ {t:'details',label:'Project details',h:'GORA, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2023'],['Systems','Aluminium tilt and turn · minimal-frame sliding',1]],q:'Working on a residential glass wall?',rest:'Tell us about it in the comments.'},
+],caption:'GORA, Sofia. A residential building designed around light and the view. Slim aluminium tilt and turn windows and minimal-frame sliding systems give every apartment an uninterrupted connection to the outside. Architect: [Architect name]. Working on a residential glass wall? Tell us about it in the comments.'},
+
+// ---------------- W2 ----------------
+{n:4,date:'13 Oct',day:'Tue',arm:'Educational',title:'U-factor',slides:[
+ {t:'stat',n:'0.14',h:'What U-factor really tells you.',d:'How much heat a window lets through. Lower is better. This is our best triple-glazed figure.',c:'Guide /02',f:'U-factor · MasterLine 10, triple glazed',single:1},
+],caption:'U-factor is the one number that tells you how much heat a window lets through. It covers the whole unit, frame and glass together, so it is the fairest way to compare two windows. Lower is better. Double glazing is a good starting point, triple glazing takes it further: on ConceptSystem 77 it moves the U-factor from 0.24 to 0.18, and MasterLine 10 reaches 0.14. When you compare quotes, ask for the whole-window figure, not the glass alone.'},
+
+{n:5,date:'15 Oct',day:'Thu',arm:'What we have',title:'Tilt and turn',slides:[
+ {t:'darkCut',h:'One window, two ways to open.',c:'Tilt and turn · MasterLine 8 · Reynaers',img:P+'products/masterline-8.png'},
+ {t:'steps',label:'How it works',h:'One handle, two positions.',items:[['Tilt','The top of the sash leans in. Secure ventilation, even in the rain.'],['Turn','The sash swings fully open, like a door. Easy to clean from inside.'],['Closed','Multi-point locking pulls the sash tight against the gaskets.']],card:{k:'MasterLine 8 · acoustic',v:'STC 50'}},
+ {t:'close',img:P+'images/arch-2.jpg',label:'MasterLine 8',h:'Six products, one impact rated range.',lead:'Fixed, tilt and turn, casement, awning, entrance and terrace doors. Large and small missile rated for Wind Zone 3.',q:'Tilt and turn or casement?',rest:'Which do you prefer, and why?'},
+],caption:'Tilt and turn: one window, two ways to open. Tilt the sash for secure ventilation, turn it to open fully and clean the glass from inside. On MasterLine 8 by Reynaers it comes with STC 50 acoustic performance and large and small missile approval for Wind Zone 3. Tilt and turn or casement: which do you prefer?'},
+
+{n:6,date:'16 Oct',day:'Fri',arm:'Projects',title:'American University of Malta',slides:[
+ {t:'photoType',h:'American University of Malta',d:'Cospicua, Malta',c:'Institutional · 2022',img:P+'images/proj-aum.jpg'},
+ {t:'photoSlide',img:P+'images/proj-aum.jpg',zoom:1.6,origin:'60% 60%',chip:'Cospicua, Malta',cap:'Curtain wall and operable windows on a historic waterfront.'},
+ {t:'details',label:'Project details',h:'American University of Malta',rows:[['Location','Cospicua, Malta'],['Type','Institutional'],['Architect','[Architect name]'],['Year','2022'],['Systems','Curtain wall · windows',1]],q:'Working on a facade?',rest:'Tell us about it in the comments.'},
+],caption:'American University of Malta, Cospicua. A facade and window package that balances daylight, acoustics and a historic waterfront setting. Curtain wall and operable windows, engineered and fabricated in Europe. Architect: [Architect name].'},
+
+// ---------------- W3 ----------------
+{n:7,date:'20 Oct',day:'Tue',arm:'Educational',title:'Sightlines',slides:[
+ {t:'drawing',h:'More glass, less frame.',d:'Sightlines: the visible frame around the glass. A few millimetres change a room.',c:'Guide /03',f:'Sightlines',img:A+'iso-window.png'},
+ {t:'specs',label:'Why it matters',h:'Every inch of frame is an inch of view.',big:{k:'Sightline · SlimPatio 68 sliding door',v:'15/16 in'},cards:[['More light','Slimmer frames, more glass'],['Cleaner lines','The opening reads as one pane']]},
+ {t:'close',img:P+'images/sliding-deck.png',label:'Your turn',h:'Slim frames start at the design stage.',lead:'Large panes and slim sightlines need the right system from day one. Bring us in early.',q:'How slim is slim enough?',rest:'Tell us in the comments.'},
+],caption:'Sightlines are the visible frame around the glass. Slimmer sightlines mean more glass, more light and openings that read as a single pane. SlimPatio 68 by Reynaers runs a 15/16 in sightline on a sliding door. The trick is choosing the system early, before the opening sizes are fixed.'},
+
+{n:8,date:'22 Oct',day:'Thu',arm:'What we have',title:'Sliding and folding',slides:[
+ {t:'inSitu',h:'Open-plan, opened up.',c:'Sliding and folding · ConceptFolding 77 · Reynaers',img:P+'images/product-sliding.png'},
+ {t:'specs',label:'ConceptFolding 77',h:'Up to eight leaves, folded away.',big:{k:'Leaves per opening',v:'8'},cards:[['Leaf size','47 1/4 x 118 1/8 in'],['Certified','PG55'],['Acoustic','Rw 45 dB'],['U-factor, triple','0.27']]},
+ {t:'close',img:P+'images/door-slatted.png',label:'Sliding or folding?',h:'Sliding keeps the view. Folding clears the wall.',lead:'Sliding systems keep big panes in place. Folding systems stack away to open the whole wall.',q:'Which would you choose?',rest:'Tell us in the comments.'},
+],caption:'Sliding and folding systems for open-plan living. ConceptFolding 77 by Reynaers opens a wall completely, up to eight leaves, each up to 47 1/4 x 118 1/8 in, certified at PG55. Sliding keeps big panes in view, folding clears the whole opening. Which would you choose?'},
+
+{n:9,date:'23 Oct',day:'Fri',arm:'Projects',title:'Austin Residence',slides:[
+ {t:'card',h:'Austin Residence',img:P+'images/proj-austin.jpg',meta:[['City','Austin, USA'],['Type','Luxury residential'],['Year','2024']]},
+ {t:'photoSlide',img:P+'images/proj-austin.jpg',zoom:1.4,origin:'70% 40%',chip:'Austin, USA',cap:'Lift and slide and fixed glazing for the Texas climate.'},
+ {t:'details',label:'Project details',h:'Austin Residence',rows:[['Location','Austin, USA'],['Type','Luxury residential'],['Architect','[Architect name]'],['Year','2024'],['Systems','Lift and slide · fixed glazing',1]],q:'Planning large sliding openings?',rest:'Tell us about the project.'},
+],caption:'Austin Residence, Texas. A private home glazed with lift and slide and fixed systems, engineered for the Texas climate and large openings. Architect: [Architect name].'},
+
+// ---------------- W4 ----------------
+{n:10,date:'27 Oct',day:'Tue',arm:'Educational',title:'Fixed vs operable',slides:[
+ {t:'charQ',h:'Fixed or operable?',d:'Plan your glazing early and the rest follows.',c:'Guide /04',img:P+'images/facade-stone.png',single:1},
+],caption:'Fixed or operable? Decide early. Fixed glazing gives you the largest sizes and the best performance: MasterLine 8 fixed lights reach 162 inches tall. Operable windows bring air, cleaning access and, in bedrooms, egress. Most good elevations mix the two: big fixed panes for the view, operable units where people need them. Plan the split before the openings are drawn.'},
+
+{n:11,date:'29 Oct',day:'Thu',arm:'What we have',title:'The PVC range',slides:[
+ {t:'sand',h:'Warm, efficient, low upkeep.',d:'The PVC range, for thermal performance on every budget.',c:'Series 76 MD · Kömmerling',img:A+'cut-76md-section.png'},
+ {t:'specs',label:'Series 76 MD · Kömmerling',h:'Hurricane certified, in PVC.',big:{k:'Design pressure · fixed window',v:'+75/-75 psf'},cards:[['Water resistance','20 psf'],['Approval','In and outside HVHZ'],['Twin units','To 102 in wide'],['Interlayer','SentryGlas']]},
+ {t:'close',img:P+'images/home-us-porch.webp',label:'Also in the range',h:'Vision Guard: our own impact PVC window.',lead:'Approved in and outside the HVHZ at ±65 psf, Wind Zone 4 large missile, NAMI certified.',q:'Specifying PVC on the coast?',rest:'Ask us which system fits.'},
+],caption:'The PVC range: performance, high thermal, low upkeep. Series 76 MD by Kömmerling is approved in and outside the HVHZ, with a fixed window rated to +75/-75 psf and 20 psf water resistance. Our own Vision Guard brings the same Wind Zone 4 protection in a VALDA PVC window.'},
+
+{n:12,date:'30 Oct',day:'Fri',arm:'Projects',title:'Mona Residence',slides:[
+ {t:'photo',h:'Mona Residence, Sofia',d:'Multifamily · 2024',img:P+'images/project-mona-1.jpg'},
+ {t:'photoSlide',img:P+'images/project-mona-3.jpg',chip:'Sofia, Bulgaria',cap:'Warm timber accents and full-height glazing.'},
+ {t:'details',label:'Project details',h:'Mona Residence',rows:[['Location','Sofia, Bulgaria'],['Type','Multifamily'],['Architect','[Architect name]'],['Year','2024'],['Systems','Aluminium tilt and turn windows',1]],q:'Working on multifamily?',rest:'Tell us about it in the comments.'},
+],caption:'Mona Residence, Sofia. A multifamily building glazed throughout with VALDA aluminium tilt and turn windows. Warm timber accents and large openings give the elevations depth with a consistent rhythm. Architect: [Architect name].'},
+
+// ---------------- W5 ----------------
+{n:13,date:'03 Nov',day:'Tue',arm:'Educational',title:'Thermal break',slides:[
+ {t:'over',h:'The thermal break, explained.',d:'What sits inside an aluminium frame, and why it keeps the room warm.',c:'Guide /05',img:P+'images/arch-5.jpg'},
+ {t:'section',label:'Inside the frame',h:'Two shells, one insulating core.',img:A+'vista-cut.png',items:['Outer aluminium shell, facing the weather','Polyamide thermal break, the insulating core','Inner aluminium shell, facing the room','Less heat loss, less condensation']},
+ {t:'close',img:P+'images/arch-4.jpg',label:'Ask the question',h:'Is the frame thermally broken?',lead:'It is the first question to ask about any aluminium window. Without a thermal break, the frame conducts cold straight inside.',q:'Did you know this one?',rest:'Tell us in the comments.'},
+],caption:'The thermal break, explained simply. Aluminium conducts heat well, so a good aluminium window splits the frame in two with an insulating polyamide core. The outside shell takes the weather, the inside shell stays close to room temperature, and condensation drops. It is the first question to ask about any aluminium window.'},
+
+{n:14,date:'05 Nov',day:'Thu',arm:'What we have',title:'Facade systems',slides:[
+ {t:'darkCut',h:'Glazing at building scale.',c:'Facade systems · ConceptWall 50 · Reynaers',img:A+'cut-conceptwall-50.png'},
+ {t:'specs',label:'ConceptWall 50',h:'Impact rated curtain wall.',big:{k:'Glass load',v:'60 psf'},cards:[['Impact','Wind Zone 3'],['Water resistance','15 psf'],['U-factor, triple','0.14'],['Mullion depth','To 11 13/16 in']]},
+ {t:'close',img:P+'images/product-facade.jpg',label:'Three glazing methods',h:'Pressure plate, structurally glued or clamped.',lead:'One curtain wall system, three ways to hold the glass, chosen for the look and the load.',q:'Working on a facade?',rest:'Tell us the scale.'},
+],caption:'Facade systems: glazing at building scale. ConceptWall 50 by Reynaers is Florida approved curtain wall for Wind Zone 3, at 60 psf glass load with 15 psf water resistance, triple glazing to a U-factor of 0.14, and three glazing methods.'},
+
+{n:15,date:'06 Nov',day:'Fri',arm:'Projects',title:'Amaya Residence',slides:[
+ {t:'photoType',h:'Amaya Residence',d:'Sofia, Bulgaria',c:'Residential · 2023',img:P+'images/proj-amaya.jpg'},
+ {t:'photoSlide',img:P+'images/proj-amaya.jpg',zoom:1.5,origin:'85% 35%',chip:'Sofia, Bulgaria',cap:'Aluminium windows and sliding systems around a garden court.'},
+ {t:'details',label:'Project details',h:'Amaya Residence',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2023'],['Systems','Aluminium windows · sliding',1]],q:'What detail mattered most on your last project?',rest:''},
+],caption:'Amaya Residence, Sofia. VALDA aluminium windows and sliding systems on a calm, contemporary facade, specified for thermal performance and slim sightlines. The detail that mattered: [add detail]. Architect: [Architect name].'},
+
+// ---------------- W6 ----------------
+{n:16,date:'10 Nov',day:'Tue',arm:'Educational',title:'STC',slides:[
+ {t:'stat',n:'50<small> STC</small>',h:'What STC means for comfort.',d:'The rating behind a quiet room on a busy street. Higher is quieter.',c:'Guide /06',f:'STC · MasterLine 8 and MasterLine 10',single:1},
+],caption:'STC, Sound Transmission Class, rates how well a window blocks sound. Higher is quieter, and a jump of around 10 points is heard as roughly half as loud. For traffic and aircraft noise, check OITC too, which weights the low frequencies. MasterLine 8 and MasterLine 10 by Reynaers both reach STC 50.'},
+
+{n:17,date:'12 Nov',day:'Thu',arm:'What we have',title:'Dual-action',slides:[
+ {t:'inSitu',h:'Dual-action, explained.',c:'Tilt and turn · Series 88 · Kömmerling',img:P+'images/product-windows.png',single:1},
+],caption:'Dual-action windows, explained. One sash, two movements, one handle: tilt for ventilation, turn to open fully. Series 88 by Kömmerling is an 88 mm triple-glazed system with a dual-action window rated to ±60 psf and Florida Product Approval.'},
+
+{n:18,date:'13 Nov',day:'Fri',arm:'Projects',title:'Juneau Village',slides:[
+ {t:'card',h:'Juneau Village',img:P+'images/project-milwaukee-1.jpg',meta:[['City','Milwaukee, USA'],['Type','Multifamily'],['Year','2025']]},
+ {t:'photoSlide',img:P+'images/project-milwaukee-2.jpg',chip:'Milwaukee, USA',cap:'A unitised curtain wall with operable windows.'},
+ {t:'details',label:'Project details',h:'Juneau Village',rows:[['Location','Milwaukee, USA'],['Type','Multifamily'],['Architect','[Architect name]'],['Year','2025'],['Systems','Aluminium curtain wall · windows',1]],q:'Building in the Midwest?',rest:'Tell us about the project.'},
+],caption:'Juneau Village, Milwaukee. A multi-building residential development glazed end to end with VALDA aluminium systems: a unitised curtain wall with operable windows, engineered for the Midwest and delivered factory direct from Europe. Architect: [Architect name].'},
+
+// ---------------- W7 ----------------
+{n:19,date:'17 Nov',day:'Tue',arm:'Educational',title:'Triple glazing',slides:[
+ {t:'charQ',h:'Triple glazing: worth it?',d:'When the third pane pays back, and when it does not.',c:'Guide /07',img:P+'images/home-modern-pool.webp'},
+ {t:'compare',label:'Double vs triple',h:'Same system, one more pane.',lead:'ConceptSystem 77 by Reynaers, U-factor by glazing.',a:{k:'Double glazed',v:'U-factor 0.24',img:P+'images/arch-4.jpg'},b:{k:'Triple glazed',v:'U-factor 0.18',img:P+'images/facade-stone.png',blue:1}},
+ {t:'close',img:P+'images/arch-1.jpg',label:'Worth it when',h:'Cold winters, noisy streets, big panes.',lead:'Triple glazing pays back in cold climates, on loud sites and on large glazed areas. It adds weight and cost, so check the frame is built for it.',q:'Double or triple?',rest:'What do you usually specify?'},
+],caption:'Triple glazing: when it is actually worth it. On ConceptSystem 77 by Reynaers, the third pane takes the U-factor from 0.24 to 0.18. It pays back in cold climates, on noisy sites and on large glazed areas. It adds weight and cost, so make sure the frame is designed for it.'},
+
+{n:20,date:'19 Nov',day:'Thu',arm:'What we have',title:'Casement',slides:[
+ {t:'sand',h:'The classic, engineered.',d:'Casement systems with modern thermal performance.',c:'ConceptSystem 77 · Reynaers',img:P+'products/conceptsystem-77.png'},
+ {t:'specs',label:'ConceptSystem 77',h:'Certified in the strictest zone.',big:{k:'Design pressure',v:'±65 psf'},cards:[['Approval','In and outside HVHZ'],['Impact','Large and small missile'],['U-factor, triple','0.18'],['Acoustic','STC 43']]},
+ {t:'close',img:P+'images/facade-brick.webp',label:'Configurations',h:'Fixed, casement and tilt and turn.',lead:'Fixed lights to 94 1/2 x 141 3/4 in. Casement and tilt and turn to 48 x 96 7/16 in.',q:'Casement or tilt and turn?',rest:'Tell us your pick.'},
+],caption:'Casement systems: the classic, engineered. ConceptSystem 77 by Reynaers is Florida approved for large and small missile impact inside and outside the HVHZ at ±65 psf, with triple glazing to a U-factor of 0.18 and STC 43.'},
+
+{n:21,date:'20 Nov',day:'Fri',arm:'Projects',title:'Stella',slides:[
+ {t:'photo',h:'Stella, Sofia',d:'Residential · 2023',img:P+'images/proj-stella.jpg'},
+ {t:'photoSlide',img:P+'images/proj-stella.jpg',zoom:1.5,origin:'50% 30%',chip:'Sofia, Bulgaria',cap:'Aluminium windows and sliding systems.'},
+ {t:'details',label:'Project details',h:'Stella, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2023'],['Systems','Aluminium windows · sliding',1]],q:'Working on a residential project?',rest:'Tell us about it.'},
+],caption:'Stella, Sofia. A residential project glazed with VALDA aluminium windows and sliding systems, detailed for slim sightlines and performance. Architect: [Architect name].'},
+
+// ---------------- W8 ----------------
+{n:22,date:'24 Nov',day:'Tue',arm:'Educational',title:'Spec sheet',slides:[
+ {t:'over',h:'How to read a spec sheet.',d:'The five figures worth checking before you sign off a window.',c:'Guide /08',img:P+'images/consultation.webp'},
+ {t:'steps',label:'The five figures',h:'Check these first.',items:[['Design pressure','Wind load the window is rated for, in psf. Higher is stronger.'],['U-factor','Heat through the whole window. Lower is better.'],['STC','Sound blocked. Higher is quieter.'],['Air infiltration','Air leaking through, in cfm/ft². Lower is tighter.'],['Water resistance','Pressure before water gets in, in psf. Higher is better.']]},
+ {t:'specs',label:'An example',h:'Vista Guard, on paper.',big:{k:'Design pressure',v:'±65 psf'},cards:[['Air infiltration','0.002 cfm/ft²'],['Water resistance','15 psf'],['Impact','Wind Zone 4'],['Approval','HVHZ']]},
+ {t:'split',label:'And one more',h:'On the coast, check impact.',img:P+'images/impact-test.webp',chip:'Impact test',items:['Large or small missile.','Wind Zone rating.','Approved inside or outside the HVHZ.'],card:{k:'Look for',v:'Florida Product Approval or NOA'}},
+ {t:'close',img:P+'images/engineer-drawings.webp',label:'Save this',h:'Five numbers, one decision.',lead:'Send us any spec sheet and we will walk you through it.',q:'Which number do you check first?',rest:'Tell us in the comments.'},
+],caption:'How to read a window spec sheet. Five figures do most of the work: design pressure, U-factor, STC, air infiltration and water resistance. On the coast, add impact: missile size, Wind Zone and HVHZ approval. Save this for your next submittal, or send us a spec sheet and we will walk you through it.'},
+
+{n:23,date:'25 Nov',day:'Wed',arm:'What we have',title:'Glazing options',note:'Moved from Thu 26 Nov (Thanksgiving)',slides:[
+ {t:'darkCut',h:'From double to triple.',c:'Glazing options · Vista Guard · VALDA',img:A+'vista-cut.png'},
+ {t:'steps',img:P+'images/facade-wood.jpg',label:'Glazing options',h:'What each option changes.',items:[['Double glazed','The standard. Good thermal performance at the lowest weight.'],['Triple glazed','Better U-factor and acoustics. Heavier, needs a deeper frame.'],['Laminated','A bonded interlayer holds the glass in place. Needed for impact.']]},
+ {t:'close',img:P+'images/design-office.webp',label:'Not sure?',h:'Tell us the climate and the noise.',lead:'We will recommend the glazing that fits the project, not the most expensive one.',q:'Which glazing do you specify most?',rest:''},
+],caption:'Glazing options, from double to triple. Double glazing is the standard, triple improves U-factor and acoustics at the cost of weight, and laminated glass holds the pane in place for impact protection. Tell us the climate and the noise, and we will recommend the glazing that fits.'},
+
+{n:24,date:'27 Nov',day:'Fri',arm:'Projects',title:'Belle Epoque',slides:[
+ {t:'photoType',h:'Belle Epoque',d:'Sofia, Bulgaria',c:'Residential · 2022',img:P+'images/proj-belle.jpg'},
+ {t:'photoSlide',img:P+'images/proj-belle.jpg',zoom:1.5,origin:'50% 40%',chip:'Sofia, Bulgaria',cap:'Classic proportions, modern glazing.'},
+ {t:'details',label:'Project details',h:'Belle Epoque',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2022'],['Systems','Aluminium windows · doors',1]],q:'Working on a renovation?',rest:'Tell us about it.'},
+],caption:'Belle Epoque, Sofia. Classic proportions with VALDA aluminium windows and doors, engineered for comfort and longevity. Architect: [Architect name].'},
+];

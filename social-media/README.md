@@ -1,19 +1,13 @@
-# VALDA social media
+# VALDA social media, Oct to Nov 2026
 
-Ready-to-post files, one folder per post:
+All 24 posts from the content calendar, ready to upload.
 
-| Folder | Post | Slot |
-|---|---|---|
-| Post 1 - Aluminium or PVC | Educational carousel, 5 slides | |
-| Post 2 - VALDA Vista | What we have, 5 slides | Thu 08 Oct |
-| Post 3 - GORA project | Projects, photo + 2 slides | Fri 09 Oct |
+- `Instagram/` 1080 x 1350 (4:5). Upload the slides in order as one carousel. `Caption.txt` has hashtags and "Link in bio".
+- `LinkedIn/` 1080 x 1080. For carousels, upload `Carousel.pdf` as a document post. `Caption.txt` ends with valdagroup.com.
+- `Instagram grid - Oct to Nov.png` shows how the profile builds up.
 
-Each post folder contains:
+Folders are named `NN - Day DD Mon - Title` and sort in posting order. Post 23 is moved to Wed 25 Nov for Thanksgiving.
 
-- `LinkedIn/` square 1080 x 1080 PNGs plus a PDF. Upload the PDF as a LinkedIn document post to get a swipeable carousel.
-- `Instagram/` portrait 1080 x 1350 (4:5) PNGs, the size that fills the most screen in the feed. Upload them in order as one carousel.
-- `Caption LinkedIn.txt` and `Caption Instagram.txt` (Instagram version has hashtags and "link in bio").
+Read `Checklist before posting.md` first: some fields are placeholders.
 
-Before posting: fill in the GORA architect (Post 3 slide 3 and captions) and confirm the Vista approval numbers on Post 2 slide 5.
-
-These files are generated. Edit the source in `social/` and run `node export.mjs` there to rebuild this folder.
+These files are generated. To change anything, edit `social/posts/posts.js` and run `node build.mjs` in `social/posts/` (add post numbers to rebuild only those, e.g. `node build.mjs 3 6`).
