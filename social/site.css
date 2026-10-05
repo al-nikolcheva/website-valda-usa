@@ -1,0 +1,55 @@
+/* VALDA social template: mirrors the website design system (src/app/globals.css).
+   White pages, #222224 charcoal, soft greys, Inter Tight medium with tight tracking,
+   plain muted labels, /NN markers, rounded cards and photos, blue as a small accent. */
+@font-face{font-family:"Inter Tight";font-weight:400;src:url(fonts/InterTight-400.ttf) format("truetype")}
+@font-face{font-family:"Inter Tight";font-weight:500;src:url(fonts/InterTight-500.ttf) format("truetype")}
+@font-face{font-family:"Inter Tight";font-weight:600;src:url(fonts/InterTight-600.ttf) format("truetype")}
+:root{--char:#222224;--slate:#6f6f72;--mute:#a3a3a5;--mist:#e3e3e3;--panel:#f4f4f4;--white:#fff;--blue:#1f4e8c;--m:56px;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#999;font-family:"Inter Tight",sans-serif;-webkit-font-smoothing:antialiased;color:var(--char)}
+.slide{width:1080px;height:1080px;position:relative;overflow:hidden;background:var(--white);page-break-after:always}
+.slide.panel{background:var(--panel)}
+.slide.char{background:var(--char);color:#fff}
+.pos{position:absolute}
+/* header row: logo left, /NN right (site header + section marker) */
+.top{position:absolute;left:var(--m);right:var(--m);top:48px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.logo{height:70px;display:block}
+.nn{font-size:24px;color:var(--mute)}
+.light .nn{color:rgba(255,255,255,.75)}
+/* type */
+.label{font-size:24px;line-height:1.4;color:var(--mute)}
+.h{font-weight:500;letter-spacing:-.025em;line-height:1.06}
+.h1{font-size:96px}.h2{font-size:72px}.h3{font-size:44px;letter-spacing:-.02em}
+.body{font-size:28px;line-height:1.5;font-weight:500;color:var(--char)}
+.body.soft{font-weight:400;color:var(--slate)}
+.char .body{color:#fff}.char .body.soft{color:#b9b9bc}
+.light{color:#fff}
+.light .body{color:rgba(255,255,255,.88);font-weight:400}
+.blue{color:var(--blue)}
+/* section label row: "Label .......... /02" */
+.row{display:flex;justify-content:space-between;align-items:baseline}
+/* photos and cards */
+.photo{border-radius:var(--r);overflow:hidden;background:var(--panel)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.card{background:var(--panel);border-radius:var(--r);padding:26px 30px}
+.panel .card{background:#fff}
+.card .label{font-size:21px}
+.card .val{font-size:28px;font-weight:500;margin-top:6px;letter-spacing:-.01em}
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--char);border-radius:8px;padding:7px 14px;font-size:20px;font-weight:500}
+.chip.dark{background:rgba(34,34,36,.55);color:#fff;backdrop-filter:blur(8px)}
+.chip svg{width:20px;height:20px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--blue);display:inline-block}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--char);color:#fff;border-radius:12px;padding:20px 28px;font-size:24px;font-weight:500}
+.btn.white{background:#fff;color:var(--char)}
+.btn.blue{background:var(--blue)}
+.sq{width:56px;height:56px;border-radius:10px;background:var(--char);display:grid;place-items:center}
+.sq svg{width:26px;height:26px;stroke:#fff}
+/* list with /NN markers */
+.list li{list-style:none;display:flex;gap:24px;align-items:baseline;padding:22px 0;border-top:1px solid var(--mist);font-size:30px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
+.list li:last-child{border-bottom:1px solid var(--mist)}
+.list li span{font-size:20px;color:var(--mute);font-weight:400;width:44px;flex:none}
+/* photo scrim for text over images */
+.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 45%,rgba(0,0,0,.7) 100%)}
+.bleed{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}

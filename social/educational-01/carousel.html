@@ -1,113 +1,108 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>Aluminium or PVC carousel</title>
-<link rel="stylesheet" href="../editorial.css">
+<link rel="stylesheet" href="../site.css">
 <style>
 .s1 .bleed{object-position:50% 30%}
-.s1 .title{left:var(--m);right:var(--m);bottom:128px}
-.s1 .title .eyebrow{color:rgba(245,240,233,.85);margin-bottom:22px}
-.s1 h1{font-size:150px;line-height:.92}
-.s1 .lede{margin-top:28px;font-size:30px}
-.s2 .head{left:var(--m);right:var(--m);top:170px}
-.s2 h2{font-size:92px;line-height:1;margin-top:24px}
-.s2 .lede{margin-top:32px;max-width:760px}
-.pair{left:var(--m);right:var(--m);top:540px;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--sand);border-bottom:1px solid var(--sand)}
-.pair>div{padding:34px 0}
-.pair>div+div{padding-left:44px;border-left:1px solid var(--sand)}
-.pair .serif{font-size:62px}
-.pair .caps{margin-top:16px}
-.s2 .coda{left:var(--m);top:800px;font-size:38px}
-.split .img{position:absolute;top:0;bottom:0;width:470px;object-fit:cover;height:100%}
-.split .txt{position:absolute;top:150px;bottom:130px;width:440px;display:flex;flex-direction:column}
-.s3 .img{left:0}.s3 .txt{left:556px}
-.s4 .img{right:0}.s4 .txt{left:var(--m)}
-.split .mast{left:556px}
-.s4 .mast{left:var(--m);right:556px}
-.split h2{font-size:64px;line-height:1.02;margin-top:22px}
-.split ol{list-style:none;margin-top:44px;border-top:1px solid var(--sand)}
-.split li{display:flex;gap:22px;padding:22px 0;border-bottom:1px solid var(--sand);font-size:25px;line-height:1.35;color:var(--soft)}
-.split li i{font-family:"Fraunces",serif;font-size:26px;color:var(--stone);width:28px;flex:none;line-height:1.25}
-.stat{margin-top:auto}
-.stat .serif{font-size:96px}
-.stat .quote{font-size:44px;line-height:1.15;color:var(--soft)}
-.stat .caps{margin-top:12px;font-size:16px}
-.split .folio{left:556px}
-.s4 .folio{left:var(--m);right:556px}
-.s5 .head{left:var(--m);right:var(--m);top:220px}
-.s5 h2{font-size:90px;line-height:1;margin-top:24px}
-.s5 .lede{left:var(--m);right:180px;top:470px}
-.s5 .hair{position:absolute;left:var(--m);right:var(--m);top:680px}
-.s5 .ask{left:var(--m);right:var(--m);top:720px;font-size:40px;line-height:1.2}
+.s1 .stack{position:absolute;left:var(--m);right:var(--m);bottom:64px;display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.s1 h1{font-size:120px}
+.s1 .st{font-size:52px;font-weight:500;letter-spacing:-.02em;line-height:1.1;margin-top:-6px}
+.s1 .sub{font-size:26px}
+.s2 .row,.s5 .row{position:absolute;left:var(--m);right:var(--m);top:170px}
+.s2 h2{left:var(--m);right:var(--m);top:230px}
+.s2 .lead{left:var(--m);width:820px;top:330px}
+.s2 .pair{left:var(--m);right:var(--m);top:450px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.s2 .pair .card{height:420px;display:flex;flex-direction:column;justify-content:space-between;padding:30px 32px}
+.s2 .pair .val{font-size:40px;letter-spacing:-.02em;line-height:1.15}
+.s2 .foot{left:var(--m);bottom:60px}
+.split .photo{position:absolute;top:150px;bottom:56px;width:440px}
+.split .txt{position:absolute;top:170px;bottom:56px;width:476px;display:flex;flex-direction:column}
+.s3 .photo{left:var(--m)}.s3 .txt{right:var(--m)}
+.s4 .photo{right:var(--m)}.s4 .txt{left:var(--m)}
+.split .photo .chip{position:absolute;left:20px;top:20px}
+.split h2{font-size:60px;margin-top:24px}
+.split .list{margin-top:40px}
+.split .list li{font-size:27px}
+.split .card{margin-top:auto}
+.split .card .val{font-size:56px;letter-spacing:-.03em;margin-top:4px}
+.s5 h2{left:var(--m);right:var(--m);top:230px;font-size:80px}
+.s5 .lead{left:var(--m);width:860px;top:720px}
+.s5 .pair{left:var(--m);right:var(--m);top:440px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.s5 .card{background:#2d2d30;height:240px;display:flex;flex-direction:column;justify-content:space-between}
+.s5 .card .label{color:#9a9a9d}
+.s5 .card .val{font-size:48px;letter-spacing:-.025em;color:#fff}
+.s5 .ask{left:var(--m);right:var(--m);bottom:56px;display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid rgba(255,255,255,.15)}
+.s5 .ask p{font-size:30px;font-weight:500;letter-spacing:-.01em;width:600px;line-height:1.3}
+.s5 .ask p b{font-weight:500;color:#8fb0e6}
+.s5 .row .label{color:#8a8a8d}
 </style></head><body>
 
-<section class="slide on-photo s1">
+<section class="slide light s1">
   <img class="bleed" src="../../public/images/hero-glass.png" alt="">
-  <div class="veil"></div>
-  <div class="mast"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>the glazing notes · n° 01</span></div>
-  <div class="pos title">
-    <div class="eyebrow">a sixty second guide</div>
-    <h1 class="serif">Aluminium <i>or</i> PVC?</h1>
-    <p class="lede">How to choose your window frame.</p>
+  <div class="scrim"></div>
+  <div class="top"><img class="logo" src="../../public/valda-logo-white.svg" alt="VALDA"><span class="nn">/01</span></div>
+  <div class="stack">
+    <span class="chip dark">Educational · Glazing</span>
+    <h1 class="h">Aluminium or PVC?</h1>
+    <p class="st">How to choose your window frame.</p>
+    <p class="sub body">A 60 second guide for anyone specifying windows.</p>
   </div>
-  <div class="folio"><span></span><span>01 / 05</span></div>
 </section>
 
 <section class="slide s2">
-  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>i. the difference</span></div>
-  <div class="pos head">
-    <div class="eyebrow">both hold glass</div>
-    <h2 class="serif">It comes down to <i>the frame.</i></h2>
-    <p class="lede">The difference is the material around the glass.</p>
-  </div>
+  <div class="top"><img class="logo" src="../../public/valda-logo-ink.svg" alt="VALDA"><span class="nn">/02</span></div>
+  <div class="row"><span class="label">The difference</span></div>
+  <h2 class="pos h h2">It comes down to the frame.</h2>
+  <p class="pos lead body soft">Both hold glass. The difference is the material around it.</p>
   <div class="pos pair">
-    <div><div class="serif">Aluminium</div><div class="caps">Strong · Slim</div></div>
-    <div><div class="serif">PVC</div><div class="caps">Warm · Cost efficient</div></div>
+    <div class="card"><div class="label">Aluminium</div><div class="val">Strong and slim.</div></div>
+    <div class="card"><div class="label">PVC</div><div class="val">Warm and cost efficient.</div></div>
   </div>
-  <p class="pos coda serif"><i>Everything else follows from that.</i></p>
-  <div class="folio"><span></span><span>02 / 05</span></div>
+  <p class="pos foot body">Everything else follows from that.</p>
 </section>
 
-<section class="slide warm split s3">
-  <img class="img" src="../../public/images/sliding-deck.png" alt="">
-  <div class="mast"><span>ii. aluminium</span><span></span></div>
+<section class="slide split s3">
+  <div class="top"><img class="logo" src="../../public/valda-logo-ink.svg" alt="VALDA"><span class="nn">/03</span></div>
+  <div class="photo"><img src="../../public/images/sliding-deck.png" alt=""><span class="chip"><span class="dot"></span>Aluminium</span></div>
   <div class="txt">
-    <div class="eyebrow">when it wins</div>
-    <h2 class="serif">Choose aluminium <i>when…</i></h2>
-    <ol>
-      <li><i>i</i>You want slim sightlines and more glass.</li>
-      <li><i>ii</i>The opening is large or structural.</li>
-      <li><i>iii</i>The look is modern and design led.</li>
-    </ol>
-    <div class="stat"><div class="serif"><i>15/16</i> in</div><div class="caps">Sightline · SlimPatio 68</div></div>
+    <span class="label">When aluminium wins</span>
+    <h2 class="h">Choose aluminium when...</h2>
+    <ul class="list">
+      <li><span>/01</span>You want slim sightlines and more glass.</li>
+      <li><span>/02</span>The opening is large or structural.</li>
+      <li><span>/03</span>The look is modern and design led.</li>
+    </ul>
+    <div class="card"><div class="label">Sightline · SlimPatio 68</div><div class="val blue">15/16 in</div></div>
   </div>
-  <div class="folio"><span></span><span>03 / 05</span></div>
 </section>
 
-<section class="slide warm split s4">
-  <img class="img" src="../../public/images/home-cream-brick.webp" alt="">
-  <div class="mast"><span>iii. pvc</span><span></span></div>
+<section class="slide split s4">
+  <div class="top"><img class="logo" src="../../public/valda-logo-ink.svg" alt="VALDA"><span class="nn">/04</span></div>
+  <div class="photo"><img src="../../public/images/home-cream-brick.webp" alt=""><span class="chip"><span class="dot"></span>PVC</span></div>
   <div class="txt">
-    <div class="eyebrow">when it wins</div>
-    <h2 class="serif">Choose PVC <i>when…</i></h2>
-    <ol>
-      <li><i>i</i>Thermal performance is the priority.</li>
-      <li><i>ii</i>The budget needs to work harder.</li>
-      <li><i>iii</i>Low maintenance matters most.</li>
-    </ol>
-    <div class="stat"><div class="serif quote"><i>Warm, efficient and easy to live with.</i></div></div>
+    <span class="label">When PVC wins</span>
+    <h2 class="h">Choose PVC when...</h2>
+    <ul class="list">
+      <li><span>/01</span>Thermal performance is the priority.</li>
+      <li><span>/02</span>The budget needs to work harder.</li>
+      <li><span>/03</span>Low maintenance matters most.</li>
+    </ul>
+    <div class="card"><div class="label">In short</div><div class="val" style="font-size:40px;line-height:1.15">Warm, efficient, easy to live with.</div></div>
   </div>
-  <div class="folio"><span></span><span>04 / 05</span></div>
 </section>
 
-<section class="slide dark s5">
-  <div class="mast"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>iv. your turn</span></div>
-  <div class="pos head">
-    <div class="eyebrow">still unsure?</div>
-    <h2 class="serif">Start with <i>the opening.</i></h2>
+<section class="slide char s5">
+  <div class="top"><img class="logo" src="../../public/valda-logo-white.svg" alt="VALDA"><span class="nn">/05</span></div>
+  <div class="row"><span class="label">Your turn</span></div>
+  <h2 class="pos h">Still unsure? Start with the opening.</h2>
+  <div class="pos pair">
+    <div class="card"><div class="label">Large spans and slim frames</div><div class="val">Aluminium</div></div>
+    <div class="card"><div class="label">Energy and value</div><div class="val">PVC</div></div>
   </div>
-  <p class="pos lede">Large spans and slim frames point to aluminium. Energy and value point to PVC. Size and sightline decide it.</p>
-  <div class="hair"></div>
-  <p class="pos ask serif"><i>What are you specifying, and why?</i> Tell us in the comments.</p>
-  <div class="folio"><span>valdagroup.com</span><span>05 / 05</span></div>
+  <p class="pos lead body soft">Size and sightline decide it.</p>
+  <div class="pos ask">
+    <p><b>What are you specifying, and why?</b> Tell us in the comments.</p>
+    <span class="btn white">valdagroup.com <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#222224" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+  </div>
 </section>
 </body></html>

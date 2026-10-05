@@ -1,61 +1,59 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>GORA project carousel</title>
-<link rel="stylesheet" href="../editorial.css">
+<link rel="stylesheet" href="../site.css">
 <style>
-.s1 .bleed{object-position:50% 40%}
-.s1 .title{left:var(--m);bottom:120px}
-.s1 .title .eyebrow{color:rgba(245,240,233,.85);margin-bottom:18px}
-.s1 h1{font-size:250px;letter-spacing:.01em;line-height:.82}
-.s2 .frame{left:var(--m);right:var(--m);top:130px;height:500px;overflow:hidden}
-.s2 .frame img{width:2050px;margin:-860px 0 0 -10px}
-.s2 .cap{right:var(--m);top:646px;font-size:18px;letter-spacing:.06em;color:var(--stone);font-style:italic;font-family:"Fraunces",serif}
-.s2 h2{left:var(--m);top:720px;width:470px;font-size:78px;line-height:1.02}
-.s2 .lede{left:600px;top:732px;width:392px;font-size:25px}
-.s3 .head{left:var(--m);top:170px}
-.s3 h2{font-size:96px;margin-top:22px}
-.s3 dl{left:var(--m);right:var(--m);top:390px}
-.s3 dl div{display:flex;align-items:baseline;padding:20px 0;border-top:1px solid var(--sand)}
-.s3 dl div:last-child{border-bottom:1px solid var(--sand)}
-.s3 dt{width:250px;flex:none}
-.s3 dd{font-family:"Fraunces",serif;font-weight:300;font-size:38px;line-height:1.15}
-.s3 dd.todo{color:var(--clay);font-style:italic}
-.s3 .ask{left:var(--m);right:var(--m);top:836px;font-size:36px;line-height:1.25}
+.s1 .bleed{object-position:50% 45%}
+.s1 .chip{position:absolute;left:var(--m);bottom:236px}
+.s1 h1{position:absolute;left:var(--m);bottom:96px;font-size:150px}
+.s1 .desc{position:absolute;right:var(--m);bottom:110px;width:390px;font-size:24px;line-height:1.45}
+.s2 .row{position:absolute;left:var(--m);right:var(--m);top:170px}
+.s2 h2{left:var(--m);right:var(--m);top:230px}
+.s2 .photo{left:var(--m);right:var(--m);top:470px;height:554px}
+.s2 .photo img{object-position:0% 82%;transform:scale(1.55);transform-origin:0% 92%}
+.s2 .chip{position:absolute;left:24px;top:24px}
+.s3 .row{position:absolute;left:var(--m);right:var(--m);top:170px}
+.s3 h2{left:var(--m);top:230px;width:700px}
+.s3 .grid{left:var(--m);right:var(--m);top:410px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.s3 .grid .wide{grid-column:span 2}
+.s3 .todo{color:#b4561f}
+.s3 .cta{left:var(--m);right:var(--m);bottom:56px;display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid var(--mist)}
+.s3 .cta p{font-size:28px;font-weight:500;letter-spacing:-.01em;width:640px;line-height:1.3}
 </style></head><body>
 
-<section class="slide on-photo s1">
+<section class="slide light s1">
   <img class="bleed" src="../../public/images/proj-gora.jpg" alt="GORA residential building, Sofia">
-  <div class="veil"></div>
-  <div class="mast"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>projects · residential</span></div>
-  <div class="pos title">
-    <div class="eyebrow">sofia, bulgaria · 2023</div>
-    <h1 class="serif">GORA</h1>
-  </div>
-  <div class="folio"><span></span><span>01 / 03</span></div>
+  <div class="scrim"></div>
+  <div class="top"><img class="logo" src="../../public/valda-logo-white.svg" alt="VALDA"><span class="nn">/01</span></div>
+  <span class="chip dark">Residential · 2023</span>
+  <h1 class="h">GORA</h1>
+  <p class="desc body">A contemporary residential building where full-height glazing frames the surrounding landscape.</p>
 </section>
 
-<section class="slide warm s2">
-  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>gora · sofia</span></div>
-  <div class="pos frame"><img src="../../public/images/proj-gora.jpg" alt=""></div>
-  <div class="pos cap">The garden elevation</div>
-  <h2 class="pos serif">Built around <i>the view.</i></h2>
-  <p class="pos lede">Large glazed openings on every elevation. Slim aluminium tilt &amp; turn windows and minimal-frame sliding systems give every apartment an uninterrupted connection to the outside.</p>
-  <div class="folio"><span></span><span>02 / 03</span></div>
+<section class="slide s2">
+  <div class="top"><img class="logo" src="../../public/valda-logo-ink.svg" alt="VALDA"><span class="nn">/02</span></div>
+  <div class="row"><span class="label">Overview</span></div>
+  <h2 class="pos h h2">Built around light and the view, with slim aluminium frames.</h2>
+  <div class="pos photo">
+    <img src="../../public/images/proj-gora.jpg" alt="">
+    <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Sofia, Bulgaria</span>
+  </div>
 </section>
 
 <section class="slide s3">
-  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>credits</span></div>
-  <div class="pos head">
-    <div class="eyebrow">the project</div>
-    <h2 class="serif">GORA, <i>Sofia</i></h2>
+  <div class="top"><img class="logo" src="../../public/valda-logo-ink.svg" alt="VALDA"><span class="nn">/03</span></div>
+  <div class="row"><span class="label">Project details</span></div>
+  <h2 class="pos h h2">GORA, Sofia</h2>
+  <div class="pos grid">
+    <div class="card"><div class="label">Location</div><div class="val">Sofia, Bulgaria</div></div>
+    <div class="card"><div class="label">Type</div><div class="val">Residential</div></div>
+    <div class="card"><div class="label">Architect</div><div class="val todo">[Architect name]</div></div>
+    <div class="card"><div class="label">Year</div><div class="val">2023</div></div>
+    <div class="card wide"><div class="label">Systems</div><div class="val">Aluminium tilt &amp; turn · minimal-frame sliding</div></div>
   </div>
-  <dl class="pos">
-    <div><dt class="caps">Architect</dt><dd class="todo">[Architect name]</dd></div>
-    <div><dt class="caps">Completed</dt><dd>2023</dd></div>
-    <div><dt class="caps">Type</dt><dd>Residential</dd></div>
-    <div><dt class="caps">Systems</dt><dd>Aluminium tilt &amp; turn, minimal-frame sliding</dd></div>
-  </dl>
-  <p class="pos ask serif"><i>Working on a residential glass wall?</i> Tell us about it in the comments.</p>
-  <div class="folio"><span>valdagroup.com</span><span>03 / 03</span></div>
+  <div class="pos cta">
+    <p>Working on a residential glass wall? Tell us about it in the comments.</p>
+    <span class="btn">valdagroup.com <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+  </div>
 </section>
 </body></html>
