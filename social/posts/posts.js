@@ -126,8 +126,8 @@ window.POSTS=[
 
 {n:21,parked:"yes",li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #modernarchitecture",tag:['IPA - Architecture and more (architect)','BLD (developer)'],loc:'Sofia, Bulgaria',date:"",day:"",arm:'Projects',title:'Stella',slides:[
  {t:'projCover',h:"Stella",d:"Sofia, Bulgaria",img:A+'projects/stella-1.jpg',pos:'50% 40%'},
- {t:'projPhoto',img:A+'projects/stella-render-1.jpg'},
- {t:'projPhoto',img:A+'projects/stella-render-4.jpg'},
+ {t:'projPhoto',img:A+'projects/stella-2.jpg'},
+ {t:'projPhoto',img:A+'projects/stella-3.jpg'},
 ],caption:"Stella, Sofia: thirteen stories of slim aluminum windows and sliding doors.\n\nA residential building detailed for slim sightlines and performance, with large sliding openings onto the terraces.\n\nArchitect: IPA - Architecture and more\nDeveloper: BLD\nLocation: Sofia, Bulgaria\nSystems: aluminum windows, sliding systems\n\nWorking on a residential project? Tell us about it in the comments."},
 
 // ---------------- W8 ----------------
