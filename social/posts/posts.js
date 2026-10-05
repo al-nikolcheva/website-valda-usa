@@ -91,7 +91,7 @@ window.POSTS=[
  {t:'close',img:P+'images/product-facade.jpg',label:'Three glazing methods',h:'Pressure plate, structurally glued or clamped.',lead:'One curtain wall system, three ways to hold the glass, chosen for the look and the load.',q:'Working on a facade?',rest:'Tell us the scale.'},
 ],caption:'Facade systems: glazing at building scale. ConceptWall 50 by Reynaers is Florida approved curtain wall for Wind Zone 3, at 60 psf glass load with 15 psf water resistance, triple glazing to a U-factor of 0.14, and three glazing methods.'},
 
-{n:15,li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #aluminumwindows",tag:['GPA Studio (architect)'],loc:'Sofia, Bulgaria',date:"30 Oct",day:"Fri",arm:'Projects',title:'Amaya Residence',slides:[
+{n:15,link:"https://valdagroup.com/projects/amaya-residence-1",li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #aluminumwindows",tag:['GPA Studio (architect)'],loc:'Sofia, Bulgaria',date:"30 Oct",day:"Fri",arm:'Projects',title:'Amaya Residence',slides:[
  {t:'projCover',h:"Amaya Residence",d:"Sofia, Bulgaria",img:P+'images/proj-amaya.jpg'},
  {t:'projPhoto',img:A+'projects/amaya-2.jpg'},
  {t:'projPhoto',img:A+'projects/amaya-3.jpg'},
@@ -124,7 +124,7 @@ window.POSTS=[
  {t:'close',img:P+'images/facade-brick.webp',label:'Configurations',h:'Fixed, casement and tilt and turn.',lead:'Fixed lights to 94 1/2 x 141 3/4 in. Casement and tilt and turn to 48 x 96 7/16 in.',q:'Casement or tilt and turn?',rest:'Tell us your pick.'},
 ],caption:"Impact-rated aluminum casement windows, approved for the HVHZ.\n\nThe casement is the classic window. ConceptSystem 77 by Reynaers brings it up to the hurricane coast:\n- Design pressure to ±65 psf\n- Large and small missile impact, in and outside the HVHZ\n- U-factor 0.18 with triple glazing\n- STC 43\n\nAvailable as fixed, casement and tilt and turn.\n\nCasement or tilt and turn: which do you specify?"},
 
-{n:21,parked:"yes",li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #modernarchitecture",tag:['IPA - Architecture and more (architect)','BLD (developer)'],loc:'Sofia, Bulgaria',date:"",day:"",arm:'Projects',title:'Stella',slides:[
+{n:21,link:"https://valdagroup.com/projects/stella",li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #modernarchitecture",tag:['IPA - Architecture and more (architect)','BLD (developer)'],loc:'Sofia, Bulgaria',date:"09 Oct",day:"Fri",arm:'Projects',title:'Stella',slides:[
  {t:'projCover',h:"Stella",d:"Sofia, Bulgaria",img:A+'projects/stella-1.jpg',pos:'50% 40%'},
  {t:'projPhoto',img:A+'projects/stella-2.jpg'},
  {t:'projPhoto',img:A+'projects/stella-3.jpg'},
@@ -145,7 +145,7 @@ window.POSTS=[
  {t:'close',img:P+'images/design-office.webp',label:'Not sure?',h:'Tell us the climate and the noise.',lead:'We will recommend the glazing that fits the project, not the most expensive one.',q:'Which glazing do you specify most?',rest:''},
 ],caption:'Glazing options, from double to triple. Double glazing is the standard, triple improves U-factor and acoustics at the cost of weight, and laminated glass holds the pane in place for impact protection. Tell us the climate and the noise, and we will recommend the glazing that fits.'},
 
-{n:24,note:"Ask who the architect and developer are, so they can be tagged",li:"#residentialarchitecture #aluminumwindows #classicarchitecture",ig:"#classicarchitecture #sofiaarchitecture #residentialarchitecture #aluminumwindows",tag:[],loc:'Sofia, Bulgaria',date:"09 Oct",day:"Fri",arm:'Projects',title:'Belle Epoque',slides:[
+{n:24,parked:"yes",note:"Ask who the architect and developer are, so they can be tagged",li:"#residentialarchitecture #aluminumwindows #classicarchitecture",ig:"#classicarchitecture #sofiaarchitecture #residentialarchitecture #aluminumwindows",tag:[],loc:'Sofia, Bulgaria',date:"",day:"",arm:'Projects',title:'Belle Epoque',slides:[
  {t:'projCover',h:"Belle Epoque",d:"Sofia, Bulgaria",img:P+'images/proj-belle.jpg'},
  {t:'projPhoto',img:A+'projects/belle-2.jpg'},
  {t:'projPhoto',img:A+'projects/belle-3.jpg'},
