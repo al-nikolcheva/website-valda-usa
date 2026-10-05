@@ -20,7 +20,7 @@ for (const p of POSTS) {
     const s=await page.$$('.slide');
     if (!s.length) throw new Error('no slides rendered for post '+p.n);
     for (let i=0;i<s.length;i++) await s[i].screenshot({path:path.join(dir,`Slide ${i+1}.png`)});
-    if (plat==='LinkedIn' && s.length>1) execFileSync('convert',[...s.map((_,i)=>path.join(dir,`Slide ${i+1}.png`)),'-quality','88','-compress','jpeg','-density','72','-units','PixelsPerInch',path.join(dir,'Carousel.pdf')]);
+    if (plat==='Instagram' || s.length>1) execFileSync('convert',[...s.map((_,i)=>path.join(dir,`Slide ${i+1}.png`)),'-quality','88','-compress','jpeg','-density','72','-units','PixelsPerInch',path.join(dir,'Carousel.pdf')]);
     await page.close();
     const head=`${p.arm} · ${p.day} ${p.date}${p.note?' · '+p.note:''}\n\n`;
     const cap = plat==='LinkedIn' ? `${p.caption}\n\nvaldagroup.com` : `${p.caption}\n\nLink in bio.\n\n${TAGS[p.arm]}`;
