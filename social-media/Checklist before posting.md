@@ -18,3 +18,8 @@ Placeholders show in orange on the slides and in [brackets] in captions.
 
 ## Sources
 All figures come from `src/data/valda-products.json`. Reynaers and Kömmerling systems are credited by name; only Vista Guard and Vision Guard are presented as VALDA's own.
+
+## Extras (not in the original calendar)
+- [ ] 25 From Bulgaria to the USA (Mon 19 Oct suggested): carousel built from the website's shipping scenes.
+- [ ] 26 Veterans Day (Wed 11 Nov) and 27 Thanksgiving (Thu 26 Nov): holiday posts. Thanksgiving uses the slot freed when the product post moved to Wed 25 Nov.
+- [ ] `Extras/Reel - Hurricane impact test.mp4`: 15 s Reel (9:16) recorded from the website's impact test animation. Suggested Wed 4 Nov, Instagram Reel and LinkedIn video. No music added; pick a track in Instagram.

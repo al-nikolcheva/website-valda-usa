@@ -152,4 +152,22 @@ window.POSTS=[
  {t:'systems',label:'The systems',h:'Classic proportions, modern glazing.',items:[['Aluminium windows','Modern performance in classic openings'],['Doors','Entrances engineered for comfort and longevity']],img:A+'iso-window.png'},
  {t:'details',label:'Project details',h:'Belle Epoque',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2022'],['Systems','Aluminium windows · doors',1]],q:'Working on a renovation?',rest:'Tell us about it.'},
 ],caption:'Belle Epoque, Sofia. Classic proportions with VALDA aluminium windows and doors, engineered for comfort and longevity. Architect: [Architect name].'},
+// ---------------- Extras ----------------
+{n:25,date:'19 Oct',day:'Mon',arm:'Behind the scenes',title:'From Bulgaria to the USA',li:'#manufacturing #logistics #supplychain #windows #architecture',ig:'#manufacturing #behindthescenes #madeineurope #logistics #shipping #supplychain #windows #aluminiumwindows #construction #architecture #factory #howitsmade',tag:[],loc:'Sofia, Bulgaria',slides:[
+ {t:'shipCover',h:'From Bulgaria to the USA.',d:'How a VALDA window gets from our factory to your site.',img:A+'ship-3.png'},
+ {t:'ship',n:'01',place:'Sofia, Bulgaria',h:'Manufactured in Bulgaria',d:'Made in our own two factories in Sofia and Veliko Tarnovo.',img:A+'ship-1.png'},
+ {t:'ship',n:'02',place:'Sofia, Bulgaria',h:'Packed and loaded',d:'Every order is packed for the crossing and loaded onto a truck to the port.',img:A+'ship-2.png'},
+ {t:'ship',n:'03',place:'Atlantic crossing',h:'Shipped to the USA',d:'The container crosses the Atlantic, with full export documentation.',img:A+'ship-3.png'},
+ {t:'ship',n:'04',place:'US port',h:'Customs cleared',d:'We handle US customs clearance for you, so nothing waits at the port.',img:A+'ship-4.png'},
+ {t:'ship',n:'05',place:'Your site, USA',h:'On your site, installed',d:'Trucked from the port to your site, coast to coast. One point of contact from the factory to the final window.',img:A+'ship-5.png'},
+ {t:'close',img:P+'images/deliver-loading.webp',label:'Factory direct',h:'One team, factory to final window.',lead:'No distributors in between. We make it, ship it, clear it and deliver it.',q:'Where is your next project?',rest:'Tell us the city.'},
+],caption:'From Bulgaria to the USA. Every VALDA window is made in our own two factories in Sofia and Veliko Tarnovo, packed for the crossing, shipped across the Atlantic with full export documentation, cleared through US customs by us, and trucked to your site, coast to coast. One point of contact from the factory to the final window. Where is your next project?'},
+
+{n:26,date:'11 Nov',day:'Wed',arm:'Holiday',title:'Veterans Day',li:'#VeteransDay #ThankYou',ig:'#veteransday #thankyouveterans #honorandremember #usa',tag:[],loc:'',slides:[
+ {t:'holiday',label:'Veterans Day · 11 November',h:'Thank you to all who served.',d:'Today we honor the veterans who serve and have served the United States.',img:P+'images/home-us-porch.webp'},
+],caption:'Today we honor the veterans who serve and have served the United States. Thank you for your service.'},
+
+{n:27,date:'26 Nov',day:'Thu',arm:'Holiday',title:'Thanksgiving',li:'#Thanksgiving #Gratitude',ig:'#thanksgiving #happythanksgiving #grateful #gratitude #home #architecture',tag:[],loc:'',slides:[
+ {t:'holiday',label:'Thanksgiving · 26 November',h:'Grateful for every project we get to be part of.',d:'Thank you to the architects, builders and homeowners we work with. Happy Thanksgiving from all of us at VALDA.',img:P+'images/hero-villa.jpg'},
+],caption:'Grateful for every project we get to be part of. Thank you to the architects, builders, developers and homeowners we work with this year. Happy Thanksgiving from all of us at VALDA.'},
 ];
