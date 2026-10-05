@@ -1,7 +1,7 @@
 # Instagram schedule (Canva Content Planner)
 
 All 24 posts are imported into Canva as designs named `IG NN - Day DD Mon - Title`, one page per carousel slide.
-To schedule: open the design, choose Share, then Schedule, pick the date and time, connect the valda_group Instagram account, and paste the caption.
+To schedule (Canva Teams, Content Planner): open the design, Share, More, Schedule. Pick the date and time, choose Instagram (connect valda_group the first time), select all pages for the carousel, paste the caption, then Schedule.
 
 Times are US Eastern (the audience). UK times follow, and account for the clocks changing on different dates (UK 25 Oct, US 1 Nov).
 
