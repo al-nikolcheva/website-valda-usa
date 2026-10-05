@@ -9,6 +9,6 @@ TAG (type @ and pick the official page or account; check the handle before posti
 DOCUMENT TITLE (carousel): Amaya Residence | VALDA
 
 ALT TEXT (add per image for accessibility and search):
-Slide 1: Photo of Amaya Residence. Sofia, Bulgaria. Residential · 2023
-Slide 2: Drawing of a window with text: The systems. Specified for thermal performance and slim sightlines.
-Slide 3: Text slide: Project details. Amaya Residence
+Slide 1: Text slide: Amaya Residence. Sofia, Bulgaria
+Slide 2: Text slide: 
+Slide 3: Text slide: 

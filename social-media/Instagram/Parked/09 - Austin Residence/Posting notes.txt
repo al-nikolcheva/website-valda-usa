@@ -9,6 +9,4 @@ LOCATION: Austin, Texas
 COLLABORATOR: invite the architect or developer as a Collab where you know their account, so the post shows on both profiles.
 
 ALT TEXT (add per image for accessibility and search):
-Slide 1: Photo of Austin Residence
-Slide 2: Drawing of a window with text: The systems. Engineered for the Texas climate and large openings.
-Slide 3: Text slide: Project details. Austin Residence
+Slide 1: Text slide: Austin Residence. Austin, Texas

@@ -9,6 +9,5 @@ LOCATION: Milwaukee, Wisconsin
 COLLABORATOR: invite the architect or developer as a Collab where you know their account, so the post shows on both profiles.
 
 ALT TEXT (add per image for accessibility and search):
-Slide 1: Photo of Juneau Village
-Slide 2: Photo: A unitized curtain wall with operable windows.
-Slide 3: Text slide: Project details. Juneau Village
+Slide 1: Text slide: Juneau Village. Milwaukee, Wisconsin
+Slide 2: Text slide: 

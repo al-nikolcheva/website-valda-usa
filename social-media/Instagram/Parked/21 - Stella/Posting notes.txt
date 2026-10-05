@@ -1,13 +1,13 @@
-Projects · Fri 09 Oct 2026
-POST AT: 10:00 AM ET
-
-FIRST COMMENT: post the text in First comment.txt as a comment straight after publishing (Buffer adds it automatically).
+Projects · Parked, not scheduled
+POST AT: not scheduled
 
 TAG (type @ and pick the official page or account; check the handle before posting):
 - IPA - Architecture and more (architect)
 - BLD (developer)
 
-DOCUMENT TITLE (carousel): Stella | VALDA
+LOCATION: Sofia, Bulgaria
+
+COLLABORATOR: invite the architect or developer as a Collab where you know their account, so the post shows on both profiles.
 
 ALT TEXT (add per image for accessibility and search):
 Slide 1: Photo of Stella, Sofia. Residential · 2023

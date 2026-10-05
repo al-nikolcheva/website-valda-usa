@@ -9,6 +9,5 @@ LOCATION: Sofia, Bulgaria
 COLLABORATOR: invite the architect or developer as a Collab where you know their account, so the post shows on both profiles.
 
 ALT TEXT (add per image for accessibility and search):
-Slide 1: Photo of GORA, Sofia. Residential · 2023
-Slide 2: Photo: Slim aluminum frames, set flush in the facade.
-Slide 3: Text slide: Project details. GORA, Sofia
+Slide 1: Text slide: GORA. Sofia, Bulgaria
+Slide 2: Text slide: 

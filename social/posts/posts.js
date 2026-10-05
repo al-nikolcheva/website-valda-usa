@@ -21,9 +21,8 @@ window.POSTS=[
 ],caption:"Hurricane impact windows with a slim aluminum frame: meet VALDA Vista Guard.\n\nSome windows are meant to be looked at. Vista Guard is meant to be looked through.\n\n- Design pressure to ±65 psf\n- Large missile impact, Wind Zone 4\n- Approved in and outside the HVHZ (Florida Product Approval FL39802 and FL39801)\n- No shutters or external impact protection needed\n\nA thermally broken frame keeps the profile slim, so the glass does the work.\n\nGot an opening in mind? Tell us the size in the comments."},
 
 {n:3,parked:"yes",li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #modernarchitecture",tag:['IPA - Architecture and more (architect)'],loc:'Sofia, Bulgaria',date:"",day:"",arm:'Projects',title:'GORA',slides:[
- {t:'photo',h:'GORA, Sofia',d:'Residential · 2023',img:P+'images/proj-gora.jpg'},
- {t:'photoSlide',img:P+'images/hero-gora.jpg',chip:'Sofia, Bulgaria',cap:'Slim aluminum frames, set flush in the facade.'},
- {t:'details',label:'Project details',h:'GORA, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','IPA - Architecture and more'],['Year','2023'],['Systems','Aluminum tilt and turn · minimal-frame sliding',1]],q:'Working on a residential glass wall?',rest:'Tell us about it in the comments.'},
+ {t:'projCover',h:"GORA",d:"Sofia, Bulgaria",img:P+'images/proj-gora.jpg'},
+ {t:'projPhoto',img:P+'images/hero-gora.jpg'},
 ],caption:"GORA, Sofia: a residential building designed around light and the view.\n\nSlim aluminum tilt and turn windows and minimal-frame sliding doors give every apartment an uninterrupted connection to the outside.\n\nArchitect: IPA - Architecture and more\nLocation: Sofia, Bulgaria\nSystems: aluminum tilt and turn, minimal-frame sliding\n\nWorking on a residential glass wall? Tell us about it in the comments."},
 
 // ---------------- W2 ----------------
@@ -42,9 +41,7 @@ window.POSTS=[
 ],caption:"Tilt and turn windows: one window, two ways to open.\n\nTilt the sash for secure ventilation, even in the rain. Turn it to open fully, like a door, and clean the glass from inside. One handle does both.\n\nOn MasterLine 8 by Reynaers you also get STC 50 acoustic performance and large and small missile approval for Wind Zone 3.\n\nTilt and turn or casement: which do you prefer, and why?"},
 
 {n:6,parked:"yes",li:"#curtainwall #facadedesign #adaptivereuse",ig:"#curtainwall #adaptivereuse #maltaarchitecture #facadedesign",tag:['Edwin Mintoff Architects (architect)','American University of Malta'],loc:'Cospicua, Malta',date:"",day:"",arm:'Projects',title:'American University of Malta',slides:[
- {t:'photoType',h:'American University of Malta',d:'Cospicua, Malta',c:'Institutional · 2022',img:P+'images/proj-aum.jpg'},
- {t:'systems',label:'The systems',h:'Curtain wall and operable windows on a historic waterfront.',items:[['Curtain wall','Glazing at building scale, set into the restored dock building'],['Operable windows','Fresh air and daylight for teaching spaces']],img:A+'iso-window.png'},
- {t:'details',label:'Project details',h:'American University of Malta',rows:[['Location','Cospicua, Malta'],['Type','Institutional'],['Architect','Edwin Mintoff Architects'],['Year','2022'],['Systems','Curtain wall · windows',1]],q:'Working on a facade?',rest:'Tell us about it in the comments.'},
+ {t:'projCover',h:"American University of Malta",d:"Cospicua, Malta",img:P+'images/proj-aum.jpg'},
 ],caption:"American University of Malta: curtain wall and windows on a historic waterfront in Cospicua.\n\nThe brief balanced daylight, acoustics and a restored dock building. Curtain wall and operable windows were engineered and fabricated in Europe and installed to the university's program.\n\nArchitect: Edwin Mintoff Architects\nLocation: Cospicua, Malta\nSystems: curtain wall, operable windows\n\nWorking on a facade? Tell us about it in the comments."},
 
 // ---------------- W3 ----------------
@@ -61,9 +58,7 @@ window.POSTS=[
 ],caption:"Folding and sliding glass doors: two ways to open a wall.\n\nSliding systems keep big panes in place, so the view stays. Folding systems stack away and clear the whole opening.\n\nConceptFolding 77 by Reynaers:\n- Up to eight leaves per opening\n- Leaves up to 47 1/4 x 118 1/8 in\n- Certified to PG55\n- Rw 45 dB acoustic, U-factor 0.27 with triple glazing\n\nSliding or folding: which would you choose for your next project?"},
 
 {n:9,parked:"yes",li:"#luxuryhomes #Texas #liftandslide",ig:"#austintx #austinhomes #texashomes #luxuryhomes",tag:[],loc:'Austin, Texas',date:"",day:"",arm:'Projects',title:'Austin Residence',slides:[
- {t:'card',h:'Austin Residence',img:P+'images/proj-austin.jpg',meta:[['City','Austin, USA'],['Type','Luxury residential'],['Year','2024']]},
- {t:'systems',label:'The systems',h:'Engineered for the Texas climate and large openings.',items:[['Lift and slide','Large panes that glide open onto the terrace'],['Fixed glazing','The biggest sizes, for the view']],img:A+'iso-window.png'},
- {t:'details',label:'Project details',h:'Austin Residence',rows:[['Location','Austin, USA'],['Type','Luxury residential'],['Architect','[Architect name]'],['Year','2024'],['Systems','Lift and slide · fixed glazing',1]],q:'Planning large sliding openings?',rest:'Tell us about the project.'},
+ {t:'projCover',h:"Austin Residence",d:"Austin, Texas",img:P+'images/proj-austin.jpg'},
 ],caption:'Austin Residence, Texas. A private home glazed with lift and slide and fixed systems, engineered for the Texas climate and large openings. Architect: [Architect name].'},
 
 // ---------------- W4 ----------------
@@ -78,9 +73,9 @@ window.POSTS=[
 ],caption:"Impact-rated PVC windows: warm, low maintenance and built for the hurricane coast.\n\nPVC (vinyl) frames insulate well and never need painting. Our range covers the strictest zones too:\n\n- Series 76 MD by Kömmerling: approved in and outside the HVHZ, fixed window rated to +75/-75 psf, 20 psf water resistance\n- Vision Guard, our own VALDA PVC window: Wind Zone 4 impact protection\n\nBuilding on the coast? Ask us which PVC system fits your openings."},
 
 {n:12,li:"#multifamily #Sofia #aluminumwindows",ig:"#multifamily #apartmentbuilding #residentialarchitecture #modernarchitecture",tag:['BLD (developer)'],loc:'Sofia, Bulgaria',date:"20 Nov",day:"Fri",arm:'Projects',title:'Mona Residence',slides:[
- {t:'photo',h:'Mona Residence, Sofia',d:'Multifamily · 2024',img:P+'images/project-mona-1.jpg'},
- {t:'photoSlide',img:P+'images/project-mona-3.jpg',chip:'Sofia, Bulgaria',cap:'Warm timber accents and full-height glazing.'},
- {t:'details',label:'Project details',h:'Mona Residence',rows:[['Location','Sofia, Bulgaria'],['Type','Multifamily'],['Architect','[Architect name]'],['Year','2024'],['Systems','Aluminum tilt and turn windows',1]],q:'Working on multifamily?',rest:'Tell us about it in the comments.'},
+ {t:'projCover',h:"Mona Residence",d:"Sofia, Bulgaria",img:P+'images/project-mona-1.jpg'},
+ {t:'projPhoto',img:P+'images/project-mona-2.jpg'},
+ {t:'projPhoto',img:P+'images/project-mona-3.jpg'},
 ],caption:'Mona Residence, Sofia. A multifamily building glazed throughout with VALDA aluminum tilt and turn windows. Warm timber accents and large openings give the elevations depth with a consistent rhythm. Architect: [Architect name].'},
 
 // ---------------- W5 ----------------
@@ -97,9 +92,9 @@ window.POSTS=[
 ],caption:'Facade systems: glazing at building scale. ConceptWall 50 by Reynaers is Florida approved curtain wall for Wind Zone 3, at 60 psf glass load with 15 psf water resistance, triple glazing to a U-factor of 0.14, and three glazing methods.'},
 
 {n:15,li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #aluminumwindows",tag:['GPA Studio (architect)'],loc:'Sofia, Bulgaria',date:"30 Oct",day:"Fri",arm:'Projects',title:'Amaya Residence',slides:[
- {t:'photoType',h:'Amaya Residence',d:'Sofia, Bulgaria',c:'Residential · 2023',img:P+'images/proj-amaya.jpg'},
- {t:'systems',label:'The systems',h:'Specified for thermal performance and slim sightlines.',items:[['Aluminum windows','Slim frames on a calm, contemporary facade'],['Sliding systems','Wide openings onto balconies and terraces']],img:A+'iso-window.png'},
- {t:'details',label:'Project details',h:'Amaya Residence',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','GPA Studio'],['Year','2023'],['Systems','Aluminum windows · sliding',1]],q:'What detail mattered most on your last project?',rest:''},
+ {t:'projCover',h:"Amaya Residence",d:"Sofia, Bulgaria",img:P+'images/proj-amaya.jpg'},
+ {t:'projPhoto',img:A+'projects/amaya-2.jpg'},
+ {t:'projPhoto',img:A+'projects/amaya-3.jpg'},
 ],caption:"Amaya Residence, Sofia: slim aluminum windows and sliding doors on a calm, contemporary facade.\n\nThe glazing was specified for thermal performance and slim sightlines, with wide sliding openings onto the balconies and terraces.\n\nArchitect: GPA Studio\nLocation: Sofia, Bulgaria\nSystems: aluminum windows, sliding systems\n\nWhat detail mattered most on your last residential project?"},
 
 // ---------------- W6 ----------------
@@ -112,9 +107,8 @@ window.POSTS=[
 ],caption:'Dual-action windows, explained. One sash, two movements, one handle: tilt for ventilation, turn to open fully. Series 88 by Kömmerling is an 88 mm triple-glazed system with a dual-action window rated to ±60 psf and Florida Product Approval.'},
 
 {n:18,parked:"yes",li:"#Milwaukee #multifamily #curtainwall",ig:"#milwaukee #milwaukeearchitecture #wisconsin #multifamily",tag:[],loc:'Milwaukee, Wisconsin',date:"",day:"",arm:'Projects',title:'Juneau Village',slides:[
- {t:'card',h:'Juneau Village',img:P+'images/project-milwaukee-1.jpg',meta:[['City','Milwaukee, USA'],['Type','Multifamily'],['Year','2025']]},
- {t:'photoSlide',img:P+'images/project-milwaukee-2.jpg',chip:'Milwaukee, USA',cap:'A unitized curtain wall with operable windows.'},
- {t:'details',label:'Project details',h:'Juneau Village',rows:[['Location','Milwaukee, USA'],['Type','Multifamily'],['Architect','[Architect name]'],['Year','2025'],['Systems','Aluminum curtain wall · windows',1]],q:'Building in the Midwest?',rest:'Tell us about the project.'},
+ {t:'projCover',h:"Juneau Village",d:"Milwaukee, Wisconsin",img:P+'images/project-milwaukee-1.jpg'},
+ {t:'projPhoto',img:P+'images/project-milwaukee-2.jpg'},
 ],caption:'Juneau Village, Milwaukee. A multi-building residential development glazed end to end with VALDA aluminum systems: a unitized curtain wall with operable windows, engineered for the Midwest and delivered factory direct from Europe. Architect: [Architect name].'},
 
 // ---------------- W7 ----------------
@@ -130,7 +124,7 @@ window.POSTS=[
  {t:'close',img:P+'images/facade-brick.webp',label:'Configurations',h:'Fixed, casement and tilt and turn.',lead:'Fixed lights to 94 1/2 x 141 3/4 in. Casement and tilt and turn to 48 x 96 7/16 in.',q:'Casement or tilt and turn?',rest:'Tell us your pick.'},
 ],caption:"Impact-rated aluminum casement windows, approved for the HVHZ.\n\nThe casement is the classic window. ConceptSystem 77 by Reynaers brings it up to the hurricane coast:\n- Design pressure to ±65 psf\n- Large and small missile impact, in and outside the HVHZ\n- U-factor 0.18 with triple glazing\n- STC 43\n\nAvailable as fixed, casement and tilt and turn.\n\nCasement or tilt and turn: which do you specify?"},
 
-{n:21,li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #modernarchitecture",tag:['IPA - Architecture and more (architect)','BLD (developer)'],loc:'Sofia, Bulgaria',date:"09 Oct",day:"Fri",arm:'Projects',title:'Stella',slides:[
+{n:21,parked:"yes",li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #modernarchitecture",tag:['IPA - Architecture and more (architect)','BLD (developer)'],loc:'Sofia, Bulgaria',date:"",day:"",arm:'Projects',title:'Stella',slides:[
  {t:'photo',h:'Stella, Sofia',d:'Residential · 2023',img:P+'images/proj-stella.jpg'},
  {t:'systems',label:'The systems',h:'Detailed for slim sightlines and performance.',items:[['Aluminum windows','Slim sightlines across thirteen stories'],['Sliding systems','Large openings to the terraces']],img:A+'iso-window.png'},
  {t:'details',label:'Project details',h:'Stella, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','IPA - Architecture and more'],['Year','2023'],['Systems','Aluminum windows · sliding',1]],q:'Working on a residential project?',rest:'Tell us about it.'},
@@ -151,11 +145,12 @@ window.POSTS=[
  {t:'close',img:P+'images/design-office.webp',label:'Not sure?',h:'Tell us the climate and the noise.',lead:'We will recommend the glazing that fits the project, not the most expensive one.',q:'Which glazing do you specify most?',rest:''},
 ],caption:'Glazing options, from double to triple. Double glazing is the standard, triple improves U-factor and acoustics at the cost of weight, and laminated glass holds the pane in place for impact protection. Tell us the climate and the noise, and we will recommend the glazing that fits.'},
 
-{n:24,parked:"yes",li:"#renovation #Sofia #aluminumwindows",ig:"#classicarchitecture #renovation #residentialarchitecture #sofia",tag:[],loc:'Sofia, Bulgaria',date:"",day:"",arm:'Projects',title:'Belle Epoque',slides:[
- {t:'photoType',h:'Belle Epoque',d:'Sofia, Bulgaria',c:'Residential · 2022',img:P+'images/proj-belle.jpg'},
- {t:'systems',label:'The systems',h:'Classic proportions, modern glazing.',items:[['Aluminum windows','Modern performance in classic openings'],['Doors','Entrances engineered for comfort and longevity']],img:A+'iso-window.png'},
- {t:'details',label:'Project details',h:'Belle Epoque',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2022'],['Systems','Aluminum windows · doors',1]],q:'Working on a renovation?',rest:'Tell us about it.'},
-],caption:'Belle Epoque, Sofia. Classic proportions with VALDA aluminum windows and doors, engineered for comfort and longevity. Architect: [Architect name].'},
+{n:24,note:"Ask who the architect and developer are, so they can be tagged",li:"#residentialarchitecture #aluminumwindows #classicarchitecture",ig:"#classicarchitecture #sofiaarchitecture #residentialarchitecture #aluminumwindows",tag:[],loc:'Sofia, Bulgaria',date:"09 Oct",day:"Fri",arm:'Projects',title:'Belle Epoque',slides:[
+ {t:'projCover',h:"Belle Epoque",d:"Sofia, Bulgaria",img:P+'images/proj-belle.jpg'},
+ {t:'projPhoto',img:A+'projects/belle-2.jpg'},
+ {t:'projPhoto',img:A+'projects/belle-3.jpg'},
+ {t:'projPhoto',img:A+'projects/belle-1.jpg'},
+],caption:"Belle Epoque, Sofia: classic proportions with modern aluminum windows and doors.\n\nA residential building where a traditional facade, with its cornices, pilasters and balconies, meets slim aluminum windows and doors engineered for comfort and longevity.\n\nLocation: Sofia, Bulgaria\nSystems: aluminum windows and doors\n\nBuilding or renovating in a classic style? Tell us about the project in the comments."},
 // ---------------- Extras ----------------
 {n:25,link:"https://valdagroup.com/insights/engineered-in-europe-delivered-worldwide",date:"23 Oct",day:"Fri",arm:"Behind the scenes",title:'From Bulgaria to the USA',li:"#manufacturing #logistics #construction",ig:"#behindthescenes #madeineurope #logistics #construction",tag:[],loc:'Sofia, Bulgaria',slides:[
  {t:'shipCover',h:'From Bulgaria to the USA.',d:'How a VALDA window gets from our factory to your site.',img:A+'ship-3.png'},

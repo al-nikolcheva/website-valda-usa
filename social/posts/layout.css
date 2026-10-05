@@ -84,3 +84,20 @@ body.sq{--k:.84}
 .cta p b{font-weight:500;color:var(--blue-l)}
 .light-btn .cta p b{color:var(--blue)}
 .mt{margin-top:calc(40px*var(--k))}.mt2{margin-top:calc(24px*var(--k))}
+/* Finished-project template (matches the Canva "American University of Malta" post) */
+@font-face{font-family:"Questrial";font-weight:400;src:url(../fonts/Questrial.ttf) format("truetype")}
+.proj{position:relative;overflow:hidden;background:#222}
+.proj>img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.proj .tile{position:absolute;background:#fff;border-radius:9%;display:flex;align-items:center;justify-content:center}
+.proj .tile img{width:70%;height:auto}
+.proj .tile.big{width:230px;height:230px;top:34px;right:21px}
+.proj .tile.sm{width:181px;height:181px;top:72px;right:51px}
+.proj .fade{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.38))}
+.proj .name{position:absolute;left:56px;right:56px;bottom:75px;font-family:"Questrial",sans-serif;color:#fff;line-height:1.4}
+.proj .name b{display:block;font-weight:400;font-size:63px;line-height:1.2}
+.proj .name span{display:block;font-size:37px;margin-top:8px}
+body.sq .proj .tile.big{width:200px;height:200px;top:30px;right:24px}
+body.sq .proj .tile.sm{width:160px;height:160px;top:56px;right:44px}
+body.sq .proj .name{bottom:60px}
+body.sq .proj .name b{font-size:56px}
+body.sq .proj .name span{font-size:33px}

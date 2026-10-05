@@ -1,0 +1,15 @@
+Projects · Fri 09 Oct 2026 · Ask who the architect and developer are, so they can be tagged
+POST AT: 10:00 AM ET
+
+FIRST COMMENT: post the text in First comment.txt as a comment straight after publishing (Buffer adds it automatically).
+
+TAG (type @ and pick the official page or account; check the handle before posting):
+- none for this post
+
+DOCUMENT TITLE (carousel): Belle Epoque | VALDA
+
+ALT TEXT (add per image for accessibility and search):
+Slide 1: Text slide: Belle Epoque. Sofia, Bulgaria
+Slide 2: Text slide: 
+Slide 3: Text slide: 
+Slide 4: Text slide: 

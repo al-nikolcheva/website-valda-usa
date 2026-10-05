@@ -9,6 +9,6 @@ LOCATION: Sofia, Bulgaria
 COLLABORATOR: invite the architect or developer as a Collab where you know their account, so the post shows on both profiles.
 
 ALT TEXT (add per image for accessibility and search):
-Slide 1: Photo of Mona Residence, Sofia. Multifamily · 2024
-Slide 2: Photo: Warm timber accents and full-height glazing.
-Slide 3: Text slide: Project details. Mona Residence
+Slide 1: Text slide: Mona Residence. Sofia, Bulgaria
+Slide 2: Text slide: 
+Slide 3: Text slide: 

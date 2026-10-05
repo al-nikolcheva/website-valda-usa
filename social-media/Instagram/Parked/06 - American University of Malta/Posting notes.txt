@@ -10,6 +10,4 @@ LOCATION: Cospicua, Malta
 COLLABORATOR: invite the architect or developer as a Collab where you know their account, so the post shows on both profiles.
 
 ALT TEXT (add per image for accessibility and search):
-Slide 1: Photo of American University of Malta. Cospicua, Malta. Institutional · 2022
-Slide 2: Drawing of a window with text: The systems. Curtain wall and operable windows on a historic waterfront.
-Slide 3: Text slide: Project details. American University of Malta
+Slide 1: Text slide: American University of Malta. Cospicua, Malta
