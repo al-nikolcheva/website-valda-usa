@@ -125,9 +125,7 @@ window.POSTS=[
 ],caption:"Impact-rated aluminum casement windows, approved for the HVHZ.\n\nThe casement is the classic window. ConceptSystem 77 by Reynaers brings it up to the hurricane coast:\n- Design pressure to ±65 psf\n- Large and small missile impact, in and outside the HVHZ\n- U-factor 0.18 with triple glazing\n- STC 43\n\nAvailable as fixed, casement and tilt and turn.\n\nCasement or tilt and turn: which do you specify?"},
 
 {n:21,parked:"yes",li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #modernarchitecture",tag:['IPA - Architecture and more (architect)','BLD (developer)'],loc:'Sofia, Bulgaria',date:"",day:"",arm:'Projects',title:'Stella',slides:[
- {t:'photo',h:'Stella, Sofia',d:'Residential · 2023',img:P+'images/proj-stella.jpg'},
- {t:'systems',label:'The systems',h:'Detailed for slim sightlines and performance.',items:[['Aluminum windows','Slim sightlines across thirteen stories'],['Sliding systems','Large openings to the terraces']],img:A+'iso-window.png'},
- {t:'details',label:'Project details',h:'Stella, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','IPA - Architecture and more'],['Year','2023'],['Systems','Aluminum windows · sliding',1]],q:'Working on a residential project?',rest:'Tell us about it.'},
+ {t:'projCover',h:"Stella",d:"Sofia, Bulgaria",img:A+'projects/stella-1.jpg',pos:'50% 40%'},
 ],caption:"Stella, Sofia: thirteen stories of slim aluminum windows and sliding doors.\n\nA residential building detailed for slim sightlines and performance, with large sliding openings onto the terraces.\n\nArchitect: IPA - Architecture and more\nDeveloper: BLD\nLocation: Sofia, Bulgaria\nSystems: aluminum windows, sliding systems\n\nWorking on a residential project? Tell us about it in the comments."},
 
 // ---------------- W8 ----------------
