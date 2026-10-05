@@ -1,3 +1,5 @@
 How to read a window spec sheet. Five figures do most of the work: design pressure, U-factor, STC, air infiltration and water resistance. On the coast, add impact: missile size, Wind Zone and HVHZ approval. Save this for your next submittal, or send us a spec sheet and we will walk you through it.
 
+#specification #windows #architects #construction #buildingperformance #VALDA
+
 valdagroup.com

@@ -8,6 +8,8 @@ All 24 posts from the content calendar, ready to upload.
 
 Folders are named `NN - Day DD Mon - Title` and sort in posting order. Post 23 is moved to Wed 25 Nov for Thanksgiving.
 
+Each post folder also has `Posting notes.txt`: accounts to tag, location, collaborator, LinkedIn document title and alt text per slide.
+
 Read `Checklist before posting.md` first: some fields are placeholders.
 
 These files are generated. To change anything, edit `social/posts/posts.js` and run `node build.mjs` in `social/posts/` (add post numbers to rebuild only those, e.g. `node build.mjs 3 6`).
