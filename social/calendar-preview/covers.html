@@ -15,7 +15,7 @@
 .prod{background:#e9e4dc}
 .prod .t1{position:absolute;left:var(--m);right:var(--m);top:190px;font-size:116px;color:var(--char)}
 .prod .d1{position:absolute;left:var(--m);top:470px;width:420px;font-size:24px;line-height:1.45;color:#6b665e}
-.prod .cut{position:absolute;right:30px;bottom:180px;height:620px;max-width:640px;object-fit:contain;mix-blend-mode:multiply}
+.prod .cut{position:absolute;right:60px;bottom:180px;height:600px;max-width:600px;object-fit:contain}
 .prod .strip{position:absolute;left:var(--m);right:var(--m);bottom:56px;border-top:1px solid #cfc8bd;padding-top:20px;display:flex;justify-content:space-between;font-size:22px;font-weight:500}
 .prod .strip span{color:#8a847b;font-weight:400}
 .prod .micro{color:#8a847b}
@@ -39,8 +39,8 @@
 .card h1{position:absolute;left:var(--m);top:1020px;font-size:72px}
 .card .meta{position:absolute;left:var(--m);right:var(--m);bottom:56px;display:grid;grid-template-columns:repeat(3,1fr);font-size:22px;font-weight:500;border-top:1px solid var(--mist);padding-top:16px}
 .card .meta span{display:block;color:var(--mute);font-weight:400;font-size:17px}
-.darkCut .stage{position:absolute;left:var(--m);right:var(--m);top:420px;bottom:200px;display:grid;place-items:center}
-.darkCut .stage img{max-height:100%;max-width:90%}
+.darkCut .stage{position:absolute;left:var(--m);right:var(--m);top:420px;bottom:200px;display:flex;align-items:center;justify-content:center}
+.darkCut .stage img{max-height:100%;max-width:90%;height:auto;width:auto;object-fit:contain}
 .darkCut .stage.box{background:#fff;border-radius:12px}
 .darkCut .stage.box img{mix-blend-mode:multiply;max-height:88%}
 .darkCut h1{position:absolute;left:var(--m);right:var(--m);top:180px;font-size:92px;color:#fff}
@@ -95,10 +95,10 @@ const D=[
  ['inSitu',{h:'Open-plan, opened up.',c:'Sliding and folding · ConceptFolding 77 · Reynaers',img:P+'images/product-sliding.png',pos:'50% 50%'}],
  ['card',{h:'Austin Residence',img:P+'images/proj-austin.jpg',meta:[['City','Austin, USA'],['Type','Luxury residential'],['Year','2024']]}],
  ['charQ',{h:'Fixed or operable?',d:'Plan your glazing early and the rest follows.',c:'Guide /04',img:P+'images/facade-stone.png'}],
- ['sand',{h:'Warm, efficient, low upkeep.',d:'The PVC range, for thermal performance on every budget.',c:'Series 76 MD · Kömmerling',img:P+'products/series-76-md.jpg'}],
+ ['sand',{h:'Warm, efficient, low upkeep.',d:'The PVC range, for thermal performance on every budget.',c:'Series 76 MD · Kömmerling',img:'../assets/cut-76md-section.png'}],
  ['photo',{h:'Mona Residence, Sofia',d:'Multifamily · 2024',img:P+'images/project-mona-1.jpg'}],
  ['over',{h:'The thermal break, explained.',d:'What sits inside an aluminium frame, and why it keeps the room warm.',c:'Guide /05',img:P+'images/arch-5.jpg'}],
- ['darkCut',{h:'Glazing at building scale.',c:'Facade systems · ConceptWall 50 · Reynaers',img:P+'products/conceptwall-50.png'}],
+ ['darkCut',{h:'Glazing at building scale.',c:'Facade systems · ConceptWall 50 · Reynaers',img:'../assets/cut-conceptwall-50.png'}],
  ['photoType',{h:'Amaya Residence',d:'Sofia, Bulgaria',c:'Residential · 2023',img:P+'images/proj-amaya.jpg'}],
  ['stat',{n:'50<small> STC</small>',h:'What STC means for comfort.',d:'The rating behind a quiet room on a busy street. Higher is quieter.',c:'Guide /06',f:'STC · MasterLine 10'}],
  ['inSitu',{h:'Dual-action, explained.',c:'Tilt and turn · Series 88 · Kömmerling',img:P+'images/product-windows.png',pos:'50% 40%'}],
@@ -107,7 +107,7 @@ const D=[
  ['sand',{h:'The classic, engineered.',d:'Casement systems with modern thermal performance.',c:'ConceptSystem 77 · Reynaers',img:P+'products/conceptsystem-77.png'}],
  ['photo',{h:'Stella, Sofia',d:'Residential · 2023',img:P+'images/proj-stella.jpg'}],
  ['over',{h:'How to read a spec sheet.',d:'The five figures worth checking before you sign off a window.',c:'Guide /08',img:P+'images/consultation.webp'}],
- ['darkCut',{h:'From double to triple.',c:'Glazing options · Series 76 MD · Kömmerling',img:P+'images/sys-76md-cut.webp',box:1}],
+ ['darkCut',{h:'From double to triple.',c:'Glazing options · Vista Guard · VALDA',img:'../assets/vista-cut.png'}],
  ['photoType',{h:'Belle Epoque',d:'Sofia, Bulgaria',c:'Residential · 2022',img:P+'images/proj-belle.jpg'}],
 ];
 document.body.innerHTML=D.map(([t,o])=>T[t](o)).join('');
