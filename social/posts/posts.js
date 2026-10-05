@@ -23,8 +23,8 @@ window.POSTS=[
 {n:3,date:'09 Oct',day:'Fri',arm:'Projects',title:'GORA',slides:[
  {t:'photo',h:'GORA, Sofia',d:'Residential · 2023',img:P+'images/proj-gora.jpg'},
  {t:'photoSlide',img:P+'images/proj-gora.jpg',zoom:1.2,origin:'20% 92%',chip:'Sofia, Bulgaria',cap:'Large glazed openings on every elevation.'},
- {t:'details',label:'Project details',h:'GORA, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2023'],['Systems','Aluminium tilt and turn · minimal-frame sliding',1]],q:'Working on a residential glass wall?',rest:'Tell us about it in the comments.'},
-],caption:'GORA, Sofia. A residential building designed around light and the view. Slim aluminium tilt and turn windows and minimal-frame sliding systems give every apartment an uninterrupted connection to the outside. Architect: [Architect name]. Working on a residential glass wall? Tell us about it in the comments.'},
+ {t:'details',label:'Project details',h:'GORA, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','IPA - Architecture and more'],['Year','2023'],['Systems','Aluminium tilt and turn · minimal-frame sliding',1]],q:'Working on a residential glass wall?',rest:'Tell us about it in the comments.'},
+],caption:'GORA, Sofia. A residential building designed around light and the view. Slim aluminium tilt and turn windows and minimal-frame sliding systems give every apartment an uninterrupted connection to the outside. Architect: IPA - Architecture and more. Working on a residential glass wall? Tell us about it in the comments.'},
 
 // ---------------- W2 ----------------
 {n:4,date:'13 Oct',day:'Tue',arm:'Educational',title:'U-factor',slides:[
@@ -40,8 +40,8 @@ window.POSTS=[
 {n:6,date:'16 Oct',day:'Fri',arm:'Projects',title:'American University of Malta',slides:[
  {t:'photoType',h:'American University of Malta',d:'Cospicua, Malta',c:'Institutional · 2022',img:P+'images/proj-aum.jpg'},
  {t:'photoSlide',img:P+'images/proj-aum.jpg',zoom:1.6,origin:'60% 60%',chip:'Cospicua, Malta',cap:'Curtain wall and operable windows on a historic waterfront.'},
- {t:'details',label:'Project details',h:'American University of Malta',rows:[['Location','Cospicua, Malta'],['Type','Institutional'],['Architect','[Architect name]'],['Year','2022'],['Systems','Curtain wall · windows',1]],q:'Working on a facade?',rest:'Tell us about it in the comments.'},
-],caption:'American University of Malta, Cospicua. A facade and window package that balances daylight, acoustics and a historic waterfront setting. Curtain wall and operable windows, engineered and fabricated in Europe. Architect: [Architect name].'},
+ {t:'details',label:'Project details',h:'American University of Malta',rows:[['Location','Cospicua, Malta'],['Type','Institutional'],['Architect','Edwin Mintoff Architects'],['Year','2022'],['Systems','Curtain wall · windows',1]],q:'Working on a facade?',rest:'Tell us about it in the comments.'},
+],caption:'American University of Malta, Cospicua. A facade and window package that balances daylight, acoustics and a historic waterfront setting. Curtain wall and operable windows, engineered and fabricated in Europe. Architect: Edwin Mintoff Architects.'},
 
 // ---------------- W3 ----------------
 {n:7,date:'20 Oct',day:'Tue',arm:'Educational',title:'Sightlines',slides:[
@@ -95,8 +95,8 @@ window.POSTS=[
 {n:15,date:'06 Nov',day:'Fri',arm:'Projects',title:'Amaya Residence',slides:[
  {t:'photoType',h:'Amaya Residence',d:'Sofia, Bulgaria',c:'Residential · 2023',img:P+'images/proj-amaya.jpg'},
  {t:'photoSlide',img:P+'images/proj-amaya.jpg',zoom:1.5,origin:'85% 35%',chip:'Sofia, Bulgaria',cap:'Aluminium windows and sliding systems around a garden court.'},
- {t:'details',label:'Project details',h:'Amaya Residence',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2023'],['Systems','Aluminium windows · sliding',1]],q:'What detail mattered most on your last project?',rest:''},
-],caption:'Amaya Residence, Sofia. VALDA aluminium windows and sliding systems on a calm, contemporary facade, specified for thermal performance and slim sightlines. The detail that mattered: [add detail]. Architect: [Architect name].'},
+ {t:'details',label:'Project details',h:'Amaya Residence',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','GPA Studio'],['Year','2023'],['Systems','Aluminium windows · sliding',1]],q:'What detail mattered most on your last project?',rest:''},
+],caption:'Amaya Residence, Sofia. VALDA aluminium windows and sliding systems on a calm, contemporary facade, specified for thermal performance and slim sightlines. The detail that mattered: [add detail]. Architect: GPA Studio.'},
 
 // ---------------- W6 ----------------
 {n:16,date:'10 Nov',day:'Tue',arm:'Educational',title:'STC',slides:[
@@ -129,8 +129,8 @@ window.POSTS=[
 {n:21,date:'20 Nov',day:'Fri',arm:'Projects',title:'Stella',slides:[
  {t:'photo',h:'Stella, Sofia',d:'Residential · 2023',img:P+'images/proj-stella.jpg'},
  {t:'photoSlide',img:P+'images/proj-stella.jpg',zoom:1.5,origin:'50% 30%',chip:'Sofia, Bulgaria',cap:'Aluminium windows and sliding systems.'},
- {t:'details',label:'Project details',h:'Stella, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','[Architect name]'],['Year','2023'],['Systems','Aluminium windows · sliding',1]],q:'Working on a residential project?',rest:'Tell us about it.'},
-],caption:'Stella, Sofia. A residential project glazed with VALDA aluminium windows and sliding systems, detailed for slim sightlines and performance. Architect: [Architect name].'},
+ {t:'details',label:'Project details',h:'Stella, Sofia',rows:[['Location','Sofia, Bulgaria'],['Type','Residential'],['Architect','IPA - Architecture and more'],['Year','2023'],['Systems','Aluminium windows · sliding',1]],q:'Working on a residential project?',rest:'Tell us about it.'},
+],caption:'Stella, Sofia. A residential project glazed with VALDA aluminium windows and sliding systems, detailed for slim sightlines and performance. Architect: IPA - Architecture and more.'},
 
 // ---------------- W8 ----------------
 {n:22,date:'24 Nov',day:'Tue',arm:'Educational',title:'Spec sheet',slides:[

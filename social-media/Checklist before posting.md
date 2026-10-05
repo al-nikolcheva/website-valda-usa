@@ -3,7 +3,10 @@
 Placeholders show in orange on the slides and in [brackets] in captions.
 
 ## Needs your input
-- [ ] Architect names for every project post: 03 GORA, 06 American University of Malta, 09 Austin Residence, 12 Mona Residence, 15 Amaya Residence, 18 Juneau Village, 21 Stella, 24 Belle Epoque (slide 3 and caption).
+- [x] Architects found and filled (from public project credits): 03 GORA (IPA - Architecture and more), 06 American University of Malta (Edwin Mintoff Architects), 21 Stella (IPA - Architecture and more, with BLD).
+- [ ] 15 Amaya Residence: filled as GPA Studio, the architect of Amaya Residence 2. Confirm VALDA supplied that phase.
+- [ ] Still missing, could not be confirmed publicly: 09 Austin Residence, 12 Mona Residence (BLD's MONA series, architect depends on which building), 18 Juneau Village, 24 Belle Epoque.
+- [ ] 18 Juneau Village: the original towers are 1966 (Solomon Cordwell Buenz). The website shows a 2025 render with bronze fins, so check which building VALDA glazed before posting.
 - [ ] 15 Amaya Residence: the calendar asks for "the detail that mattered". Add it to the caption.
 - [ ] Project choice: the calendar left these slots open, so they use projects from the website. Swap in others if you prefer.
 - [ ] 02 VALDA Vista: confirm the Florida approval numbers (FL39802, FL39801) can be shown. The website code marks Vista and Vision openings as on QA hold.
