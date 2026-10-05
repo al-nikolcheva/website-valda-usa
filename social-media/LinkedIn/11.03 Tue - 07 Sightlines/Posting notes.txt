@@ -1,0 +1,14 @@
+Educational · Tue 03 Nov 2026
+POST AT: 10:00 AM ET
+
+FIRST COMMENT: post the text in First comment.txt as a comment straight after publishing (Buffer adds it automatically).
+
+TAG (type @ and pick the official page or account; check the handle before posting):
+- Reynaers Aluminium (SlimPatio 68)
+
+DOCUMENT TITLE (carousel): Sightlines | VALDA
+
+ALT TEXT (add per image for accessibility and search):
+Slide 1: Drawing of a window with text: More glass, less frame. Sightlines: the visible frame around the glass. A few millimetres change a room. Guide /03
+Slide 2: Text slide: Why it matters. Every inch of frame is an inch of view.
+Slide 3: Text slide: Your turn. Slim frames start at the design stage. Large panes and slim sightlines need the right system from day one. Bring us in early.

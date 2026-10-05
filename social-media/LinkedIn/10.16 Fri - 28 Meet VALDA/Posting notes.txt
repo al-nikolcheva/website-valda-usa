@@ -1,0 +1,16 @@
+News · Fri 16 Oct 2026 · Swap for a real company update if one is ready
+POST AT: 10:00 AM ET
+
+FIRST COMMENT: post the text in First comment.txt as a comment straight after publishing (Buffer adds it automatically).
+
+TAG (type @ and pick the official page or account; check the handle before posting):
+- none for this post
+
+DOCUMENT TITLE (carousel): Meet VALDA | VALDA
+
+ALT TEXT (add per image for accessibility and search):
+Slide 1: Photo with text: From a garage to two factories. Family-owned window and door makers since 1998. Meet VALDA
+Slide 2: Text slide: Two founders, one garage, one machine. Every window made by hand. The same family runs VALDA today, with no outside investors. Our story
+Slide 3: Text slide: Made in-house. Everything under our roof.
+Slide 4: Text slide: In numbers. The same family, the same standards.
+Slide 5: Text slide: Hello, USA. Made in Europe, delivered to your site. One company from the first drawing to the final delivery, and one point of contact.

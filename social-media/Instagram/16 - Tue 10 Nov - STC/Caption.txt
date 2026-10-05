@@ -1,5 +1,0 @@
-STC, Sound Transmission Class, rates how well a window blocks sound. Higher is quieter, and a jump of around 10 points is heard as roughly half as loud. For traffic and aircraft noise, check OITC too, which weights the low frequencies. MasterLine 8 and MasterLine 10 by Reynaers both reach STC 50.
-
-Link in bio.
-
-#VALDA #VALDAgroup #acoustics #soundproofing #soundproofwindows #noisereduction #quiethome #urbanliving #stcrating #windowdesign #glazing #buildingscience #architects #reynaers

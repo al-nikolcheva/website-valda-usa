@@ -1,0 +1,12 @@
+What we have · Parked, not scheduled
+POST AT: not scheduled
+
+FIRST COMMENT: post the text in First comment.txt as a comment straight after publishing (Buffer adds it automatically).
+
+TAG (type @ and pick the official page or account; check the handle before posting):
+- KÖMMERLING (Series 88)
+
+DOCUMENT TITLE (carousel): Dual-action | VALDA
+
+ALT TEXT (add per image for accessibility and search):
+Slide 1: Photo: Dual-action, explained. Tilt and turn · Series 88 · Kömmerling
