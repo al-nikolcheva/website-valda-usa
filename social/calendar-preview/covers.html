@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Calendar covers</title>
+<link rel="stylesheet" href="../site.css">
+<style>
+.slide{height:1350px}
+.bh{font-weight:600;letter-spacing:-.035em;line-height:.98}
+/* Projects: full-bleed photo */
+.proj .bleed{filter:saturate(.75) contrast(1.04)}
+.proj .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 72%,rgba(0,0,0,.45))}
+.proj .lab{position:absolute;left:var(--m);bottom:56px;color:#fff;font-size:26px;line-height:1.35}
+.proj .lab b{display:block;font-weight:600;font-size:34px;letter-spacing:-.01em}
+.proj .lab span{color:rgba(255,255,255,.8)}
+/* What we have: sand, product cutaway, spec strip */
+.prod{background:#e9e4dc}
+.prod .t1{position:absolute;left:var(--m);right:var(--m);top:190px;font-size:116px;color:var(--char)}
+.prod .d1{position:absolute;left:var(--m);top:470px;width:420px;font-size:24px;line-height:1.45;color:#6b665e}
+.prod .cut{position:absolute;right:30px;bottom:180px;height:620px;max-width:640px;object-fit:contain;mix-blend-mode:multiply}
+.prod .strip{position:absolute;left:var(--m);right:var(--m);bottom:56px;border-top:1px solid #cfc8bd;padding-top:20px;display:flex;justify-content:space-between;font-size:22px;font-weight:500}
+.prod .strip span{color:#8a847b;font-weight:400}
+.prod .micro{color:#8a847b}
+/* Educational: charcoal, question, framed photo */
+.edu .t1{position:absolute;left:var(--m);right:var(--m);top:190px;font-size:116px;color:#fff}
+.edu .d1{position:absolute;left:var(--m);top:470px;width:470px;font-size:24px;line-height:1.45;color:#a9a9ad}
+.edu .num{position:absolute;right:var(--m);top:470px;font-size:24px;color:#8fb0e6}
+.edu .ph{position:absolute;left:var(--m);right:var(--m);top:640px;bottom:56px;border-radius:12px;overflow:hidden}
+.edu .ph img{width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(1.04)}
+</style></head><body>
+<script>
+const P='../../public/';
+const D=[
+ // week, type, a, b, c, img
+ ['W1','edu','Aluminium or PVC?','How to choose your window frame. A 60 second guide.','Guide /01',P+'images/hero-glass.png'],
+ ['W1','prod','Built to disappear.','VALDA Vista Guard. Slim aluminium, rated for the hurricane coast.','Vista Guard · VALDA','../assets/vista-cut.png'],
+ ['W1','proj','GORA, Sofia','Residential · 2023','',P+'images/proj-gora.jpg'],
+ ['W2','edu','What U-factor really tells you.','The one number that says how much heat a window lets through.','Guide /02',P+'images/arch-4.jpg'],
+ ['W2','prod','One window, two ways to open.','Tilt and turn. Tilt to air the room, turn to open it fully.','MasterLine 8 · Reynaers',P+'products/masterline-8.png'],
+ ['W2','proj','American University of Malta','Institutional · 2022','',P+'images/proj-aum.jpg'],
+ ['W3','edu','More glass, less frame.','Sightlines, and why a few millimetres change a room.','Guide /03',P+'images/sliding-deck.png'],
+ ['W3','prod','Open-plan, opened up.','Sliding and folding systems that clear the whole opening.','ConceptFolding 77 · Reynaers',P+'products/conceptfolding-77.webp'],
+ ['W3','proj','Austin Residence','Luxury residential · 2024','',P+'images/proj-austin.jpg'],
+ ['W4','edu','Fixed or operable?','Plan your glazing early and the rest follows.','Guide /04',P+'images/facade-stone.png'],
+ ['W4','prod','Warm, efficient, low upkeep.','The PVC range, for thermal performance on every budget.','Series 76 MD · Kömmerling',P+'products/series-76-md.jpg'],
+ ['W4','proj','Mona Residence','Multifamily · 2024','',P+'images/project-mona-1.jpg'],
+ ['W5','edu','The thermal break, explained.','What sits inside an aluminium frame, and why it matters.','Guide /05',P+'images/arch-5.jpg'],
+ ['W5','prod','Glazing at building scale.','Facade systems for curtain walls and full elevations.','ConceptWall 50 · Reynaers',P+'products/conceptwall-50.png'],
+ ['W5','proj','Amaya Residence','Residential · 2023','',P+'images/proj-amaya.jpg'],
+ ['W6','edu','What STC means for comfort.','The rating behind a quiet room on a busy street.','Guide /06',P+'images/arch-3.jpg'],
+ ['W6','prod','Dual-action, explained.','One sash, two movements, one handle.','Series 88 · Kömmerling',P+'products/series-88.jpg'],
+ ['W6','proj','Juneau Village, Milwaukee','Multifamily · 2025','',P+'images/project-milwaukee-1.jpg'],
+ ['W7','edu','Triple glazing: worth it?','When the third pane pays back, and when it does not.','Guide /07',P+'images/home-modern-pool.webp'],
+ ['W7','prod','The classic, engineered.','Casement systems with modern thermal performance.','ConceptSystem 77 · Reynaers',P+'products/conceptsystem-77.png'],
+ ['W7','proj','Stella, Sofia','Residential · 2023','',P+'images/proj-stella.jpg'],
+ ['W8','edu','How to read a spec sheet.','Five numbers worth checking before you sign off.','Guide /08',P+'images/consultation.webp'],
+ ['W8','prod','From double to triple.','Glazing options, and what each one changes.','Series 76 MD · Kömmerling',P+'images/sys-76md-cut.webp'],
+ ['W8','proj','Belle Epoque, Sofia','Residential · 2022','',P+'images/proj-belle.jpg'],
+];
+const sym=(w)=>`<img class="sym" src="${P}valda-logo-${w?'white':'ink'}.svg">`;
+document.body.innerHTML=D.map(([w,t,a,b,c,img])=>{
+ if(t==='proj') return `<section class="slide proj"><img class="bleed" src="${img}"><div class="shade"></div><div class="top"><span></span>${sym(1)}</div><div class="lab"><b>${a}</b><span>${b}</span></div></section>`;
+ if(t==='prod') return `<section class="slide prod"><div class="top"><span class="micro">What we have</span>${sym(0)}</div><h1 class="bh t1">${a}</h1><p class="d1">${b}</p><img class="cut" src="${img}"><div class="strip"><span>System</span>${c}</div></section>`;
+ return `<section class="slide char edu"><div class="top">${sym(1)}<span class="micro">${c}</span></div><h1 class="bh t1">${a}</h1><p class="d1">${b}</p><span class="num">Swipe →</span><div class="ph"><img src="${img}"></div></section>`;
+}).join('');
+</script>
+</body></html>
