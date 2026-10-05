@@ -3,10 +3,6 @@
 <title>GORA project carousel</title>
 <link rel="stylesheet" href="../site.css">
 <style>
-.s1 .bleed{object-position:50% 50%}
-.s1 .wordmark{top:80px}
-.s1 .card1{left:var(--m);bottom:56px;width:430px}
-.s1 .headline{right:var(--m);bottom:60px;width:440px;font-size:62px;line-height:1.05}
 .s2 .row{position:absolute;left:var(--m);right:var(--m);top:170px}
 .s2 h2{left:var(--m);right:var(--m);top:230px}
 .s2 .photo{left:var(--m);right:var(--m);top:470px;height:554px}
@@ -25,20 +21,17 @@
 .ig .s3 .grid{top:440px;gap:16px}
 .ig .s3 .card{padding:42px 32px}
 .ig .s3 .card .val{font-size:32px}
+
+.s1 .lab{left:var(--m);bottom:56px;color:#fff;font-size:24px;line-height:1.35}
+.s1 .lab b{display:block;font-weight:600;font-size:30px;letter-spacing:-.01em}
+.s1 .lab span{color:rgba(255,255,255,.8)}
 </style></head><body>
 
 <section class="slide light s1">
-  <img class="bleed" src="../../public/images/proj-gora.jpg" alt="GORA residential building, Sofia">
-  <div class="scrim hero"></div>
-  <div class="wordmark">VALDA</div>
-  <div class="top"><span></span><span class="nn">/01</span></div>
-  <div class="pos frost card1">
-    <div class="row"><span class="label">Featured project</span><span class="label">Completed 2023</span></div>
-    <div class="t">GORA</div>
-    <div class="s">Sofia, Bulgaria</div>
-    <div class="link"><span>View on valdagroup.com</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
-  </div>
-  <h1 class="pos h headline">Built around light and the view.</h1>
+  <div class="bleed" style="overflow:hidden"><img class="grade" src="../../public/images/proj-gora.jpg" alt="GORA residential building, Sofia" style="width:100%;height:100%;object-fit:cover;transform:scale(1.12);transform-origin:50% 40%"></div>
+  <div class="bleed" style="background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,0) 25%,rgba(0,0,0,0) 75%,rgba(0,0,0,.4))"></div>
+  <div class="top"><span></span><img class="sym" src="../../public/valda-logo-white.svg" alt="VALDA"></div>
+  <div class="pos lab"><b>GORA, Sofia</b><span>Residential · 2023</span></div>
 </section>
 
 <section class="slide s2">

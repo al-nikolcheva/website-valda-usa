@@ -4,12 +4,6 @@
 <link rel="stylesheet" href="../site.css">
 <style>
 .row{position:absolute;left:var(--m);right:var(--m);top:170px}
-.s1 .pcard{left:var(--m);bottom:56px;width:400px}
-.s1 .pcard .row{position:static}
-.s1 .pcard .im{height:230px;margin-top:14px;border-radius:10px;background:rgba(255,255,255,.9);display:grid;place-items:center;overflow:hidden}
-.s1 .pcard .im img{height:220px}
-.s1 .pcard .t{margin-top:16px}
-.s1 .headline{right:var(--m);bottom:60px;width:480px;font-size:62px;line-height:1.05}
 .s2 h2{left:var(--m);right:var(--m);top:226px;font-size:80px}
 .s2 .lead{left:var(--m);width:900px;top:340px;z-index:3}
 .s2 .iso{right:30px;bottom:90px;width:520px}
@@ -50,20 +44,28 @@
 .ig .s5 .pair{top:480px}
 .ig .s5 .card{height:280px}
 .ig .s5 .lead{top:800px}
+
+.s1 .t1{left:var(--m);top:170px;font-size:128px;color:var(--char)}
+.s1 .d1{left:var(--m);top:440px;width:380px;font-size:22px;color:#6b665e}
+.s1 .cut{right:40px;bottom:170px;height:440px}
+.s1 .specs{left:var(--m);right:var(--m);bottom:56px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #cfc8bd;padding-top:20px;font-size:22px;font-weight:500;color:var(--char)}
+.s1 .specs span{display:block;font-size:16px;font-weight:400;color:#8a847b;margin-bottom:4px}
+.ig .s1 .t1{top:200px;font-size:140px}
+.ig .s1 .d1{top:500px}
+.ig .s1 .cut{height:560px;bottom:190px}
 </style></head><body>
 
-<section class="slide light s1">
-  <img class="bleed" src="../../public/images/product-windows.png" alt="" style="object-position:50% 55%">
-  <div class="scrim hero"></div>
-  <div class="wordmark">VALDA</div>
-  <div class="top"><span></span><span class="nn">/01</span></div>
-  <div class="pos frost pcard">
-    <div class="row"><span class="label">What we have</span><span class="label">Aluminium · HVHZ</span></div>
-    <div class="im"><img src="../assets/vista-cut.png" alt="Vista Guard profile section"></div>
-    <div class="t">Vista Guard</div>
-    <div class="s">Slim frame, hurricane rated</div>
+<section class="slide s1" style="background:#e9e4dc">
+  <div class="top"><span class="micro" style="color:#8a847b">What we have /01</span><img class="sym" src="../../public/valda-logo-ink.svg" alt="VALDA"></div>
+  <h1 class="pos h caps-h t1">Built to<br>disappear.</h1>
+  <p class="pos micro d1">VALDA Vista. The aluminium system with slim sightlines, rated for the hurricane coast.</p>
+  <img class="pos cut" src="../assets/vista-cut.png" alt="Vista Guard profile section">
+  <div class="pos specs">
+    <div><span>Material</span>Aluminium</div>
+    <div><span>Design pressure</span>±65 psf</div>
+    <div><span>Impact</span>Wind Zone 4</div>
+    <div><span>Approval</span>HVHZ</div>
   </div>
-  <h1 class="pos h headline">The aluminium system built to disappear.</h1>
 </section>
 
 <section class="slide panel s2">
