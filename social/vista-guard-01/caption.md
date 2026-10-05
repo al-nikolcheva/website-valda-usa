@@ -17,7 +17,8 @@ Some windows are meant to be looked at. Vista Guard is meant to be looked throug
 - 0.002 cfm/ft² air infiltration: picture window test.
 - Glass: insulating unit with a 0.090 in SentryGlas laminated lite.
 - Frame materials (aluminium, polyamide, EPDM): from the Vista Guard 3D model.
-- Profile cutaway: `public/products/vista-guard.png`. Window render: from `public/models/vista-guard.glb`.
+- Slide 2 photo (`public/images/product-windows.png`) is a mood image from the website, not a Vista Guard installation.
+- Profile cutaway: `public/products/vista-guard.png`. Slide 2 mood photo: `public/images/product-windows.png`.
 
 ## To confirm before posting
 

@@ -1,135 +1,104 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>Vista Guard carousel</title>
+<link rel="stylesheet" href="../editorial.css">
 <style>
-@font-face{font-family:"Inter Tight";font-weight:400;src:url(../fonts/InterTight-400.ttf) format("truetype")}
-@font-face{font-family:"Inter Tight";font-weight:500;src:url(../fonts/InterTight-500.ttf) format("truetype")}
-@font-face{font-family:"Inter Tight";font-weight:600;src:url(../fonts/InterTight-600.ttf) format("truetype")}
-:root{--char:#222224;--slate:#6f6f72;--mute:#a3a3a5;--mist:#e3e3e3;--panel:#f4f4f4;--white:#fff;--blue:#1f4e8c;--blue-bright:#3a6dba}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#888;font-family:"Inter Tight",sans-serif;-webkit-font-smoothing:antialiased}
-.slide{width:1080px;height:1080px;position:relative;overflow:hidden;padding:96px;display:flex;flex-direction:column;page-break-after:always}
-.dark{background:var(--char);color:var(--white)}
-.light{background:var(--white);color:var(--char)}
-.panel{background:var(--panel);color:var(--char)}
-.tile{position:absolute;top:72px;right:72px;width:112px;height:112px;border-radius:4px;display:grid;place-items:center;z-index:3}
-.tile span{display:block;width:76px;height:57px;background:url(../../public/valda-logo-white.svg) no-repeat;background-size:76px 82px}
-.dark .tile{border:1.5px solid rgba(255,255,255,.22)}
-.light .tile,.panel .tile{background:var(--char)}
-.count{position:absolute;bottom:72px;right:96px;font-size:22px;letter-spacing:.08em;color:var(--mute);font-weight:500;z-index:3}
-.eyebrow{font-size:24px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright);margin-bottom:32px}
-h1{font-size:88px;line-height:1.02;font-weight:500;letter-spacing:-.035em}
-h2{font-size:72px;line-height:1.04;font-weight:500;letter-spacing:-.03em}
-.sub{font-size:34px;line-height:1.35;margin-top:32px;max-width:760px;color:#b9b9bc}
-.rule{width:96px;height:6px;background:var(--blue);margin-bottom:44px}
-.rule.ink{background:var(--char)}
-.body{font-size:36px;line-height:1.4;color:var(--slate);margin-top:36px}
-.body b{color:var(--char);font-weight:500}
-/* 1 hook */
-.s1 .profile{position:absolute;right:120px;top:40px;width:560px;z-index:1;filter:drop-shadow(0 30px 50px rgba(0,0,0,.45))}
-.s1 .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(34,34,36,0) 38%,rgba(34,34,36,1) 52%);z-index:2}
-.s1 .copy{position:relative;z-index:3;margin-top:auto;margin-bottom:40px}
-/* 2 built to disappear */
-.s2 .iso{position:absolute;right:-70px;top:250px;width:560px}
-.s2 .copy{max-width:540px;margin-top:150px}
-.s2 .spec{margin-top:auto;font-size:22px;letter-spacing:.06em;color:var(--mute);font-weight:500;text-transform:uppercase}
-/* 3 inside the profile */
-.s3 .fig{position:absolute;left:30px;top:270px;width:700px}
+.s1 .obj{right:30px;top:120px;width:640px}
+.s1 .title{left:var(--m);right:var(--m);bottom:128px}
+.s1 h1{font-size:140px;line-height:.92;margin-top:22px}
+.s1 .sub{font-size:44px;margin-top:22px;color:var(--soft);line-height:1.15}
+.s2 .bleed{object-position:50% 62%}
+.s2 .title{left:var(--m);right:var(--m);bottom:128px}
+.s2 .title .eyebrow{color:rgba(245,240,233,.85);margin-bottom:20px}
+.s2 h2{font-size:118px;line-height:.95}
+.s2 .lede{margin-top:26px;max-width:720px;font-size:28px}
+.s3 .head{left:var(--m);top:150px}
+.s3 h2{font-size:84px;margin-top:20px}
+.s3 .fig{left:20px;top:330px;width:640px}
 .s3 .fig img{width:100%;display:block}
-.pin{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--char);color:#fff;font-size:20px;font-weight:600;display:grid;place-items:center;box-shadow:0 0 0 4px rgba(244,244,244,.9)}
-.s3 .keys{position:absolute;right:80px;top:330px;width:330px}
-.s3 .keys li{list-style:none;display:flex;gap:18px;padding:20px 0;border-bottom:1.5px solid var(--mist);font-size:26px;line-height:1.25}
-.s3 .keys li:first-child{border-top:1.5px solid var(--mist)}
-.s3 .keys i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;background:var(--char);color:#fff;font-size:16px;font-weight:600;display:grid;place-items:center;margin-top:-1px}
-/* 4 numbers */
-.big{display:flex;align-items:baseline;gap:28px;margin-top:56px}
-.big .num{font-size:180px;line-height:.9;font-weight:500;letter-spacing:-.045em;color:var(--blue)}
-.big .lbl{font-size:28px;line-height:1.3;color:var(--slate);max-width:300px}
-.grid{display:grid;grid-template-columns:1fr 1fr;margin-top:auto;margin-bottom:56px;border-top:1.5px solid var(--mist)}
-.grid div{padding:28px 32px 28px 0;border-bottom:1.5px solid var(--mist)}
-.grid div:nth-child(odd){border-right:1.5px solid var(--mist)}
-.grid div:nth-child(even){padding-left:32px}
-.grid b{display:block;font-size:40px;font-weight:500;letter-spacing:-.02em;line-height:1.1}
-.grid span{display:block;font-size:22px;color:var(--slate);margin-top:8px}
-/* 5 cta */
-.s5 .copy{margin-top:auto}
-.s5 .body{color:#b9b9bc}
-.engage{font-size:38px;line-height:1.3;color:#6f9be0;font-weight:500;margin-top:44px;max-width:840px}
-.foot{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:36px;border-top:1.5px solid rgba(255,255,255,.18)}
-.foot img{height:34px}
-.foot span{font-size:26px;letter-spacing:.04em;color:#d6d6d8}
+.pin{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:var(--paper);border:1px solid var(--ink);font-family:"Fraunces",serif;font-style:italic;font-size:20px;display:grid;place-items:center;color:var(--ink)}
+.s3 ol{right:var(--m);top:380px;width:330px;list-style:none;border-top:1px solid var(--sand)}
+.s3 li{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--sand);font-size:23px;line-height:1.35;color:var(--soft)}
+.s3 li i{font-family:"Fraunces",serif;font-size:24px;color:var(--stone);width:30px;flex:none}
+.s4 .head{left:var(--m);top:150px}
+.s4 h2{font-size:84px;margin-top:20px}
+.s4 .big{left:var(--m);top:330px;display:flex;align-items:flex-end;gap:36px}
+.s4 .big .serif{font-size:260px;line-height:.8}
+.s4 .big .pm{font-size:150px;vertical-align:.32em;margin-right:6px}
+.s4 .big .caps{padding-bottom:18px;line-height:1.7}
+.s4 .grid{left:var(--m);right:var(--m);top:640px;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--sand)}
+.s4 .grid>div{padding:24px 0;border-bottom:1px solid var(--sand)}
+.s4 .grid>div:nth-child(even){padding-left:40px;border-left:1px solid var(--sand)}
+.s4 .grid .serif{font-size:44px}
+.s4 .grid .caps{font-size:15px;margin-top:10px}
+.s5 .head{left:var(--m);right:var(--m);top:200px}
+.s5 h2{font-size:86px;line-height:1;margin-top:22px}
+.s5 .lede{left:var(--m);right:170px;top:440px}
+.s5 .hair{position:absolute;left:var(--m);right:var(--m);top:630px}
+.s5 .ask{left:var(--m);right:var(--m);top:670px;font-size:40px;line-height:1.2}
 </style></head><body>
 
-<!-- 1 hook -->
-<section class="slide dark s1">
-  <img class="profile" src="../../public/products/vista-guard.png" alt="">
-  <div class="fade"></div>
-  <div class="tile"><span></span></div>
-  <div class="copy">
-    <div class="eyebrow">What we have / Vista Guard</div>
-    <h1>VALDA Vista: the aluminium system built to disappear.</h1>
-    <p class="sub">Slim frame. Hurricane rated. Approved in the HVHZ.</p>
+<section class="slide warm s1">
+  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>the collection · n° 01</span></div>
+  <img class="pos obj" src="../../public/products/vista-guard.png" alt="Vista Guard profile section">
+  <div class="pos title">
+    <div class="eyebrow">what we have · vista guard</div>
+    <h1 class="serif">VALDA <i>Vista</i></h1>
+    <p class="serif sub">The aluminium system <i>built to disappear.</i></p>
   </div>
-  <div class="count">01 / 05</div>
+  <div class="folio"><span></span><span>01 / 05</span></div>
 </section>
 
-<!-- 2 built to disappear -->
-<section class="slide light s2">
-  <div class="tile"><span></span></div>
-  <img class="iso" src="vista-window-iso.png" alt="">
-  <div class="copy">
-    <div class="rule"></div>
-    <h2>Less frame. More view.</h2>
-    <p class="body">A thermally broken aluminium frame, <b>slimmer than its PVC counterpart</b>, so the glass does the work and the window recedes.</p>
+<section class="slide on-photo s2">
+  <img class="bleed" src="../../public/images/product-windows.png" alt="">
+  <div class="veil"></div>
+  <div class="mast"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>i. the idea</span></div>
+  <div class="pos title">
+    <div class="eyebrow">built to disappear</div>
+    <h2 class="serif">Less frame. <i>More view.</i></h2>
+    <p class="lede">A thermally broken aluminium frame, slimmer than its PVC counterpart, so the glass does the work and the window recedes.</p>
   </div>
-  <div class="spec">Picture and tilt &amp; turn</div>
-  <div class="count">02 / 05</div>
+  <div class="folio"><span></span><span>02 / 05</span></div>
 </section>
 
-<!-- 3 inside the profile -->
-<section class="slide panel s3">
-  <div class="tile"><span></span></div>
-  <div class="rule ink"></div>
-  <h2>Inside the profile.</h2>
-  <div class="fig">
-    <img src="../../public/products/vista-guard.png" alt="Vista Guard profile section">
-    <div class="pin" style="left:54%;top:12%">1</div>
-    <div class="pin" style="left:23%;top:55%">2</div>
-    <div class="pin" style="left:63%;top:57%">3</div>
-    <div class="pin" style="left:52%;top:50%">4</div>
+<section class="slide warm s3">
+  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>ii. the section</span></div>
+  <div class="pos head"><div class="eyebrow">in detail</div><h2 class="serif">Inside <i>the profile.</i></h2></div>
+  <div class="pos fig">
+    <img src="../../public/products/vista-guard.png" alt="">
+    <div class="pin" style="left:52%;top:12%">i</div>
+    <div class="pin" style="left:23%;top:55%">ii</div>
+    <div class="pin" style="left:63%;top:57%">iii</div>
+    <div class="pin" style="left:52%;top:50%">iv</div>
   </div>
-  <ul class="keys">
-    <li><i>1</i>Laminated insulating glass with a SentryGlas interlayer</li>
-    <li><i>2</i>Powder coated aluminium frame</li>
-    <li><i>3</i>Polyamide thermal break</li>
-    <li><i>4</i>EPDM gaskets, frame and glass</li>
-  </ul>
-  <div class="count">03 / 05</div>
+  <ol class="pos">
+    <li><i>i</i>Laminated insulating glass with a SentryGlas interlayer</li>
+    <li><i>ii</i>Powder coated aluminium frame</li>
+    <li><i>iii</i>Polyamide thermal break</li>
+    <li><i>iv</i>EPDM gaskets, frame and glass</li>
+  </ol>
+  <div class="folio"><span></span><span>03 / 05</span></div>
 </section>
 
-<!-- 4 numbers -->
-<section class="slide light">
-  <div class="tile"><span></span></div>
-  <div class="rule ink"></div>
-  <h2>Slim, not light duty.</h2>
-  <div class="big"><span class="num">±65</span><span class="lbl">psf design pressure, picture and tilt &amp; turn.</span></div>
-  <div class="grid">
-    <div><b>Wind Zone 4</b><span>Large missile, Missile Level D</span></div>
-    <div><b>HVHZ</b><span>Approved in and outside</span></div>
-    <div><b>59 x 98 3/8 in</b><span>Largest picture window</span></div>
-    <div><b>0.002 cfm/ft²</b><span>Air infiltration, picture</span></div>
+<section class="slide s4">
+  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>iii. performance</span></div>
+  <div class="pos head"><div class="eyebrow">the numbers</div><h2 class="serif">Slim, <i>not light duty.</i></h2></div>
+  <div class="pos big"><div class="serif"><span class="pm">±</span><i>65</i></div><div class="caps">psf design pressure<br>picture and tilt &amp; turn</div></div>
+  <div class="pos grid">
+    <div><div class="serif">Wind Zone 4</div><div class="caps">Large missile · Level D</div></div>
+    <div><div class="serif">HVHZ</div><div class="caps">Approved in and outside</div></div>
+    <div><div class="serif">59 × 98⅜ in</div><div class="caps">Largest picture window</div></div>
+    <div><div class="serif">0.002 cfm/ft²</div><div class="caps">Air infiltration · picture</div></div>
   </div>
-  <div class="count">04 / 05</div>
+  <div class="folio"><span></span><span>04 / 05</span></div>
 </section>
 
-<!-- 5 cta -->
 <section class="slide dark s5">
-  <div class="tile"><span></span></div>
-  <div class="copy">
-    <h2>Specifying on the coast? Start with Vista Guard.</h2>
-    <p class="body">Florida Product Approval FL39802 and FL39801. NAMI certified. No shutters or external impact protection needed.</p>
-    <p class="engage">Got an opening in mind? Tell us the size in the comments and we will point you to the right configuration.</p>
-    <div class="foot"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>valdagroup.com</span></div>
-  </div>
+  <div class="mast"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>iv. specify</span></div>
+  <div class="pos head"><div class="eyebrow">on the coast?</div><h2 class="serif">Start with <i>Vista Guard.</i></h2></div>
+  <p class="pos lede">Florida Product Approval FL39802 and FL39801. NAMI certified. No shutters or external impact protection needed.</p>
+  <div class="hair"></div>
+  <p class="pos ask serif"><i>Got an opening in mind?</i> Tell us the size and we will point you to the right configuration.</p>
+  <div class="folio"><span>valdagroup.com</span><span>05 / 05</span></div>
 </section>
 </body></html>

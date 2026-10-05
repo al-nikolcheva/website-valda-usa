@@ -1,89 +1,61 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>GORA project carousel</title>
+<link rel="stylesheet" href="../editorial.css">
 <style>
-@font-face{font-family:"Inter Tight";font-weight:400;src:url(../fonts/InterTight-400.ttf) format("truetype")}
-@font-face{font-family:"Inter Tight";font-weight:500;src:url(../fonts/InterTight-500.ttf) format("truetype")}
-@font-face{font-family:"Inter Tight";font-weight:600;src:url(../fonts/InterTight-600.ttf) format("truetype")}
-:root{--char:#222224;--slate:#6f6f72;--mute:#a3a3a5;--mist:#e3e3e3;--panel:#f4f4f4;--white:#fff;--blue:#1f4e8c;--blue-bright:#3a6dba}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#888;font-family:"Inter Tight",sans-serif;-webkit-font-smoothing:antialiased}
-.slide{width:1080px;height:1080px;position:relative;overflow:hidden;padding:96px;display:flex;flex-direction:column;page-break-after:always}
-.dark{background:var(--char);color:var(--white)}
-.light{background:var(--white);color:var(--char)}
-.tile{position:absolute;top:72px;right:72px;width:112px;height:112px;border-radius:4px;display:grid;place-items:center;z-index:3}
-.tile span{display:block;width:76px;height:57px;background:url(../../public/valda-logo-white.svg) no-repeat;background-size:76px 82px}
-.dark .tile,.photo .tile{border:1.5px solid rgba(255,255,255,.35)}
-.light .tile{background:var(--char)}
-.count{position:absolute;bottom:72px;right:96px;font-size:22px;letter-spacing:.08em;color:var(--mute);font-weight:500;z-index:3}
-.eyebrow{font-size:24px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright);margin-bottom:24px}
-h1{font-size:96px;line-height:1;font-weight:500;letter-spacing:-.035em}
-h2{font-size:72px;line-height:1.04;font-weight:500;letter-spacing:-.03em}
-.rule{width:96px;height:6px;background:var(--blue);margin-bottom:40px}
-/* 1 photo */
-.photo{padding:0}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%}
-.photo .scrim{position:absolute;left:0;right:0;bottom:0;height:520px;background:linear-gradient(180deg,rgba(34,34,36,0) 0%,rgba(34,34,36,.7) 45%,rgba(34,34,36,.92) 100%)}
-.photo .cap{position:absolute;left:96px;bottom:84px;color:#fff;z-index:2}
-.photo .cap .eyebrow{color:#9dbcf0}
-.photo .cap p{font-size:32px;color:#e6e6e8;margin-top:16px}
-.photo .count{color:rgba(255,255,255,.75)}
-/* 2 detail */
-.s2{padding:0}
-.s2 .img{height:560px;background:url(../../public/images/proj-gora.jpg) no-repeat;background-size:2200px auto;background-position:-20px -930px}
-.s2 .txt{padding:64px 96px 0}
-.s2 h2{font-size:64px}
-.s2 p{font-size:34px;line-height:1.4;color:var(--slate);margin-top:28px;max-width:860px}
-.s2 p b{color:var(--char);font-weight:500}
-/* 3 credits */
-.s3 dl{margin-top:56px;border-top:1.5px solid rgba(255,255,255,.18)}
-.s3 dl div{display:flex;padding:22px 0;border-bottom:1.5px solid rgba(255,255,255,.18);font-size:32px;line-height:1.25}
-.s3 dt{width:250px;flex:none;color:var(--mute);font-size:22px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding-top:8px}
-.s3 dd{color:#fff}
-.s3 dd.todo{color:#e0a43a}
-.engage{font-size:34px;line-height:1.3;color:#6f9be0;font-weight:500;margin-top:auto;max-width:860px}
-.foot{display:flex;justify-content:space-between;align-items:center;margin-top:44px;padding-top:32px;border-top:1.5px solid rgba(255,255,255,.18)}
-.foot img{height:32px}
-.foot span{font-size:26px;letter-spacing:.04em;color:#d6d6d8}
+.s1 .bleed{object-position:50% 40%}
+.s1 .title{left:var(--m);bottom:120px}
+.s1 .title .eyebrow{color:rgba(245,240,233,.85);margin-bottom:18px}
+.s1 h1{font-size:250px;letter-spacing:.01em;line-height:.82}
+.s2 .frame{left:var(--m);right:var(--m);top:130px;height:500px;overflow:hidden}
+.s2 .frame img{width:2050px;margin:-860px 0 0 -10px}
+.s2 .cap{right:var(--m);top:646px;font-size:18px;letter-spacing:.06em;color:var(--stone);font-style:italic;font-family:"Fraunces",serif}
+.s2 h2{left:var(--m);top:720px;width:470px;font-size:78px;line-height:1.02}
+.s2 .lede{left:600px;top:732px;width:392px;font-size:25px}
+.s3 .head{left:var(--m);top:170px}
+.s3 h2{font-size:96px;margin-top:22px}
+.s3 dl{left:var(--m);right:var(--m);top:390px}
+.s3 dl div{display:flex;align-items:baseline;padding:20px 0;border-top:1px solid var(--sand)}
+.s3 dl div:last-child{border-bottom:1px solid var(--sand)}
+.s3 dt{width:250px;flex:none}
+.s3 dd{font-family:"Fraunces",serif;font-weight:300;font-size:38px;line-height:1.15}
+.s3 dd.todo{color:var(--clay);font-style:italic}
+.s3 .ask{left:var(--m);right:var(--m);top:836px;font-size:36px;line-height:1.25}
 </style></head><body>
 
-<!-- 1 photo -->
-<section class="slide photo">
-  <img src="../../public/images/proj-gora.jpg" alt="GORA residential building, Sofia">
-  <div class="scrim"></div>
-  <div class="tile"><span></span></div>
-  <div class="cap">
-    <div class="eyebrow">Project / Residential</div>
-    <h1>GORA, Sofia.</h1>
-    <p>Glazed for light and the view.</p>
+<section class="slide on-photo s1">
+  <img class="bleed" src="../../public/images/proj-gora.jpg" alt="GORA residential building, Sofia">
+  <div class="veil"></div>
+  <div class="mast"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>projects · residential</span></div>
+  <div class="pos title">
+    <div class="eyebrow">sofia, bulgaria · 2023</div>
+    <h1 class="serif">GORA</h1>
   </div>
-  <div class="count">01 / 03</div>
+  <div class="folio"><span></span><span>01 / 03</span></div>
 </section>
 
-<!-- 2 the glass wall -->
-<section class="slide light s2">
-  <div class="img"></div>
-  <div class="txt">
-    <div class="rule"></div>
-    <h2>Built around the view.</h2>
-    <p>Large glazed openings on every elevation. <b>Slim aluminium tilt &amp; turn windows and minimal-frame sliding systems</b> give every apartment an uninterrupted connection to the outside.</p>
-  </div>
-  <div class="count">02 / 03</div>
+<section class="slide warm s2">
+  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>gora · sofia</span></div>
+  <div class="pos frame"><img src="../../public/images/proj-gora.jpg" alt=""></div>
+  <div class="pos cap">The garden elevation</div>
+  <h2 class="pos serif">Built around <i>the view.</i></h2>
+  <p class="pos lede">Large glazed openings on every elevation. Slim aluminium tilt &amp; turn windows and minimal-frame sliding systems give every apartment an uninterrupted connection to the outside.</p>
+  <div class="folio"><span></span><span>02 / 03</span></div>
 </section>
 
-<!-- 3 credits -->
-<section class="slide dark s3">
-  <div class="tile"><span></span></div>
-  <div class="rule"></div>
-  <h2>Project credits.</h2>
-  <dl>
-    <div><dt>Project</dt><dd>GORA</dd></div>
-    <div><dt>City</dt><dd>Sofia, Bulgaria</dd></div>
-    <div><dt>Architect</dt><dd class="todo">[Architect name]</dd></div>
-    <div><dt>Completed</dt><dd>2023</dd></div>
-    <div><dt>VALDA systems</dt><dd>Aluminium tilt &amp; turn, minimal-frame sliding</dd></div>
+<section class="slide s3">
+  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>credits</span></div>
+  <div class="pos head">
+    <div class="eyebrow">the project</div>
+    <h2 class="serif">GORA, <i>Sofia</i></h2>
+  </div>
+  <dl class="pos">
+    <div><dt class="caps">Architect</dt><dd class="todo">[Architect name]</dd></div>
+    <div><dt class="caps">Completed</dt><dd>2023</dd></div>
+    <div><dt class="caps">Type</dt><dd>Residential</dd></div>
+    <div><dt class="caps">Systems</dt><dd>Aluminium tilt &amp; turn, minimal-frame sliding</dd></div>
   </dl>
-  <p class="engage">Working on a residential glass wall? Tell us about it in the comments.</p>
-  <div class="foot"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>valdagroup.com</span></div>
+  <p class="pos ask serif"><i>Working on a residential glass wall?</i> Tell us about it in the comments.</p>
+  <div class="folio"><span>valdagroup.com</span><span>03 / 03</span></div>
 </section>
 </body></html>

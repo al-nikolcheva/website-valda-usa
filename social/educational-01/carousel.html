@@ -1,118 +1,113 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>Aluminium or PVC carousel</title>
+<link rel="stylesheet" href="../editorial.css">
 <style>
-@font-face{font-family:"Inter Tight";font-weight:400;src:url(../fonts/InterTight-400.ttf) format("truetype")}
-@font-face{font-family:"Inter Tight";font-weight:500;src:url(../fonts/InterTight-500.ttf) format("truetype")}
-@font-face{font-family:"Inter Tight";font-weight:600;src:url(../fonts/InterTight-600.ttf) format("truetype")}
-
-:root{--char:#222224;--slate:#6f6f72;--mute:#a3a3a5;--mist:#e3e3e3;--panel:#f4f4f4;--white:#fff;--blue:#1f4e8c;--blue-bright:#3a6dba}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#888;font-family:"Inter Tight",sans-serif;-webkit-font-smoothing:antialiased}
-.slide{width:1080px;height:1080px;position:relative;overflow:hidden;padding:96px;display:flex;flex-direction:column;page-break-after:always}
-.dark{background:var(--char);color:var(--white)}
-.light{background:var(--white);color:var(--char)}
-.panel{background:var(--panel);color:var(--char)}
-/* symbol tile: crop the mark above the wordmark */
-.tile{position:absolute;top:72px;right:72px;width:112px;height:112px;border-radius:4px;display:grid;place-items:center;z-index:3}
-.tile span{display:block;width:76px;height:57px;background:url(../../public/valda-logo-white.svg) no-repeat;background-size:76px 82px;background-position:0 0}
-.dark .tile{border:1.5px solid rgba(255,255,255,.22)}
-.light .tile,.panel .tile{background:var(--char)}
-.count{position:absolute;bottom:72px;right:96px;font-size:22px;letter-spacing:.08em;color:var(--mute);font-weight:500;z-index:3}
-.eyebrow{font-size:24px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright);margin-bottom:32px}
-h1{font-size:92px;line-height:1.02;font-weight:500;letter-spacing:-.035em}
-h2{font-size:76px;line-height:1.04;font-weight:500;letter-spacing:-.03em}
-.sub{font-size:34px;line-height:1.35;margin-top:36px;max-width:760px}
-.dark .sub{color:#b9b9bc}.light .sub,.panel .sub{color:var(--slate)}
-.rule{width:96px;height:6px;background:var(--blue);margin-bottom:48px}
-.rule.mute{background:var(--char)}
-.body{font-size:40px;line-height:1.38;color:var(--slate);margin-top:44px;max-width:860px}
-.body b{color:var(--char);font-weight:500}
-/* slide 1 */
-.s1 .photo{position:absolute;inset:0;background:url(../../public/images/hero-glass.png) center 30%/cover no-repeat}
-.s1 .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(34,34,36,.35) 0%,rgba(34,34,36,.55) 40%,rgba(34,34,36,.96) 78%)}
-.s1 .copy{position:relative;z-index:2;margin-top:auto;margin-bottom:56px}
-/* slides 3/4 pair */
-.list{margin-top:56px;border-top:1.5px solid var(--mist)}
-.list li{list-style:none;display:flex;gap:40px;align-items:baseline;padding:30px 0;border-bottom:1.5px solid var(--mist);font-size:40px;line-height:1.25;color:var(--char)}
-.list li i{font-style:normal;font-size:22px;letter-spacing:.08em;color:var(--mute);font-weight:500;width:40px;flex:none}
-.top{margin-top:72px}
-.stat{margin-top:auto;margin-bottom:48px;display:flex;align-items:baseline;gap:28px;padding-bottom:4px}
-.stat .num{font-size:96px;font-weight:500;letter-spacing:-.03em;color:var(--blue);line-height:1}
-.stat .lbl{font-size:24px;line-height:1.35;color:var(--slate);max-width:340px}
-.stat.empty .lbl{color:var(--slate)}
-/* slide 5 */
-.s5 .copy{margin-top:auto}
-.s5 .body{color:#b9b9bc}
-.engage{font-size:40px;line-height:1.3;color:#6f9be0;font-weight:500;margin-top:48px;max-width:820px}
-.foot{display:flex;justify-content:space-between;align-items:center;margin-top:88px;padding-top:36px;border-top:1.5px solid rgba(255,255,255,.18)}
-.foot img{height:34px}
-.foot span{font-size:26px;letter-spacing:.04em;color:#d6d6d8}
+.s1 .bleed{object-position:50% 30%}
+.s1 .title{left:var(--m);right:var(--m);bottom:128px}
+.s1 .title .eyebrow{color:rgba(245,240,233,.85);margin-bottom:22px}
+.s1 h1{font-size:150px;line-height:.92}
+.s1 .lede{margin-top:28px;font-size:30px}
+.s2 .head{left:var(--m);right:var(--m);top:170px}
+.s2 h2{font-size:92px;line-height:1;margin-top:24px}
+.s2 .lede{margin-top:32px;max-width:760px}
+.pair{left:var(--m);right:var(--m);top:540px;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--sand);border-bottom:1px solid var(--sand)}
+.pair>div{padding:34px 0}
+.pair>div+div{padding-left:44px;border-left:1px solid var(--sand)}
+.pair .serif{font-size:62px}
+.pair .caps{margin-top:16px}
+.s2 .coda{left:var(--m);top:800px;font-size:38px}
+.split .img{position:absolute;top:0;bottom:0;width:470px;object-fit:cover;height:100%}
+.split .txt{position:absolute;top:150px;bottom:130px;width:440px;display:flex;flex-direction:column}
+.s3 .img{left:0}.s3 .txt{left:556px}
+.s4 .img{right:0}.s4 .txt{left:var(--m)}
+.split .mast{left:556px}
+.s4 .mast{left:var(--m);right:556px}
+.split h2{font-size:64px;line-height:1.02;margin-top:22px}
+.split ol{list-style:none;margin-top:44px;border-top:1px solid var(--sand)}
+.split li{display:flex;gap:22px;padding:22px 0;border-bottom:1px solid var(--sand);font-size:25px;line-height:1.35;color:var(--soft)}
+.split li i{font-family:"Fraunces",serif;font-size:26px;color:var(--stone);width:28px;flex:none;line-height:1.25}
+.stat{margin-top:auto}
+.stat .serif{font-size:96px}
+.stat .quote{font-size:44px;line-height:1.15;color:var(--soft)}
+.stat .caps{margin-top:12px;font-size:16px}
+.split .folio{left:556px}
+.s4 .folio{left:var(--m);right:556px}
+.s5 .head{left:var(--m);right:var(--m);top:220px}
+.s5 h2{font-size:90px;line-height:1;margin-top:24px}
+.s5 .lede{left:var(--m);right:180px;top:470px}
+.s5 .hair{position:absolute;left:var(--m);right:var(--m);top:680px}
+.s5 .ask{left:var(--m);right:var(--m);top:720px;font-size:40px;line-height:1.2}
 </style></head><body>
 
-<!-- 1 hook -->
-<section class="slide dark s1">
-  <div class="photo"></div><div class="scrim"></div>
-  <div class="tile"><span></span></div>
-  <div class="copy">
-    <div class="eyebrow">Educational / Glazing</div>
-    <h1>Aluminium or PVC? How to choose your window frame.</h1>
-    <p class="sub">A 60 second guide for anyone specifying windows.</p>
+<section class="slide on-photo s1">
+  <img class="bleed" src="../../public/images/hero-glass.png" alt="">
+  <div class="veil"></div>
+  <div class="mast"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>the glazing notes · n° 01</span></div>
+  <div class="pos title">
+    <div class="eyebrow">a sixty second guide</div>
+    <h1 class="serif">Aluminium <i>or</i> PVC?</h1>
+    <p class="lede">How to choose your window frame.</p>
   </div>
-  <div class="count">01 / 05</div>
+  <div class="folio"><span></span><span>01 / 05</span></div>
 </section>
 
-<!-- 2 the real difference -->
-<section class="slide light">
-  <div class="tile"><span></span></div>
-  <div style="margin-top:auto;margin-bottom:auto">
-    <div class="rule"></div>
-    <h2>It comes down to the frame.</h2>
-    <p class="body">Both hold glass. The difference is the material around it. <b>Aluminium is strong and slim. PVC is warm and cost efficient.</b> Everything else follows from that.</p>
+<section class="slide s2">
+  <div class="mast"><img src="../../public/images/wordmark-dark.png" alt="VALDA"><span>i. the difference</span></div>
+  <div class="pos head">
+    <div class="eyebrow">both hold glass</div>
+    <h2 class="serif">It comes down to <i>the frame.</i></h2>
+    <p class="lede">The difference is the material around the glass.</p>
   </div>
-  <div class="count">02 / 05</div>
+  <div class="pos pair">
+    <div><div class="serif">Aluminium</div><div class="caps">Strong · Slim</div></div>
+    <div><div class="serif">PVC</div><div class="caps">Warm · Cost efficient</div></div>
+  </div>
+  <p class="pos coda serif"><i>Everything else follows from that.</i></p>
+  <div class="folio"><span></span><span>02 / 05</span></div>
 </section>
 
-<!-- 3 aluminium -->
-<section class="slide panel">
-  <div class="tile"><span></span></div>
-  <div class="top">
-    <div class="rule mute"></div>
-    <h2>Choose aluminium when...</h2>
-    <ul class="list">
-      <li><i>01</i>You want slim sightlines and more glass.</li>
-      <li><i>02</i>The opening is large or structural.</li>
-      <li><i>03</i>The look is modern and design led.</li>
-    </ul>
+<section class="slide warm split s3">
+  <img class="img" src="../../public/images/sliding-deck.png" alt="">
+  <div class="mast"><span>ii. aluminium</span><span></span></div>
+  <div class="txt">
+    <div class="eyebrow">when it wins</div>
+    <h2 class="serif">Choose aluminium <i>when…</i></h2>
+    <ol>
+      <li><i>i</i>You want slim sightlines and more glass.</li>
+      <li><i>ii</i>The opening is large or structural.</li>
+      <li><i>iii</i>The look is modern and design led.</li>
+    </ol>
+    <div class="stat"><div class="serif"><i>15/16</i> in</div><div class="caps">Sightline · SlimPatio 68</div></div>
   </div>
-  <div class="stat"><span class="num">15/16 in</span><span class="lbl">Sightline on the SlimPatio 68 aluminium slider.</span></div>
-  <div class="count">03 / 05</div>
+  <div class="folio"><span></span><span>03 / 05</span></div>
 </section>
 
-<!-- 4 PVC (mirrors 3) -->
-<section class="slide panel">
-  <div class="tile"><span></span></div>
-  <div class="top">
-    <div class="rule"></div>
-    <h2>Choose PVC when...</h2>
-    <ul class="list">
-      <li><i>01</i>Thermal performance is the priority.</li>
-      <li><i>02</i>The budget needs to work harder.</li>
-      <li><i>03</i>Low maintenance matters most.</li>
-    </ul>
+<section class="slide warm split s4">
+  <img class="img" src="../../public/images/home-cream-brick.webp" alt="">
+  <div class="mast"><span>iii. pvc</span><span></span></div>
+  <div class="txt">
+    <div class="eyebrow">when it wins</div>
+    <h2 class="serif">Choose PVC <i>when…</i></h2>
+    <ol>
+      <li><i>i</i>Thermal performance is the priority.</li>
+      <li><i>ii</i>The budget needs to work harder.</li>
+      <li><i>iii</i>Low maintenance matters most.</li>
+    </ol>
+    <div class="stat"><div class="serif quote"><i>Warm, efficient and easy to live with.</i></div></div>
   </div>
-  <div class="stat empty"><span class="lbl">&nbsp;</span></div>
-  <div class="count">04 / 05</div>
+  <div class="folio"><span></span><span>04 / 05</span></div>
 </section>
 
-<!-- 5 your turn -->
 <section class="slide dark s5">
-  <div class="tile"><span></span></div>
-  <div class="copy">
-    <h2>Still unsure? Start with the opening.</h2>
-    <p class="body">Large spans and slim frames point to aluminium. Energy and value point to PVC. Size and sightline decide it.</p>
-    <p class="engage">What are you specifying, and why? Tell us in the comments.</p>
-    <div class="foot"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>valdagroup.com</span></div>
+  <div class="mast"><img src="../../public/images/wordmark-white.png" alt="VALDA"><span>iv. your turn</span></div>
+  <div class="pos head">
+    <div class="eyebrow">still unsure?</div>
+    <h2 class="serif">Start with <i>the opening.</i></h2>
   </div>
+  <p class="pos lede">Large spans and slim frames point to aluminium. Energy and value point to PVC. Size and sightline decide it.</p>
+  <div class="hair"></div>
+  <p class="pos ask serif"><i>What are you specifying, and why?</i> Tell us in the comments.</p>
+  <div class="folio"><span>valdagroup.com</span><span>05 / 05</span></div>
 </section>
 </body></html>
