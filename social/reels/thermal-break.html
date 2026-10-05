@@ -1,0 +1,76 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:IT;font-weight:400;src:url(../fonts/InterTight-400.ttf)}
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+@font-face{font-family:IT;font-weight:600;src:url(../fonts/InterTight-600.ttf)}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:IT;color:#222224}
+.hd{position:absolute;left:64px;right:64px;top:110px;display:flex;justify-content:space-between;align-items:center;font-size:26px;color:#a3a3a5}
+.t{position:absolute;left:64px;right:64px;font-weight:600;letter-spacing:-.035em;line-height:1}
+.l{position:absolute;left:64px;right:64px;font-size:34px;line-height:1.4;color:#6f6f72}
+svg{position:absolute;left:0;top:560px}
+.tag{font:500 26px IT}
+.bar{position:absolute;left:64px;right:64px;bottom:120px;height:5px;background:#e3e3e3;border-radius:3px}
+.bar i{display:block;height:100%;background:#222224;border-radius:3px}
+</style></head><body>
+<div class="hd"><img src="../../public/valda-logo-ink.svg" style="height:58px"><span>Glazing guide</span></div>
+<div id="title" class="t" style="top:240px;font-size:96px"></div>
+<div id="sub" class="l" style="top:470px"></div>
+<svg id="svg" width="1080" height="1000" viewBox="0 0 1080 1000"></svg>
+<div id="cap" class="l" style="top:1600px;color:#222224;font-weight:500"></div>
+<div class="bar"><i id="prog"></i></div>
+<script>
+const D=15, $=id=>document.getElementById(id);
+const ease=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);
+const fade=(t,a,b)=>ease((t-a)/(b-a));
+const W=1080;
+// frame section geometry
+function frame(broken,ox){
+  const g=[];const x=ox,y=200,w=300,h=520;
+  if(!broken){g.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="#c9ccd1" stroke="#8d9198" stroke-width="3"/>`);
+    for(let i=0;i<3;i++)g.push(`<rect x="${x+30+i*90}" y="${y+60}" width="60" height="${h-120}" rx="4" fill="#eef0f2" stroke="#8d9198" stroke-width="2"/>`);}
+  else{const s=110;
+    g.push(`<rect x="${x}" y="${y}" width="${s}" height="${h}" rx="6" fill="#c9ccd1" stroke="#8d9198" stroke-width="3"/>`);
+    g.push(`<rect x="${x+w-s}" y="${y}" width="${s}" height="${h}" rx="6" fill="#c9ccd1" stroke="#8d9198" stroke-width="3"/>`);
+    g.push(`<rect x="${x+s}" y="${y+120}" width="${w-2*s}" height="${h-240}" rx="4" fill="#2a2a2d"/>`);
+    g.push(`<rect x="${x+25}" y="${y+60}" width="60" height="${h-120}" rx="4" fill="#eef0f2" stroke="#8d9198" stroke-width="2"/>`);
+    g.push(`<rect x="${x+w-85}" y="${y+60}" width="60" height="${h-120}" rx="4" fill="#eef0f2" stroke="#8d9198" stroke-width="2"/>`);}
+  return g.join('');
+}
+function render(t){
+  const s1=t<2.6, s2=t>=2.6&&t<7.6, s3=t>=7.6&&t<12.4, s4=t>=12.4;
+  let title='',sub='',cap='',svg='',op=1;
+  if(s1){title='Why do some aluminium windows feel cold?';sub='The answer is inside the frame.';op=fade(t,0.1,0.9);svg=frame(false,(W-300)/2);}
+  else if(s4){title='Less heat loss.<br>Less condensation.';sub='Before you specify an aluminium window, ask one question:';cap='Is the frame thermally broken?<br><span style="color:#1f4e8c">valdagroup.com</span>';op=fade(t,12.4,13.1);}
+  else{
+    const broken=s3, t0=broken?7.6:2.6, lt=t-t0;
+    title=broken?'With a thermal break':'Without a thermal break';
+    sub=broken?'A polyamide core splits the frame in two.':'Solid aluminium carries the cold straight through.';
+    cap=broken?'The inside stays close to room temperature.':'The inside face gets cold, and condensation forms.';
+    op=fade(lt,0,0.6);
+    const ox=(W-300)/2;
+    svg+=`<rect x="0" y="120" width="${ox-40}" height="680" fill="#eaf1fb"/><rect x="${ox+340}" y="120" width="${W-ox-340}" height="680" fill="#fbf1e8"/>`;
+    svg+=`<text x="64" y="90" class="tag" fill="#1f4e8c">Outside · cold</text><text x="${W-64}" y="90" class="tag" fill="#b4561f" text-anchor="end">Inside · warm</text>`;
+    svg+=frame(broken,ox);
+    // heat particles: travel from inside (right) to outside (left)
+    const n=24;
+    for(let i=0;i<n;i++){
+      const ph=((lt*0.32)+i/n)%1, yy=240+((i*137)%460);
+      let x=W-80-ph*(W-160), a=1, col='#d9772b';
+      if(broken){const wall=ox+300-110; if(x<wall){a=Math.max(0,1-(wall-x)/40); x=Math.max(x,wall-40);} }
+      else{ if(x<ox+300&&x>ox) col='#4a7fc4'; if(x<ox) col='#1f4e8c'; }
+      svg+=`<circle cx="${x}" cy="${yy}" r="9" fill="${col}" opacity="${(a*fade(lt,0.3,1)).toFixed(2)}"/>`;
+    }
+    if(broken){const lx=ox+150, ly=900;
+      svg+=`<line x1="${lx}" y1="${ly-30}" x2="${lx}" y2="${ly-200}" stroke="#222224" stroke-width="2" opacity="${fade(lt,1,1.6)}"/><text x="${lx}" y="${ly+10}" class="tag" text-anchor="middle" fill="#222224" opacity="${fade(lt,1,1.6)}">Polyamide thermal break</text>`;}
+    else {svg+=`<text x="${ox+150}" y="910" class="tag" text-anchor="middle" fill="#222224" opacity="${fade(lt,1,1.6)}">Solid aluminium</text>`;}
+  }
+  $('title').innerHTML=title; $('sub').innerHTML=sub; $('cap').innerHTML=cap; $('svg').innerHTML=svg;
+  for(const id of ['title','sub','cap']){$(id).style.opacity=op;$(id).style.transform=`translateY(${(1-op)*24}px)`;}
+  $('title').style.top=s4?'560px':'240px'; $('sub').style.top=s4?'800px':'470px'; $('cap').style.top=s4?'1000px':'1600px';
+  $('sub').style.top=($('title').offsetTop+$('title').offsetHeight+36)+'px';
+  $('cap').style.fontSize=s4?'64px':'34px'; $('cap').style.fontWeight=s4?'600':'500'; $('cap').style.letterSpacing=s4?'-.03em':'0'; $('cap').style.lineHeight=s4?'1.15':'1.4';
+  $('svg').style.opacity=(s2||s3)?1:(s1?0.35*fade(t,0.4,1.4):0);
+  $('prog').style.width=(t/D*100)+'%';
+}
+window.render=render; window.DURATION=D;
+</script></body></html>
