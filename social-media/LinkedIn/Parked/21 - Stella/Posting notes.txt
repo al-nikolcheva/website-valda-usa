@@ -11,3 +11,5 @@ DOCUMENT TITLE (carousel): Stella | VALDA
 
 ALT TEXT (add per image for accessibility and search):
 Slide 1: Text slide: Stella. Sofia, Bulgaria
+Slide 2: Text slide: 
+Slide 3: Text slide: 
