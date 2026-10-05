@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"></head><body>
+<div class="hd"><img src="../../public/valda-logo-ink.svg" style="height:58px"><span>Glazing guide</span></div>
+<div id="stage"></div><div class="bar"><i id="prog"></i></div>
+<script>
+const D=12,$=id=>document.getElementById(id);
+const e=x=>x<0?0:x>1?1:1-Math.pow(1-x,3), f=(t,a,b)=>e((t-a)/(b-a));
+const rows=[['Double glazed','ConceptSystem 77',0.24,2.8],['Triple glazed','ConceptSystem 77',0.18,4.3],['Triple glazed','MasterLine 10',0.14,5.8]];
+function render(t){
+  let h='';
+  if(t<2.6){const o=f(t,0.1,0.8);
+    h=`<div class="a big" style="top:${360+(1-o)*30}px;font-size:110px;opacity:${o}">One number tells you how much heat a window loses.</div>`;}
+  else if(t<9.4){
+    h=`<div class="a mid" style="top:320px;color:#222224;font-weight:600;font-size:44px">U-factor · lower is better</div>`;
+    rows.forEach(([a,b,v,st],i)=>{const o=f(t,st,st+0.6),w=f(t,st+0.2,st+1.2)*(v/0.24)*860,y=500+i*340;
+      const shown=(v*f(t,st+0.2,st+1.2)).toFixed(2);
+      const dots=[...Array(Math.round(v*60))].map((_,k)=>{const ph=((t*0.5)+k/(v*60))%1;return `<circle cx="${64+ph*w}" cy="${y+150+((k*37)%60)-30}" r="7" fill="#d9772b" opacity="${o*0.8}"/>`}).join('');
+      h+=`<div class="a" style="top:${y}px;opacity:${o}"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:40px;font-weight:600">${a}</span><span style="font-size:96px;font-weight:600;letter-spacing:-.04em;color:${i==2?'#1f4e8c':'#222224'}">${shown}</span></div><div style="font-size:28px;color:#a3a3a5">${b}</div></div>
+          <div class="a" style="top:${y+120}px;height:60px;width:${w}px;background:${i==2?'#1f4e8c':'#d6d9de'};border-radius:10px;opacity:${o}"></div>
+          <svg style="position:absolute;left:0;top:0" width="1080" height="1920">${dots}</svg>`;});
+    h+=`<div class="a mid" style="top:1560px;opacity:${f(t,7.4,8)}">That is about 40% less heat through the window.</div>`;}
+  else{const lt=t-9.4,o=f(lt,0,0.5);
+    h=`<div class="a big" style="top:400px;font-size:96px;opacity:${o}">Comparing quotes?</div>
+       <div class="a big" style="top:620px;font-size:72px;opacity:${f(lt,0.4,0.9)};color:#6f6f72">Ask for the whole-window U-factor, not the glass alone.</div>
+       <div class="a mid" style="top:1000px;opacity:${f(lt,1,1.5)};color:#1f4e8c">valdagroup.com</div>`;}
+  $('stage').innerHTML=h; $('prog').style.width=(t/D*100)+'%';
+}
+window.render=render;window.DURATION=D;
+</script></body></html>

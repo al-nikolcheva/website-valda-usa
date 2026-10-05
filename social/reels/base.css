@@ -1,0 +1,12 @@
+@font-face{font-family:IT;font-weight:400;src:url(../fonts/InterTight-400.ttf)}
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+@font-face{font-family:IT;font-weight:600;src:url(../fonts/InterTight-600.ttf)}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:IT;color:#222224;position:relative}
+.hd{position:absolute;left:64px;right:64px;top:110px;display:flex;justify-content:space-between;align-items:center;font-size:26px;color:#a3a3a5}
+.a{position:absolute;left:64px;right:64px}
+.big{font-weight:600;letter-spacing:-.035em;line-height:1}
+.mid{font-size:36px;line-height:1.4;color:#6f6f72}
+.bar{position:absolute;left:64px;right:64px;bottom:120px;height:5px;background:#e3e3e3;border-radius:3px}
+.bar i{display:block;height:100%;background:#222224;border-radius:3px}
+.chip{display:inline-block;background:#f4f4f4;border-radius:14px;padding:18px 26px;font-size:30px;margin:0 10px 12px 0}
