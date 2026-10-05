@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { PRODUCTS, allOpeningTypes, openingTypeSlug } from "@/lib/products";
 import { PROJECTS } from "@/lib/projects";
-import { POSTS } from "@/lib/insights";
+import { publishedPosts } from "@/lib/insights";
 import { packOnFile } from "@/lib/downloads-server";
 import { SITE_URL } from "@/lib/seo";
 
@@ -15,6 +15,9 @@ const entry = (path: string, priority: number, changeFrequency: Entry["changeFre
   changeFrequency,
   priority,
 });
+
+// Hourly, so scheduled articles join the sitemap on their publish date.
+export const revalidate = 3600;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const core = [
@@ -44,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Only system packs with at least one document on file; empty packs are noindex.
   const downloads = PRODUCTS.filter((s) => packOnFile(s).length > 0).map((s) => entry(`/downloads/${s.slug}`, 0.5));
 
-  const posts = POSTS.map((p) => entry(`/insights/${p.slug}`, 0.6, "monthly", new Date(p.date)));
+  const posts = publishedPosts().map((p) => entry(`/insights/${p.slug}`, 0.6, "monthly", new Date(p.date)));
 
   return [...core, ...systems, ...openings, ...projects, ...downloads, ...posts];
 }

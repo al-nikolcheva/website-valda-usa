@@ -29,6 +29,107 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "thermal-break-explained",
+    title: "The Thermal Break, Explained",
+    description:
+      "What a thermal break is, why every aluminum window needs one, how polyamide strips stop heat and condensation, and what to ask before you specify.",
+    category: "Engineering",
+    date: "2026-10-26",
+    dateLabel: "Oct 2026",
+    readMins: 6,
+    cover: "/images/profile-cs77.jpg",
+    keywords: ["thermal break", "thermally broken aluminum windows", "what is a thermal break", "aluminum window condensation", "polyamide thermal break", "energy efficient aluminum windows"],
+    excerpt: "Aluminum is one of the best conductors of heat there is. The thermal break is the small piece of engineering that lets it insulate anyway.",
+    body: [
+      { type: "p", text: "Aluminum is strong, slim and almost endlessly durable. It is also one of the best conductors of heat in construction. Left as one solid piece, an aluminum frame would carry the outside temperature straight into the room. The thermal break is the part of the profile that stops that, and it is the reason a modern aluminum window can be both slim and warm." },
+      { type: "h2", text: "What is a thermal break?" },
+      { type: "p", text: "A thermal break is an insulating barrier built into the frame. Instead of one continuous aluminum section, the profile is made of two: an outer shell that faces the weather and an inner shell that faces the room. The two are joined by a material that conducts very little heat, so there is no solid metal path from outside to inside." },
+      { type: "quote", text: "A thermally broken aluminum window is really two frames, held together by something that refuses to carry heat." },
+      { type: "h2", text: "Why aluminum needs one" },
+      { type: "p", text: "Aluminum conducts heat hundreds of times faster than the polyamide used to break it. Without a break, the inner face of the frame drops close to the outdoor temperature on a cold night. That costs energy, makes the room feel colder near the glass, and pulls moisture out of the air as condensation on the frame." },
+      { type: "ul", items: [
+        "Energy: less heat lost in winter and less heat gained in summer.",
+        "Comfort: the inner frame stays close to room temperature.",
+        "Condensation: a warmer inner surface means less water on the frame and sill.",
+        "Longevity: less moisture means less risk of damage to finishes and surrounding materials.",
+      ] },
+      { type: "h2", text: "How it is made" },
+      { type: "p", text: "In European aluminum systems the break is usually a pair of glass-fibre reinforced polyamide strips. The inner and outer profiles are extruded and finished separately, then the strips are rolled into channels on each profile and the metal is crimped tight around them. The result is a single, structural frame with an insulating core." },
+      { type: "p", text: "Some high-performance systems go further, adding insulating foam or extra chambers inside the break to cut heat transfer again. A deeper break generally means better thermal performance, which is why system depth is one of the first things to look at on a spec sheet." },
+      { type: "h3", text: "Polyamide strips vs pour and debridge" },
+      { type: "p", text: "In North America you will also see a pour and debridge method, where liquid polyurethane is poured into a channel in a single extrusion and the metal bridge beneath it is then cut away. Both create a thermal break. Polyamide strips allow wider breaks and let the inner and outer profiles carry different colors, which is useful when the interior and exterior finishes need to differ." },
+      { type: "h2", text: "What the thermal break does to the numbers" },
+      { type: "p", text: "The effect of the break shows up in the whole-window U-factor, the measure of how much heat a window lets through. On the Reynaers systems we fabricate, manufacturer data puts ConceptSystem 77 at a U-factor of 0.24 with double glazing and 0.18 with triple, and MasterLine 10 at 0.14 with triple glazing. Those figures depend on a well-designed break as much as on the glass." },
+      { type: "h2", text: "What to ask before you specify" },
+      { type: "ul", items: [
+        "Is the frame thermally broken, and how deep is the break?",
+        "What is the whole-window U-factor, frame and glass together, not the glass alone?",
+        "Can the inside and outside be finished in different colors?",
+        "How does the system perform for condensation in your climate?",
+      ] },
+      { type: "p", text: "Every aluminum window and door system VALDA supplies is thermally broken. If you are comparing options for a project, send us the openings and the climate, and we will recommend the system and glazing that fit." },
+    ],
+    faqs: [
+      { q: "What is a thermal break in an aluminum window?", a: "It is an insulating barrier, usually glass-fibre reinforced polyamide strips, that joins the inner and outer aluminum profiles. It removes the solid metal path for heat, so the frame insulates instead of conducting the outside temperature indoors." },
+      { q: "Do thermally broken windows stop condensation?", a: "They greatly reduce it. Because the inner frame stays much closer to room temperature, moisture in the air is far less likely to condense on it. Indoor humidity and the glazing also play a part." },
+      { q: "Are all aluminum windows thermally broken?", a: "No. Non-thermally broken aluminum is still sold for some uses, but for homes and occupied buildings a thermal break is essential. Every aluminum system VALDA supplies is thermally broken." },
+      { q: "Is a deeper thermal break better?", a: "Generally yes. A wider break, or one with added insulating foam, lowers heat transfer through the frame and improves the whole-window U-factor." },
+    ],
+    related: ["what-u-factor-tells-you", "how-aluminum-window-profiles-are-made"],
+  },
+
+  {
+    slug: "what-u-factor-tells-you",
+    title: "What U-Factor Really Tells You About a Window",
+    description:
+      "U-factor explained: what the number means, why lower is better, whole-window vs glass-only figures, how to convert European Uw values, and how to compare quotes.",
+    category: "Engineering",
+    date: "2026-10-12",
+    dateLabel: "Oct 2026",
+    readMins: 6,
+    cover: "/images/home-modern-pool.webp",
+    keywords: ["window U-factor", "what is U-factor", "U-factor vs R-value", "energy efficient windows", "Uw value conversion", "triple glazing U-factor", "how to compare windows"],
+    excerpt: "One number tells you how much heat a window lets through. Here is how to read it, and the one question to ask every supplier.",
+    body: [
+      { type: "p", text: "Of all the figures on a window spec sheet, U-factor is the one that tells you most about energy performance. It measures how much heat passes through the window, and it is the fairest way to compare two windows side by side, as long as you know what you are looking at." },
+      { type: "h2", text: "What U-factor measures" },
+      { type: "p", text: "U-factor is the rate of heat transfer through a window. In the US it is expressed in Btu per hour, per square foot, per degree Fahrenheit of temperature difference between inside and outside. In practice you only need one rule: the lower the number, the better the window insulates." },
+      { type: "quote", text: "Lower is better. A window with a U-factor of 0.18 lets through a quarter less heat than one at 0.24." },
+      { type: "h2", text: "Whole window, not just the glass" },
+      { type: "p", text: "This is where most comparisons go wrong. A center-of-glass figure describes only the middle of the glass, which is always the best-performing part. The whole-window U-factor includes the frame, the edge of the glass and the spacer, so it is the number that reflects how the window actually performs on the wall. When you compare quotes, always ask for the whole-window figure." },
+      { type: "h2", text: "What changes the number" },
+      { type: "ul", items: [
+        "The frame: material, depth and, for aluminum, the thermal break.",
+        "The glazing: double or triple, and the width of the gaps between panes.",
+        "Coatings: low-emissivity coatings reflect heat back towards its source.",
+        "Gas fill: argon or krypton between the panes insulates better than air.",
+        "The spacer: warm-edge spacers reduce heat loss around the edge of the glass.",
+      ] },
+      { type: "h2", text: "Double vs triple glazing, in real numbers" },
+      { type: "p", text: "Manufacturer data for the Reynaers aluminum systems we fabricate shows what glazing does. ConceptSystem 77 moves from a U-factor of 0.24 with double glazing to 0.18 with triple. MasterLine 8 goes from 0.23 to 0.16. MasterLine 10, a high-insulation system, reaches 0.14 with triple glazing, and ConceptWall 50 curtain wall does the same. Large sliding systems sit higher, because big moving panels are harder to seal: ConceptPatio 155 runs from 0.34 to 0.28." },
+      { type: "h2", text: "U-factor vs R-value" },
+      { type: "p", text: "R-value measures resistance to heat flow, so higher is better. U-factor is roughly its inverse, so lower is better. Walls and insulation are usually quoted in R-values and windows in U-factors, which is why the two can look like they point in opposite directions." },
+      { type: "h2", text: "Reading a European quote" },
+      { type: "p", text: "European manufacturers often quote Uw, the whole-window value, in watts per square meter per kelvin. To convert to the US figure, divide by 5.678. A Uw of 1.0 is a U-factor of about 0.18, and a Uw of 0.8 is about 0.14. It is the same measurement in different units." },
+      { type: "h2", text: "How to use it on a project" },
+      { type: "ul", items: [
+        "Ask every supplier for the whole-window U-factor, frame and glass together.",
+        "Compare like with like: same opening type, same glazing.",
+        "Check the requirement for your climate zone. Colder zones set lower maximums.",
+        "Weigh U-factor alongside the rest: design pressure, impact rating, acoustics and sightlines.",
+      ] },
+      { type: "p", text: "For our Reynaers systems the U-factor is published on each product page. For VALDA and Kömmerling systems, thermal data is provided per project on request. Send us your openings and climate, and we will put the right figures in front of you." },
+    ],
+    faqs: [
+      { q: "What is a good U-factor for a window?", a: "Lower is better. Around 0.30 is typical of a decent double-glazed window, and high-performance triple-glazed aluminum systems reach 0.14 to 0.18. The right target depends on your climate zone and local energy code." },
+      { q: "What is the difference between U-factor and R-value?", a: "U-factor measures how much heat passes through, so lower is better. R-value measures resistance to heat flow, so higher is better. They are roughly inverses of each other." },
+      { q: "How do I convert a European Uw value to a US U-factor?", a: "Divide the Uw value in W/m²K by 5.678. For example, a Uw of 1.0 equals a U-factor of about 0.18 Btu/hr·ft²·°F." },
+      { q: "Does triple glazing always lower the U-factor?", a: "Yes, on the same frame triple glazing lowers the U-factor. On ConceptSystem 77, for example, it moves from 0.24 with double glazing to 0.18 with triple." },
+    ],
+    related: ["thermal-break-explained", "how-aluminum-window-profiles-are-made"],
+  },
+
+  {
     slug: "how-aluminum-window-profiles-are-made",
     title: "How Aluminum Window Profiles Are Made",
     description:
@@ -424,6 +525,12 @@ export const POSTS: Post[] = [
   },
 ];
 
-export const getPost = (slug: string): Post | undefined => POSTS.find((p) => p.slug === slug);
-export const allPostSlugs = (): string[] => POSTS.map((p) => p.slug);
-export const CATEGORIES = (): string[] => [...new Set(POSTS.map((p) => p.category))];
+// Posts go live at 9:00 AM ET on their date, so articles can be written ahead
+// and appear on schedule. Pages that list posts revalidate hourly to pick them up.
+export const isPublished = (p: Post, now = Date.now()): boolean => Date.parse(`${p.date}T09:00:00-04:00`) <= now;
+export const publishedPosts = (): Post[] =>
+  POSTS.filter((p) => isPublished(p)).sort((a, b) => b.date.localeCompare(a.date));
+
+export const getPost = (slug: string): Post | undefined => publishedPosts().find((p) => p.slug === slug);
+export const allPostSlugs = (): string[] => publishedPosts().map((p) => p.slug);
+export const CATEGORIES = (): string[] => [...new Set(publishedPosts().map((p) => p.category))];

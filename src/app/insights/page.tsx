@@ -6,7 +6,10 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { PinnedHero } from "@/components/pinned-hero";
 import { Container, Reveal } from "@/components/primitives";
 import { SwHead } from "@/components/sw/head";
-import { POSTS } from "@/lib/insights";
+import { publishedPosts } from "@/lib/insights";
+
+// Re-check hourly so scheduled articles appear on their publish date.
+export const revalidate = 3600;
 
 export const metadata: Metadata = pageMeta({
   title: "Insights: Guides to European Windows",
@@ -21,7 +24,7 @@ function Chip({ children }: { children: React.ReactNode }) {
 }
 
 export default function InsightsPage() {
-  const [featured, ...rest] = POSTS;
+  const [featured, ...rest] = publishedPosts();
 
   return (
     <PinnedHero

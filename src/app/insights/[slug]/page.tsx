@@ -5,14 +5,18 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/primitives";
 import { Button } from "@/components/ui/button";
-import { POSTS, getPost, type Block } from "@/lib/insights";
+import { allPostSlugs, getPost, type Block } from "@/lib/insights";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/seo";
 
 const BASE = "https://valdagroup.com";
 
+// Scheduled articles are not prebuilt; getPost 404s them until their date,
+// and the hourly revalidate lets them render once they go live.
+export const revalidate = 3600;
+
 export function generateStaticParams() {
-  return POSTS.map((p) => ({ slug: p.slug }));
+  return allPostSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
