@@ -14,3 +14,4 @@ Aluminium or PVC? It is the first question on almost every project, and the answ
 
 - Slide 3 figure: 15/16 in sightline, taken from the SlimPatio 68 entry in `src/data/valda-products.json`. Confirm it is the figure you want to lead with.
 - Slides 3 and 4 use mood photos from the website (`sliding-deck.png`, `home-cream-brick.webp`), not specific VALDA installations.
+- Slide 2 (`product-sliding.png`, `home-us-porch.webp`) and slide 5 (`hero-villa.jpg`) also use mood photos from the website.

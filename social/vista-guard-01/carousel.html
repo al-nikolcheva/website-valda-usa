@@ -4,15 +4,18 @@
 <link rel="stylesheet" href="../site.css">
 <style>
 .row{position:absolute;left:var(--m);right:var(--m);top:170px}
-.s1 h1{left:var(--m);right:var(--m);top:226px;font-size:76px}
-.s1 .stage{left:var(--m);right:var(--m);top:430px;bottom:56px;background:var(--panel);border-radius:var(--r)}
-.s1 .stage img{position:absolute;right:40px;bottom:0;height:540px}
-.s1 .chips{position:absolute;left:28px;top:28px;display:flex;gap:10px}
-.s1 .stage .note{position:absolute;left:32px;bottom:32px;width:300px;font-size:24px;line-height:1.4;color:var(--slate)}
+.s1 .pcard{left:var(--m);bottom:56px;width:400px}
+.s1 .pcard .row{position:static}
+.s1 .pcard .im{height:230px;margin-top:14px;border-radius:10px;background:rgba(255,255,255,.9);display:grid;place-items:center;overflow:hidden}
+.s1 .pcard .im img{height:220px}
+.s1 .pcard .t{margin-top:16px}
+.s1 .headline{right:var(--m);bottom:60px;width:480px;font-size:62px;line-height:1.05}
 .s2 h2{left:var(--m);right:var(--m);top:226px;font-size:80px}
-.s2 .lead{left:var(--m);width:440px;top:430px}
-.s2 .iso{right:56px;bottom:60px;width:503px}
-.s2 .cap{left:var(--m);bottom:64px;display:flex;align-items:center;gap:10px;font-size:22px;font-weight:500}
+.s2 .lead{left:var(--m);width:900px;top:340px;z-index:3}
+.s2 .iso{right:30px;bottom:90px;width:520px}
+.s2 .pc{left:var(--m);top:480px;width:430px;height:470px}
+.s2 .pc .chip{position:absolute;left:16px;top:16px}
+.s2 .cap{right:var(--m);bottom:64px;z-index:3;display:flex;align-items:center;gap:10px;font-size:22px;font-weight:500}
 .s3 h2{left:var(--m);top:226px;font-size:72px}
 .s3 .stage{left:var(--m);width:540px;top:350px;bottom:56px;background:var(--panel);border-radius:var(--r);overflow:hidden}
 .s3 .fig{position:absolute;left:-30px;top:60px;width:620px}
@@ -28,24 +31,29 @@
 .s4 .val{font-size:38px;letter-spacing:-.02em}
 .s5 h2{left:var(--m);right:var(--m);top:226px;font-size:76px}
 .s5 .pair{left:var(--m);right:var(--m);top:440px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.s5 .card{background:#2d2d30;height:200px;display:flex;flex-direction:column;justify-content:space-between}
-.s5 .card .label{color:#9a9a9d}.s5 .card .val{color:#fff;font-size:36px;letter-spacing:-.02em}
+.s5 .card{height:200px;display:flex;flex-direction:column;justify-content:space-between}
+.s5 .card .val{color:#fff;font-size:36px;letter-spacing:-.02em}
+.s5 .lead{color:rgba(255,255,255,.88)!important}
+.s5 .ask{border-top-color:rgba(255,255,255,.25)!important}
 .s5 .lead{left:var(--m);width:900px;top:676px}
 .s5 .ask{left:var(--m);right:var(--m);bottom:56px;display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid rgba(255,255,255,.15)}
 .s5 .ask p{font-size:28px;font-weight:500;letter-spacing:-.01em;width:600px;line-height:1.3}
 .s5 .ask p b{font-weight:500;color:#8fb0e6}
-.s5 .row .label{color:#8a8a8d}
+.s5 .row .label{color:rgba(255,255,255,.7)}
 </style></head><body>
 
-<section class="slide s1">
-  <div class="top"><img class="logo" src="../../public/valda-logo-ink.svg" alt="VALDA"><span class="nn">/01</span></div>
-  <div class="row"><span class="label">What we have</span></div>
-  <h1 class="pos h">VALDA Vista: the aluminium system built to disappear.</h1>
-  <div class="pos stage">
-    <div class="chips"><span class="chip"><span class="dot"></span>Aluminium</span><span class="chip">HVHZ approved</span></div>
-    <p class="note">Vista Guard. Slim frame, hurricane rated, no shutters needed.</p>
-    <img src="../../public/products/vista-guard.png" alt="Vista Guard profile section">
+<section class="slide light s1">
+  <img class="bleed" src="../../public/images/product-windows.png" alt="" style="object-position:50% 55%">
+  <div class="scrim hero"></div>
+  <div class="wordmark">VALDA</div>
+  <div class="top"><span></span><span class="nn">/01</span></div>
+  <div class="pos frost pcard">
+    <div class="row"><span class="label">What we have</span><span class="label">Aluminium · HVHZ</span></div>
+    <div class="im"><img src="../assets/vista-cut.png" alt="Vista Guard profile section"></div>
+    <div class="t">Vista Guard</div>
+    <div class="s">Slim frame, hurricane rated</div>
   </div>
+  <h1 class="pos h headline">The aluminium system built to disappear.</h1>
 </section>
 
 <section class="slide panel s2">
@@ -53,6 +61,7 @@
   <div class="row"><span class="label">The idea</span></div>
   <h2 class="pos h">Less frame. More view.</h2>
   <p class="pos lead body">A thermally broken aluminium frame, slimmer than its PVC counterpart, so the glass does the work and the window recedes.</p>
+  <div class="pos photo pc"><img src="../../public/images/product-sliding.png" alt=""><span class="chip"><span class="dot"></span>Built to disappear</span></div>
   <img class="pos iso" src="../assets/iso-window.png" alt="">
   <div class="pos cap"><span class="dot"></span>Picture and tilt &amp; turn</div>
 </section>
@@ -91,13 +100,15 @@
   </div>
 </section>
 
-<section class="slide char s5">
+<section class="slide char light s5">
+  <img class="bleed" src="../../public/images/home-coast-sunset.webp" alt="" style="object-position:50% 60%">
+  <div class="bleed" style="background:linear-gradient(180deg,rgba(20,20,22,.8) 0%,rgba(20,20,22,.5) 50%,rgba(20,20,22,.85) 100%)"></div>
   <div class="top"><img class="logo" src="../../public/valda-logo-white.svg" alt="VALDA"><span class="nn">/05</span></div>
   <div class="row"><span class="label">Specify</span></div>
   <h2 class="pos h">Specifying on the coast? Start with Vista Guard.</h2>
   <div class="pos pair">
-    <div class="card"><div class="label">Florida Product Approval</div><div class="val">FL39802 · FL39801</div></div>
-    <div class="card"><div class="label">Certification</div><div class="val">NAMI certified</div></div>
+    <div class="card frost"><div class="label">Florida Product Approval</div><div class="val">FL39802 · FL39801</div></div>
+    <div class="card frost"><div class="label">Certification</div><div class="val">NAMI certified</div></div>
   </div>
   <p class="pos lead body soft">No shutters or external impact protection needed.</p>
   <div class="pos ask">

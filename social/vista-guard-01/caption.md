@@ -25,3 +25,4 @@ Some windows are meant to be looked at. Vista Guard is meant to be looked throug
 - Name: the calendar says "VALDA Vista", the website calls it "Vista Guard". Slide 1 uses the calendar title, the rest says Vista Guard.
 - `src/lib/systems.ts` notes Vista / Vision (FL39801 / FL39802) opening animations are on "QA hold, not public". The approvals are already on the product page, but check before naming the FL numbers on slide 5.
 - Thermal figures are "on request" in the data, so none are claimed.
+- Cover photo (`product-windows.png`), slide 2 photo (`product-sliding.png`) and slide 5 photo (`home-coast-sunset.webp`) are mood images from the website, not Vista Guard installations.
