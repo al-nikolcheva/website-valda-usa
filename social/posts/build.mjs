@@ -7,8 +7,8 @@ const POSTS=ctx.window.POSTS, only=process.argv.slice(2).map(Number);
 const OUT=path.resolve('../../social-media');
 function writeText(p,plat,dir,slides){
   const strip=t=>String(t||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
-  const kind=x=>({photo:'Photo of ',photoType:'Photo of ',card:'Photo of ',photoSlide:'Photo: ',inSitu:'Photo: ',over:'Photo with text: ',systems:'Drawing of a window with text: ',drawing:'Drawing of a window with text: ',sand:'Window profile section with text: ',darkCut:'Window profile section with text: ',section:'Window profile section with text: '}[x.t]||'Text slide: ');
-  const alt=slides.map((x,i)=>`Slide ${i+1}: ${kind(x)}${[x.label,x.h,x.d||x.lead||x.cap,x.c].map(strip).filter(Boolean).join('. ')}`.replace(/\.\./g,'.'));
+  const kind=x=>({photo:'Photo of ',photoType:'Photo of ',card:'Photo of ',photoSlide:'Photo: ',inSitu:'Photo: ',over:'Photo with text: ',systems:'Drawing of a window with text: ',drawing:'Drawing of a window with text: ',sand:'Window profile section with text: ',darkCut:'Window profile section with text: ',section:'Window profile section with text: ',projCover:'Photo of ',projPhoto:'Photo of '}[x.t]||'Text slide: ');
+  const alt=slides.map((x,i)=>`Slide ${i+1}: ${kind(x)}${[x.label,x.h||(x.t==='projPhoto'?`${p.title}, ${p.loc}`:''),x.d||x.lead||x.cap,x.c].map(strip).filter(Boolean).join('. ')}`.replace(/\.\./g,'.'));
   const cap = plat==='LinkedIn'
     ? `${p.caption}\n\n${p.link?'Read more: '+p.link:'valdagroup.com'}\n\n${p.li} #VALDA`
     : `${p.caption}${p.link?'\n\nMore via the link in bio.':''}\n\n${p.ig} #VALDA`;
