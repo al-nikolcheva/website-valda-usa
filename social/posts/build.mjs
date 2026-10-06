@@ -48,7 +48,11 @@ for (const p of POSTS) {
     const s=await page.$$('.slide');
     if (!s.length) throw new Error('no slides rendered for post '+p.n);
     for (let i=0;i<s.length;i++) await s[i].screenshot({path:path.join(dir,`Slide ${i+1}.png`)});
-    if (plat==='Instagram' || s.length>1) execFileSync('convert',[...s.map((_,i)=>path.join(dir,`Slide ${i+1}.png`)),'-quality','88','-compress','jpeg','-density','72','-units','PixelsPerInch',path.join(dir,'Carousel.pdf')]);
+    // Vector PDF straight from Chromium: text stays sharp at any zoom, photos keep full resolution.
+    if (plat==='Instagram' || s.length>1) {
+      await page.addStyleTag({content:`@page{size:1080px ${h}px;margin:0}html,body{margin:0;padding:0;gap:0!important}.slide{break-after:page;margin:0!important}`});
+      await page.pdf({path:path.join(dir,'Carousel.pdf'),width:'1080px',height:`${h}px`,printBackground:true,preferCSSPageSize:true});
+    }
     await page.close();
     writeText(p,plat,dir,p.slides);
   }

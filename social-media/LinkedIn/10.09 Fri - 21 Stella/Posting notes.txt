@@ -8,6 +8,6 @@ TAG (type @ and pick the official page or account; check the handle before posti
 DOCUMENT TITLE (carousel): Stella | VALDA
 
 ALT TEXT (add per image for accessibility and search):
-Slide 1: Text slide: Stella. Sofia, Bulgaria
-Slide 2: Text slide: 
-Slide 3: Text slide: 
+Slide 1: Photo of Stella. Sofia, Bulgaria
+Slide 2: Photo of Stella, Sofia, Bulgaria
+Slide 3: Photo of Stella, Sofia, Bulgaria
