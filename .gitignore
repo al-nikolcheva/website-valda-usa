@@ -43,3 +43,6 @@ next-env.d.ts
 # internal — not for the public repo
 /_hold_do_not_publish
 /_specs_internal
+
+# VALDA master folder bundle
+/VALDA-Master.zip

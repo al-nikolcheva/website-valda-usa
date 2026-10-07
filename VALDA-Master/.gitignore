@@ -1,0 +1,4 @@
+# Copied in from public/ by scripts/build-master-folder.py. Kept out of git so
+# the large catalogue PDFs and films are not stored twice.
+03-Catalogue/*.pdf
+05-Video/*.mp4
