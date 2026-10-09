@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>VALDA Email Signature</title>
+<style>
+  :root {
+    --char: #222224; --slate: #6f6f72; --mute: #a3a3a5; --mist: #e3e3e3;
+    --paper: #f4f4f4; --pure: #ffffff; --blue: #1f4e8c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--char);
+    font-family: "Inter Tight", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 48px 16px 80px; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin: 0 0 10px; }
+  h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 500; letter-spacing: -.02em; margin: 0 0 8px; }
+  .lede { color: var(--slate); margin: 0 0 40px; max-width: 560px; line-height: 1.5; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--pure); border: 1px solid var(--mist); padding: 24px; }
+  label { display: block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); margin: 16px 0 6px; }
+  label:first-child { margin-top: 0; }
+  input, select { width: 100%; font: inherit; font-size: 15px; padding: 10px 12px; border: 1px solid var(--mist);
+    background: var(--pure); color: var(--char); border-radius: 0; }
+  input:focus, select:focus { outline: 2px solid var(--blue); outline-offset: -1px; }
+  .preview { background: var(--pure); border: 1px solid var(--mist); padding: 40px 32px; overflow-x: auto; }
+  .mail-head { font-size: 13px; color: var(--mute); border-bottom: 1px solid var(--mist); padding-bottom: 14px; margin-bottom: 24px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  button { font: inherit; font-size: 14px; font-weight: 500; padding: 12px 20px; border: 1px solid var(--char);
+    background: var(--char); color: #fff; cursor: pointer; }
+  button.ghost { background: transparent; color: var(--char); }
+  button:hover { opacity: .85; }
+  .status { font-size: 13px; color: var(--blue); min-height: 20px; margin-top: 10px; }
+  .help { margin-top: 24px; font-size: 14px; color: var(--slate); line-height: 1.6; }
+  .help b { color: var(--char); font-weight: 600; }
+  .help ol { padding-left: 18px; margin: 6px 0 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">VALDA · Brand tools</p>
+  <h1>Email signature</h1>
+  <p class="lede">Fill in your details, then copy the signature and paste it into Gmail, Outlook or Apple Mail.</p>
+
+  <div class="grid">
+    <form class="card" id="form" autocomplete="off">
+      <label for="name">Full name</label>
+      <input id="name" value="Your Name">
+      <label for="title">Job title</label>
+      <input id="title" value="Sales Manager">
+      <label for="email">Email</label>
+      <input id="email" type="email" value="info@valdagroup.com">
+      <label for="phone">Direct phone (optional)</label>
+      <input id="phone" value="">
+      <label for="office">Office line</label>
+      <select id="office">
+        <option value="United States|+1 689 280 2337">United States · +1 689 280 2337</option>
+        <option value="United Kingdom|+44 7495 418 555">United Kingdom · +44 7495 418 555</option>
+        <option value="Bulgaria|+359 894 781 200">Bulgaria · +359 894 781 200</option>
+        <option value="">None</option>
+      </select>
+      <label for="logo">Logo image URL</label>
+      <input id="logo" value="https://valdagroup.com/email/valda-signature-logo.png">
+    </form>
+
+    <div>
+      <div class="preview">
+        <div class="mail-head">Preview — how it appears at the bottom of an email</div>
+        <div id="sig"></div>
+      </div>
+      <div class="actions">
+        <button type="button" id="copyRich">Copy signature</button>
+        <button type="button" class="ghost" id="copyHtml">Copy HTML code</button>
+      </div>
+      <div class="status" id="status" role="status"></div>
+
+      <div class="help">
+        <b>Gmail</b>
+        <ol><li>Settings → See all settings → General → Signature → Create new.</li>
+            <li>Click into the box and paste (Ctrl/Cmd + V). Save changes at the bottom.</li></ol>
+        <b>Outlook</b>
+        <ol><li>Settings → Mail → Compose and reply → Email signature (new Outlook / web), or File → Options → Mail → Signatures (classic).</li>
+            <li>Paste into the editor and save.</li></ol>
+        <b>Apple Mail</b>
+        <ol><li>Mail → Settings → Signatures → +. Untick "Always match my default message font".</li>
+            <li>Paste into the signature area.</li></ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Email clients ignore <style> blocks and web fonts, so the signature uses
+  // inline styles, tables and a safe font stack. Colours match the site palette.
+  const C = { char: "#222224", slate: "#6f6f72", mute: "#a3a3a5", mist: "#e3e3e3", blue: "#1f4e8c" };
+  const FONT = "Helvetica, Arial, sans-serif";
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const tel = (n) => n.replace(/[^\d+]/g, "");
+  const $ = (id) => document.getElementById(id);
+
+  function row(label, html) {
+    return `<tr><td style="padding:0 0 3px 0;font-family:${FONT};font-size:13px;line-height:18px;color:${C.char};">`
+      + `<span style="color:${C.mute};">${label}&nbsp;&nbsp;</span>${html}</td></tr>`;
+  }
+  function link(href, text) {
+    return `<a href="${esc(href)}" style="color:${C.char};text-decoration:none;">${esc(text)}</a>`;
+  }
+
+  function build() {
+    const name = $("name").value.trim();
+    const title = $("title").value.trim();
+    const email = $("email").value.trim();
+    const phone = $("phone").value.trim();
+    const [region, office] = $("office").value.split("|");
+    const logo = $("logo").value.trim();
+
+    let lines = "";
+    if (phone) lines += row("M", link(`tel:${tel(phone)}`, phone));
+    if (office) lines += row("T", link(`tel:${tel(office)}`, office) + `<span style="color:${C.mute};">&nbsp;·&nbsp;${esc(region)}</span>`);
+    if (email) lines += row("E", link(`mailto:${email}`, email));
+    lines += row("W", `<a href="https://valdagroup.com" style="color:${C.blue};text-decoration:none;font-weight:bold;">valdagroup.com</a>`);
+
+    return `<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:${FONT};">
+<tr>
+  <td valign="top" style="padding:2px 20px 0 0;">
+    <a href="https://valdagroup.com" style="text-decoration:none;"><img src="${esc(logo)}" width="64" height="69" alt="VALDA" style="display:block;width:64px;height:69px;border:0;"></a>
+  </td>
+  <td valign="top" style="border-left:1px solid ${C.mist};padding:0 0 0 20px;">
+    <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;">
+      <tr><td style="font-family:${FONT};font-size:16px;line-height:20px;font-weight:bold;color:${C.char};letter-spacing:-0.2px;">${esc(name)}</td></tr>
+      ${title ? `<tr><td style="padding:2px 0 10px 0;font-family:${FONT};font-size:13px;line-height:18px;color:${C.slate};">${esc(title)}&nbsp;·&nbsp;VALDA</td></tr>` : `<tr><td style="padding:0 0 10px 0;"></td></tr>`}
+      ${lines}
+      <tr><td style="padding:10px 0 0 0;font-family:${FONT};font-size:10px;line-height:14px;letter-spacing:1.4px;text-transform:uppercase;color:${C.mute};">Engineered in Sofia. Delivered worldwide.</td></tr>
+    </table>
+  </td>
+</tr>
+</table>`;
+  }
+
+  function render() { $("sig").innerHTML = build(); }
+  $("form").addEventListener("input", render);
+  $("form").addEventListener("change", render);
+  render();
+
+  function flash(msg) { $("status").textContent = msg; setTimeout(() => ($("status").textContent = ""), 3000); }
+
+  $("copyRich").addEventListener("click", async () => {
+    const html = build();
+    try {
+      await navigator.clipboard.write([new ClipboardItem({
+        "text/html": new Blob([html], { type: "text/html" }),
+        "text/plain": new Blob([$("sig").innerText], { type: "text/plain" }),
+      })]);
+      flash("Signature copied — paste it into your email client.");
+    } catch {
+      // Fallback: select the rendered preview and use the legacy copy command.
+      const r = document.createRange(); r.selectNodeContents($("sig"));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      try { document.execCommand("copy"); flash("Signature copied — paste it into your email client."); }
+      catch { flash("Press Ctrl/Cmd + C to copy the selected signature."); return; }
+      s.removeAllRanges();
+    }
+  });
+
+  $("copyHtml").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(build()); flash("HTML code copied."); }
+    catch { flash("Couldn't access the clipboard in this browser."); }
+  });
+</script>
+</body>
+</html>
