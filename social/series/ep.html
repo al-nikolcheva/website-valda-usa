@@ -1,0 +1,176 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:F;font-weight:400;src:url(../fonts/fraunces-latin-400-normal.woff2)}
+@font-face{font-family:F;font-weight:400;font-style:italic;src:url(../fonts/fraunces-latin-400-italic.woff2)}
+@font-face{font-family:F;font-weight:600;src:url(../fonts/fraunces-latin-600-normal.woff2)}
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+:root{--paper:#f2ebdd;--paper2:#e9dfcb;--ink:#222224;--slate:#6f6f72;--blue:#1f4e8c;--sky:#cfdcec;--gold:#a6a182;--red:#b3362c}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:var(--paper);position:relative;color:var(--ink);font-family:F}
+.page{position:absolute;inset:0;background:var(--paper);overflow:hidden}
+.page::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.55;mix-blend-mode:multiply;pointer-events:none}
+.run{position:absolute;left:90px;right:90px;top:120px;display:flex;justify-content:space-between;font:500 24px IT;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
+.rule{position:absolute;left:90px;right:90px;top:168px;border-top:2px solid var(--ink)}
+.rule.b{top:176px;border-top-width:1px}
+.kick{position:absolute;left:90px;right:90px;top:240px;font:italic 400 40px F;color:var(--blue)}
+.head{position:absolute;left:90px;right:90px;top:300px;font:600 96px/1.02 F;letter-spacing:-.02em}
+.art{position:absolute;left:110px;top:560px;width:860px;height:860px}
+.cap{position:absolute;left:90px;right:90px;top:1440px;font:400 46px/1.32 F}
+.cap span{opacity:.18}
+.cap span.on{opacity:1}
+.folio{position:absolute;left:0;right:0;top:1660px;text-align:center;font:italic 400 30px F;color:var(--slate)}
+.edge{position:absolute;top:0;bottom:0;width:90px;pointer-events:none}
+</style></head>
+<body>
+<div id="root"></div>
+<script>
+const Q=new URLSearchParams(location.search), SLUG=Q.get('ep')||'ep01';
+document.write(`<script src="out/${SLUG}.data.js"><\/script>`);
+</script>
+<script>
+// Paper grain, made once.
+(()=>{const c=document.createElement('canvas');c.width=c.height=360;const x=c.getContext('2d'),d=x.createImageData(360,360);
+for(let i=0;i<d.data.length;i+=4){const v=200+Math.random()*55|0;d.data[i]=v;d.data[i+1]=v-4;d.data[i+2]=v-14;d.data[i+3]=Math.random()<.5?40:0}
+x.putImageData(d,0,0);document.body.style.setProperty('--grain',`url(${c.toDataURL()})`)})();
+
+const C=x=>x<0?0:x>1?1:x, E=x=>1-Math.pow(1-C(x),3), S=(t,a,b)=>C((t-a)/(b-a));
+const K='stroke="#222224" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"';
+// draw-on stroke: k = 0..1
+const L=(d,k,extra='')=>`<path d="${d}" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="${1-E(k)}" fill="none" ${K} ${extra}/>`;
+const R=(x,y,w,h)=>`M${x} ${y}h${w}v${h}h${-w}Z`;
+const fade=(k,inner)=>`<g opacity="${E(k)}">${inner}</g>`;
+const rise=(k,inner,dy=60)=>`<g opacity="${E(k)}" transform="translate(0 ${(1-E(k))*dy})">${inner}</g>`;
+const txt=(x,y,s,size=34,anchor='middle',style='')=>`<text x="${x}" y="${y}" ${/font-family/.test(style)?'':'font-family="F"'} font-size="${size}" text-anchor="${anchor}" ${/fill=/.test(style)?'':'fill="#222224"'} ${style}>${s}</text>`;
+const it=(x,y,s,size=34,anchor='middle',fill='#6f6f72')=>txt(x,y,s,size,anchor,`font-style="italic" fill="${fill}"`);
+const stamp=(x,y,r,top,big,k,rot=-12)=>fade(k,`<g transform="translate(${x} ${y}) rotate(${rot+(1-E(k))*-30}) scale(${.6+.4*E(k)})"><circle r="${r}" fill="none" stroke="#1f4e8c" stroke-width="4"/><circle r="${r-12}" fill="none" stroke="#1f4e8c" stroke-width="2"/>${txt(0,-r*.28,top,r*.22,'middle','fill="#1f4e8c" letter-spacing="3" font-family="IT"')}${txt(0,r*.32,big,r*.55,'middle','fill="#1f4e8c" font-weight="600"')}</g>`);
+
+function windowArt(k,x,y,w,h,glassK){ // flat two-sash window, k draws the frame
+  const m=x+w/2;
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#cfdcec" opacity="${E(glassK)}"/>
+  <path d="M${x+40} ${y+h-60}L${x+w/2-60} ${y+60}M${x+w/2+40} ${y+h-80}L${x+w-40} ${y+120}" stroke="#fff" stroke-width="10" opacity="${.8*E(glassK)}"/>
+  ${L(R(x,y,w,h),k)}${L(R(x+22,y+22,w-44,h-44),S(k,.2,1))}${L(`M${m} ${y+22}V${y+h-22}`,S(k,.5,1))}
+  ${fade(S(glassK,.5,1),`<rect x="${m-36}" y="${y+h/2-30}" width="14" height="60" rx="7" fill="#222224"/>`)}
+  ${L(`M${x-30} ${y+h+10}H${x+w+30}`,S(k,.6,1),'stroke-width="9"')}`;
+}
+
+const ART={
+cover(t,at){
+  return `${fade(S(t,0,.8),`<circle cx="610" cy="250" r="${150*E(S(t,0,1))}" fill="#a6a182" opacity=".55"/>`)}
+  ${it(130,180,'No.',60,'start','#1f4e8c')}${fade(S(t,.2,1),txt(120,330,'01',220,'start','fill="#1f4e8c" font-weight="600"'))}
+  ${windowArt(S(t,.3,1.6),390,240,400,520,S(t,1.2,1.9))}`;
+},
+factories(t,at){
+  const b=(x,w,h,k,label,yr)=>{const y=640-h*E(k);return `<g opacity="${E(S(k,0,.3))}"><rect x="${x}" y="${y}" width="${w}" height="${640-y}" fill="#1f4e8c"/>
+    <rect x="${x}" y="${y}" width="${w}" height="16" fill="#163a69"/>
+    ${txt(x+w/2,y+h*.42,'VALDA',h*.22,'middle','fill="#fff" font-family="IT" letter-spacing="8"')}
+    <rect x="${x+w*.62}" y="${640-h*.38*E(k)}" width="${w*.22}" height="${h*.38*E(k)}" fill="#b3362c"/></g>
+    ${rise(S(k,.6,1),txt(x+w/2,700,label,40)+it(x+w/2,748,yr,34),20)}`};
+  return `${stamp(150,150,105,'SINCE','1998',S(t,at(.3),at(.3)+.6))}
+  ${L('M20 640H840',S(t,at(.42),at(.42)+.8))}
+  ${b(70,300,230,S(t,at(.66),at(.66)+.9),'Sofia','est. 2000')}
+  ${b(450,370,300,S(t,at(.8),at(.8)+.9),'Veliko Tarnovo','est. 2006')}
+  ${fade(S(t,at(.9),at(1)),`<circle cx="760" cy="160" r="60" fill="#a6a182" opacity=".5"/>`)}`;
+},
+drawing(t,at){
+  const k=S(t,at(.15),at(.75)), d=S(t,at(.7),at(.95));
+  // pencil follows the outer frame being drawn
+  const per=2*(380+480), p=E(S(k,0,.4))*per; let px=250,py=170;
+  const seg=[[380,0],[0,480],[-380,0],[0,-480]]; let rem=p;
+  for(const[dx,dy]of seg){const l=Math.abs(dx||dy),f=Math.min(1,rem/l);px+=dx*f;py+=dy*f;rem-=l;if(rem<=0)break}
+  return `<rect x="60" y="60" width="740" height="740" fill="#fbf7ee" stroke="#222224" stroke-width="4"/>
+  <path d="${Array.from({length:13},(_,i)=>`M${60+i*57} 60V800M60 ${60+i*57}H800`).join('')}" stroke="#1f4e8c" stroke-width="1" opacity=".18"/>
+  ${L(R(250,170,380,480),S(k,0,.4))}${L(R(272,192,336,436),S(k,.35,.65))}${L('M440 192V628',S(k,.6,.8))}
+  ${L('M200 170V650M188 170H212M188 650H212',d,'stroke="#1f4e8c" stroke-width="3"')}${L('M250 712H630M250 700V724M630 700V724',d,'stroke="#1f4e8c" stroke-width="3"')}
+  ${fade(d,it(170,420,'1500',30,'middle','#1f4e8c').replace('<text','<text transform="rotate(-90 170 420)"')+it(440,760,'1200 mm',30,'middle','#1f4e8c'))}
+  <g opacity="${k>0&&k<.99?1:0}" transform="translate(${px} ${py}) rotate(35)"><rect x="-9" y="-150" width="18" height="125" fill="#a6a182" stroke="#222224" stroke-width="3"/><path d="M-9 -25L0 0L9 -25Z" fill="#222224"/></g>`;
+},
+profile(t,at){
+  const s=E(S(t,at(0),at(.3))), cut=S(t,at(.45),at(.7)), apart=E(S(t,at(.7),at(.9)));
+  const bar=(x0,x1,y,mL,mR)=>`<path d="M${x0+mL} ${y}H${x1-mR}L${x1} ${y+90}H${x0}Z" fill="#fff" ${K}/><path d="M${x0+20} ${y+30}H${x1-20}M${x0+20} ${y+60}H${x1-20}" stroke="#a3a3a5" stroke-width="3"/>`;
+  const sx=560, sy=110+150*E(cut), rot=t*900;
+  const teeth=Array.from({length:24},(_,i)=>{const a=i/24*Math.PI*2,b=a+.13;return `${Math.cos(a)*95},${Math.sin(a)*95} ${Math.cos(b)*112},${Math.sin(b)*112}`}).join(' ');
+  return `<g transform="translate(${-700*(1-s)} 0)">
+    <g transform="translate(${-30*apart} 0)">${bar(20,sx,260,0,90*C(cut*2))}</g>
+    <g transform="translate(${40*apart} 0)">${bar(sx-90*C(cut*2),840,260,0,0)}</g></g>
+  <g transform="translate(${sx-45} ${sy})"><g transform="rotate(${rot})"><polygon points="${teeth}" fill="#a3a3a5" stroke="#222224" stroke-width="3"/><circle r="22" fill="#222224"/></g></g>
+  ${fade(S(t,at(.2),at(.45)),`<g transform="translate(250 450)">
+    <rect x="0" y="0" width="360" height="300" rx="10" fill="#fff" ${K}/>
+    <rect x="30" y="30" width="90" height="240" fill="none" ${K}/><rect x="135" y="30" width="90" height="110" fill="none" ${K}/>
+    <rect x="135" y="160" width="90" height="110" fill="#a3a3a5" opacity=".5"/><rect x="240" y="30" width="90" height="240" fill="none" ${K}/>
+    ${it(180,355,'Cross-section of a profile',30)}</g>`)}
+  ${fade(S(t,at(.75),at(.95)),it(720,410,'45° mitre cut',32,'middle','#1f4e8c'))}`;
+},
+glass(t,at){
+  const roll=t*360, belt=(t*120)%120;
+  const pane=(i)=>{const k=E(S(t,at(.05+i*.12),at(.35+i*.12)));const x=-200+(330+i*18-(-200))*k;return `<rect x="${x}" y="${250-i*14}" width="240" height="330" fill="#cfdcec" fill-opacity=".75" stroke="#222224" stroke-width="4"/>`};
+  const done=S(t,at(.7),at(.95));
+  return `<rect x="40" y="150" width="780" height="22" fill="#222224"/><g transform="translate(${430+Math.sin(t*2)*40} 172)"><rect x="-14" y="0" width="28" height="${60+40*Math.sin(t*3)**2}" fill="#a3a3a5" stroke="#222224" stroke-width="3"/></g>
+  ${pane(0)}${pane(1)}${pane(2)}
+  ${fade(S(t,at(.55),at(.75)),`<path d="M330 236V566M366 222V552" stroke="#a6a182" stroke-width="10"/>`)}
+  <path d="M20 610H840" ${K}/>${Array.from({length:8},(_,i)=>`<g transform="translate(${60+i*105} 640)"><circle r="26" fill="#fff" ${K}/><path d="M-20 0H20" transform="rotate(${roll})" ${K}/></g>`).join('')}
+  ${fade(done,`<g transform="translate(430 760)"><rect x="-210" y="-40" width="420" height="70" rx="35" fill="#1f4e8c"/>${txt(0,8,'Insulated glass unit',32,'middle','fill="#fff" font-family="IT"')}</g>`)}`;
+},
+assembly(t,at){
+  const g=E(S(t,at(.1),at(.4))), h=E(S(t,at(.45),at(.7))), f=S(t,at(.8),at(1));
+  return `${L(R(230,120,400,560),S(t,0,at(.1)),'stroke-width="7"')}<rect x="260" y="150" width="340" height="500" fill="none" stroke="#222224" stroke-width="3" opacity=".5"/>
+  <g transform="translate(0 ${-420*(1-g)})" opacity="${g}"><rect x="262" y="152" width="336" height="496" fill="#cfdcec"/><path d="M300 600L420 200M450 600L560 260" stroke="#fff" stroke-width="10"/></g>
+  <g transform="translate(${300*(1-h)} 0)" opacity="${h}"><rect x="600" y="370" width="22" height="34" rx="4" fill="#222224"/><rect x="606" y="398" width="12" height="90" rx="6" fill="#222224"/></g>
+  ${it(140,200,'frame',30,'end')}${fade(g,it(140,420,'glass',30,'end'))}${fade(h,it(720,450,'hardware',30,'start'))}
+  ${stamp(680,700,95,'VALDA','✓',f,10)}`;
+},
+ship(t,at){
+  const drive=t<at(.4)?-500+500*E(S(t,0,at(.2))):900*E(S(t,at(.4),at(.6)));
+  const n=Math.round(350*E(S(t,at(.65),at(.9))));
+  const arc=S(t,at(.55),at(.85));
+  return `<path d="M0 360H860" ${K}/>
+  <g transform="translate(${80+drive} 0)">
+    <rect x="0" y="170" width="430" height="160" fill="#b3362c" stroke="#222224" stroke-width="4"/>${txt(215,268,'VALDA',64,'middle','fill="#fff" font-family="IT" letter-spacing="10"')}
+    <path d="M440 210H530L580 270V330H440Z" fill="#b3362c" stroke="#222224" stroke-width="4"/><path d="M460 225H520L555 268H460Z" fill="#cfdcec" stroke="#222224" stroke-width="3"/>
+    ${[70,170,360,500].map(x=>`<circle cx="${x}" cy="340" r="28" fill="#222224"/><circle cx="${x}" cy="340" r="10" fill="#f2ebdd"/>`).join('')}</g>
+  <path d="M0 640 Q 120 610 240 640 T 480 640 T 720 640 T 960 640" fill="none" stroke="#1f4e8c" stroke-width="3" opacity=".35" transform="translate(${-(t*40)%240} 0)"/>
+  <mask id="am"><path d="M700 600 Q 430 380 140 600" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="${1-E(arc)}" fill="none" stroke="#fff" stroke-width="14"/></mask>
+  <path d="M700 600 Q 430 380 140 600" fill="none" stroke="#1f4e8c" stroke-width="5" stroke-dasharray="14 12" mask="url(#am)"/>
+  ${fade(S(t,at(.5),at(.6)),`<circle cx="700" cy="600" r="14" fill="#1f4e8c"/>${it(700,660,'Bulgaria',32)}`)}
+  ${fade(S(arc,.9,1),`<circle cx="140" cy="600" r="14" fill="#1f4e8c"/>${it(140,660,'USA',32)}`)}
+  ${fade(S(t,at(.62),at(.7)),txt(430,790,n,120,'middle','fill="#1f4e8c" font-weight="600"')+it(430,840,'distributors · Europe & USA',32))}`;
+},
+end(t,at){
+  return `${fade(S(t,0,.8),`<image href="../../public/valda-logo-ink.svg" x="330" y="40" width="200" height="215"/>`)}
+  ${rise(S(t,.4,1.2),it(430,360,'European windows,',54,'middle','#222224')+it(430,430,'made to measure.',54,'middle','#222224'))}
+  ${L('M330 500H530',S(t,1,1.6))}
+  ${rise(S(t,1.4,2.2),txt(430,600,'Follow for Episode 02',40,'middle','font-family="IT" fill="#1f4e8c"'))}
+  ${fade(S(t,2,3),txt(430,700,'valdagroup.com',38,'middle','font-family="IT" fill="#6f6f72"'))}`;
+}};
+
+// ---- timeline ----
+const EP=window.EP, SC=EP.scenes, TURN=.6;
+window.DURATION=EP.duration;
+const starts=SC.map((s,i)=>i?s.start-.45:0);
+const root=document.getElementById('root');
+const pages=SC.map((s,i)=>{const d=document.createElement('div');d.className='page';d.innerHTML=`
+  <div class="run"><span>VALDA · How It's Made</span><span>Ep. ${EP.episode}</span></div><div class="rule"></div><div class="rule b"></div>
+  <div class="kick">${s.kicker}</div><div class="head">${s.head}</div>
+  <svg class="art" viewBox="0 0 860 860"></svg>
+  <div class="cap">${s.show.split(' ').map(w=>`<span>${w}</span>`).join(' ')}</div>
+  <div class="folio">— ${i+1} —</div><div class="edge"></div>`;root.appendChild(d);return d});
+const wordTimes=SC.map(s=>{const w=s.show.split(' '),tot=w.join(' ').length;let c=0;return w.map(x=>{const r=s.start+s.speech*(c/tot);c+=x.length+1;return r})});
+
+window.render=t=>{
+  let cur=0;for(let i=0;i<SC.length;i++)if(t>=starts[i])cur=i;
+  pages.forEach((p,i)=>{
+    const vis=i===cur||(i===cur-1&&t<starts[cur]+TURN);
+    p.style.display=vis?'block':'none';if(!vis)return;
+    const lt=t-starts[i], s=SC[i], at=f=>s.start-starts[i]+s.speech*f;
+    p.querySelector('.art').innerHTML=ART[s.art](lt,at);
+    p.querySelectorAll('.cap span').forEach((w,j)=>w.classList.toggle('on',t>=wordTimes[i][j]));
+    const kTurn=i?E(S(t,starts[i],starts[i]+TURN)):1, edge=p.querySelector('.edge');
+    p.style.zIndex=i;
+    if(kTurn<1){const x=1080*(1-kTurn);p.style.clipPath=`inset(0 0 0 ${x}px)`;
+      edge.style.left=x+'px';edge.style.background='linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,0))';edge.style.display='block';
+      const head=p.querySelector('.head'),kick=p.querySelector('.kick');head.style.transform=kick.style.transform=`translateX(${(1-kTurn)*60}px)`;
+    }else{p.style.clipPath='none';edge.style.display='none';p.querySelector('.head').style.transform=p.querySelector('.kick').style.transform='none'}
+    const hk=E(S(lt,.15,.8));p.querySelector('.head').style.opacity=hk;p.querySelector('.kick').style.opacity=E(S(lt,0,.6));
+  });
+};
+</script></body></html>

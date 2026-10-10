@@ -1,0 +1,25 @@
+{
+  "slug": "ep01",
+  "episode": "01",
+  "title": "The VALDA window",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "scenes": [
+    { "art": "cover", "kicker": "How It's Made", "head": "The VALDA window",
+      "say": "How it's made. Episode one: the VALDA window." },
+    { "art": "factories", "kicker": "Chapter 1 · Since 1998", "head": "Two factories in Bulgaria",
+      "say": "VALDA has made windows and doors since 1998. Today, in two factories: Sofia, and Veliko Tarnovo." },
+    { "art": "drawing", "kicker": "Chapter 2 · Engineering", "head": "Every order is drawn first",
+      "say": "Every order starts on screen. Our design and engineering team draws each window before anything is cut." },
+    { "art": "profile", "kicker": "Chapter 3 · The frame", "head": "PVC or aluminum, cut to size",
+      "say": "Then the profiles, P V C or aluminum, are cut to size, on machines from the world's leading makers." },
+    { "art": "glass", "kicker": "Chapter 4 · The glass", "head": "A fully automatic glass line",
+      "say": "The insulated glass is built on our fully automatic LISEC glass line." },
+    { "art": "assembly", "kicker": "Chapter 5 · Assembly", "head": "Frame, glass, hardware",
+      "say": "Frame, glass and hardware come together into one finished window." },
+    { "art": "ship", "kicker": "Chapter 6 · Delivery", "head": "Packed and shipped",
+      "say": "Then it's packed, loaded, and shipped, to 350 distributors across Europe and the USA." },
+    { "art": "end", "kicker": "Next episode", "head": "The glass",
+      "say": "VALDA. European windows, made to measure. Follow for episode two: the glass." }
+  ]
+}
