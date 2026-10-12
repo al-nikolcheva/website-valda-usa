@@ -26,7 +26,7 @@ function writeText(p,plat,dir,slides){
 const b=await chromium.launch();
 // Posting times, US Eastern. Reels go out on Instagram in the evening slot.
 const TIMES={LinkedIn:{Tue:'10:00 AM',Wed:'10:00 AM',Thu:'11:00 AM',Fri:'10:00 AM'},
- Instagram:{Tue:'12:00 PM',Wed:'12:00 PM',Thu:'12:00 PM',Fri:'11:00 AM'}};
+ Instagram:{Tue:'10:00 AM',Wed:'10:00 AM',Thu:'10:00 AM',Fri:'10:00 AM'}};
 const MON={Oct:10,Nov:11,Dec:12,Jan:'01',Feb:'02',Mar:'03'};
 const folder=p=>p.parked?path.join('Parked',`${String(p.n).padStart(2,'0')} - ${p.title}`)
   :`${MON[p.date.slice(3)]}.${p.date.slice(0,2)} ${p.day} - ${String(p.n).padStart(2,'0')} ${p.title}`;

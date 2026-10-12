@@ -16,9 +16,11 @@ Folders are named `MM.DD Day - NN Title`, so they sort in posting order. Each on
 
 | Day | LinkedIn | Instagram |
 |---|---|---|
-| Tue | 10:00 AM | 12:00 PM |
-| Thu | 11:00 AM | 12:00 PM, Reels 6:00 PM |
-| Fri | 10:00 AM | 11:00 AM |
+| Tue | 10:00 AM | 10:00 AM, Story 6:00 PM |
+| Thu | 11:00 AM | 10:00 AM, Story 6:00 PM, Reels 6:00 PM |
+| Fri | 10:00 AM | 10:00 AM, Story 6:00 PM |
+
+The Instagram times come from Metricool's best-time data for valda_group (checked 12 Oct 2026). Activity peaks at 10 AM ET every weekday, with a second, smaller peak at 6 PM ET, which is when Stories go out. LinkedIn times follow the usual B2B weekday-morning window. Check the Metricool data again each month.
 
 ## Caption and hashtag rules (2026)
 
