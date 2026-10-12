@@ -2,14 +2,17 @@
 // worldwide; the blog leads with engineering, manufacturing and the export
 // identity, with US / Florida topics as one part of a broader whole. Bodies are
 // structured blocks (no MDX dep); faqs power FAQPage rich-result schema. Keep
-// body copy free of em-dashes.
+// body copy free of em-dashes. Text in p / ul / quote blocks may contain
+// inline links written as [label](/path); use them for internal linking.
 
 export type Block =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
-  | { type: "quote"; text: string };
+  | { type: "quote"; text: string }
+  | { type: "figure"; src: string; alt: string; caption?: string; width: number; height: number }
+  | { type: "table"; caption?: string; head: string[]; rows: string[][] };
 
 export interface Post {
   slug: string;
@@ -28,6 +31,70 @@ export interface Post {
 }
 
 export const POSTS: Post[] = [
+  {
+    slug: "what-u-factor-tells-you",
+    title: "What U-Factor Really Tells You About a Window",
+    description:
+      "U-factor explained: what the number means, why lower is better, whole-window vs glass-only figures, how to convert European Uw values, and how to compare quotes.",
+    category: "Performance",
+    date: "2026-10-12",
+    dateLabel: "Oct 2026",
+    readMins: 6,
+    cover: "/images/home-modern-pool.webp",
+    keywords: ["window U-factor", "what is U-factor", "U-factor vs R-value", "Uw value", "convert U-value to U-factor", "triple glazing U-factor", "energy efficient windows"],
+    excerpt: "One number on every window quote tells you how much heat escapes through it. Here is how to read it, and how not to be misled by it.",
+    body: [
+      { type: "h2", text: "What U-factor measures" },
+      { type: "p", text: "U-factor is the rate at which heat passes through a window. In the US it is expressed in Btu per hour, per square foot, per degree Fahrenheit of temperature difference between inside and out. The smaller the number, the less heat escapes in winter and the less heat leaks in during summer. Lower is better, always." },
+      { type: "p", text: "A typical older single-pane window sits above 1.0. A good modern double-glazed window lands around 0.30, and a high-performance triple-glazed unit can reach 0.15 or lower. That spread is the difference between a room that feels cold near the glass and one that feels the same as the rest of the house." },
+      { type: "h2", text: "Whole window, not just the glass" },
+      { type: "p", text: "The most important question to ask about any U-factor is what it describes. A glass-only figure (called center-of-glass in the US, or Ug in Europe) measures only the middle of the pane. It ignores the frame, the spacer at the glass edge and the joints, which are usually the weakest parts of the window." },
+      { type: "p", text: "The whole-window figure (the NFRC-rated U-factor in the US, or Uw in Europe) includes all of them. It is always higher than the glass-only number, sometimes by a lot. When two quotes are compared, make sure both use the whole-window value. A glass-only number set against a whole-window number makes the weaker product look better." },
+      { type: "figure", src: "/images/insights/u-factor-heat-loss.svg", width: 1120, height: 770, alt: "Isometric diagram of a window showing heat escaping through the frame, the glass edge and spacer, and the center of the glass", caption: "The whole-window U-factor counts heat lost through the frame and the glass edge as well as the center of the pane." },
+      { type: "quote", text: "A great pane of glass in a poor frame is a poor window. The whole-window U-factor is the only number that tells you how the unit you install will actually perform." },
+      { type: "h2", text: "What changes the number" },
+      { type: "ul", items: [
+        "Glazing: the number of panes, the low-E coatings on them and the gas in the cavity (argon or krypton insulate better than air).",
+        "Frame: a multi-chamber PVC profile or an aluminum profile with a deep [thermal break](/insights/how-aluminum-window-profiles-are-made) carries far less heat than a solid metal frame. See [how PVC profiles are made](/insights/how-pvc-window-profiles-are-made) for the chamber side of the story.",
+        "Spacer: a warm-edge spacer at the glass perimeter cuts the heat lost along the edge and reduces condensation.",
+        "Size and proportion: frames insulate less than glass, so a window with more frame per square foot can rate differently from a large picture window in the same system.",
+      ] },
+      { type: "h2", text: "Double vs triple glazing" },
+      { type: "p", text: "Adding a third pane and a second gas-filled cavity typically lowers the whole-window U-factor by roughly a third compared with good double glazing. In cold climates that is a real gain in comfort and heating cost. The trade-offs are weight, a slightly deeper frame and cost, plus a little less solar heat coming in, which matters less in the south than in the north." },
+      { type: "figure", src: "/images/insights/u-factor-double-vs-triple.svg", width: 1120, height: 780, alt: "Exploded isometric views of a double-glazed and a triple-glazed window unit showing panes, gas-filled cavities, low-E coatings and spacers", caption: "A third pane and a second gas-filled cavity typically lower the whole-window U-factor by about a third." },
+      { type: "p", text: "In hot climates, U-factor is only half the story. There the solar heat gain coefficient (SHGC), the share of the sun's heat that passes through the glass, often matters as much or more. A good specification looks at both numbers together for the local climate, as we cover in [windows for heat, cold and noise](/insights/beyond-hurricanes-heat-cold-noise)." },
+      { type: "h2", text: "U-factor vs R-value" },
+      { type: "p", text: "R-value, used for walls and insulation, measures resistance to heat flow, so higher is better. U-factor measures the flow itself, so lower is better. For a simple comparison one is roughly the inverse of the other: a window with a U-factor of 0.25 is close to R-4. That figure also shows why even an excellent window insulates far less than a well-insulated wall, and why it pays to choose the window carefully." },
+      { type: "h2", text: "Reading a European quote" },
+      { type: "p", text: "European manufacturers state the whole-window value as Uw, in watts per square meter per Kelvin (W/m²K), calculated under EN ISO 10077. To get an approximate US U-factor, multiply the Uw by 0.176. A Uw of 1.3 W/m²K is about 0.23, a Uw of 0.9 is about 0.16, and a Uw of 0.8 is about 0.14." },
+      { type: "table", caption: "European Uw converted to an approximate US U-factor (Uw × 0.176)", head: ["European Uw (W/m²K)", "Approx. US U-factor (Btu/hr·ft²·°F)", "Typical construction"], rows: [
+        ["1.8", "0.32", "Basic double glazing"],
+        ["1.3", "0.23", "Good double glazing, e.g. [ConceptSystem 77](/products/system/conceptsystem-77)"],
+        ["1.0", "0.18", "High-performance double or entry triple glazing"],
+        ["0.88", "0.15", "Triple glazing, e.g. [MasterLine 8](/products/system/masterline-8)"],
+        ["0.8", "0.14", "Passive-house level triple glazing"],
+      ] },
+      { type: "p", text: "Treat that conversion as a guide, not a rating. NFRC and EN methods use different standard window sizes and test conditions, so the two figures never match exactly. For code compliance and ENERGY STAR in the US, it is the NFRC-rated U-factor that counts. VALDA can supply both the European Uw and the US rating information for the systems we ship, alongside the [testing and certification](/testing) behind them." },
+      { type: "h2", text: "How to use it on a project" },
+      { type: "ul", items: [
+        "Check the U-factor your local energy code requires for your climate zone before you request quotes.",
+        "Ask every supplier for the whole-window U-factor, not the glass-only figure, for the actual configuration you are buying.",
+        "If a quote shows a European Uw, convert it to compare, then ask for the NFRC rating to confirm.",
+        "Look at SHGC alongside U-factor, especially in hot, sunny climates.",
+        "Weigh the improvement against cost: moving from 0.30 to 0.20 matters far more in Minnesota than in Miami.",
+        "Not sure which system fits? Use the [product finder](/products/finder) or [send us your project](/contact) for a quote with the ratings included.",
+      ] },
+      { type: "p", text: "Used this way, U-factor stops being a line of small print and becomes the clearest single measure of how comfortable, quiet and efficient a building will be behind its glass." },
+    ],
+    faqs: [
+      { q: "What is a good U-factor for a window?", a: "Lower is better. A good modern double-glazed window rates around 0.30 or below, and high-performance triple glazing can reach 0.15 or lower. The right target depends on your climate zone, so check the U-factor your local energy code requires." },
+      { q: "Is U-factor the same as U-value?", a: "They describe the same thing in different units. U-factor is the US term, in Btu/hr·ft²·°F. U-value (Uw for the whole window) is the European term, in W/m²K. Multiply a European Uw by 0.176 to get an approximate US U-factor." },
+      { q: "What is the difference between U-factor and R-value?", a: "U-factor measures how much heat flows through a window, so lower is better. R-value measures resistance to heat flow, so higher is better. Roughly, R-value is the inverse of U-factor: a U-factor of 0.25 is close to R-4." },
+      { q: "Does triple glazing always lower the U-factor?", a: "In the same frame, a well-specified triple-glazed unit will lower the whole-window U-factor, typically by around a third compared with good double glazing. The frame, spacer and gas fill still matter, so compare whole-window ratings rather than counting panes." },
+    ],
+    related: ["beyond-hurricanes-heat-cold-noise", "aluminum-vs-pvc-windows-hurricane"],
+  },
+
   {
     slug: "how-aluminum-window-profiles-are-made",
     title: "How Aluminum Window Profiles Are Made",
@@ -425,5 +492,12 @@ export const POSTS: Post[] = [
 ];
 
 export const getPost = (slug: string): Post | undefined => POSTS.find((p) => p.slug === slug);
+
+/** URL-safe anchor id for a heading, so sections can be linked to directly. */
+export const headingId = (text: string) =>
+  text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+/** Text with [label](/path) links reduced to the label, for schema and word counts. */
+export const plainText = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
 export const allPostSlugs = (): string[] => POSTS.map((p) => p.slug);
 export const CATEGORIES = (): string[] => [...new Set(POSTS.map((p) => p.category))];

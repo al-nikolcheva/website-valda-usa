@@ -44,7 +44,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Only system packs with at least one document on file; empty packs are noindex.
   const downloads = PRODUCTS.filter((s) => packOnFile(s).length > 0).map((s) => entry(`/downloads/${s.slug}`, 0.5));
 
-  const posts = POSTS.map((p) => entry(`/insights/${p.slug}`, 0.6, "monthly", new Date(p.date)));
+  // Posts list their cover and in-article figures as image-sitemap entries.
+  const posts = POSTS.map((p) => ({
+    ...entry(`/insights/${p.slug}`, 0.6, "monthly", new Date(p.date)),
+    images: [p.cover, ...p.body.flatMap((b) => (b.type === "figure" ? [b.src] : []))].map((src) => `${SITE_URL}${src}`),
+  }));
 
   return [...core, ...systems, ...openings, ...projects, ...downloads, ...posts];
 }
