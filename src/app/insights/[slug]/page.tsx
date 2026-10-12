@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/primitives";
 import { Button } from "@/components/ui/button";
-import { POSTS, getPost, type Block } from "@/lib/insights";
+import { POSTS, getPost, headingId, plainText, type Block } from "@/lib/insights";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd } from "@/lib/seo";
 
@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url,
       siteName: "VALDA",
       publishedTime: p.date,
+      modifiedTime: p.date,
+      section: p.category,
+      tags: p.keywords,
       images: [{ url: `${BASE}${p.cover}`, width: 1200, height: 630, alt: p.title }],
     },
     twitter: { card: "summary_large_image", title: p.title, description: p.description, images: [`${BASE}${p.cover}`] },
@@ -42,10 +45,29 @@ function Chip({ children }: { children: React.ReactNode }) {
   return <span className="inline-block rounded-md bg-panel px-2 py-0.5 text-[12px] text-char">{children}</span>;
 }
 
+/** Renders text with [label](/path) inline links; internal paths use next/link. */
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (!m) return part;
+        const cls = "text-blue underline decoration-blue/30 underline-offset-4 transition-colors hover:decoration-blue";
+        return m[2].startsWith("/") ? (
+          <Link key={i} href={m[2]} className={cls}>{m[1]}</Link>
+        ) : (
+          <a key={i} href={m[2]} className={cls} target="_blank" rel="noopener noreferrer">{m[1]}</a>
+        );
+      })}
+    </>
+  );
+}
+
 function BlockView({ b }: { b: Block }) {
   switch (b.type) {
     case "h2":
-      return <h2 className="sw-h mt-16 text-[28px] text-char md:text-[32px]">{b.text}</h2>;
+      return <h2 id={headingId(b.text)} className="sw-h mt-16 scroll-mt-28 text-[28px] text-char md:text-[32px]">{b.text}</h2>;
     case "h3":
       return <h3 className="sw-h mt-10 text-[22px] text-char">{b.text}</h3>;
     case "ul":
@@ -54,7 +76,7 @@ function BlockView({ b }: { b: Block }) {
           {b.items.map((it, i) => (
             <li key={i} className="flex gap-3 text-[18px] leading-[30px] text-char/80">
               <span className="mt-[13px] h-1.5 w-1.5 shrink-0 rounded-full bg-mute" />
-              <span>{it}</span>
+              <span><RichText text={it} /></span>
             </li>
           ))}
         </ul>
@@ -62,12 +84,59 @@ function BlockView({ b }: { b: Block }) {
     case "quote":
       return (
         <blockquote className="sw-h mt-12 rounded-lg bg-panel p-6 text-[22px] leading-[1.35] text-char md:p-8 md:text-[24px]">
-          {b.text}
+          <RichText text={b.text} />
         </blockquote>
       );
+    case "figure":
+      return (
+        <figure className="mt-12 md:-mx-16">
+          {/* Links to the full-size file so the labels stay readable on phones. */}
+          <a href={b.src} target="_blank" rel="noopener" className="block">
+            <Image src={b.src} alt={b.alt} width={b.width} height={b.height} className="h-auto w-full rounded-lg" sizes="(max-width:880px) 100vw, 812px" />
+          </a>
+          {b.caption && <figcaption className="mt-3 text-[14px] leading-[22px] text-mute">{b.caption}</figcaption>}
+        </figure>
+      );
+    case "table":
+      return (
+        <div className="mt-10 overflow-x-auto rounded-lg border border-panel">
+          <table className="w-full min-w-[520px] border-collapse text-left text-[15px] leading-6">
+            {b.caption && <caption className="caption-bottom px-4 py-3 text-left text-[14px] text-mute">{b.caption}</caption>}
+            <thead className="bg-panel text-char">
+              <tr>
+                {b.head.map((h) => (
+                  <th key={h} scope="col" className="px-4 py-3 font-medium">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="text-char/80">
+              {b.rows.map((row, i) => (
+                <tr key={i} className="border-t border-panel">
+                  {row.map((cell, j) => (
+                    <td key={j} className="px-4 py-3"><RichText text={cell} /></td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
     default:
-      return <p className="mt-6 text-[18px] leading-[30px] text-char/80">{b.text}</p>;
+      return <p className="mt-6 text-[18px] leading-[30px] text-char/80"><RichText text={b.text} /></p>;
   }
+}
+
+/** Words in the body, for the Article schema. */
+function wordCount(blocks: Block[]) {
+  const text = blocks
+    .map((b) => {
+      if (b.type === "ul") return b.items.join(" ");
+      if (b.type === "table") return [...b.head, ...b.rows.flat()].join(" ");
+      if (b.type === "figure") return b.caption ?? "";
+      return b.text;
+    })
+    .join(" ");
+  return plainText(text).split(/\s+/).filter(Boolean).length;
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -77,12 +146,18 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   const related = (p.related ?? []).map(getPost).filter(Boolean).slice(0, 2) as NonNullable<ReturnType<typeof getPost>>[];
 
+  const figures = p.body.filter((b): b is Extract<Block, { type: "figure" }> => b.type === "figure");
+  const toc = p.body.filter((b): b is Extract<Block, { type: "h2" }> => b.type === "h2");
+
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: p.title,
     description: p.description,
-    image: `${BASE}${p.cover}`,
+    image: [p.cover, ...figures.map((f) => f.src)].map((src) => `${BASE}${src}`),
+    articleSection: p.category,
+    inLanguage: "en-US",
+    wordCount: wordCount(p.body),
     datePublished: p.date,
     dateModified: p.date,
     author: { "@type": "Organization", name: "VALDA", url: BASE },
@@ -130,6 +205,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {/* body */}
         <article className="mx-auto max-w-[680px] pb-28 pt-8 md:pb-36 md:pt-12">
+          {toc.length >= 4 && (
+            <nav aria-label="In this guide" className="mt-6 rounded-lg bg-panel p-6">
+              <p className="text-[14px] leading-[22px] text-mute">In this guide</p>
+              <ol className="mt-4 space-y-2 text-[16px] leading-6">
+                {toc.map((h, i) => (
+                  <li key={h.text} className="flex gap-3">
+                    <span className="w-5 shrink-0 text-mute">{i + 1}</span>
+                    <a href={`#${headingId(h.text)}`} className="text-char transition-colors hover:text-blue">{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
           {p.body.map((b, i) => (
             <BlockView key={i} b={b} />
           ))}
