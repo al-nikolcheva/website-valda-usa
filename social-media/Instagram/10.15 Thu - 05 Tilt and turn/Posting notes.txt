@@ -10,5 +10,7 @@ COLLABORATOR: invite the architect or developer as a Collab where you know their
 
 ALT TEXT (add per image for accessibility and search):
 Slide 1: Window profile section with text: One window, two ways to open. Tilt and turn · MasterLine 8 · Reynaers
-Slide 2: Text slide: How it works. One handle, two positions.
-Slide 3: Text slide: MasterLine 8. Six products, one impact rated range. Fixed, tilt and turn, casement, awning, entrance and terrace doors. Large and small missile rated for Wind Zone 3.
+Slide 2: Drawing of a window with text: Tilt: fresh air, even in the rain. Handle up. The top of the sash leans into the room, so air comes in while the window stays secure. /02
+Slide 3: Drawing of a window with text: Turn: open it like a door. Handle sideways. The whole sash swings into the room, so you can clean the outside glass from inside. /03
+Slide 4: Text slide: How it works. One handle, three positions.
+Slide 5: Text slide: MasterLine 8. Six products, one impact rated range. Fixed, tilt and turn, casement, awning, entrance and terrace doors. Large and small missile rated for Wind Zone 3.
