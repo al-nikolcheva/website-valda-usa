@@ -53,3 +53,15 @@ Tag each company: they often reshare, which reaches their audience too.
 - Behind the scenes: the glass line, the coating line, packing for the US.
 - How a window gets from Bulgaria to a US jobsite *(planned, 23 Oct)*
 - Hurricane impact testing: large and small missile.
+
+## 6. Buying from Europe, explained (educational carousels)
+
+A short series that answers the questions a US buyer asks before ordering windows from Europe. These posts tackle the main reasons people hesitate, so they're likely to bring leads. Every number has to be confirmed by VALDA before posting: tariff rates change, and so does shipping.
+
+- How windows cross the Atlantic: crating, container, transit time, what arrives on site.
+- Customs in plain English: who is the importer of record, what paperwork is filed, and who pays the duty.
+- Tariffs explained: the current duty on aluminum and PVC windows from the EU, and how it shows up in a quote. Check the rate the week it posts.
+- Incoterms in plain English: EXW vs FOB vs DDP, and what "delivered to your site" really includes.
+- From order to install: the full timeline, from drawings to production, shipping and delivery.
+- US certifications: NFRC, AAMA, Florida Product Approval, Miami-Dade NOA, and what each one means.
+- What arrives on site: crates, labels and unloading, and what the installer needs to have ready.
