@@ -1,0 +1,99 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+@font-face{font-family:IT;font-weight:600;src:url(../fonts/InterTight-600.ttf)}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:#f4f4f4;font-family:IT;color:#222224;position:relative}
+#idx{position:absolute;left:90px;top:230px;font:500 34px IT;color:#1f4e8c;letter-spacing:.06em}
+#name{position:absolute;left:90px;right:90px;top:280px;font:600 112px/1 IT;letter-spacing:-.035em}
+#line{position:absolute;left:90px;right:90px;top:420px;font:500 44px/1.3 IT;color:#6f6f72}
+#art{position:absolute;left:0;top:560px;width:1080px;height:1000px}
+#logo{position:absolute;left:90px;top:120px;height:70px}
+.bar{position:absolute;left:90px;right:90px;top:1520px;display:flex;gap:12px}
+.bar i{flex:1;height:6px;border-radius:3px;background:#dcdcdc}
+.bar i.on{background:#1f4e8c}
+</style></head><body>
+<img id="logo" src="../../public/valda-logo-ink.svg">
+<div id="idx"></div><div id="name"></div><div id="line"></div>
+<svg id="art" viewBox="0 0 1080 1000"></svg>
+<div class="bar" id="bar"></div>
+<script>
+// Animated isometric window. Same projection as social/tools/iso-tilt-turn.mjs.
+const YAW=-38*Math.PI/180, PITCH=24*Math.PI/180, S=5.6;
+const rot=([x,y,z])=>{const x1=x*Math.cos(YAW)+z*Math.sin(YAW),z1=-x*Math.sin(YAW)+z*Math.cos(YAW);
+  return [x1,y*Math.cos(PITCH)-z1*Math.sin(PITCH),y*Math.sin(PITCH)+z1*Math.cos(PITCH)]};
+const scr=p=>{const[x,y]=rot(p);return[560+x*S,740-y*S]};
+const sub=(a,b)=>a.map((v,i)=>v-b[i]),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+function box([x0,y0,z0],[x1,y1,z1],st,f=p=>p){const v=(x,y,z)=>f([x,y,z]);
+  const q=[[v(x0,y0,z1),v(x1,y0,z1),v(x1,y1,z1),v(x0,y1,z1)],[v(x1,y0,z0),v(x0,y0,z0),v(x0,y1,z0),v(x1,y1,z0)],
+   [v(x0,y1,z1),v(x1,y1,z1),v(x1,y1,z0),v(x0,y1,z0)],[v(x0,y0,z0),v(x1,y0,z0),v(x1,y0,z1),v(x0,y0,z1)],
+   [v(x1,y0,z1),v(x1,y0,z0),v(x1,y1,z0),v(x1,y1,z1)],[v(x0,y0,z0),v(x0,y0,z1),v(x0,y1,z1),v(x0,y1,z0)]];
+  const sh=[st.front,st.front,st.top,st.top,st.side,st.side];return q.map((pts,i)=>({pts,fill:sh[i],stroke:st.stroke,sw:st.sw||1.2}))}
+const FRAME={front:'#f3f3f2',top:'#e2e2e0',side:'#d3d3d1',stroke:'#2b2b2d'},SASH={front:'#eef2f8',top:'#dde5f0',side:'#ccd7e6',stroke:'#1f4e8c',sw:1.4},
+  HANDLE={front:'#2b2b2d',top:'#444',side:'#1a1a1a',stroke:'#111',sw:.6};
+const W=90,H=130,T=7,D=12,ST=7,SD=9;
+const rx=(c,a)=>([x,y,z])=>{const dy=y-c[1],dz=z-c[2];return[x,c[1]+dy*Math.cos(a)-dz*Math.sin(a),c[2]+dy*Math.sin(a)+dz*Math.cos(a)]};
+const ry=(c,a)=>([x,y,z])=>{const dx=x-c[0],dz=z-c[2];return[c[0]+dx*Math.cos(a)-dz*Math.sin(a),y,c[2]+dx*Math.sin(a)+dz*Math.cos(a)]};
+function sash(x0,x1,y0,y1,z0,z1,f,handle){const o=[];
+  o.push(...box([x0,y0,z0],[x1,y0+ST,z1],SASH,f),...box([x0,y1-ST,z0],[x1,y1,z1],SASH,f),...box([x0,y0+ST,z0],[x0+ST,y1-ST,z1],SASH,f),...box([x1-ST,y0+ST,z0],[x1,y1-ST,z1],SASH,f));
+  const gz=(z0+z1)/2;o.push({pts:[[x0+ST,y0+ST,gz],[x1-ST,y0+ST,gz],[x1-ST,y1-ST,gz],[x0+ST,y1-ST,gz]].map(f),fill:'#c9d8eb',stroke:'#1f4e8c',sw:1,op:.55,glass:1});
+  if(handle){const[hx,hy,ori]=handle,hz=z1;o.push(...box([hx-1.6,hy-2.5,hz],[hx+1.6,hy+2.5,hz+2],HANDLE,f));
+    const L=ori==='up'?[[hx-1,hy,hz+2],[hx+1,hy+13,hz+4]]:ori==='side'?[[hx-13,hy-1,hz+2],[hx,hy+1,hz+4]]:[[hx-1,hy-13,hz+2],[hx+1,hy,hz+4]];o.push(...box(L[0],L[1],HANDLE,f))}
+  return o}
+function scene(mode,k,k2=0){ // k = opening 0..1
+  const F=[...box([0,0,0],[W,T,D],FRAME),...box([0,H-T,0],[W,H,D],FRAME),...box([0,T,0],[T,H-T,D],FRAME),...box([W-T,T,0],[W,H-T,D],FRAME),
+    ...box([-4,-3,-2],[W+4,0,D+8],{front:'#e9e9e7',top:'#f7f7f6',side:'#d6d6d4',stroke:'#2b2b2d'})];
+  const X0=T-1,X1=W-T+1,Y0=T-1,Y1=H-T+1,z0=D-SD+3,z1=D+3,hy=(Y0+Y1)/2;
+  if(mode==='sliding'){ // two sashes; the front one slides left
+    F.push(...box([W/2-1,T,0],[W/2+1,H-T,D],FRAME));
+    F.push(...sash(X0,W/2+4,Y0,Y1,z0-5,z1-5,p=>p,null));
+    F.push(...sash(W/2-4,X1,Y0,Y1,z0+1,z1+1,([x,y,z])=>[x-(W/2-6)*k,y,z],[W/2,hy,'down']));return F}
+  if(mode==='fixed'){F.push({pts:[[T,T,D/2],[W-T,T,D/2],[W-T,H-T,D/2],[T,H-T,D/2]],fill:'#c9d8eb',stroke:'#1f4e8c',sw:1,op:.55,glass:1});return F}
+  let f=p=>p,h=[X1-ST/2,hy,'down'];
+  if(mode==='casement'){f=ry([X0,0,z0],-70*Math.PI/180*k);h=[X1-ST/2,hy,'down']}            // side hinge, opens out
+  if(mode==='awning'){f=rx([0,Y1,z0],32*Math.PI/180*k);h=[(X0+X1)/2,Y0+ST/2,'down']}       // top hinge, bottom swings out
+  if(mode==='hopper'){f=rx([0,Y0,z1],14*Math.PI/180*k);h=[(X0+X1)/2,Y1-ST/2,'down']}       // bottom hinge, top tips in
+  if(mode==='tiltturn'){ if(k2<=0){f=rx([0,Y0,z1],13*Math.PI/180*k);h=[X1-ST/2,hy,k>0?'up':'down']}
+    else{f=ry([X0,0,z1],72*Math.PI/180*k2);h=[X1-ST/2,hy,'side']}}
+  F.push(...sash(X0,X1,Y0,Y1,z0,z1,f,h));return F}
+function svg(faces){
+  const vis=faces.filter(fc=>{if(fc.glass)return true;const r=fc.pts.map(rot),n=cross(sub(r[1],r[0]),sub(r[2],r[0]));return n[2]>0});
+  const dz=fc=>fc.pts.map(rot).reduce((s,p)=>s+p[2],0)/fc.pts.length;vis.sort((a,b)=>dz(a)-dz(b));
+  const c=scr([W/2,0,D+30]);
+  return `<defs><radialGradient id="sh"><stop offset="0" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+  <ellipse cx="${c[0]}" cy="${c[1]+30}" rx="300" ry="90" fill="url(#sh)"/>`+
+  vis.map(fc=>`<polygon points="${fc.pts.map(scr).map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="${fc.fill}" stroke="${fc.stroke}" stroke-width="${fc.sw}" stroke-linejoin="round" ${fc.op?`fill-opacity="${fc.op}"`:''}/>`).join('')}
+
+const C=x=>x<0?0:x>1?1:x,E=x=>{x=C(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2},S2=(t,a,b)=>C((t-a)/(b-a));
+const SC=[
+ {m:'casement',n:'Casement',l:'Hinged at the side. Swings open like a door.'},
+ {m:'awning',n:'Awning',l:'Hinged at the top. Opens out, keeps the rain off.'},
+ {m:'hopper',n:'Hopper',l:'Hinged at the bottom. Tips in for fresh air.'},
+ {m:'tiltturn',n:'Tilt and turn',l:'One handle: tilt in for air, or turn fully open.',dur:4.2},
+ {m:'sliding',n:'Sliding',l:'Glides sideways. Nothing swings into the room.'},
+ {m:'fixed',n:'Fixed',l:'Doesn\'t open at all. The most glass, the least frame.'}];
+const INTRO=2.4,OUT=3.0,DEF=3.0;let t0=INTRO;SC.forEach(s=>{s.t=t0;s.d=s.dur||DEF;t0+=s.d});
+window.DURATION=t0+OUT;
+document.getElementById('bar').innerHTML=SC.map(()=>'<i></i>').join('');
+const $=id=>document.getElementById(id);
+window.render=t=>{
+  const bars=[...document.querySelectorAll('.bar i')];
+  if(t<INTRO){ $('idx').textContent='VALDA GUIDE';$('name').innerHTML='Every way a<br>window opens';$('line').style.top='520px';$('line').textContent='Six types, twenty seconds.';
+    $('name').style.opacity=E(S2(t,0,.5));$('line').style.opacity=E(S2(t,.4,.9));$('art').innerHTML=svg(scene('casement',0));$('art').style.opacity=E(S2(t,.6,1.2));
+    bars.forEach(b=>b.className='');$('bar').style.opacity=0;return}
+  $('line').style.top='420px';$('art').style.opacity=1;$('bar').style.opacity=1;
+  if(t>=window.DURATION-OUT){const k=E(S2(t,window.DURATION-OUT,window.DURATION-OUT+.5));
+    $('idx').textContent='YOUR TURN';$('name').innerHTML='Which one is<br>in your home?';$('line').style.top='520px';$('line').textContent='Tell us in the comments. valdagroup.com';
+    $('name').style.opacity=k;$('line').style.opacity=k;$('art').innerHTML=svg(scene('tiltturn',0));bars.forEach(b=>b.className='on');return}
+  const i=SC.findIndex(s=>t>=s.t&&t<s.t+s.d),s=SC[i],lt=t-s.t;
+  $('idx').textContent=`${String(i+1).padStart(2,'0')} / 06`;$('name').textContent=s.n;$('line').textContent=s.l;
+  const tin=E(S2(lt,0,.35));$('name').style.opacity=tin;$('line').style.opacity=E(S2(lt,.15,.5));
+  bars.forEach((b,j)=>b.className=j<=i?'on':'');
+  let k=0,k2=0;
+  if(s.m==='tiltturn'){k=E(S2(lt,.4,1.1))-E(S2(lt,1.6,2.1));k2=E(S2(lt,2.2,3.0))-E(S2(lt,3.5,4.1));if(k2>0)k=0}
+  else k=E(S2(lt,.4,1.3))-E(S2(lt,2.1,2.85));
+  $('art').innerHTML=svg(scene(s.m,k,k2));
+};
+window.render(0);
+</script></body></html>
