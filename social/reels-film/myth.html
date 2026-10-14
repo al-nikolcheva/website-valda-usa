@@ -1,0 +1,68 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+@font-face{font-family:IT;font-weight:600;src:url(../fonts/InterTight-600.ttf)}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:#f4f4f4;font-family:IT;color:#222224;position:relative}
+#logo{position:absolute;left:90px;top:120px;height:70px}
+#tag{position:absolute;left:90px;top:240px;font:600 34px IT;letter-spacing:.12em;padding:10px 18px;border-radius:8px;color:#fff}
+#h{position:absolute;left:90px;right:90px;top:320px;font:600 100px/1.02 IT;letter-spacing:-.035em}
+#p{position:absolute;left:90px;right:90px;top:560px;font:500 42px/1.3 IT;color:#6f6f72}
+svg{position:absolute;left:0;top:720px;width:1080px;height:797px}
+</style></head><body>
+<img id="logo" src="../../public/valda-logo-ink.svg">
+<div id="tag"></div><div id="h"></div><div id="p"></div>
+<svg id="art" viewBox="120 100 840 620"></svg>
+<script>
+// "Myth: aluminum windows are cold" — heat flow through a solid vs a thermally broken aluminum profile.
+const C=x=>x<0?0:x>1?1:x,E=x=>{x=C(x);return 1-Math.pow(1-x,3)},S=(t,a,b)=>C((t-a)/(b-a));
+const SC=[{t:0,k:'hook'},{t:2.8,k:'old'},{t:7.6,k:'tb'},{t:12.8,k:'num'},{t:16.4,k:'fact'}];
+window.DURATION=19.4;
+const $=id=>document.getElementById(id);
+const AL='#c9ced6',INK='#222224',PA='#3a3a3c',RED='#c4472f',BLUE='#1f4e8c';
+function profile(split,k){ // horizontal section, y 230..530; k = draw-in 0..1
+  const y0=230,y1=530,o=(1-E(k))*40;
+  const body=(x0,x1)=>`<rect x="${x0}" y="${y0+o}" width="${x1-x0}" height="${y1-y0}" rx="8" fill="${AL}" stroke="${INK}" stroke-width="4"/>
+    <rect x="${x0+24}" y="${y0+30+o}" width="${(x1-x0)/2-36}" height="${y1-y0-60}" rx="4" fill="#f4f4f4" stroke="${INK}" stroke-width="3"/>
+    <rect x="${x0+(x1-x0)/2+12}" y="${y0+30+o}" width="${(x1-x0)/2-36}" height="${y1-y0-60}" rx="4" fill="#f4f4f4" stroke="${INK}" stroke-width="3"/>`;
+  if(!split) return `<g opacity="${E(k)}">${body(300,780)}</g>`;
+  return `<g opacity="${E(k)}">${body(300,500)}${body(580,780)}
+    <rect x="500" y="${y0+70+o}" width="80" height="${y1-y0-140}" fill="${PA}" stroke="${INK}" stroke-width="3"/>
+    <path d="M500 ${y0+90+o}l80 40M500 ${y0+150+o}l80 40M500 ${y0+210+o}l80 30" stroke="#6b6b6e" stroke-width="3"/></g>`;
+}
+function sides(k){return `<g opacity="${E(k)}"><rect x="0" y="120" width="300" height="520" fill="#dbe7f5"/><rect x="780" y="120" width="300" height="520" fill="#f8e2d2"/>
+  <text x="215" y="190" text-anchor="middle" font-family="IT" font-weight="600" font-size="34" fill="${BLUE}">OUTSIDE</text>
+  <text x="215" y="232" text-anchor="middle" font-family="IT" font-size="30" fill="${BLUE}">cold</text>
+  <text x="865" y="190" text-anchor="middle" font-family="IT" font-weight="600" font-size="34" fill="${RED}">INSIDE</text>
+  <text x="865" y="232" text-anchor="middle" font-family="IT" font-size="30" fill="${RED}">warm</text></g>`}
+function heat(t,stopAt,k){ // dots move right -> left from x=900; if stopAt they fade there
+  let s='';const N=18;
+  for(let i=0;i<N;i++){const lane=330+(i%3)*70, ph=((t*170+i*53)%700);let x=920-ph, op=1;
+    if(stopAt){ if(x<stopAt){op=Math.max(0,1-(stopAt-x)/30);x=stopAt-(stopAt-x)*.15} }
+    else if(x<200) op=Math.max(0,(x-120)/80);
+    s+=`<circle cx="${x}" cy="${lane}" r="13" fill="${RED}" opacity="${(op*E(k)).toFixed(2)}"/>`}
+  return s}
+window.render=t=>{
+  const i=SC.reduce((a,s,j)=>t>=s.t?j:a,0),s=SC[i],lt=t-s.t,ein=E(S(lt,0,.4));
+  let tag='',tagbg='',h='',p='',art='';
+  if(s.k==='hook'){tag='MYTH';tagbg=RED;h='Aluminum windows are cold.';p='You have heard it. Here is why it used to be true, and why it isn\'t now.';
+    art=`<g transform="translate(540 380) scale(${.85+.15*E(S(lt,.2,.8))})" opacity="${E(S(lt,.2,.8))}"><text text-anchor="middle" font-family="IT" font-weight="600" font-size="200" fill="${RED}" transform="rotate(-8)">MYTH?</text></g>`}
+  if(s.k==='old'){tag='THEN';tagbg='#6f6f72';h='Old aluminum frames';p='Metal conducts heat, so heat ran straight through the frame.';
+    art=sides(S(lt,0,.5))+profile(false,S(lt,.2,.8))+heat(lt,0,S(lt,.9,1.4))}
+  if(s.k==='tb'){tag='NOW';tagbg=BLUE;h='A thermal break';p='An insulating polyamide strip splits the frame in two. Heat stops there.';
+    art=sides(1)+profile(true,S(lt,.1,.7))+heat(lt,592,S(lt,.8,1.3))+
+      `<g opacity="${E(S(lt,1.6,2.2))}"><path d="M540 600 V660" stroke="${INK}" stroke-width="3"/><text x="540" y="705" text-anchor="middle" font-family="IT" font-weight="600" font-size="34">thermal break</text></g>`}
+  if(s.k==='num'){tag='THE NUMBER';tagbg=BLUE;h='U-factor 0.14';p='MasterLine 10 by Reynaers, triple glazed. Lower is better.';
+    const v='0.14',sc=.8+.2*E(S(lt,.2,.9));
+    art=`<g transform="translate(540 380) scale(${sc})" opacity="${E(S(lt,.2,.7))}"><text text-anchor="middle" font-family="IT" font-weight="600" font-size="260" fill="${BLUE}" letter-spacing="-8">${v}</text></g>
+      <text x="540" y="470" text-anchor="middle" font-family="IT" font-size="38" fill="#6f6f72">whole-window U-factor</text>`}
+  if(s.k==='fact'){tag='FACT';tagbg='#2e7d4f';h='Modern aluminum windows insulate.';p='Full guide: thermal break explained, on valdagroup.com';
+    art=`<text x="540" y="380" text-anchor="middle" font-family="IT" font-weight="600" font-size="300" fill="#2e7d4f" opacity="${E(S(lt,.3,.9))}">✓</text>
+      <text x="540" y="520" text-anchor="middle" font-family="IT" font-size="40" fill="#6f6f72" opacity="${E(S(lt,.8,1.4))}">Myth or fact? Tell us your next one.</text>`}
+  $('tag').textContent=tag;$('tag').style.background=tagbg;$('h').textContent=h;$('p').textContent=p;
+  $('tag').style.opacity=ein;$('h').style.opacity=ein;$('h').style.transform=`translateY(${(1-ein)*30}px)`;$('p').style.opacity=E(S(lt,.2,.6));
+  $('art').innerHTML=art;
+};
+window.render(0);
+</script></body></html>
