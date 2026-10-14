@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { JsonLd } from "@/components/json-ld";
+import { CookieConsent } from "@/components/cookie-consent";
 import { DEFAULT_OG, SITE_URL, INDEXABLE } from "@/lib/seo";
 
 const interTight = Inter_Tight({ variable: "--font-inter-tight", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main className="flex-1">{children}</main>
           <SiteFooter />
         </SmoothScroll>
+        <CookieConsent />
       </body>
     </html>
   );

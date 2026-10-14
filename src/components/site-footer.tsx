@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { SwButton } from "@/components/sw/button";
+import { CookieSettingsButton } from "@/components/cookie-consent";
 
 /* ── Config ─────────────────────────────────────────────────── */
 const CLOSING = "Have a project in mind? Let’s build what comes next.";
@@ -12,6 +13,7 @@ const LINKS = [
   { label: "Catalogue", href: "/catalogue" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
 ];
 const SOCIAL = [
   { label: "Instagram", href: "#" },
@@ -53,6 +55,7 @@ export function SiteFooter() {
             {LINKS.map((l) => (
               <Link key={l.href} href={l.href} className="text-white/80 transition-colors hover:text-white">{l.label}</Link>
             ))}
+            <CookieSettingsButton className="text-white/80 transition-colors hover:text-white" />
           </nav>
           <div className="flex gap-6">
             {SOCIAL.map((s) => (
