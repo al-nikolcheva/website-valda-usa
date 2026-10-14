@@ -9,6 +9,7 @@ LOCATION: none
 COLLABORATOR: invite the architect or developer as a Collab where you know their account, so the post shows on both profiles.
 
 ALT TEXT (add per image for accessibility and search):
-Slide 1: Window profile section with text: The classic, engineered. Casement systems with modern thermal performance. ConceptSystem 77 · Reynaers
-Slide 2: Text slide: ConceptSystem 77. Certified in the strictest zone.
-Slide 3: Text slide: Configurations. Fixed, casement and tilt and turn. Fixed lights to 94 1/2 x 141 3/4 in. Casement and tilt and turn to 48 x 96 7/16 in.
+Slide 1: Drawing of a window with text: Casement: hinged at the side. Outswing is the usual US casement. The sash opens out, so it takes no space inside the room. Guide
+Slide 2: Drawing of a window with text: Or open it in, the European way. An inswing casement opens into the room, so you can clean the outside glass from inside. Ask us which suits your project. /02
+Slide 3: Text slide: ConceptSystem 77. Certified in the strictest zone.
+Slide 4: Text slide: Configurations. Fixed, casement and tilt and turn. Fixed lights to 94 1/2 x 141 3/4 in. Casement and tilt and turn to 48 x 96 7/16 in.

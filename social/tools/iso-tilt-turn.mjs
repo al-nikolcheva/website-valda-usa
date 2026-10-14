@@ -30,9 +30,9 @@ const SX0 = T - 1, SX1 = W - T + 1, SY0 = T - 1, SY1 = H - T + 1, ST = 7, SD = 9
 
 function scene(mode, k) {
   // sash transform: tilt = rotate about bottom edge (x axis at y=SY0, z=D), turn = about left edge (y axis at x=SX0)
-  const a = mode === 'tilt' ? 13 * Math.PI / 180 * k : mode === 'turn' ? 72 * Math.PI / 180 * k : 0;
+  const a = mode === 'tilt' ? 13 * Math.PI / 180 * k : mode === 'turn' || mode === 'casein' ? 72 * Math.PI / 180 * k : mode === 'caseout' ? -68 * Math.PI / 180 * k : 0;
   const f = mode === 'tilt' ? ([x, y, z]) => { const dy = y - SY0, dz = z - D; return [x, SY0 + dy * Math.cos(a) - dz * Math.sin(a), D + dy * Math.sin(a) + dz * Math.cos(a)]; }
-          : mode === 'turn' ? ([x, y, z]) => { const dx = x - SX0, dz = z - D; return [SX0 + dx * Math.cos(a) - dz * Math.sin(a), y, D + dx * Math.sin(a) + dz * Math.cos(a)]; }
+          : mode === 'turn' || mode === 'casein' || mode === 'caseout' ? ([x, y, z]) => { const dx = x - SX0, dz = z - D; return [SX0 + dx * Math.cos(a) - dz * Math.sin(a), y, D + dx * Math.sin(a) + dz * Math.cos(a)]; }
           : p => p;
   const faces = [];
   // frame members
@@ -50,7 +50,7 @@ function scene(mode, k) {
   // handle on the right stile, room side: down = closed, sideways = turn, up = tilt
   const hx = SX1 - ST / 2, hy = (SY0 + SY1) / 2, hz = z1;
   faces.push(...box([hx - 1.6, hy - 2.5, hz], [hx + 1.6, hy + 2.5, hz + 2], HANDLE, f));
-  const lever = mode === 'tilt' ? [[hx - 1, hy, hz + 2], [hx + 1, hy + 13, hz + 4]] : mode === 'turn' ? [[hx - 13, hy - 1, hz + 2], [hx, hy + 1, hz + 4]] : [[hx - 1, hy - 13, hz + 2], [hx + 1, hy, hz + 4]];
+  const lever = mode === 'casein' || mode === 'caseout' ? [[hx - 1, hy - 13, hz + 2], [hx + 1, hy, hz + 4]] : mode === 'tilt' ? [[hx - 1, hy, hz + 2], [hx + 1, hy + 13, hz + 4]] : mode === 'turn' ? [[hx - 13, hy - 1, hz + 2], [hx, hy + 1, hz + 4]] : [[hx - 1, hy - 13, hz + 2], [hx + 1, hy, hz + 4]];
   faces.push(...box(lever[0], lever[1], HANDLE, f));
   return { faces, f };
 }
@@ -85,7 +85,7 @@ ${shadow}${vis.map(poly).join('')}${arrow}</svg>`;
 }
 
 const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1100 } });
-for (const m of ['closed', 'tilt', 'turn']) {
+for (const m of (process.argv[2] ? process.argv.slice(2) : ['closed', 'tilt', 'turn'])) {
   await p.setContent(`<body style="margin:0;background:transparent">${svg(m)}</body>`);
   await p.screenshot({ path: `${OUT}/iso-${m}.png`, omitBackground: true, clip: { x: 0, y: 0, width: 1080, height: 1100 } });
 }

@@ -50,7 +50,7 @@ window.POSTS=[
 {n:7,li:"#sightlines #slidingdoors",ig:"#sightlines #minimalframe #slimframes #slidingdoors",tag:['Reynaers Aluminium (SlimPatio 68)'],loc:'',date:"03 Nov",day:"Tue",arm:'Educational',title:'Sightlines',slides:[
  {t:'drawing',h:'More glass, less frame.',d:'Sightlines: the visible frame around the glass. A few millimetres change a room.',c:'Guide /03',f:'Sightlines',img:A+'iso-window.png'},
  {t:'specs',label:'Why it matters',h:'Every inch of frame is an inch of view.',big:{k:'Sightline · SlimPatio 68 sliding door',v:'15/16 in'},cards:[['More light','Slimmer frames, more glass'],['Cleaner lines','The opening reads as one pane']]},
- {t:'close',img:P+'images/sliding-deck.png',label:'Your turn',h:'Slim frames start at the design stage.',lead:'Large panes and slim sightlines need the right system from day one. Bring us in early.',q:'How slim is slim enough?',rest:'Tell us in the comments.'},
+ {t:'close',img:P+'images/hero-glass.png',label:'Your turn',h:'Slim frames start at the design stage.',lead:'Large panes and slim sightlines need the right system from day one. Bring us in early.',q:'How slim is slim enough?',rest:'Tell us in the comments.'},
 ],caption:'Sightlines are the visible frame around the glass. Slimmer sightlines mean more glass, more light and openings that read as a single pane. SlimPatio 68 by Reynaers runs a 15/16 in sightline on a sliding door. The trick is choosing the system early, before the opening sizes are fixed.'},
 
 {n:8,li:"#slidingdoors #foldingdoors #architects",ig:"#foldingdoors #slidingdoors #indooroutdoorliving #reynaers",tag:['Reynaers Aluminium (ConceptFolding 77)'],loc:'',date:"08 Oct",day:"Thu",arm:'What we have',title:'Sliding and folding',slides:[
@@ -115,16 +115,17 @@ window.POSTS=[
 
 // ---------------- W7 ----------------
 {n:19,li:"#tripleglazing #energyefficiency #Reynaers",ig:"#tripleglazing #triplepane #energyefficiency #energyefficienthomes",tag:['Reynaers Aluminium (ConceptSystem 77)'],loc:'',date:"10 Nov",day:"Tue",arm:"Blog",title:'Triple glazing',slides:[
- {t:'charQ',h:'Triple glazing: worth it?',d:'When the third pane pays back, and when it does not.',c:'Guide /07',img:P+'images/home-modern-pool.webp'},
+ {t:'charQ',h:'Triple glazing: worth it?',d:'When the third pane pays back, and when it does not.',c:'Guide /07',img:P+'images/home-coast-sunset.webp'},
  {t:'compare',label:'Double vs triple',h:'Same system, one more pane.',lead:'ConceptSystem 77 by Reynaers, U-factor by glazing.',a:{k:'Double glazed',v:'U-factor 0.24',img:P+'images/arch-4.jpg'},b:{k:'Triple glazed',v:'U-factor 0.18',img:P+'images/facade-stone.png',blue:1}},
  {t:'close',img:P+'images/arch-1.jpg',label:'Worth it when',h:'Cold winters, noisy streets, big panes.',lead:'Triple glazing pays back in cold climates, on loud sites and on large glazed areas. It adds weight and cost, so check the frame is built for it.',q:'Double or triple?',rest:'What do you usually specify?'},
 ],caption:'Triple glazing: when it is actually worth it. On ConceptSystem 77 by Reynaers, the third pane takes the U-factor from 0.24 to 0.18. It pays back in cold climates, on noisy sites and on large glazed areas. It adds weight and cost, so make sure the frame is designed for it.'},
 
 {n:20,li:"#casementwindows #impactwindows #HVHZ",ig:"#casementwindows #impactwindows #hurricanewindows #reynaers",tag:['Reynaers Aluminium (ConceptSystem 77)'],loc:'',date:"20 Oct",day:"Tue",arm:'What we have',title:'Casement',slides:[
- {t:'sand',h:'The classic, engineered.',d:'Casement systems with modern thermal performance.',c:'ConceptSystem 77 · Reynaers',img:P+'products/conceptsystem-77.png'},
+ {t:'drawing',h:'Casement: hinged at the side.',d:'Outswing is the usual US casement. The sash opens out, so it takes no space inside the room.',c:'Guide',f:'Outswing',img:A+'iso-caseout.png'},
+ {t:'drawing',h:'Or open it in, the European way.',d:'An inswing casement opens into the room, so you can clean the outside glass from inside. Ask us which suits your project.',c:'/02',f:'Inswing',img:A+'iso-casein.png'},
  {t:'specs',label:'ConceptSystem 77',h:'Certified in the strictest zone.',big:{k:'Design pressure',v:'±65 psf'},cards:[['Approval','In and outside HVHZ'],['Impact','Large and small missile'],['U-factor, triple','0.18'],['Acoustic','STC 43']]},
  {t:'close',img:P+'images/facade-brick.webp',label:'Configurations',h:'Fixed, casement and tilt and turn.',lead:'Fixed lights to 94 1/2 x 141 3/4 in. Casement and tilt and turn to 48 x 96 7/16 in.',q:'Casement or tilt and turn?',rest:'Tell us your pick.'},
-],caption:"Impact-rated aluminum casement windows, approved for the HVHZ.\n\nThe casement is the classic window. ConceptSystem 77 by Reynaers brings it up to the hurricane coast:\n- Design pressure to ±65 psf\n- Large and small missile impact, in and outside the HVHZ\n- U-factor 0.18 with triple glazing\n- STC 43\n\nAvailable as fixed, casement and tilt and turn.\n\nCasement or tilt and turn: which do you specify?"},
+],caption:"Impact-rated aluminum casement windows, approved for the HVHZ.\n\nThe casement is the classic window: hinged at the side, opening out the US way or in the European way. ConceptSystem 77 by Reynaers brings it up to the hurricane coast:\n- Design pressure to ±65 psf\n- Large and small missile impact, in and outside the HVHZ\n- U-factor 0.18 with triple glazing\n- STC 43\n\nAvailable as fixed, casement and tilt and turn.\n\nCasement or tilt and turn: which do you specify?"},
 
 {n:21,link:"https://valdagroup.com/projects/stella",li:"#residentialarchitecture #aluminumwindows #slidingdoors",ig:"#residentialarchitecture #sofiaarchitecture #slidingdoors #modernarchitecture",tag:['IPA - Architecture and more (architect)','BLD (developer)'],loc:'Sofia, Bulgaria',date:"09 Oct",day:"Fri",arm:'Projects',title:'Stella',slides:[
  {t:'projCover',h:"Stella",d:"Sofia, Bulgaria",img:A+'projects/stella-1.jpg',pos:'50% 40%'},
@@ -142,8 +143,8 @@ window.POSTS=[
 ],caption:'How to read a window spec sheet. Five figures do most of the work: design pressure, U-factor, STC, air infiltration and water resistance. On the coast, add impact: missile size, Wind Zone and HVHZ approval. Save this for your next submittal, or send us a spec sheet and we will walk you through it.'},
 
 {n:23,li:"#tripleglazing #laminatedglass",ig:"#doubleglazing #tripleglazing #laminatedglass #impactglass",tag:[],loc:'',date:"05 Nov",day:"Thu",arm:'What we have',title:'Glazing options',slides:[
- {t:'darkCut',h:'From double to triple.',c:'Glazing options · Vista Guard · VALDA',img:A+'vista-cut.png'},
- {t:'steps',img:P+'images/facade-wood.jpg',label:'Glazing options',h:'What each option changes.',items:[['Double glazed','The standard. Good thermal performance at the lowest weight.'],['Triple glazed','Better U-factor and acoustics. Heavier, needs a deeper frame.'],['Laminated','A bonded interlayer holds the glass in place. Needed for impact.']]},
+ {t:'darkCut',h:'From double to triple.',c:'Glazing options · Vista Guard · VALDA',img:P+'images/sys-vista.jpg'},
+ {t:'steps',img:P+'images/arch-3.jpg',label:'Glazing options',h:'What each option changes.',items:[['Double glazed','The standard. Good thermal performance at the lowest weight.'],['Triple glazed','Better U-factor and acoustics. Heavier, needs a deeper frame.'],['Laminated','A bonded interlayer holds the glass in place. Needed for impact.']]},
  {t:'close',img:P+'images/design-office.webp',label:'Not sure?',h:'Tell us the climate and the noise.',lead:'We will recommend the glazing that fits the project, not the most expensive one.',q:'Which glazing do you specify most?',rest:''},
 ],caption:'Glazing options, from double to triple. Double glazing is the standard, triple improves U-factor and acoustics at the cost of weight, and laminated glass holds the pane in place for impact protection. Tell us the climate and the noise, and we will recommend the glazing that fits.'},
 
@@ -165,11 +166,11 @@ window.POSTS=[
 ],caption:"How European windows reach a US job site: from our factories in Bulgaria to your site, in five steps.\n\n1. Made in our own factories in Sofia and Veliko Tarnovo\n2. Packed for the Atlantic crossing\n3. Shipped with full export documentation\n4. Cleared through US customs by us\n5. Trucked to your site, coast to coast\n\nOne point of contact from the factory to the final window.\n\nWhere is your next project?"},
 
 {n:26,date:"11 Nov",day:"Wed",arm:'Holiday',title:'Veterans Day',li:"#VeteransDay #ThankYou",ig:"#veteransday #thankyouveterans #honorandremember #usa",tag:[],loc:'',slides:[
- {t:'holiday',label:'Veterans Day · 11 November',h:'Thank you to all who served.',d:'Today we honor the veterans who serve and have served the United States.',img:P+'images/home-us-porch.webp'},
+ {t:'holiday',label:'Veterans Day · 11 November',h:'Thank you to all who served.',d:'Today we honor the veterans who serve and have served the United States.',img:P+'images/home-cream-brick.webp'},
 ],caption:'Today we honor the veterans who serve and have served the United States. Thank you for your service.'},
 
 {n:27,date:"26 Nov",day:"Thu",arm:'Holiday',title:'Thanksgiving',li:"#Thanksgiving #Gratitude",ig:"#thanksgiving #happythanksgiving #grateful #gratitude",tag:[],loc:'',slides:[
- {t:'holiday',label:'Thanksgiving · 26 November',h:'Grateful for every project we get to be part of.',d:'Thank you to the architects, builders and homeowners we work with. Happy Thanksgiving from all of us at VALDA.',img:P+'images/hero-villa.jpg'},
+ {t:'holiday',label:'Thanksgiving · 26 November',h:'Grateful for every project we get to be part of.',d:'Thank you to the architects, builders and homeowners we work with. Happy Thanksgiving from all of us at VALDA.',img:P+'images/arch-1.jpg'},
 ],caption:'Grateful for every project we get to be part of. Thank you to the architects, builders, developers and homeowners we work with this year. Happy Thanksgiving from all of us at VALDA.'},
 
 // ---------------- Added in the blended plan ----------------
