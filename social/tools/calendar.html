@@ -1,0 +1,171 @@
+<title>VALDA Content Calendar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a wall-planner month grid, Mon–Sun, one column per weekday; a detail sheet slides over it. */
+:root{
+  --bg:#f3f3f1; --card:#ffffff; --ink:#1d1e21; --mute:#6c6e74; --line:#dcdcd8; --blue:#1f4e8c; --blue-soft:#e3ebf6;
+  --edu:#1f4e8c; --prod:#2f6f62; --proj:#8a5a2b; --blog:#6b3fa0; --reel:#b23a48; --co:#4b5563; --hol:#9a8a2f;
+  --ok:#2e7d4f; --wait:#b7791f; --done:#8b8f96;
+  --display:"Inter Tight",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141518; --card:#1d1f23; --ink:#ecedef; --mute:#9a9ea6; --line:#2e3137; --blue:#7fa8de; --blue-soft:#1d2a3c;
+  --edu:#7fa8de; --prod:#6fbfae; --proj:#d6a66f; --blog:#b896e6; --reel:#e58592; --co:#a4abb6; --hol:#d2c271;
+  --ok:#6cc792; --wait:#e2b25a; --done:#7c818a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141518; --card:#1d1f23; --ink:#ecedef; --mute:#9a9ea6; --line:#2e3137; --blue:#7fa8de; --blue-soft:#1d2a3c;
+  --edu:#7fa8de; --prod:#6fbfae; --proj:#d6a66f; --blog:#b896e6; --reel:#e58592; --co:#a4abb6; --hol:#d2c271;
+  --ok:#6cc792; --wait:#e2b25a; --done:#7c818a; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.45 var(--display)}
+.wrap{max-width:1240px;margin:0 auto;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between;margin-bottom:18px}
+h1{font:600 30px/1.1 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sub{color:var(--mute);margin-top:4px}
+.tabs{display:flex;gap:6px}
+.tabs button{font:500 14px var(--display);padding:8px 14px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button:focus-visible,.cell:focus-visible,.post:focus-visible,.close:focus-visible,.seg button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 14px;color:var(--mute);font-size:12.5px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:9px;height:9px;border-radius:2px;display:inline-block;flex:none}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.stat{font-size:12.5px;padding:5px 10px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.stat b{font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);background:var(--card)}
+.dow{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding:8px 10px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cell{min-height:150px;padding:8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
+.cell.out{background:var(--bg)}
+.cell.out .num{opacity:.35}
+.cell.today .num{background:var(--ink);color:var(--bg);border-radius:6px;padding:0 6px}
+.num{font:500 12px var(--mono);align-self:flex-start;font-variant-numeric:tabular-nums}
+.post{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:5px;border-radius:8px;padding:5px;margin:-2px;min-width:0}
+.post:hover{background:var(--blue-soft)}
+.thumb{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:5px;border:1px solid var(--line);background:var(--bg);max-width:100%}
+.post.reel .thumb{aspect-ratio:4/5;object-position:center 30%}
+.ptitle{font:600 12.5px/1.25 var(--display);overflow-wrap:anywhere}
+.meta{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute);min-width:0}
+.pill{font:500 10.5px var(--display);padding:1px 7px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.st-posted{color:var(--done)} .st-scheduled{color:var(--ok)} .st-approve{color:var(--wait)}
+.blog{font-size:11.5px;padding:6px 7px;border-radius:6px;background:var(--blue-soft);color:var(--ink);display:flex;flex-direction:column;gap:2px}
+.blog b{font-weight:600;color:var(--blog)}
+.empty{font-size:11px;color:var(--mute);font-style:italic}
+/* detail sheet */
+.sheet{position:fixed;inset:0;background:rgb(0 0 0 / .45);display:flex;justify-content:flex-end;z-index:10}
+.panel{background:var(--card);width:min(720px,100%);height:100%;overflow:auto;padding-block:calc(22px + env(safe-area-inset-top,0px)) calc(32px + env(safe-area-inset-bottom,0px));padding-left:24px;padding-right:max(24px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:16px}
+.ph{display:flex;justify-content:space-between;gap:16px;align-items:start}
+.ph h2{font:600 26px/1.15 var(--display);margin:4px 0 0;letter-spacing:-.015em;text-wrap:balance}
+.close{all:unset;cursor:pointer;font:500 13px var(--display);padding:7px 12px;border:1px solid var(--line);border-radius:999px;flex:none}
+.strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+.strip img{height:300px;width:auto;border-radius:6px;border:1px solid var(--line);flex:none;max-width:none}
+.times{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.time{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.time small{display:block;color:var(--mute);font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.time b{font:600 17px var(--display);font-variant-numeric:tabular-nums}
+.seg{display:flex;gap:6px}
+.seg button{font:500 13px var(--display);padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--card)}
+pre.cap{white-space:pre-wrap;font:400 14.5px/1.55 var(--display);margin:0;max-width:65ch;min-width:0}
+.facts{display:flex;flex-wrap:wrap;gap:6px}
+.fact{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+@media (max-width:760px){
+  .grid{display:block;border:none;background:none}
+  .dow{display:none}
+  .cell{min-height:0;border:none;border-bottom:1px solid var(--line);flex-direction:row;align-items:flex-start;gap:12px;padding:10px 0;background:none}
+  .cell.out,.cell.blank{display:none}
+  .num{width:58px;flex:none}
+  .cell .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+  .post{flex-direction:row;align-items:center;gap:10px}
+  .post .thumb{width:64px;flex:none}
+  .strip img{height:220px}
+}
+@media (min-width:761px){.cell .body{display:contents}}
+@media (prefers-reduced-motion:no-preference){.panel{animation:slide .18s ease-out}@keyframes slide{from{transform:translateX(24px);opacity:.6}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div><h1>VALDA Content Calendar</h1><div class="sub" id="sub"></div></div>
+    <div class="tabs" role="group" aria-label="Month"><button id="m10" aria-pressed="true">October</button><button id="m11" aria-pressed="false">November</button></div>
+  </header>
+  <div class="legend" id="legend"></div>
+  <div class="stats" id="stats"></div>
+  <div class="grid" id="grid"></div>
+</div>
+<div class="sheet" id="sheet" hidden></div>
+
+<script>
+const DATA = __DATA__;
+const PILLAR = {'Educational':['Educational','--edu'],'What we have':['Product','--prod'],'Projects':['Project','--proj'],'Blog':['Blog post','--blog'],
+  'Reel':['Reel','--reel'],'News':['Company','--co'],'Behind the scenes':['Behind the scenes','--co'],'Holiday':['Holiday','--hol']};
+const STATUS = {'posted':['Posted','st-posted'],'scheduled':['Scheduled','st-scheduled'],'to approve':['To approve','st-approve']};
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const byDate = {}; DATA.posts.forEach(p => (byDate[p.date] ??= []).push(p));
+const blogBy = Object.fromEntries(DATA.blogs.map(b => [b.date, b]));
+const fmt = iso => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+
+$('sub').textContent = `October–November 2026 · LinkedIn and Instagram · times in US Eastern · updated ${new Date(DATA.updated+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})}`;
+$('legend').innerHTML = [...new Set(Object.values(PILLAR).map(v=>v.join('|')))].map(v => { const [n,c]=v.split('|'); return `<span><i class="dot" style="background:var(${c})"></i>${n}</span>`; }).join('') +
+  `<span><i class="dot" style="background:var(--blog);opacity:.35"></i>Blog article (website)</span>`;
+
+let month = '10';
+try { const m = localStorage.getItem('cal-month'); if (m === '10' || m === '11') month = m; } catch {}
+
+function render() {
+  $('m10').setAttribute('aria-pressed', month === '10'); $('m11').setAttribute('aria-pressed', month === '11');
+  const inMonth = DATA.posts.filter(p => p.date.slice(5,7) === month);
+  const c = s => inMonth.filter(p => p.status === s).length;
+  $('stats').innerHTML = `<span class="stat"><b>${inMonth.length}</b> posts</span><span class="stat st-posted"><b>${c('posted')}</b> posted</span><span class="stat st-scheduled"><b>${c('scheduled')}</b> scheduled</span><span class="stat st-approve"><b>${c('to approve')}</b> to approve</span><span class="stat"><b>${inMonth.filter(p=>p.video).length}</b> Reels</span>`;
+  const y = 2026, m = +month - 1, first = new Date(y, m, 1), days = new Date(y, m + 1, 0).getDate();
+  const lead = (first.getDay() + 6) % 7, total = Math.ceil((lead + days) / 7) * 7;
+  let html = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => `<div class="dow">${d}</div>`).join('');
+  for (let i = 0; i < total; i++) {
+    const dt = new Date(y, m, i - lead + 1), out = dt.getMonth() !== m;
+    const iso = `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;
+    const ps = out ? [] : (byDate[iso] || []), b = out ? null : blogBy[iso];
+    const label = window.matchMedia('(max-width:760px)').matches ? dt.toLocaleDateString('en-US',{weekday:'short',day:'numeric'}) : dt.getDate();
+    const body = ps.map(p => { const [pn, pc] = PILLAR[p.pillar] || [p.pillar,'--co'], [sn, sc] = STATUS[p.status];
+      return `<button class="post${p.video?' reel':''}" data-date="${iso}" data-title="${esc(p.title)}" aria-label="${esc(p.title)}, ${pn}, ${sn}">
+        <img class="thumb" src="${p.slides[0]}" alt="">
+        <span style="display:flex;flex-direction:column;gap:4px;min-width:0"><span class="meta"><i class="dot" style="background:var(${pc})"></i>${pn}${p.video?` · ${p.video}s`:''}</span>
+        <span class="ptitle">${esc(p.title)}</span><span class="meta"><span class="pill ${sc}">${sn}</span></span></span></button>`; }).join('') +
+      (b ? `<div class="blog"><b>Blog article</b>${esc(b.title)}<span style="color:var(--mute)">${esc(b.status)}</span></div>` : '');
+    const blank = !out && !ps.length && !b;
+    html += `<div class="cell${out?' out':''}${blank?' blank':''}${iso===DATA.updated?' today':''}"><span class="num">${label}</span><div class="body">${body}</div></div>`;
+  }
+  $('grid').innerHTML = html;
+}
+
+function open(date, title) {
+  const p = (byDate[date] || []).find(x => x.title === title); if (!p) return;
+  const [pn, pc] = PILLAR[p.pillar] || [p.pillar,'--co'], [sn, sc] = STATUS[p.status];
+  let net = 'ig';
+  const draw = () => {
+    $('sheet').innerHTML = `<div class="panel" role="dialog" aria-modal="true" aria-label="${esc(p.title)}">
+      <div class="ph"><div><div class="meta"><i class="dot" style="background:var(${pc})"></i>${pn} · ${fmt(p.date)} <span class="pill ${sc}">${sn}</span></div><h2>${esc(p.title)}</h2></div>
+        <button class="close" id="close">Close</button></div>
+      <div class="strip">${p.slides.map((s,i) => `<img src="${s}" alt="${p.video?'Frame':'Slide'} ${i+1} of ${esc(p.title)}">`).join('')}</div>
+      ${p.video ? `<div class="facts"><span class="fact">Reel · ${p.video} seconds · 9:16</span><span class="fact">Frames shown at 1, 6 and 12 seconds</span></div>` : `<div class="facts"><span class="fact">${p.slides.length} slides</span></div>`}
+      <div class="times"><div class="time"><small>LinkedIn</small><b>${esc(p.li.time || '—')}</b></div><div class="time"><small>Instagram</small><b>${esc(p.ig.time || '—')}</b></div><div class="time"><small>Instagram Story</small><b>6:00 PM ET</b></div></div>
+      ${p.tags.length ? `<div class="facts">${p.tags.map(t=>`<span class="fact">Tag: ${esc(t)}</span>`).join('')}</div>` : ''}
+      ${p.link ? `<div class="facts"><span class="fact">Link: ${esc(p.link)}</span></div>` : ''}
+      <div class="seg" role="group" aria-label="Caption"><button id="bi" aria-pressed="${net==='ig'}">Instagram caption</button><button id="bl" aria-pressed="${net==='li'}">LinkedIn caption</button></div>
+      <pre class="cap">${esc(p[net].caption)}</pre></div>`;
+    $('close').onclick = closeSheet; $('bi').onclick = () => { net='ig'; draw(); }; $('bl').onclick = () => { net='li'; draw(); };
+    $('close').focus();
+  };
+  $('sheet').hidden = false; draw();
+}
+function closeSheet(){ $('sheet').hidden = true; $('sheet').innerHTML = ''; }
+$('sheet').addEventListener('click', e => { if (e.target.id === 'sheet') closeSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('sheet').hidden) closeSheet(); });
+$('grid').addEventListener('click', e => { const b = e.target.closest('.post'); if (b) open(b.dataset.date, b.dataset.title); });
+for (const m of ['10','11']) $('m'+m).onclick = () => { month = m; try { localStorage.setItem('cal-month', m); } catch {} render(); };
+window.matchMedia('(max-width:760px)').addEventListener('change', render);
+render();
+</script>
