@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, Download, ShieldCheck } from "lucide-react";
 import { PinnedHero } from "@/components/pinned-hero";
 import { Container, Reveal } from "@/components/primitives";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { ProductPerformance } from "@/components/product-performance";
 import { Openings, type OpeningType } from "@/components/openings";
 import { PRODUCTS, getSystem, navGroup, cutImage, isNavGroup, systemInGroup, systemModel } from "@/lib/products";
 import { SystemVisual } from "@/components/system-visual";
+import { packOnFile } from "@/lib/downloads-server";
 import { PROJECTS } from "@/lib/projects";
 import { JsonLd } from "@/components/json-ld";
 import { abs, brandLabel, breadcrumbLd, noDash, pageMeta, systemDescription, systemKind, systemTitle } from "@/lib/seo";
@@ -98,6 +99,8 @@ export default async function SystemPage({ params, searchParams }: { params: Pro
   const cut = cutImage(s.slug);
   const model = systemModel(s.slug);
   const visual = cut || model;
+  // Technical files on file for this system, offered right under the 3D model.
+  const docs = packOnFile(s);
   const openTypes = animationTypes(view.openingTypes, s.category);
   const impactShort = s.impact ? s.impact.split("—")[0].split("·")[0].trim() : null;
 
@@ -183,7 +186,36 @@ export default async function SystemPage({ params, searchParams }: { params: Pro
               </div>
             </div>
 
-            {visual && <SystemVisual name={s.name} cut={cut} model={model} />}
+            {visual && (
+              <div className="mx-auto w-full max-w-[460px] lg:max-w-none">
+                <SystemVisual name={s.name} cut={cut} model={model} />
+                {docs.length > 0 && (
+                  <div className="mt-3">
+                    <div className="flex items-baseline justify-between">
+                      <p className="text-[14px] leading-[22px] text-mute">Technical downloads</p>
+                      <Link href={`/downloads/${s.slug}`} className="text-[14px] leading-[22px] text-mute transition-colors hover:text-char">
+                        All documents
+                      </Link>
+                    </div>
+                    <ul className="mt-2 space-y-2">
+                      {docs.map((d) => (
+                        <li key={d.key}>
+                          <a href={d.href} download className={`group flex items-center justify-between gap-4 rounded-lg ${secOverview.card} px-4 py-3`}>
+                            <span className="flex min-w-0 flex-wrap items-center gap-2">
+                              <span className="text-[15px] font-medium leading-6 text-char">{d.label}</span>
+                              <span className="rounded-md bg-white px-2 py-0.5 text-[12px] text-char">{d.kind}</span>
+                            </span>
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-char text-white transition-colors duration-300 group-hover:bg-blue">
+                              <Download size={16} />
+                            </span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* key facts */}
