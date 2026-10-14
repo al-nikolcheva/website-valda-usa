@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, Download, ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { PinnedHero } from "@/components/pinned-hero";
 import { Container, Reveal } from "@/components/primitives";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import { Openings, type OpeningType } from "@/components/openings";
 import { PRODUCTS, getSystem, navGroup, cutImage, isNavGroup, systemInGroup, systemModel } from "@/lib/products";
 import { SystemVisual } from "@/components/system-visual";
 import { packOnFile } from "@/lib/downloads-server";
+import { TechDownloads } from "@/components/tech-downloads";
 import { PROJECTS } from "@/lib/projects";
 import { JsonLd } from "@/components/json-ld";
 import { abs, brandLabel, breadcrumbLd, noDash, pageMeta, systemDescription, systemKind, systemTitle } from "@/lib/seo";
@@ -99,7 +100,7 @@ export default async function SystemPage({ params, searchParams }: { params: Pro
   const cut = cutImage(s.slug);
   const model = systemModel(s.slug);
   const visual = cut || model;
-  // Technical files on file for this system; the downloads section only shows when there are some.
+  // Technical files on file for this system; the collapsible downloads strip only shows when there are some.
   const docs = packOnFile(s);
   const openTypes = animationTypes(view.openingTypes, s.category);
   const impactShort = s.impact ? s.impact.split("—")[0].split("·")[0].trim() : null;
@@ -115,7 +116,7 @@ export default async function SystemPage({ params, searchParams }: { params: Pro
 
   // Sequential section numbers + alternating surfaces (configurations is optional).
   const hasOpenings = openTypes.length > 0;
-  const order = ["overview", ...(hasOpenings ? ["openings"] : []), "perf", "colours", ...(docs.length ? ["downloads"] : []), "proof"];
+  const order = ["overview", ...(hasOpenings ? ["openings"] : []), "perf", "colours", "proof"];
   const sec = (key: string) => {
     const i = order.indexOf(key);
     const odd = i % 2 === 0;
@@ -125,7 +126,6 @@ export default async function SystemPage({ params, searchParams }: { params: Pro
   const secOpenings = sec("openings");
   const secPerf = sec("perf");
   const secColours = sec("colours");
-  const secDownloads = sec("downloads");
   const secProof = sec("proof");
 
   // Structured data: product facts from the catalogue only. No offers, ratings or reviews.
@@ -248,33 +248,12 @@ export default async function SystemPage({ params, searchParams }: { params: Pro
         </Container>
       </section>
 
-      {/* ── TECHNICAL DOWNLOADS ──────────────────────────── */}
+      {/* ── TECHNICAL DOWNLOADS (collapsed, like the spec groups) ── */}
       {docs.length > 0 && (
-        <section className={`${secDownloads.bg} py-28 md:py-36`}>
+        <section className={`${secColours.bg} border-t border-char/10 py-16 md:py-20`}>
           <Container>
-            <SwHead layout="stacked" label="Technical downloads" n={secDownloads.n} title="Datasheets, CAD and approvals." />
-            <p className="mt-6 max-w-xl text-[16px] leading-6 text-slate">Everything on file for {s.name}, ready to specify, detail and submit.</p>
-            <div className="mt-14 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {docs.map((d) => (
-                <a key={d.key} href={d.href} download className={`group flex flex-col rounded-lg ${secDownloads.card} p-2 pb-4`}>
-                  <div className={`flex aspect-[16/9] w-full items-center justify-center rounded-md ${secDownloads.bg} transition-transform duration-500 group-hover:scale-[0.98]`}>
-                    <span className="sw-h text-[40px] text-char">{d.kind}</span>
-                  </div>
-                  <div className="mt-4 flex items-start justify-between gap-4 px-2">
-                    <span className="min-w-0">
-                      <span className="block text-[14px] leading-[22px] text-char">{d.label}</span>
-                      <span className="block text-[14px] leading-[22px] text-mute">
-                        {d.desc} · {d.size}
-                      </span>
-                    </span>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-char text-white transition-colors duration-300 group-hover:bg-blue">
-                      <Download size={16} />
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
-            <p className="mt-10 max-w-xl text-[14px] leading-[22px] text-slate">
+            <TechDownloads docs={docs.map(({ key, label, kind, desc, href, size }) => ({ key, label, kind, desc, href, size }))} />
+            <p className="mt-6 text-[14px] leading-[22px] text-slate">
               Need a Florida approval, CSI specification or installation drawings?{" "}
               <Link href={`/downloads/${s.slug}`} className="text-char underline underline-offset-4 transition-colors hover:text-blue">See all documents</Link> or{" "}
               <Link href="/contact" className="text-char underline underline-offset-4 transition-colors hover:text-blue">ask our team</Link>.
