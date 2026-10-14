@@ -11,6 +11,8 @@ import { ProductPerformance } from "@/components/product-performance";
 import { Openings, type OpeningType } from "@/components/openings";
 import { PRODUCTS, getSystem, navGroup, cutImage, isNavGroup, systemInGroup, systemModel } from "@/lib/products";
 import { SystemVisual } from "@/components/system-visual";
+import { packOnFile } from "@/lib/downloads-server";
+import { TechDownloads } from "@/components/tech-downloads";
 import { PROJECTS } from "@/lib/projects";
 import { JsonLd } from "@/components/json-ld";
 import { abs, brandLabel, breadcrumbLd, noDash, pageMeta, systemDescription, systemKind, systemTitle } from "@/lib/seo";
@@ -98,6 +100,8 @@ export default async function SystemPage({ params, searchParams }: { params: Pro
   const cut = cutImage(s.slug);
   const model = systemModel(s.slug);
   const visual = cut || model;
+  // Technical files on file for this system; the collapsible downloads strip only shows when there are some.
+  const docs = packOnFile(s);
   const openTypes = animationTypes(view.openingTypes, s.category);
   const impactShort = s.impact ? s.impact.split("—")[0].split("·")[0].trim() : null;
 
@@ -243,6 +247,20 @@ export default async function SystemPage({ params, searchParams }: { params: Pro
           </p>
         </Container>
       </section>
+
+      {/* ── TECHNICAL DOWNLOADS (collapsed, like the spec groups) ── */}
+      {docs.length > 0 && (
+        <section className={`${secColours.bg} border-t border-char/10 py-16 md:py-20`}>
+          <Container>
+            <TechDownloads docs={docs.map(({ key, label, kind, desc, href, size }) => ({ key, label, kind, desc, href, size }))} />
+            <p className="mt-6 text-[14px] leading-[22px] text-slate">
+              Need a Florida approval, CSI specification or installation drawings?{" "}
+              <Link href={`/downloads/${s.slug}`} className="text-char underline underline-offset-4 transition-colors hover:text-blue">See all documents</Link> or{" "}
+              <Link href="/contact" className="text-char underline underline-offset-4 transition-colors hover:text-blue">ask our team</Link>.
+            </p>
+          </Container>
+        </section>
+      )}
 
       {/* ── PROOF ────────────────────────────────────────── */}
       <section className={`${secProof.bg} py-28 md:py-36`}>
