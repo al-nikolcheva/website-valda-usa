@@ -24,7 +24,7 @@ type Props = {
 };
 
 const MAX = 64; // openings the palette texture can hold
-const FRAME_ALBEDO = 0.8; // the neutral frame colour the renders were made with
+const FRAME_ALBEDO = 0.62; // how bright the neutral frames come out in the tone-mapped renders
 
 const VERT = /* glsl */ `
 varying vec2 vUv;
@@ -65,9 +65,10 @@ void main() {
     c = mix(c, recoloured, m.r);
     c = mix(c, c * toLinear(tint), m.g);
     float glow = 0.0;
-    if (abs(n - uSel) < 0.5) glow = 0.22 + 0.12 * sin(uTime * 3.5);
-    else if (abs(n - uHover) < 0.5) glow = 0.16;
-    c += vec3(0.16, 0.32, 0.72) * glow * max(m.r, m.g * 0.35);
+    // a soft breathing highlight on the glass so the chosen frame colour stays true
+    if (abs(n - uSel) < 0.5) glow = 0.10 + 0.06 * sin(uTime * 3.0);
+    else if (abs(n - uHover) < 0.5) glow = 0.08;
+    c += vec3(0.55, 0.7, 1.0) * glow * m.g;
   }
   gl_FragColor = vec4(toSrgb(c), 1.0);
 }
