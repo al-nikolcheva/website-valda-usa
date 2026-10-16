@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { isHvhzCounty, stateZone } from "@/lib/build-project";
+import { countyZone, isHvhzCounty, loadCountyCodes, stateZone } from "@/lib/build-project";
 import { ZONE_COLOR } from "./zone-colors";
 
 /** One state or county as written by scripts/build-geo.mjs. */
@@ -147,13 +147,13 @@ export default function UsMapCanvas({ stateId, countyId, onState, onCounty, onSt
     let countyToken = 0;
     const loadCounties = async (sid: string) => {
       const token = ++countyToken;
-      const res = await fetch(`/geo/counties/${sid}.json`);
+      const [res, codes] = await Promise.all([fetch(`/geo/counties/${sid}.json`), loadCountyCodes()]);
       const list = (await res.json()) as Region[];
       if (disposed || token !== countyToken) return;
-      const zone = stateZone(sid);
       counties = list.map((r) => {
-        // Florida reads lighter than its HVHZ counties so Miami-Dade and Broward stand out
-        const color = isHvhzCounty(r.id) ? ZONE_COLOR.hvhz : ZONE_COLOR[zone === "impact" ? "coastal" : zone];
+        // each county takes its own zone; Florida reads lighter than its HVHZ counties
+        const z = countyZone(r.id, codes[r.id]);
+        const color = isHvhzCounty(r.id) ? ZONE_COLOR.hvhz : ZONE_COLOR[z === "impact" ? "coastal" : z];
         const it = makeItem(r, color, COUNTY_DEPTH, 0);
         countyLayer.add(it.group);
         return it;

@@ -11,9 +11,10 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SITE } from "@/lib/site";
-import { cutImage } from "@/lib/products";
+import { cutImage, systemModel } from "@/lib/products";
 import {
-  DEFAULT_COUNTS, GLASS, KIND_GROUP, KIND_LABEL, MAX_COUNTS, STYLES, materialOf, recommend, swatchesFor, zoneFor,
+  DEFAULT_COUNTS, GLASS, KIND_GROUP, KIND_LABEL, MAX_COUNTS, STYLES, energyFor, loadCountyCodes, materialOf, recommend, swatchesFor, zoneFor,
+  type CountyCode,
   type BuildingType, type Counts, type Material, type MaterialPref, type OpeningKind, type OpeningSpec, type Pick as SystemPick, type Swatch,
 } from "@/lib/build-project";
 import type { Region } from "./us-map-canvas";
@@ -22,6 +23,14 @@ import type { CameraView, TimeOfDay } from "./house-canvas";
 
 const UsMapCanvas = dynamic(() => import("./us-map-canvas"), { ssr: false });
 const HouseCanvas = dynamic(() => import("./house-canvas"), { ssr: false });
+const RenderStudio = dynamic(() => import("./render-studio"), { ssr: false });
+const ProductCloseup = dynamic(() => import("./product-closeup"), { ssr: false });
+
+/** Photoreal renders made by scripts/render-house; the house uses them, a building still uses the live model. */
+const HOUSE_RENDERS = "/build/house";
+type RenderOpening = { n: number; kind: OpeningKind; style: string };
+/** Glass as a multiply tint over the render (clear leaves it as rendered). */
+const GLASS_TINT: Record<string, string> = { "Clear low-E": "#ffffff", "Grey tint": "#8b9194", "Bronze tint": "#b0927a", "Blue reflective": "#94b4cf" };
 
 type Edit = Partial<Pick<OpeningSpec, "style" | "color" | "interior" | "glass">>;
 
@@ -48,7 +57,11 @@ export function ProjectBuilder() {
   const [county, setCounty] = useState<Region | null>(null);
   const [stateList, setStateList] = useState<Region[]>([]);
   const [countyList, setCountyList] = useState<Region[]>([]);
-  const zone = state ? zoneFor(state.id, county?.id) : null;
+  const [codes, setCodes] = useState<Record<string, CountyCode>>({});
+  useEffect(() => { loadCountyCodes().then(setCodes); }, []);
+  const code = county ? codes[county.id] : undefined;
+  const zone = state ? zoneFor(state.id, county?.id, code) : null;
+  const energy = energyFor(code?.cz);
 
   // 02 project
   const [building, setBuilding] = useState<BuildingType | null>(null);
@@ -187,6 +200,21 @@ export function ProjectBuilder() {
                       </p>
                       <h3 className="sw-h mt-3 text-[22px] leading-tight text-white">{zone.headline}</h3>
                       <p className="mt-2 text-[14px] leading-[22px] text-white/70">{zone.detail}</p>
+                      {energy && (
+                        <div className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-lg bg-white/10 text-center">
+                          {[
+                            ["Climate zone", `${energy.zone}${code?.ba ? ` · ${code.ba}` : ""}`],
+                            ["Max U-factor", energy.u],
+                            ["Max SHGC", energy.shgc],
+                          ].map(([k, v]) => (
+                            <div key={k} className="bg-char px-2 py-2.5">
+                              <p className="text-[11px] text-white/50">{k}</p>
+                              <p className="mt-0.5 text-[14px] text-white">{v}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {energy && <p className="mt-2 text-[11px] leading-4 text-white/40">Energy limits: 2021 IECC, homes, prescriptive path. Zone from the DOE county list.</p>}
                       <div className="mt-4 border-t border-white/10 pt-4">
                         <p className="text-[12px] uppercase tracking-wider text-white/50">We suggest</p>
                         <ul className="mt-2 space-y-1.5">
@@ -312,6 +340,7 @@ export function ProjectBuilder() {
               material={material}
               focusId={focusId}
               setFocusId={setFocusId}
+              systems={Object.fromEntries(KINDS.map((k) => [k, systemFor(k)?.system])) as Record<OpeningKind, SystemPick["system"] | undefined>}
               onBack={() => go(2)}
               onDone={() => { setFocusId(null); go(4); }}
             />
@@ -321,7 +350,7 @@ export function ProjectBuilder() {
             <Inquiry
               summary={{
                 place: place || state.name,
-                zone: `${zone.label} (${zone.requirement})`,
+                zone: `${zone.label} (${zone.requirement})${energy ? `. IECC climate zone ${energy.zone}: U-factor ≤ ${energy.u}, SHGC ${energy.shgc === "no limit" ? "no limit" : `≤ ${energy.shgc}`}` : ""}`,
                 building,
                 material,
                 plan,
@@ -600,8 +629,9 @@ const TIMES: { key: TimeOfDay; label: string; icon: typeof Sun }[] = [
 ];
 const VIEWS: CameraView[] = ["front", "back", "left", "right", "aerial"];
 
-function DesignStudio({ building, specs, onEdit, swatches, material, focusId, setFocusId, onBack, onDone }: {
+function DesignStudio({ building, specs, onEdit, swatches, material, focusId, setFocusId, systems, onBack, onDone }: {
   building: BuildingType;
+  systems: Record<OpeningKind, SystemPick["system"] | undefined>;
   specs: OpeningSpec[];
   onEdit: (ids: string[], patch: Edit) => void;
   swatches: Swatch[];
@@ -617,10 +647,44 @@ function DesignStudio({ building, specs, onEdit, swatches, material, focusId, se
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<{ v: CameraView; k: number }>({ v: "front", k: 0 });
   const [placed, setPlaced] = useState(specs.length);
+  const [closeup, setCloseup] = useState(false);
+
+  // photoreal house: map every rendered opening onto the visitor's openings of the same kind
+  const photoreal = building === "house";
+  const [rendered, setRendered] = useState<RenderOpening[]>([]);
+  useEffect(() => {
+    if (!photoreal) return;
+    fetch(`${HOUSE_RENDERS}/openings.json`).then((r) => r.json()).then((m: { openings: RenderOpening[] }) => setRendered(m.openings)).catch(() => {});
+  }, [photoreal]);
+  const specOf = useMemo(() => {
+    const byKind = (k: OpeningKind) => specs.filter((s) => s.kind === k);
+    const seen: Partial<Record<OpeningKind, number>> = {};
+    const map = new Map<number, OpeningSpec | null>();
+    for (const o of rendered) {
+      const list = byKind(o.kind);
+      const j = (seen[o.kind] = (seen[o.kind] ?? -1) + 1);
+      map.set(o.n, list.length ? list[j % list.length] : null);
+    }
+    return map;
+  }, [rendered, specs]);
+  const paint = useMemo(
+    () =>
+      rendered.map((o) => {
+        const sp = specOf.get(o.n);
+        const sw = swatches.find((x) => x.name === sp?.color) ?? swatches.find((x) => x.name === "Anthracite Grey") ?? swatches[0];
+        return { n: o.n, color: sw.hex, wood: !!sw.wood, glass: GLASS_TINT[sp?.glass ?? ""] ?? "#ffffff" };
+      }),
+    [rendered, specOf, swatches],
+  );
+  const selectedN = focusId ? rendered.find((o) => specOf.get(o.n)?.id === focusId)?.n ?? null : null;
 
   const focused = specs.find((s) => s.id === focusId) ?? null;
-  const index = focused ? specs.indexOf(focused) : -1;
-  const shown = specs.slice(0, Math.max(placed, 0));
+  const shown = photoreal
+    ? [...new Set(rendered.map((o) => specOf.get(o.n)).filter((x): x is OpeningSpec => !!x))]
+    : specs.slice(0, Math.max(placed, 0));
+  const index = focused ? shown.indexOf(focused) : -1;
+  const system = focused ? systems[focused.kind] : undefined;
+  const model = system ? systemModel(system.slug) : null;
 
   const update = (patch: Edit, scope: "one" | "kind" | "all") =>
     onEdit(
@@ -637,18 +701,55 @@ function DesignStudio({ building, specs, onEdit, swatches, material, focusId, se
 
   return (
     <div ref={root} className="relative -mx-5 scroll-mt-[76px] h-[calc(100svh-76px)] min-h-[560px] overflow-hidden bg-[#dfe8f1] md:-mx-10 md:rounded-xl">
-      <HouseCanvas
-        type={building}
-        specs={specs}
-        swatches={swatches}
-        focusId={focusId}
-        onFocus={(id) => { setFocusId(id); if (id) setDock("configure"); }}
-        time={time}
-        open={open}
-        view={view.v}
-        viewKey={view.k}
-        onPlaced={setPlaced}
-      />
+      {photoreal ? (
+        <RenderStudio
+          base={HOUSE_RENDERS}
+          view={view.v === "back" ? "back" : "front"}
+          time={time}
+          paint={paint}
+          selected={selectedN}
+          onPick={(n) => {
+            const id = n ? specOf.get(n)?.id ?? null : null;
+            setFocusId(id);
+            if (id) setDock("configure");
+          }}
+        />
+      ) : (
+        <HouseCanvas
+          type={building}
+          specs={specs}
+          swatches={swatches}
+          focusId={focusId}
+          onFocus={(id) => { setFocusId(id); if (id) setDock("configure"); }}
+          time={time}
+          open={open}
+          view={view.v}
+          viewKey={view.k}
+          onPlaced={setPlaced}
+        />
+      )}
+
+      {closeup && focused && model && (
+        <div className="absolute inset-0 z-20 flex flex-col bg-[#eef1f4]/95 backdrop-blur-sm">
+          <div className="flex items-start justify-between gap-3 p-4 md:p-5">
+            <div className="rounded-2xl bg-white/80 px-4 py-3 shadow-sm">
+              <p className="text-[12px] text-mute">Your {KIND_LABEL[focused.kind].replace(/s$/, "").toLowerCase()} · real profile</p>
+              <p className="text-[15px] text-char">{system?.name} · {focused.color} outside, {focused.interior} inside</p>
+            </div>
+            <IconBtn label="Close the 3D profile" onClick={() => setCloseup(false)}><X size={16} /></IconBtn>
+          </div>
+          <div className="min-h-0 flex-1">
+            <ProductCloseup
+              src={model}
+              exterior={swatches.find((x) => x.name === focused.color)?.hex ?? "#31373B"}
+              interior={swatches.find((x) => x.name === focused.interior)?.hex ?? "#F1F0EA"}
+              wood={!!swatches.find((x) => x.name === focused.color)?.wood}
+              glass={GLASS.find((g) => g.name === focused.glass)?.hex ?? "#cfe3ee"}
+            />
+          </div>
+          <p className="pb-28 text-center text-[12px] text-mute">Drag to turn it. This is the actual {system?.name} section, in your colours.</p>
+        </div>
+      )}
 
       {/* top bar */}
       <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4 md:p-5">
@@ -656,8 +757,8 @@ function DesignStudio({ building, specs, onEdit, swatches, material, focusId, se
           <ArrowLeft size={14} /> Openings
         </button>
         <div className={cn("pointer-events-auto hidden max-w-sm rounded-2xl bg-white/80 px-4 py-3 text-[13px] leading-5 text-char shadow-sm backdrop-blur-md", !focusId && "md:block")}>
-          <span className="text-mute">Tap any window or door to zoom in and style it.</span>
-          {placed < specs.length && <span className="mt-1 block text-mute">Showing {placed} of {specs.length} on the model. All {specs.length} are in your spec.</span>}
+          <span className="text-mute">{photoreal ? "Tap any window or door on the house to style it." : "Tap any window or door to zoom in and style it."}</span>
+          {!photoreal && placed < specs.length && <span className="mt-1 block text-mute">Showing {placed} of {specs.length} on the model. All {specs.length} are in your spec.</span>}
         </div>
         <button type="button" onClick={onDone} className="pointer-events-auto inline-flex h-10 items-center gap-1.5 rounded-full bg-char px-4 text-[13px] text-white shadow-sm hover:bg-black">
           Inquire <ArrowRight size={14} />
@@ -678,7 +779,7 @@ function DesignStudio({ building, specs, onEdit, swatches, material, focusId, se
             >
               {dock === "camera" && (
                 <div className="flex flex-wrap justify-center gap-1.5">
-                  {VIEWS.map((v) => (
+                  {(photoreal ? (["front", "back"] as CameraView[]) : VIEWS).map((v) => (
                     <DockChip key={v} active={view.v === v && !focusId} onClick={() => { setFocusId(null); setView((c) => ({ v, k: c.k + 1 })); }}>
                       {v[0].toUpperCase() + v.slice(1)}
                     </DockChip>
@@ -737,6 +838,11 @@ function DesignStudio({ building, specs, onEdit, swatches, material, focusId, se
                   </SwatchRow>
                   {target && (
                     <div className="mt-3 flex flex-wrap gap-1.5 border-t border-char/[0.07] pt-3">
+                      {model && (
+                        <button type="button" onClick={() => setCloseup(true)} className="rounded-full bg-char px-3 py-1.5 text-[12px] text-white hover:bg-black">
+                          See the real profile in 3D
+                        </button>
+                      )}
                       <button type="button" onClick={() => update({ color: target.color, interior: target.interior, glass: target.glass, style: target.style }, "kind")} className="rounded-full bg-char/5 px-3 py-1.5 text-[12px] hover:bg-char/10">
                         Apply to all {KIND_LABEL[target.kind].toLowerCase()}
                       </button>
@@ -757,7 +863,7 @@ function DesignStudio({ building, specs, onEdit, swatches, material, focusId, se
         <nav className="flex items-center gap-0.5 rounded-full border border-white/50 bg-white/75 p-1 shadow-lg backdrop-blur-xl">
           <DockTab icon={Camera} label="Camera" active={dock === "camera"} onClick={() => setDock((d) => (d === "camera" ? null : "camera"))} />
           <DockTab icon={Sun} label="Light" active={dock === "time"} onClick={() => setDock((d) => (d === "time" ? null : "time"))} />
-          <DockTab icon={DoorOpen} label={open ? "Close" : "Open"} active={open} onClick={() => setOpen((o) => !o)} />
+          {!photoreal && <DockTab icon={DoorOpen} label={open ? "Close" : "Open"} active={open} onClick={() => setOpen((o) => !o)} />}
           <DockTab icon={Palette} label="Configure" active={dock === "configure"} onClick={() => setDock((d) => (d === "configure" ? null : "configure"))} />
         </nav>
       </div>

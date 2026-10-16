@@ -10,7 +10,7 @@ import { SYSTEM_FINISHES } from "@/lib/finishes";
 
 /* ───────────────────────── location & zones ───────────────────────── */
 
-export type ZoneKey = "hvhz" | "impact" | "coastal" | "cold" | "standard";
+export type ZoneKey = "hvhz" | "impact" | "tdi" | "coastal" | "cold" | "standard";
 
 export type Zone = {
   key: ZoneKey;
@@ -37,6 +37,14 @@ export const ZONES: Record<ZoneKey, Zone> = {
     detail:
       "Most of Florida falls in the wind-borne debris region. Openings need a Florida Product Approval and impact-rated glazing (or separate shutters). We pick systems approved for your design pressure.",
     requirement: "Florida Product Approval, impact rated",
+  },
+  tdi: {
+    key: "tdi",
+    label: "Texas windstorm area (TDI)",
+    headline: "Texas coast. Windstorm-certified openings.",
+    detail:
+      "This is one of the 14 coastal counties (plus part of Harris) the Texas Department of Insurance treats as a designated catastrophe area. Windows and doors must meet the windstorm code and be certified for the site, which usually means impact-rated glazing.",
+    requirement: "TDI windstorm certification, impact rated",
   },
   coastal: {
     key: "coastal",
@@ -70,20 +78,56 @@ const HURRICANE_STATES = new Set(["48", "22", "28", "01", "13", "45", "37", "51"
 const COLD_STATES = new Set(["27", "38", "46", "55", "26", "23", "50", "33", "30", "56", "02", "16", "19", "31", "08", "17", "18", "39", "42", "53", "41"]);
 /** Florida counties in the High-Velocity Hurricane Zone: Miami-Dade and Broward. */
 const HVHZ_COUNTIES = new Set(["12086", "12011"]);
+/** Texas Department of Insurance designated catastrophe area: 14 coastal counties, plus part of Harris. */
+const TDI_COUNTIES = new Set(["48007", "48039", "48057", "48061", "48071", "48167", "48245", "48261", "48273", "48321", "48355", "48391", "48409", "48489", "48201"]);
 const FLORIDA = "12";
 
-export function zoneFor(stateId: string, countyId?: string | null): Zone {
+/** Per-county data from scripts/build-county-codes.py (public/geo/codes.json). */
+export type CountyCode = { cz?: string; ba?: string; coast?: 1 };
+
+let codes: Promise<Record<string, CountyCode>> | null = null;
+export function loadCountyCodes() {
+  codes ??= fetch("/geo/codes.json").then((r) => r.json()).catch(() => ({}));
+  return codes;
+}
+
+export function zoneFor(stateId: string, countyId?: string | null, code?: CountyCode): Zone {
   if (countyId && HVHZ_COUNTIES.has(countyId)) return ZONES.hvhz;
   if (stateId === FLORIDA) return ZONES.impact;
+  if (countyId && TDI_COUNTIES.has(countyId)) return ZONES.tdi;
+  if (countyId && code) {
+    if (code.coast) return ZONES.coastal;
+    const cz = parseInt(code.cz ?? "", 10);
+    return cz >= 5 ? ZONES.cold : ZONES.standard;
+  }
   if (HURRICANE_STATES.has(stateId)) return ZONES.coastal;
   if (COLD_STATES.has(stateId)) return ZONES.cold;
   return ZONES.standard;
+}
+
+/** Zone of one county for the map tint. */
+export function countyZone(countyId: string, code?: CountyCode): ZoneKey {
+  return zoneFor(countyId.slice(0, 2), countyId, code).key;
+}
+
+/** 2021 IECC residential prescriptive limits for windows and glazed doors (Table R402.1.3). */
+export function energyFor(cz?: string): { zone: string; u: string; shgc: string } | null {
+  if (!cz) return null;
+  const n = parseInt(cz, 10);
+  const marine = cz.endsWith("C");
+  const u = n <= 1 ? "0.50" : n === 2 ? "0.40" : "0.30";
+  const shgc = n <= 3 ? "0.25" : n === 4 && !marine ? "0.40" : "no limit";
+  return { zone: cz, u, shgc };
 }
 
 /** Zone of a state as a whole, used to tint the national map. */
 export function stateZone(stateId: string): ZoneKey {
   if (stateId === FLORIDA) return "impact";
   return zoneFor(stateId).key;
+}
+
+export function isTdiCounty(countyId: string) {
+  return TDI_COUNTIES.has(countyId);
 }
 
 export function isHvhzCounty(countyId: string) {
@@ -107,7 +151,7 @@ export type Pick = { system: ProductSystem; reason: string };
 export function recommend(zone: ZoneKey, group: NavGroup, pref: MaterialPref, n = 2): Pick[] {
   const pool = PRODUCTS.filter((s) => navGroups(s).includes(group)).filter((s) => {
     if (zone === "hvhz") return s.hvhz;
-    if (zone === "impact" || zone === "coastal") return !!s.impact;
+    if (zone === "impact" || zone === "coastal" || zone === "tdi") return !!s.impact;
     return true;
   });
   return pool
@@ -129,6 +173,7 @@ function reasonFor(zone: ZoneKey, s: ProductSystem): string {
   if (zone === "hvhz") return "Approved for the HVHZ";
   if (zone === "impact") return s.hvhz ? "Impact rated, HVHZ approved" : "Impact rated, Florida approved";
   if (zone === "coastal") return "Impact rated for the coast";
+  if (zone === "tdi") return "Impact rated for the Texas coast";
   if (zone === "cold") return THERMAL.has(s.slug) ? "High insulation" : "Thermally broken";
   return s.impact ? "Impact rated" : "Great value, fully tested";
 }
