@@ -106,7 +106,7 @@ const STATUS = {'posted':['Posted','st-posted'],'scheduled':['Scheduled','st-sch
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const byDate = {}; DATA.posts.forEach(p => (byDate[p.date] ??= []).push(p));
-const blogBy = Object.fromEntries(DATA.blogs.map(b => [b.date, b]));
+const blogBy = {}; DATA.blogs.forEach(b => (blogBy[b.date] ??= []).push(b));
 const fmt = iso => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
 
 $('sub').textContent = `October–November 2026 · LinkedIn and Instagram · times in US Eastern · updated ${new Date(DATA.updated+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})}`;
@@ -134,7 +134,7 @@ function render() {
         <img class="thumb" src="${p.slides[0]}" alt="">
         <span style="display:flex;flex-direction:column;gap:4px;min-width:0"><span class="meta"><i class="dot" style="background:var(${pc})"></i>${pn}${p.video?` · ${p.video}s`:''}</span>
         <span class="ptitle">${esc(p.title)}</span><span class="meta"><span class="pill ${sc}">${sn}</span></span></span></button>`; }).join('') +
-      (b ? `<div class="blog"><b>Blog article</b>${esc(b.title)}<span style="color:var(--mute)">${esc(b.status)}</span></div>` : '');
+      (b ? b.map(x => `<div class="blog"><b>Blog article</b>${esc(x.title)}<span style="color:var(--mute)">${esc(x.status)}</span></div>`).join('') : '');
     const blank = !out && !ps.length && !b;
     html += `<div class="cell${out?' out':''}${blank?' blank':''}${iso===DATA.updated?' today':''}"><span class="num">${label}</span><div class="body">${body}</div></div>`;
   }

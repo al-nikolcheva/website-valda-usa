@@ -6,7 +6,7 @@ const ctx = { window: {} }; vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(`${root}/social/posts/posts.js`, 'utf8').replace(/^const /gm, 'var '), ctx);
 const MON = { Oct: '10', Nov: '11', Dec: '12' };
 const SCHEDULED = new Set(['2026-10-15', '2026-10-16', '2026-10-20', '2026-10-22', '2026-10-23', '2026-10-27', '2026-10-29', '2026-10-30']);
-const TODAY = '2026-10-14';
+const TODAY = '2026-10-16';
 const small = (file, w = 360) => {
   const out = execFileSync('ffmpeg', ['-v', 'error', '-i', file, '-vf', `scale=${w}:-2`, '-frames:v', '1', '-q:v', '6', '-f', 'mjpeg', 'pipe:1'], { maxBuffer: 1 << 24 });
   return 'data:image/jpeg;base64,' + out.toString('base64');
@@ -33,7 +33,7 @@ for (const p of ctx.window.POSTS) {
 }
 const blogs = [
   { date: '2026-10-12', title: 'What U-factor tells you', status: 'live' },
-  { date: '2026-10-26', title: 'Thermal break explained', status: 'text ready' },
-  { date: '2026-11-09', title: 'Triple glazing: is it worth it?', status: 'draft ready' },
-  { date: '2026-11-23', title: 'Tilt and turn windows in the US', status: 'draft ready' }];
+  { date: '2026-10-14', title: 'Thermal break explained', status: 'live' },
+  { date: '2026-10-14', title: 'Triple glazing: is it worth it?', status: 'live' },
+  { date: '2026-10-14', title: 'Tilt and turn windows in the US', status: 'live' }];
 process.stdout.write(JSON.stringify({ updated: TODAY, posts, blogs }));
