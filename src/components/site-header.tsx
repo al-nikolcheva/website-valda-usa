@@ -72,7 +72,14 @@ export function SiteHeader() {
   // close on route change
   useEffect(() => { setOpen(false); }, [pathname]);
 
-  const glass = scrolled && !open;
+  // Pages that open on a white background (no dark hero image) need dark text and logo from the top,
+  // otherwise the white logo and menu are invisible until the visitor scrolls.
+  const lightTop =
+    pathname.startsWith("/catalogue") || pathname === "/products/finder" || /^\/insights\/[^/]+/.test(pathname);
+  // `bar`: the frosted white bar appears once scrolled, on every page.
+  // `glass`: dark text and logo, whenever the bar shows or the page starts on white.
+  const bar = scrolled && !open;
+  const glass = (scrolled || lightTop) && !open;
   const close = () => setOpen(false);
 
   return (
@@ -80,10 +87,8 @@ export function SiteHeader() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-[60] transition-colors duration-300",
-          glass
-            ? "border-b border-char/[0.06] bg-white/85 text-char backdrop-blur-xl"
-            : "bg-transparent",
-          !glass && "text-white",
+          bar ? "border-b border-char/[0.06] bg-white/85 backdrop-blur-xl" : "bg-transparent",
+          glass ? "text-char" : "text-white",
         )}
       >
         <div className="mx-auto flex h-[76px] w-full max-w-[1440px] items-center justify-between px-5 md:px-10">

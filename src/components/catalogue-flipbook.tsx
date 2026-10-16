@@ -67,7 +67,7 @@ export function CatalogueFlipbook({ pages }: { pages: string[] }) {
 
   return (
     <div className={fs ? "fixed inset-0 z-50 flex flex-col items-center justify-center bg-char/95 p-4 backdrop-blur md:p-10" : ""}>
-      <div className="w-full max-w-[1040px]">
+      <div className="mx-auto w-full max-w-[1040px]">
         <div className="flex justify-end">
           <button
             type="button"
