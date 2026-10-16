@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/certifications", 0.8),
     entry("/projects", 0.8),
     entry("/products/finder", 0.7),
+    entry("/build", 0.8),
     entry("/testing", 0.7),
     entry("/about", 0.7),
     entry("/faq", 0.7),
