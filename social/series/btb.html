@@ -27,12 +27,18 @@ body{background:#111;display:flex;flex-direction:column;gap:40px}
 .end .url{font:500 30px IT;opacity:.8}
 </style></head><body>
 <script>
-const P='../assets/btb-mona/';
-const D={project:'Mona Residence',city:'Sofia',year:'2024',type:'Multifamily',systems:'Aluminum tilt & turn',
- para:'A multifamily building glazed throughout with VALDA aluminum tilt and turn windows. Warm timber accents and large openings give every elevation depth and a steady rhythm.'};
+// Pick the project with ?p=mona or ?p=gora.
+const ALL={
+ mona:{num:'01',project:'Mona Residence',city:'Sofia',year:'2024',type:'Multifamily',systems:'Aluminum tilt & turn',
+  supplied:'Aluminum windows<br>Tilt and turn operation<br>Full-height glazing<br>Every elevation',
+  para:'A multifamily building glazed throughout with VALDA aluminum tilt and turn windows. Warm timber accents and large openings give every elevation depth and a steady rhythm.'},
+ gora:{num:'02',project:'GORA',city:'Sofia',year:'2023',type:'Residential',systems:'Tilt & turn · sliding',
+  supplied:'Aluminum windows<br>Tilt and turn operation<br>Minimal-frame sliding<br>Full-height glazing',
+  para:'A residential building in Sofia built around light and the view. Slim aluminum frames and large glazed openings connect every apartment to the outside.'}};
+const KEY=new URLSearchParams(location.search).get('p')||'mona', D=ALL[KEY], P=`../assets/btb-${KEY}/`;
 document.write(`
 <section class="s"><img src="${P}a.jpg"><div class="tint" style="background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.1) 30%,rgba(0,0,0,.15) 55%,rgba(0,0,0,.78) 92%)"></div>
- <div class="c tl">VALDA</div><div class="c tr">Project 01</div>
+ <div class="c tl">VALDA</div><div class="c tr">Project ${D.num}</div>
  <div class="w" style="left:100px;top:230px">Behind</div>
  <div class="w" style="left:100px;top:560px">The</div>
  <div class="w" style="right:100px;top:860px">Build</div>
@@ -42,7 +48,7 @@ document.write(`
 <section class="s"><img src="${P}b.jpg"><div class="tint" style="background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.25) 45%,rgba(0,0,0,.1) 60%,rgba(0,0,0,.45))"></div>
  <div class="c tl">VALDA</div><div class="c tr">${D.project}</div>
  <div class="h">Design is in<br>the details.</div><div class="rule"></div>
- <div class="cols"><div>What we supplied:</div><div>Aluminum windows<br>Tilt and turn operation<br>Full-height glazing<br>Every elevation</div></div>
+ <div class="cols"><div>What we supplied:</div><div>${D.supplied}</div></div>
  <div class="c bl">2 / 4</div><div class="c br">${D.city}</div></section>
 
 <section class="s"><img src="${P}c.jpg"><div class="tint"></div>

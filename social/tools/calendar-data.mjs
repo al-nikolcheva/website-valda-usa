@@ -44,24 +44,25 @@ const A = `${root}/social/assets`, IMG = `${root}/public/images`, X = `${root}/s
 const T = { li: '10:00 AM ET', ig: '10:00 AM ET' };
 const plan = (date, day, pillar, title, status, slides, caption, link = '') =>
   posts.push({ date, day, pillar, title, video: null, status, tags: [], link, li: { time: day === 'Thu' ? '11:00 AM ET' : T.li, caption }, ig: { time: T.ig, caption }, slides });
-plan('2026-11-03', 'Tue', 'POV series', 'POV ep 01: made in Sofia', 'ready', ex(`${X}/POV ep01`),
-  "POV: your windows are being made in Sofia.\n\nCut, assembled, glazed on our own LISEC line, packed and shipped. Episode 1 of a new series from inside our factories.\n\nNext episode: the glass line.");
-plan('2026-11-05', 'Thu', 'One number', '−25%: what a third pane does', 'concept', [small(`${IMG}/home-coast-sunset.webp`)],
-  "IDEA: one bold image. \"−25%\" over a muted house photo, with one line: on our Reynaers systems, triple glazing lowers the whole-window U-factor by about a quarter. Links to the triple glazing blog post.", 'https://valdagroup.com/insights/triple-glazing-is-it-worth-it');
-plan('2026-11-06', 'Fri', 'Behind the Build', 'Behind the Build: GORA', 'concept', [small(`${IMG}/proj-gora.jpg`), small(`${IMG}/hero-gora.jpg`)],
-  "IDEA: Behind the Build, project 02. GORA in the same style as Mona: cover, details, facts, close. Needs the architect and developer to tag.");
+// Slides from video stills were too soft, so November uses sharp project photos, drawings and text-only black slides.
+plan('2026-11-03', 'Tue', 'Behind the Build', 'Behind the Build: GORA', 'ready', ex(`${X}/Behind the Build - GORA`),
+  "Behind the Build: GORA, Sofia.\n\nA residential building built around light and the view. Slim aluminum tilt and turn windows and minimal-frame sliding systems connect every apartment to the outside.\n\nArchitect: [to confirm]\n\nPlanning a residential project? Send us your openings.\n\n#behindthebuild #architecture #aluminumwindows #europeanwindows");
+plan('2026-11-05', 'Thu', 'This or that', 'Inswing or outswing?', 'ready', ex(`${X}/This or that - Inswing or outswing`),
+  "Inswing or outswing? A or B, tell us in the comments.\n\nA. Inswing: opens into the room, the European standard, often with a tilt position too. Clean the outside glass from inside.\n\nB. Outswing: the familiar US casement. Takes no space inside the room.\n\nWe make both.\n\n#windows #casementwindows #architecture #europeanwindows");
+plan('2026-11-06', 'Fri', 'Educational', 'Questions we get: who clears US customs?', 'ready', ex(`${X}/Questions we get - Customs`),
+  "Who clears US customs on European windows?\n\nWe can, or your own customs broker can. Your choice on every order.\n\n1. Export documents prepared at our factory in Bulgaria\n2. Clearance at the US port of arrival\n3. Delivery by truck to your site, coast to coast\n\nOne point of contact from the factory to the final window.\n\n#importing #customs #europeanwindows #construction");
 plan('2026-11-10', 'Tue', 'Educational', 'Six ways a window opens', 'concept', [small(`${A}/concepts/iso-casein.jpg`), small(`${A}/concepts/iso-tilt.jpg`)],
-  "IDEA: a carousel of the six isometric drawings (casement, awning, hopper, tilt and turn, sliding, fixed), one per slide on the warm muted background. Saveable.");
-plan('2026-11-12', 'Thu', 'This or that', 'Inswing or outswing?', 'concept', [small(`${A}/concepts/iso-caseout.jpg`)],
-  "IDEA: one image with the two isometric casements side by side. Caption asks: A or B, which would you choose? Designed to get comments.");
-plan('2026-11-13', 'Fri', 'POV series', 'POV ep 02: the glass line', 'concept', [small(`${A}/concepts/pov02.jpg`)],
-  "IDEA: POV episode 2, inside the fully automatic LISEC glass line, same look as episode 1.");
+  "IDEA: a carousel of isometric drawings (casement in, casement out, tilt, turn, sliding, fixed), one per slide on the warm paper background. Saveable.");
+plan('2026-11-12', 'Thu', 'Educational', 'Before you order: five checks', 'ready', ex(`${X}/Before you order - Five checks`),
+  "Ordering European windows for a US project? Check these five things first.\n\n1. The approval for your wind zone\n2. The U-factor for your climate\n3. The opening direction and screens\n4. The lead time, including the Atlantic crossing\n5. Who handles customs and delivery\n\nSend us your openings and we will check all five for you.\n\n#architects #specification #europeanwindows #construction");
+plan('2026-11-13', 'Fri', 'Educational', 'Window glossary: five numbers', 'ready', ex(`${X}/Window glossary`),
+  "Five numbers on every window spec, in plain words.\n\nU-factor: heat through the whole window. Lower is better.\nSHGC: the sun's heat that gets through. Lower keeps rooms cooler.\nVT: daylight that gets through. Higher is brighter.\nSTC: noise blocked. Higher is quieter.\nDP: the wind load it is rated for. Higher is stronger.\n\nSave this for your next spec.\n\n#architects #windowspecs #buildingperformance #energyefficiency");
 plan('2026-11-19', 'Thu', 'Educational', 'Myth: aluminum windows are cold', 'concept', [small(`${A}/concepts/myth.jpg`)],
   "IDEA: myth or fact carousel from the thermal break animation: myth, then, now, the number 0.14, fact.", 'https://valdagroup.com/insights/thermal-break-explained');
 plan('2026-11-20', 'Fri', 'Behind the Build', 'Behind the Build: Mona Residence', 'ready', ex(`${X}/Behind the Build - Mona`),
   "Behind the Build: Mona Residence, Sofia.\n\nA multifamily building glazed throughout with VALDA aluminum tilt and turn windows. Warm timber accents and large openings give every elevation depth and a steady rhythm.\n\nArchitect: [to confirm]\n\nPlanning a multifamily project? Send us your openings.");
-plan('2026-11-27', 'Fri', 'POV series', 'POV ep 03: leaving the factory', 'concept', [small(`${A}/concepts/pov03.jpg`)],
-  "IDEA: POV episode 3, packing, loading and the trucks leaving for the port.");
+plan('2026-11-27', 'Fri', 'Behind the Build', 'Behind the Build: Juneau Village', 'concept', [small(`${IMG}/project-milwaukee-1.jpg`), small(`${IMG}/project-milwaukee-2.jpg`)],
+  "IDEA: Behind the Build, project 03. Juneau Village, Milwaukee: our US project, curtain wall and operable windows, from the real project photos.");
 posts.sort((a, b) => a.date.localeCompare(b.date));
 
 const blogs = [

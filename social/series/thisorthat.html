@@ -1,0 +1,56 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+/* "This or that" carousel, 1080 x 1350: warm paper background, isometric drawings, A or B question. */
+@font-face{font-family:IT;font-weight:400;src:url(../fonts/InterTight-400.ttf)}
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+@font-face{font-family:IT;font-weight:600;src:url(../fonts/InterTight-600.ttf)}
+@font-face{font-family:F;font-weight:400;font-style:italic;src:url(../fonts/fraunces-latin-400-italic.woff2)}
+*{margin:0;box-sizing:border-box}
+body{background:#111;display:flex;flex-direction:column;gap:40px}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;background:#efe9df;color:#26231f;font-family:IT}
+.top{position:absolute;left:80px;right:80px;top:64px;display:flex;justify-content:space-between;font:500 24px IT;letter-spacing:.14em;text-transform:uppercase}
+.foot{position:absolute;left:80px;right:80px;bottom:64px;display:flex;justify-content:space-between;font:500 22px IT;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.q{position:absolute;left:80px;right:80px;top:150px;font:400 104px/1 IT;letter-spacing:-.04em}
+.q em{font:italic 400 108px F}
+.pair{position:absolute;left:30px;right:30px;top:470px;display:flex;gap:0}
+.pair div{flex:1;position:relative}
+.pair img{width:100%;display:block}
+.lab{position:absolute;left:50%;transform:translateX(-50%);bottom:-70px;font:600 56px IT;width:84px;height:84px;border:2px solid #26231f;border-radius:999px;display:grid;place-items:center}
+.lab small{display:block}
+.cap2{position:absolute;left:0;right:0;bottom:-130px;text-align:center;font:500 26px IT;letter-spacing:.08em;text-transform:uppercase}
+.big{position:absolute;left:250px;right:250px;top:130px}
+.big img{width:100%}
+.letter{position:absolute;left:80px;top:150px;font:600 64px IT;width:100px;height:100px;border:2px solid #26231f;border-radius:999px;display:grid;place-items:center}
+.txt{position:absolute;left:80px;right:80px;bottom:150px}
+.txt h2{font:400 80px/1 IT;letter-spacing:-.035em}
+.txt ul{list-style:none;padding:0;margin-top:30px;font:400 32px/1.35 IT}
+.txt li{padding:12px 0;border-top:1.5px solid rgba(38,35,31,.25)}
+</style></head><body>
+<script>
+const A='../assets/';
+document.write(`
+<section class="s"><div class="top"><span>VALDA</span><span>This or that</span></div>
+ <div class="q">Inswing or<br><em>outswing?</em></div>
+ <div class="pair"><div><img src="${A}iso-casein.png"><div class="lab">A</div><div class="cap2" style="bottom:-150px">Inswing</div></div>
+  <div><img src="${A}iso-caseout.png"><div class="lab">B</div><div class="cap2" style="bottom:-150px">Outswing</div></div></div>
+ <div class="foot"><span>Comment A or B</span><span>1 / 3</span></div></section>
+
+<section class="s"><div class="top"><span>VALDA</span><span>A · Inswing</span></div>
+ <div class="big"><img src="${A}iso-casein.png"></div><div class="letter">A</div>
+ <div class="txt"><h2>Opens into the room.</h2><ul>
+  <li>The European standard, often with a tilt position too</li>
+  <li>Clean the outside glass from inside</li>
+  <li>Screen fits on the outside</li>
+  <li>Needs clear space inside for the sash</li></ul></div>
+ <div class="foot"><span>Inswing casement</span><span>2 / 3</span></div></section>
+
+<section class="s"><div class="top"><span>VALDA</span><span>B · Outswing</span></div>
+ <div class="big"><img src="${A}iso-caseout.png"></div><div class="letter">B</div>
+ <div class="txt"><h2>Opens to the outside.</h2><ul>
+  <li>The familiar US casement</li>
+  <li>Takes no space inside the room</li>
+  <li>Screen fits on the inside</li>
+  <li>Outside glass is harder to reach on upper floors</li></ul></div>
+ <div class="foot"><span>Which would you choose?</span><span>3 / 3</span></div></section>`);
+</script></body></html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+/* Text-only carousels on black, 1080 x 1350. Pick a set with ?s=customs | checks | glossary */
+@font-face{font-family:IT;font-weight:400;src:url(../fonts/InterTight-400.ttf)}
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+@font-face{font-family:F;font-weight:400;font-style:italic;src:url(../fonts/fraunces-latin-400-italic.woff2)}
+*{margin:0;box-sizing:border-box}
+body{background:#222;display:flex;flex-direction:column;gap:40px}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;background:#0c0c0d;color:#f1ede6;font-family:IT}
+.top,.foot{position:absolute;left:80px;right:80px;display:flex;justify-content:space-between;font:500 24px IT;letter-spacing:.14em;text-transform:uppercase;color:#9d978d}
+.top{top:68px}.foot{bottom:68px;font-size:22px}
+.cover{position:absolute;left:80px;right:80px;bottom:200px}
+.cover .k{font:500 26px IT;letter-spacing:.14em;text-transform:uppercase;color:#9d978d;margin-bottom:36px}
+.cover h1{font:400 128px/.98 IT;letter-spacing:-.045em}
+.cover h1 em,.body h2 em{font-family:F;font-style:italic;letter-spacing:-.02em}
+.body{position:absolute;left:80px;right:80px;top:260px}
+.body .n{font:400 200px/.8 IT;letter-spacing:-.06em;color:#4a4640;margin-bottom:60px}
+.body h2{font:400 84px/1.02 IT;letter-spacing:-.035em}
+.body p{font:400 36px/1.4 IT;color:#cfc9bf;margin-top:36px;max-width:860px}
+.body ul{list-style:none;padding:0;margin-top:40px;font:400 34px/1.35 IT;color:#cfc9bf}
+.body li{padding:18px 0;border-top:1.5px solid #2e2c29}
+.end .url{font:500 30px IT;color:#9d978d;margin-top:40px}
+</style></head><body>
+<script>
+const SETS={
+ customs:{tag:'Questions we get',slides:[
+  {cover:1,k:'Questions we get',h:'Who clears<br><em>US customs?</em>'},
+  {n:'01',h:'We can.<br>Or your broker can.',p:'Use our customs clearance, or ship to your own customs broker. Your choice, on every order.'},
+  {n:'02',h:'The paperwork starts in Bulgaria.',p:'Export documents are prepared at our factory before the windows leave Europe.'},
+  {n:'03',h:'Then the US port.',p:'Clearance is handled at the port of arrival, so nothing sits waiting.'},
+  {n:'04',h:'Then your site.',p:'Delivered by truck to your job site, coast to coast.'},
+  {end:1,h:'One point of contact, from the <em>factory</em> to the final window.',url:'valdagroup.com'}]},
+ checks:{tag:'Before you order',slides:[
+  {cover:1,k:'Before you order European windows',h:'Five things<br>to <em>check.</em>'},
+  {n:'01',h:'The approval for your zone.',p:'On the hurricane coast, check the impact rating and design pressure for your exact wind zone and window size.'},
+  {n:'02',h:'The U-factor for your climate.',p:'Compare whole-window figures, frame and glass together, against your energy code.'},
+  {n:'03',h:'The opening direction.',p:'Inswing windows need clear space inside and a screen on the outside. Outswing is the reverse.'},
+  {n:'04',h:'The lead time.',p:'Production plus the Atlantic crossing. Plan it into your schedule from the start.'},
+  {n:'05',h:'Who handles customs and delivery.',p:'Know who clears the windows at the port and who brings them to site.'},
+  {end:1,h:'Send us your openings. We will check all <em>five</em> for you.',url:'valdagroup.com'}]},
+ glossary:{tag:'Window glossary',slides:[
+  {cover:1,k:'Window glossary',h:'Five numbers on every<br><em>window spec.</em>'},
+  {n:'U',h:'U-factor',p:'How much heat passes through the whole window. Lower is better.'},
+  {n:'SHGC',h:'Solar heat gain',p:'How much of the sun’s heat gets through, from 0 to 1. Lower keeps a room cooler.'},
+  {n:'VT',h:'Visible transmittance',p:'How much daylight gets through, from 0 to 1. Higher means brighter rooms.'},
+  {n:'STC',h:'Sound transmission class',p:'How well the window blocks noise. Higher is quieter.'},
+  {n:'DP',h:'Design pressure',p:'The wind load the window is rated for. Higher means stronger.'},
+  {end:1,h:'Save this for your next <em>spec.</em>',url:'valdagroup.com'}]}};
+const KEY=new URLSearchParams(location.search).get('s')||'customs', D=SETS[KEY], N=D.slides.length;
+document.write(D.slides.map((s,i)=>`<section class="s"><div class="top"><span>VALDA</span><span>${D.tag}</span></div>
+ ${s.cover?`<div class="cover"><div class="k">${s.k}</div><h1>${s.h}</h1></div>`
+ :s.end?`<div class="body end" style="top:auto;bottom:220px"><h2>${s.h}</h2><div class="url">${s.url}</div></div>`
+ :`<div class="body"><div class="n">${s.n}</div><h2>${s.h}</h2><p>${s.p}</p></div>`}
+ <div class="foot"><span>${i===0?'Swipe →':''}</span><span>${i+1} / ${N}</span></div></section>`).join(''));
+</script></body></html>

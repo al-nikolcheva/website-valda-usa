@@ -166,7 +166,7 @@ window.POSTS=[
 ],caption:"How European windows reach a US job site: from our factories in Bulgaria to your site, in five steps.\n\n1. Made in our own factories in Sofia and Veliko Tarnovo\n2. Packed for the Atlantic crossing\n3. Shipped with full export documentation\n4. Cleared through US customs by us\n5. Trucked to your site, coast to coast\n\nOne point of contact from the factory to the final window.\n\nWhere is your next project?"},
 
 {n:26,date:"11 Nov",day:"Wed",arm:'Holiday',title:'Veterans Day',li:"#VeteransDay #ThankYou",ig:"#veteransday #thankyouveterans #honorandremember #usa",tag:[],loc:'',slides:[
- {t:'holiday',label:'Veterans Day · 11 November',h:'Thank you to all who served.',d:'Today we honor the veterans who serve and have served the United States.',img:P+'images/home-cream-brick.webp'},
+ {t:'holiday',label:'Veterans Day · 11 November',h:'Thank you to all who served.',d:'Today we honor the veterans who serve and have served the United States.',img:A+'flag-veterans.jpg'},
 ],caption:'Today we honor the veterans who serve and have served the United States. Thank you for your service.'},
 
 {n:27,date:"26 Nov",day:"Thu",arm:'Holiday',title:'Thanksgiving',li:"#Thanksgiving #Gratitude",ig:"#thanksgiving #happythanksgiving #grateful #gratitude",tag:[],loc:'',slides:[
