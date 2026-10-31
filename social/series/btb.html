@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+/* "Behind the Build" project carousel, 1080 x 1350: muted full-bleed photo, spaced headline words, corner labels. */
+@font-face{font-family:IT;font-weight:400;src:url(../fonts/InterTight-400.ttf)}
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+@font-face{font-family:IT;font-weight:600;src:url(../fonts/InterTight-600.ttf)}
+*{margin:0;box-sizing:border-box}
+body{background:#111;display:flex;flex-direction:column;gap:40px}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;color:#fff;font-family:IT}
+.s img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.05) 35%,rgba(0,0,0,.05) 60%,rgba(0,0,0,.55))}
+.c{position:absolute;font:500 30px IT;letter-spacing:-.005em}
+.tl{left:100px;top:84px}.tr{right:100px;top:84px}.bl{left:100px;bottom:84px}.br{right:100px;bottom:84px}
+.w{position:absolute;font:600 112px/1 IT;letter-spacing:-.02em;text-transform:uppercase}
+.para{position:absolute;left:100px;width:600px;bottom:200px;font:400 27px/1.18 IT}
+.h{position:absolute;left:100px;top:190px;font:400 96px/1.02 IT;letter-spacing:-.035em}
+.rule{position:absolute;left:640px;top:290px;width:200px;border-top:2px solid #fff}
+.cols{position:absolute;left:100px;right:100px;top:440px;display:flex;gap:80px;font:400 32px/1.2 IT}
+.cols div{flex:1}
+.facts{position:absolute;left:100px;right:100px;bottom:180px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;border-top:1.5px solid rgba(255,255,255,.7);padding-top:24px}
+.facts small{display:block;font:500 20px IT;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-bottom:8px}
+.facts b{font:500 34px/1.15 IT}
+.end{position:absolute;inset:0;background:#2b2a28;display:flex;flex-direction:column;justify-content:center;padding:0 100px;gap:36px}
+.end .big{font:600 150px/.92 IT;letter-spacing:-.03em;text-transform:uppercase}
+.end p{font:400 40px/1.25 IT;max-width:760px;opacity:.92}
+.end .url{font:500 30px IT;opacity:.8}
+</style></head><body>
+<script>
+const P='../assets/btb-mona/';
+const D={project:'Mona Residence',city:'Sofia',year:'2024',type:'Multifamily',systems:'Aluminum tilt & turn',
+ para:'A multifamily building glazed throughout with VALDA aluminum tilt and turn windows. Warm timber accents and large openings give every elevation depth and a steady rhythm.'};
+document.write(`
+<section class="s"><img src="${P}a.jpg"><div class="tint" style="background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.1) 30%,rgba(0,0,0,.15) 55%,rgba(0,0,0,.78) 92%)"></div>
+ <div class="c tl">VALDA</div><div class="c tr">Project 01</div>
+ <div class="w" style="left:100px;top:230px">Behind</div>
+ <div class="w" style="left:100px;top:560px">The</div>
+ <div class="w" style="right:100px;top:860px">Build</div>
+ <div class="para">${D.para}</div>
+ <div class="c bl">${D.project}</div><div class="c br">${D.city}</div></section>
+
+<section class="s"><img src="${P}b.jpg"><div class="tint" style="background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.25) 45%,rgba(0,0,0,.1) 60%,rgba(0,0,0,.45))"></div>
+ <div class="c tl">VALDA</div><div class="c tr">${D.project}</div>
+ <div class="h">Design is in<br>the details.</div><div class="rule"></div>
+ <div class="cols"><div>What we supplied:</div><div>Aluminum windows<br>Tilt and turn operation<br>Full-height glazing<br>Every elevation</div></div>
+ <div class="c bl">2 / 4</div><div class="c br">${D.city}</div></section>
+
+<section class="s"><img src="${P}c.jpg"><div class="tint"></div>
+ <div class="c tl">VALDA</div><div class="c tr">${D.project}</div>
+ <div class="facts"><div><small>Type</small><b>${D.type}</b></div><div><small>Completed</small><b>${D.year}</b></div><div><small>Systems</small><b>${D.systems}</b></div></div>
+ <div class="c bl">3 / 4</div><div class="c br">${D.city}</div></section>
+
+<section class="s"><div class="end"><div class="big">Your<br>build<br>next.</div>
+ <p>Planning a residential or multifamily project? Send us your openings and we will propose the system.</p>
+ <div class="url">valdagroup.com</div></div>
+ <div class="c tl">VALDA</div><div class="c tr">Behind the Build</div><div class="c bl">4 / 4</div></section>`);
+</script></body></html>
