@@ -50,7 +50,7 @@ h1{font:600 30px/1.1 var(--display);letter-spacing:-.02em;margin:0;text-wrap:bal
 .ptitle{font:600 12.5px/1.25 var(--display);overflow-wrap:anywhere}
 .meta{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute);min-width:0}
 .pill{font:500 10.5px var(--display);padding:1px 7px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
-.st-posted{color:var(--done)} .st-scheduled{color:var(--ok)} .st-approve{color:var(--wait)}
+.st-concept{color:var(--blog)} .st-posted{color:var(--done)} .st-scheduled{color:var(--ok)} .st-approve{color:var(--wait)}
 .blog{font-size:11.5px;padding:6px 7px;border-radius:6px;background:var(--blue-soft);color:var(--ink);display:flex;flex-direction:column;gap:2px}
 .blog b{font-weight:600;color:var(--blog)}
 .empty{font-size:11px;color:var(--mute);font-style:italic}
@@ -101,8 +101,8 @@ pre.cap{white-space:pre-wrap;font:400 14.5px/1.55 var(--display);margin:0;max-wi
 <script>
 const DATA = __DATA__;
 const PILLAR = {'Educational':['Educational','--edu'],'What we have':['Product','--prod'],'Projects':['Project','--proj'],'Blog':['Blog post','--blog'],
-  'Reel':['Reel','--reel'],'News':['Company','--co'],'Behind the scenes':['Behind the scenes','--co'],'Holiday':['Holiday','--hol']};
-const STATUS = {'posted':['Posted','st-posted'],'scheduled':['Scheduled','st-scheduled'],'to approve':['To approve','st-approve']};
+  'Reel':['Reel','--reel'],'News':['Company','--co'],'Behind the scenes':['Behind the scenes','--co'],'Holiday':['Holiday','--hol'],'POV series':['POV series','--reel'],'Behind the Build':['Behind the Build','--proj'],'One number':['One number','--edu'],'This or that':['This or that','--prod']};
+const STATUS = {'posted':['Posted','st-posted'],'scheduled':['Scheduled','st-scheduled'],'to approve':['To approve','st-approve'],'ready':['Built · to approve','st-approve'],'concept':['Idea · to approve','st-concept']};
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const byDate = {}; DATA.posts.forEach(p => (byDate[p.date] ??= []).push(p));
@@ -120,7 +120,7 @@ function render() {
   $('m10').setAttribute('aria-pressed', month === '10'); $('m11').setAttribute('aria-pressed', month === '11');
   const inMonth = DATA.posts.filter(p => p.date.slice(5,7) === month);
   const c = s => inMonth.filter(p => p.status === s).length;
-  $('stats').innerHTML = `<span class="stat"><b>${inMonth.length}</b> posts</span><span class="stat st-posted"><b>${c('posted')}</b> posted</span><span class="stat st-scheduled"><b>${c('scheduled')}</b> scheduled</span><span class="stat st-approve"><b>${c('to approve')}</b> to approve</span><span class="stat"><b>${inMonth.filter(p=>p.video).length}</b> Reels</span>`;
+  $('stats').innerHTML = `<span class="stat"><b>${inMonth.length}</b> posts</span><span class="stat st-posted"><b>${c('posted')}</b> posted</span><span class="stat st-scheduled"><b>${c('scheduled')}</b> scheduled</span><span class="stat st-approve"><b>${c('to approve')+c('ready')}</b> built, to approve</span><span class="stat st-concept"><b>${c('concept')}</b> ideas</span><span class="stat"><b>${inMonth.filter(p=>p.video).length}</b> Reels</span>`;
   const y = 2026, m = +month - 1, first = new Date(y, m, 1), days = new Date(y, m + 1, 0).getDate();
   const lead = (first.getDay() + 6) % 7, total = Math.ceil((lead + days) / 7) * 7;
   let html = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => `<div class="dow">${d}</div>`).join('');
