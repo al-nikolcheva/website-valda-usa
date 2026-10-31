@@ -7,9 +7,13 @@ vm.runInContext(fs.readFileSync(`${root}/social/posts/posts.js`, 'utf8').replace
 const MON = { Oct: '10', Nov: '11', Dec: '12' };
 const SCHEDULED = new Set(['2026-10-13', '2026-10-15', '2026-10-16', '2026-10-20', '2026-10-22', '2026-10-23', '2026-10-27', '2026-10-29', '2026-10-30']);
 const TODAY = '2026-10-31';
-const small = (file, w = 360) => {
-  const out = execFileSync('ffmpeg', ['-v', 'error', '-i', file, '-vf', `scale=${w}:-2`, '-frames:v', '1', '-q:v', '6', '-f', 'mjpeg', 'pipe:1'], { maxBuffer: 1 << 24 });
-  return 'data:image/jpeg;base64,' + out.toString('base64');
+// Slides are written as full-size JPEG files next to the page (OUT/img), so the viewer shows the real post.
+const OUT = process.env.CAL_OUT; let nImg = 0;
+if (OUT) { fs.rmSync(`${OUT}/img`, { recursive: true, force: true }); fs.rmSync(`${OUT}/vid`, { recursive: true, force: true }); fs.mkdirSync(`${OUT}/img`, { recursive: true }); fs.mkdirSync(`${OUT}/vid`, { recursive: true }); }
+const small = (file, w = 1080) => {
+  const out = execFileSync('ffmpeg', ['-v', 'error', '-i', file, '-vf', `scale='min(${w},iw)':-2`, '-frames:v', '1', '-q:v', '4', '-f', 'mjpeg', 'pipe:1'], { maxBuffer: 1 << 26 });
+  if (!OUT) return 'data:image/jpeg;base64,' + out.toString('base64');
+  const name = `img/${String(++nImg).padStart(3, '0')}.jpg`; fs.writeFileSync(`${OUT}/${name}`, out); return name;
 };
 const posts = [];
 const KEEP_NOV = new Set(['Veterans Day', 'Facade systems', 'Spec sheet', 'Thanksgiving']);
@@ -23,11 +27,12 @@ for (const p of ctx.window.POSTS) {
   const note = f => fs.readFileSync(f, 'utf8');
   const time = f => (note(f).match(/POST AT: (.+)/) || [])[1] || '';
   let slides = fs.readdirSync(ig).filter(f => /^Slide \d+\.png$/.test(f)).sort((a, b) => parseInt(a.slice(6)) - parseInt(b.slice(6))).map(f => small(`${ig}/${f}`));
-  let video = null;
+  let video = null, videoSrc = null;
   if (p.video) { const v = `${root}/social-media/Extras/${p.video}`;
     slides = [0.8, 6, 12].map(t => { const out = execFileSync('ffmpeg', ['-v', 'error', '-ss', String(t), '-i', v, '-vf', 'scale=270:-2', '-frames:v', '1', '-q:v', '6', '-f', 'mjpeg', 'pipe:1']); return 'data:image/jpeg;base64,' + out.toString('base64'); });
-    video = Math.round(parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', v]).toString())); }
-  posts.push({ date: iso, day: p.day, pillar: p.arm, title: p.title, video,
+    video = Math.round(parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', v]).toString()));
+    if (OUT) { videoSrc = `vid/${String(p.n).padStart(2, '0')}.mp4`; execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', v, '-vf', 'scale=720:-2', '-c:v', 'libx264', '-crf', '27', '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '96k', '-movflags', '+faststart', `${OUT}/${videoSrc}`]); } }
+  posts.push({ date: iso, day: p.day, pillar: p.arm, title: p.title, video, videoSrc,
     status: iso < TODAY ? 'posted' : SCHEDULED.has(iso) ? 'scheduled' : 'to approve',
     tags: p.tag || [], link: p.link || '',
     li: { time: time(`${li}/Posting notes.txt`), caption: note(`${li}/Caption.txt`) },

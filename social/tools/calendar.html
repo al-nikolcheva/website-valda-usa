@@ -60,8 +60,13 @@ h1{font:600 30px/1.1 var(--display);letter-spacing:-.02em;margin:0;text-wrap:bal
 .ph{display:flex;justify-content:space-between;gap:16px;align-items:start}
 .ph h2{font:600 26px/1.15 var(--display);margin:4px 0 0;letter-spacing:-.015em;text-wrap:balance}
 .close{all:unset;cursor:pointer;font:500 13px var(--display);padding:7px 12px;border:1px solid var(--line);border-radius:999px;flex:none}
-.strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
-.strip img{height:300px;width:auto;border-radius:6px;border:1px solid var(--line);flex:none;max-width:none}
+.viewer{display:flex;flex-direction:column;gap:10px;align-items:center}
+.stage{position:relative;width:100%;display:flex;justify-content:center;background:var(--bg);border-radius:10px;padding:12px;touch-action:pan-y}
+.stage img,.stage video{max-width:100%;max-height:72vh;width:auto;height:auto;border-radius:6px;display:block}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font:600 20px var(--display);color:var(--ink);box-shadow:0 2px 8px rgb(0 0 0 / .15)}
+.nav.prev{left:8px}.nav.next{right:8px}.nav[disabled]{opacity:.3;cursor:default}
+.dots{display:flex;gap:6px;align-items:center;font:500 12px var(--mono);color:var(--mute)}
+.dots i{width:7px;height:7px;border-radius:99px;background:var(--line)}.dots i.on{background:var(--blue)}
 .times{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
 .time{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
 .time small{display:block;color:var(--mute);font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase}
@@ -81,7 +86,7 @@ pre.cap{white-space:pre-wrap;font:400 14.5px/1.55 var(--display);margin:0;max-wi
   .cell .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
   .post{flex-direction:row;align-items:center;gap:10px}
   .post .thumb{width:64px;flex:none}
-  .strip img{height:220px}
+  .stage img,.stage video{max-height:62vh}
 }
 @media (min-width:761px){.cell .body{display:contents}}
 @media (prefers-reduced-motion:no-preference){.panel{animation:slide .18s ease-out}@keyframes slide{from{transform:translateX(24px);opacity:.6}}}
@@ -144,26 +149,34 @@ function render() {
 function open(date, title) {
   const p = (byDate[date] || []).find(x => x.title === title); if (!p) return;
   const [pn, pc] = PILLAR[p.pillar] || [p.pillar,'--co'], [sn, sc] = STATUS[p.status];
-  let net = 'ig';
+  let net = 'ig', idx = 0;
   const draw = () => {
     $('sheet').innerHTML = `<div class="panel" role="dialog" aria-modal="true" aria-label="${esc(p.title)}">
       <div class="ph"><div><div class="meta"><i class="dot" style="background:var(${pc})"></i>${pn} · ${fmt(p.date)} <span class="pill ${sc}">${sn}</span></div><h2>${esc(p.title)}</h2></div>
         <button class="close" id="close">Close</button></div>
-      <div class="strip">${p.slides.map((s,i) => `<img src="${s}" alt="${p.video?'Frame':'Slide'} ${i+1} of ${esc(p.title)}">`).join('')}</div>
+      <div class="viewer"><div class="stage" id="stage">${p.videoSrc?`<video src="${p.videoSrc}" controls playsinline preload="metadata" poster="${p.slides[0]}"></video>`:`<img id="slide" src="${p.slides[idx]}" alt="Slide ${idx+1} of ${p.slides.length}, ${esc(p.title)}">${p.slides.length>1?`<button class="nav prev" id="prev" aria-label="Previous slide" ${idx===0?'disabled':''}>‹</button><button class="nav next" id="next" aria-label="Next slide" ${idx===p.slides.length-1?'disabled':''}>›</button>`:''}`}</div>
+        ${p.videoSrc?'':`<div class="dots">${p.slides.map((_,i)=>`<i class="${i===idx?'on':''}"></i>`).join('')}<span>${idx+1} / ${p.slides.length}</span></div>`}</div>
       ${p.video ? `<div class="facts"><span class="fact">Reel · ${p.video} seconds · 9:16</span><span class="fact">Frames shown at 1, 6 and 12 seconds</span></div>` : `<div class="facts"><span class="fact">${p.slides.length} slides</span></div>`}
       <div class="times"><div class="time"><small>LinkedIn</small><b>${esc(p.li.time || '—')}</b></div><div class="time"><small>Instagram</small><b>${esc(p.ig.time || '—')}</b></div><div class="time"><small>Instagram Story</small><b>6:00 PM ET</b></div></div>
       ${p.tags.length ? `<div class="facts">${p.tags.map(t=>`<span class="fact">Tag: ${esc(t)}</span>`).join('')}</div>` : ''}
       ${p.link ? `<div class="facts"><span class="fact">Link: ${esc(p.link)}</span></div>` : ''}
       <div class="seg" role="group" aria-label="Caption"><button id="bi" aria-pressed="${net==='ig'}">Instagram caption</button><button id="bl" aria-pressed="${net==='li'}">LinkedIn caption</button></div>
       <pre class="cap">${esc(p[net].caption)}</pre></div>`;
-    $('close').onclick = closeSheet; $('bi').onclick = () => { net='ig'; draw(); }; $('bl').onclick = () => { net='li'; draw(); };
+    $('close').onclick = closeSheet;
+    const go = d => { const n = idx + d; if (n < 0 || n >= p.slides.length) return; idx = n; draw(); };
+    if ($('prev')) { $('prev').onclick = () => go(-1); $('next').onclick = () => go(1); }
+    let x0 = null; const st = $('stage');
+    st.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    st.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); x0 = null; });
+    sheetKeys = go; $('bi').onclick = () => { net='ig'; draw(); }; $('bl').onclick = () => { net='li'; draw(); };
     $('close').focus();
   };
   $('sheet').hidden = false; draw();
 }
 function closeSheet(){ $('sheet').hidden = true; $('sheet').innerHTML = ''; }
 $('sheet').addEventListener('click', e => { if (e.target.id === 'sheet') closeSheet(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('sheet').hidden) closeSheet(); });
+let sheetKeys = null;
+document.addEventListener('keydown', e => { if ($('sheet').hidden) return; if (e.key === 'Escape') closeSheet(); if (sheetKeys && e.key === 'ArrowRight') sheetKeys(1); if (sheetKeys && e.key === 'ArrowLeft') sheetKeys(-1); });
 $('grid').addEventListener('click', e => { const b = e.target.closest('.post'); if (b) open(b.dataset.date, b.dataset.title); });
 for (const m of ['10','11']) $('m'+m).onclick = () => { month = m; try { localStorage.setItem('cal-month', m); } catch {} render(); };
 window.matchMedia('(max-width:760px)').addEventListener('change', render);
