@@ -21,36 +21,75 @@ body{background:#222;display:flex;flex-direction:column;gap:40px}
 .body ul{list-style:none;padding:0;margin-top:40px;font:400 34px/1.35 IT;color:#cfc9bf}
 .body li{padding:18px 0;border-top:1.5px solid #2e2c29}
 .end .url{font:500 30px IT;color:#9d978d;margin-top:40px}
+.art{position:absolute;right:80px;top:150px;width:400px;height:400px}
+.art.wide{left:80px;right:80px;width:auto;top:200px;height:520px}
+.body.has-art .n{margin-bottom:330px;font-size:160px}
 </style></head><body>
 <script>
+
+// Line drawings and flags, drawn in SVG so they stay sharp. Off-white lines, one warm accent.
+const L='#f1ede6', M='#6f6a62', ACC='#d9a66b';
+const svg=(vb,inner,cls='art')=>`<svg class="${cls}" viewBox="${vb}" fill="none" stroke="${L}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+const star=(cx,cy,r,fill)=>{let d='';for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.42:r;d+=(i?'L':'M')+(cx+rr*Math.cos(a)).toFixed(1)+' '+(cy+rr*Math.sin(a)).toFixed(1);}return `<path d="${d}Z" fill="${fill}" stroke="none"/>`;};
+const flagUS=(x,y,w)=>{const h=w*10/19,sh=h/13;let g=`<g transform="translate(${x} ${y})">`;
+ for(let i=0;i<13;i++)g+=`<rect x="0" y="${i*sh}" width="${w}" height="${sh+.5}" fill="${i%2?'#efe9df':'#b4353a'}" stroke="none"/>`;
+ const cw=w*.4,ch=sh*7;g+=`<rect width="${cw}" height="${ch}" fill="#2c3e6b" stroke="none"/>`;
+ for(let r=0;r<5;r++)for(let c=0;c<6;c++)g+=star(cw*(c+.5)/6,ch*(r+.5)/5,w*.012,'#efe9df');
+ return g+`</g>`;};
+const flagBG=(x,y,w)=>{const h=w*3/5;return `<g transform="translate(${x} ${y})"><rect width="${w}" height="${h/3}" fill="#efe9df" stroke="none"/><rect y="${h/3}" width="${w}" height="${h/3}" fill="#2f8a5d" stroke="none"/><rect y="${2*h/3}" width="${w}" height="${h/3}" fill="#c0403a" stroke="none"/></g>`;};
+const flagEU=(x,y,w)=>{const h=w*2/3;let g=`<g transform="translate(${x} ${y})"><rect width="${w}" height="${h}" fill="#26408f" stroke="none"/>`;
+ for(let i=0;i<12;i++){const a=i*Math.PI/6;g+=star(w/2+h/3*Math.cos(a),h/2+h/3*Math.sin(a),w*.035,'#f2c94c');}return g+`</g>`;};
+const pole=(x,y,h)=>`<line x1="${x}" y1="${y}" x2="${x}" y2="${y+h}" stroke="${M}" stroke-width="4"/><circle cx="${x}" cy="${y-6}" r="6" fill="${M}" stroke="none"/>`;
+const ship=(x,y)=>`<g transform="translate(${x} ${y})"><path d="M-70 0 L70 0 L52 30 L-58 30 Z" fill="${L}" stroke="none"/><rect x="-50" y="-26" width="28" height="22" stroke="${L}"/><rect x="-18" y="-26" width="28" height="22" stroke="${L}"/><rect x="14" y="-26" width="28" height="22" stroke="${L}"/><rect x="-34" y="-50" width="28" height="22" stroke="${L}"/><rect x="-2" y="-50" width="28" height="22" stroke="${L}"/></g>`;
+const truck=(x,y)=>`<g transform="translate(${x} ${y})"><rect x="-90" y="-60" width="120" height="70"/><path d="M30 -40 H70 L90 -15 V10 H30 Z"/><circle cx="-60" cy="22" r="14" fill="#0c0c0d"/><circle cx="60" cy="22" r="14" fill="#0c0c0d"/><line x1="-130" y1="40" x2="130" y2="40" stroke="${M}"/></g>`;
+const doc=(x,y)=>`<g transform="translate(${x} ${y})"><path d="M-70 -95 H40 L75 -60 V95 H-70 Z"/><path d="M40 -95 V-60 H75"/><line x1="-45" y1="-35" x2="45" y2="-35" stroke="${M}"/><line x1="-45" y1="-5" x2="45" y2="-5" stroke="${M}"/><line x1="-45" y1="25" x2="20" y2="25" stroke="${M}"/><circle cx="35" cy="65" r="26" stroke="${ACC}"/><path d="M22 65 l9 9 l17 -18" stroke="${ACC}"/></g>`;
+const ART={
+ route:svg('0 0 920 520',`${pole(90,90,330)}${flagBG(94,90,170)}${pole(700,90,330)}${flagUS(704,90,190)}
+  <path d="M190 330 Q 450 120 700 330" stroke="${ACC}" stroke-dasharray="4 16" stroke-width="4"/>${ship(450,300)}
+  <path d="M300 400 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0" stroke="${M}"/><text x="90" y="480" fill="${M}" stroke="none" font-family="IT" font-size="26" letter-spacing="3">SOFIA</text><text x="700" y="480" fill="${M}" stroke="none" font-family="IT" font-size="26" letter-spacing="3">YOUR SITE</text>`,'art wide'),
+ twoFlags:svg('0 0 400 400',`${pole(60,70,280)}${flagBG(64,70,120)}${pole(220,70,280)}${flagUS(224,70,140)}<path d="M120 300 H300" stroke="${ACC}" stroke-dasharray="4 14"/>`),
+ doc:svg('0 0 400 400',`${flagEU(250,40,110)}${doc(170,220)}`),
+ port:svg('0 0 400 400',`${ship(200,250)}<path d="M40 300 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0" stroke="${M}"/><path d="M300 240 V60 H340" stroke="${M}" stroke-width="5"/><line x1="320" y1="60" x2="320" y2="140" stroke="${M}"/>${flagUS(70,40,150)}`),
+ truck:svg('0 0 400 400',`${truck(200,250)}<path d="M60 120 C 140 60 260 160 340 90" stroke="${ACC}" stroke-dasharray="4 14"/><circle cx="340" cy="90" r="10" fill="${ACC}" stroke="none"/>`),
+ shield:svg('0 0 400 400',`<path d="M200 50 L320 95 V200 C320 280 260 330 200 355 C140 330 80 280 80 200 V95 Z"/><path d="M150 205 l35 35 l70 -75" stroke="${ACC}" stroke-width="5"/><path d="M40 330 q20 -30 40 0 t40 0" stroke="${M}"/><path d="M290 70 q30 -20 70 -5" stroke="${M}"/><path d="M300 110 q30 -20 70 -5" stroke="${M}"/>`),
+ thermo:svg('0 0 400 400',`<rect x="110" y="60" width="180" height="280"/><line x1="200" y1="60" x2="200" y2="340" stroke="${M}"/>${[120,190,260].map(y=>`<path d="M30 ${y} H95" stroke="${ACC}"/><path d="M80 ${y-12} L95 ${y} L80 ${y+12}" stroke="${ACC}"/><path d="M305 ${y} H335" stroke="${M}" stroke-dasharray="3 10"/>`).join('')}`),
+ swing:svg('0 0 400 400',`<line x1="60" y1="300" x2="340" y2="300" stroke="${M}"/><line x1="100" y1="300" x2="300" y2="300" stroke-width="8"/><line x1="100" y1="300" x2="190" y2="130" stroke-width="5"/><path d="M300 300 A200 200 0 0 0 190 130" stroke="${ACC}" stroke-dasharray="4 12"/><text x="60" y="350" fill="${M}" stroke="none" font-family="IT" font-size="22" letter-spacing="3">OUTSIDE</text><text x="60" y="90" fill="${M}" stroke="none" font-family="IT" font-size="22" letter-spacing="3">INSIDE</text>`),
+ clock:svg('0 0 400 400',`<circle cx="160" cy="200" r="120"/><path d="M160 200 V120 M160 200 L215 230" stroke="${ACC}" stroke-width="5"/>${[0,1,2,3,4,5,6,7,8,9,10,11].map(i=>{const a=i*Math.PI/6;return `<line x1="${160+105*Math.cos(a)}" y1="${200+105*Math.sin(a)}" x2="${160+114*Math.cos(a)}" y2="${200+114*Math.sin(a)}" stroke="${M}"/>`}).join('')}<path d="M300 300 q20 -10 40 0 t40 0" stroke="${M}"/>`),
+ handoff:svg('0 0 400 400',`${doc(110,200)}${truck(285,300)}`),
+ window:svg('0 0 400 400',`<rect x="90" y="40" width="220" height="320"/><rect x="110" y="60" width="180" height="280" stroke="${M}"/><line x1="200" y1="60" x2="200" y2="340" stroke="${M}"/>`),
+ sunGlass:svg('0 0 400 400',`<circle cx="80" cy="90" r="40" stroke="${ACC}"/>${[0,1,2,3,4,5,6,7].map(i=>{const a=i*Math.PI/4;return `<line x1="${80+52*Math.cos(a)}" y1="${90+52*Math.sin(a)}" x2="${80+70*Math.cos(a)}" y2="${90+70*Math.sin(a)}" stroke="${ACC}"/>`}).join('')}<rect x="200" y="60" width="40" height="300"/><path d="M130 150 L330 330" stroke="${ACC}" stroke-dasharray="4 12"/><path d="M200 210 L130 280" stroke="${M}"/>`),
+ light:svg('0 0 400 400',`<rect x="160" y="50" width="40" height="300"/>${[110,170,230,290].map(y=>`<line x1="40" y1="${y}" x2="150" y2="${y}" stroke="${ACC}"/><line x1="210" y1="${y}" x2="360" y2="${y}" stroke="${ACC}" stroke-dasharray="${y%120?'0':'4 12'}"/>`).join('')}`),
+ sound:svg('0 0 400 400',`<rect x="190" y="50" width="40" height="300"/>${[50,85,120].map(r=>`<path d="M${150-r*.2} ${200-r} A${r} ${r} 0 0 1 ${150-r*.2} ${200+r}" stroke="${ACC}" transform="translate(-60 0)"/>`).join('')}<path d="M270 180 A25 25 0 0 1 270 220" stroke="${M}"/>`),
+ wind:svg('0 0 400 400',`<rect x="250" y="50" width="40" height="300"/>${[110,200,290].map(y=>`<path d="M30 ${y} H200 q30 0 30 -25" stroke="${ACC}" stroke-width="4"/><path d="M215 ${y-12} L232 ${y} L215 ${y+12}" stroke="${ACC}" transform="translate(-30 0)"/>`).join('')}`),
+ glossCover:svg('0 0 920 520',`<rect x="330" y="20" width="260" height="380"/><line x1="460" y1="20" x2="460" y2="400" stroke="${M}"/>${[['U',80],['SHGC',150],['VT',220],['STC',290],['DP',360]].map(([t,y],i)=>`<line x1="${i%2?600:180}" y1="${y}" x2="${i%2?740:320}" y2="${y}" stroke="${M}" stroke-dasharray="3 10"/><text x="${i%2?760:20}" y="${y+12}" fill="${ACC}" stroke="none" font-family="IT" font-size="36">${t}</text>`).join('')}`,'art wide')};
 const SETS={
  customs:{tag:'Questions we get',slides:[
-  {cover:1,k:'Questions we get',h:'Who clears<br><em>US customs?</em>'},
-  {n:'01',h:'We can.<br>Or your broker can.',p:'Use our customs clearance, or ship to your own customs broker. Your choice, on every order.'},
-  {n:'02',h:'The paperwork starts in Bulgaria.',p:'Export documents are prepared at our factory before the windows leave Europe.'},
-  {n:'03',h:'Then the US port.',p:'Clearance is handled at the port of arrival, so nothing sits waiting.'},
-  {n:'04',h:'Then your site.',p:'Delivered by truck to your job site, coast to coast.'},
-  {end:1,h:'One point of contact, from the <em>factory</em> to the final window.',url:'valdagroup.com'}]},
+  {art:'route',cover:1,k:'Questions we get',h:'Who clears<br><em>US customs?</em>'},
+  {art:'twoFlags',n:'01',h:'We can.<br>Or your broker can.',p:'Use our customs clearance, or ship to your own customs broker. Your choice, on every order.'},
+  {art:'doc',n:'02',h:'The paperwork starts in Bulgaria.',p:'Export documents are prepared at our factory before the windows leave Europe.'},
+  {art:'port',n:'03',h:'Then the US port.',p:'Clearance is handled at the port of arrival, so nothing sits waiting.'},
+  {art:'truck',n:'04',h:'Then your site.',p:'Delivered by truck to your job site, coast to coast.'},
+  {art:'twoFlags',end:1,h:'One point of contact, from the <em>factory</em> to the final window.',url:'valdagroup.com'}]},
  checks:{tag:'Before you order',slides:[
-  {cover:1,k:'Before you order European windows',h:'Five things<br>to <em>check.</em>'},
-  {n:'01',h:'The approval for your zone.',p:'On the hurricane coast, check the impact rating and design pressure for your exact wind zone and window size.'},
-  {n:'02',h:'The U-factor for your climate.',p:'Compare whole-window figures, frame and glass together, against your energy code.'},
-  {n:'03',h:'The opening direction.',p:'Inswing windows need clear space inside and a screen on the outside. Outswing is the reverse.'},
-  {n:'04',h:'The lead time.',p:'Production plus the Atlantic crossing. Plan it into your schedule from the start.'},
-  {n:'05',h:'Who handles customs and delivery.',p:'Know who clears the windows at the port and who brings them to site.'},
+  {art:'route',cover:1,k:'Before you order European windows',h:'Five things<br>to <em>check.</em>'},
+  {art:'shield',n:'01',h:'The approval for your zone.',p:'On the hurricane coast, check the impact rating and design pressure for your exact wind zone and window size.'},
+  {art:'thermo',n:'02',h:'The U-factor for your climate.',p:'Compare whole-window figures, frame and glass together, against your energy code.'},
+  {art:'swing',n:'03',h:'The opening direction.',p:'Inswing windows need clear space inside and a screen on the outside. Outswing is the reverse.'},
+  {art:'clock',n:'04',h:'The lead time.',p:'Production plus the Atlantic crossing. Plan it into your schedule from the start.'},
+  {art:'handoff',n:'05',h:'Who handles customs and delivery.',p:'Know who clears the windows at the port and who brings them to site.'},
   {end:1,h:'Send us your openings. We will check all <em>five</em> for you.',url:'valdagroup.com'}]},
  glossary:{tag:'Window glossary',slides:[
-  {cover:1,k:'Window glossary',h:'Five numbers on every<br><em>window spec.</em>'},
-  {n:'U',h:'U-factor',p:'How much heat passes through the whole window. Lower is better.'},
-  {n:'SHGC',h:'Solar heat gain',p:'How much of the sun’s heat gets through, from 0 to 1. Lower keeps a room cooler.'},
-  {n:'VT',h:'Visible transmittance',p:'How much daylight gets through, from 0 to 1. Higher means brighter rooms.'},
-  {n:'STC',h:'Sound transmission class',p:'How well the window blocks noise. Higher is quieter.'},
-  {n:'DP',h:'Design pressure',p:'The wind load the window is rated for. Higher means stronger.'},
+  {art:'glossCover',cover:1,k:'Window glossary',h:'Five numbers on every<br><em>window spec.</em>'},
+  {art:'thermo',n:'U',h:'U-factor',p:'How much heat passes through the whole window. Lower is better.'},
+  {art:'sunGlass',n:'SHGC',h:'Solar heat gain',p:'How much of the sun’s heat gets through, from 0 to 1. Lower keeps a room cooler.'},
+  {art:'light',n:'VT',h:'Visible transmittance',p:'How much daylight gets through, from 0 to 1. Higher means brighter rooms.'},
+  {art:'sound',n:'STC',h:'Sound transmission class',p:'How well the window blocks noise. Higher is quieter.'},
+  {art:'wind',n:'DP',h:'Design pressure',p:'The wind load the window is rated for. Higher means stronger.'},
   {end:1,h:'Save this for your next <em>spec.</em>',url:'valdagroup.com'}]}};
 const KEY=new URLSearchParams(location.search).get('s')||'customs', D=SETS[KEY], N=D.slides.length;
-document.write(D.slides.map((s,i)=>`<section class="s"><div class="top"><span>VALDA</span><span>${D.tag}</span></div>
+document.write(D.slides.map((s,i)=>`<section class="s">${s.art?ART[s.art]:''}<div class="top"><span>VALDA</span><span>${D.tag}</span></div>
  ${s.cover?`<div class="cover"><div class="k">${s.k}</div><h1>${s.h}</h1></div>`
  :s.end?`<div class="body end" style="top:auto;bottom:220px"><h2>${s.h}</h2><div class="url">${s.url}</div></div>`
- :`<div class="body"><div class="n">${s.n}</div><h2>${s.h}</h2><p>${s.p}</p></div>`}
+ :`<div class="body${s.art?' has-art':''}" style="top:200px"><div class="n">${s.n}</div><h2>${s.h}</h2><p>${s.p}</p></div>`}
  <div class="foot"><span>${i===0?'Swipe →':''}</span><span>${i+1} / ${N}</span></div></section>`).join(''));
 </script></body></html>
