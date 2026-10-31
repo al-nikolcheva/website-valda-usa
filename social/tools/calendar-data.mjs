@@ -61,8 +61,8 @@ plan('2026-11-19', 'Thu', 'Educational', 'Myth: aluminum windows are cold', 'rea
   "Myth: aluminum windows are cold.\n\nThen: a frame was one solid piece of metal, and aluminum carries heat hundreds of times faster than polyamide. The cold came straight in.\n\nNow: a thermal break. The frame is two profiles joined by glass-fibre reinforced polyamide strips, with no solid metal path from outside to inside.\n\nThe result: Reynaers MasterLine 10 reaches a U-factor of 0.14 with triple glazing.\n\nFact: modern aluminum windows are slim and warm. Read the full explainer on our blog, link in bio.\n\n#aluminumwindows #thermalbreak #energyefficiency #architects", 'https://valdagroup.com/insights/thermal-break-explained');
 plan('2026-11-20', 'Fri', 'Behind the Build', 'Behind the Build: Mona Residence', 'ready', ex(`${X}/Behind the Build - Mona`),
   "Behind the Build: Mona Residence, Sofia.\n\nA multifamily building glazed throughout with VALDA aluminum tilt and turn windows. Warm timber accents and large openings give every elevation depth and a steady rhythm.\n\nArchitect: [to confirm]\n\nPlanning a multifamily project? Send us your openings.");
-plan('2026-11-27', 'Fri', 'Behind the Build', 'Behind the Build: Juneau Village', 'concept', [small(`${IMG}/project-milwaukee-1.jpg`), small(`${IMG}/project-milwaukee-2.jpg`)],
-  "IDEA: Behind the Build, project 03. Juneau Village, Milwaukee: our US project, curtain wall and operable windows, from the real project photos.");
+plan('2026-11-27', 'Fri', 'Behind the Build', 'Behind the Build: Juneau Village', 'ready', ex(`${X}/Behind the Build - Juneau Village`),
+  "Behind the Build: Juneau Village, Milwaukee.\n\nA residential high-rise in downtown Milwaukee with bronze fins and a unitised facade, glazed end to end with VALDA aluminum systems.\n\nUnitised curtain wall and operable windows, engineered for the US Midwest and delivered factory direct from Europe.\n\nPlanning a multifamily project? Send us your openings.\n\n#behindthebuild #milwaukee #curtainwall #multifamily #architecture");
 posts.sort((a, b) => a.date.localeCompare(b.date));
 
 const blogs = [
