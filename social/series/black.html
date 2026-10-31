@@ -62,6 +62,20 @@ const ART={
  sound:svg('0 0 400 400',`<rect x="190" y="50" width="40" height="300"/>${[50,85,120].map(r=>`<path d="M${150-r*.2} ${200-r} A${r} ${r} 0 0 1 ${150-r*.2} ${200+r}" stroke="${ACC}" transform="translate(-60 0)"/>`).join('')}<path d="M270 180 A25 25 0 0 1 270 220" stroke="${M}"/>`),
  wind:svg('0 0 400 400',`<rect x="250" y="50" width="40" height="300"/>${[110,200,290].map(y=>`<path d="M30 ${y} H200 q30 0 30 -25" stroke="${ACC}" stroke-width="4"/><path d="M215 ${y-12} L232 ${y} L215 ${y+12}" stroke="${ACC}" transform="translate(-30 0)"/>`).join('')}`),
  glossCover:svg('0 0 920 520',`<rect x="330" y="20" width="260" height="380"/><line x1="460" y1="20" x2="460" y2="400" stroke="${M}"/>${[['U',80],['SHGC',150],['VT',220],['STC',290],['DP',360]].map(([t,y],i)=>`<line x1="${i%2?600:180}" y1="${y}" x2="${i%2?740:320}" y2="${y}" stroke="${M}" stroke-dasharray="3 10"/><text x="${i%2?760:20}" y="${y+12}" fill="${ACC}" stroke="none" font-family="IT" font-size="36">${t}</text>`).join('')}`,'art wide')};
+
+// Profile cross-sections for the thermal break myth post.
+const COLD='#7fa8de';
+const solid=`<rect x="120" y="80" width="160" height="240" fill="#3a3835" stroke="${L}"/><rect x="150" y="110" width="100" height="70" fill="#0c0c0d" stroke="${M}"/><rect x="150" y="220" width="100" height="70" fill="#0c0c0d" stroke="${M}"/>
+ ${[140,200,260].map(y=>`<path d="M20 ${y} H370" stroke="${COLD}" stroke-width="4"/><path d="M355 ${y-12} L372 ${y} L355 ${y+12}" stroke="${COLD}" stroke-width="4"/>`).join('')}
+ <text x="20" y="370" fill="${M}" stroke="none" font-family="IT" font-size="22" letter-spacing="3">OUTSIDE</text><text x="290" y="370" fill="${M}" stroke="none" font-family="IT" font-size="22" letter-spacing="3">INSIDE</text>`;
+const broken=`<rect x="90" y="80" width="90" height="240" fill="#3a3835" stroke="${L}"/><rect x="220" y="80" width="90" height="240" fill="#3a3835" stroke="${L}"/>
+ <rect x="180" y="120" width="40" height="26" fill="${ACC}" stroke="none"/><rect x="180" y="254" width="40" height="26" fill="${ACC}" stroke="none"/>
+ ${[140,200,260].map(y=>`<path d="M20 ${y} H160" stroke="${COLD}" stroke-width="4"/><path d="M145 ${y-12} L162 ${y} L145 ${y+12}" stroke="${COLD}" stroke-width="4"/>`).join('')}
+ <text x="20" y="370" fill="${M}" stroke="none" font-family="IT" font-size="22" letter-spacing="3">OUTSIDE</text><text x="290" y="370" fill="${M}" stroke="none" font-family="IT" font-size="22" letter-spacing="3">INSIDE</text>`;
+ART.solid=svg('0 0 400 400',solid);
+ART.broken=svg('0 0 400 400',broken);
+ART.mythCover=svg('0 0 920 520',`<g transform="translate(60 40)">${solid}</g><text x="470" y="250" fill="${ACC}" stroke="none" font-family="IT" font-size="60">?</text><g transform="translate(500 40)">${broken}</g>`,'art wide');
+ART.strips=svg('0 0 400 400',`<rect x="70" y="60" width="110" height="280" fill="#3a3835" stroke="${L}"/><rect x="220" y="60" width="110" height="280" fill="#3a3835" stroke="${L}"/><rect x="180" y="100" width="40" height="30" fill="${ACC}" stroke="none"/><rect x="180" y="270" width="40" height="30" fill="${ACC}" stroke="none"/><path d="M200 130 V160 M200 270 V240" stroke="${ACC}" stroke-dasharray="3 8"/><text x="200" y="385" text-anchor="middle" fill="${ACC}" stroke="none" font-family="IT" font-size="22" letter-spacing="3">POLYAMIDE STRIPS</text>`);
 const SETS={
  customs:{tag:'Questions we get',slides:[
   {art:'route',cover:1,k:'Questions we get',h:'Who clears<br><em>US customs?</em>'},
@@ -78,6 +92,13 @@ const SETS={
   {art:'clock',n:'04',h:'The lead time.',p:'Production plus the Atlantic crossing. Plan it into your schedule from the start.'},
   {art:'handoff',n:'05',h:'Who handles customs and delivery.',p:'Know who clears the windows at the port and who brings them to site.'},
   {end:1,h:'Send us your openings. We will check all <em>five</em> for you.',url:'valdagroup.com'}]},
+ myth:{tag:'Myth or fact',slides:[
+  {art:'mythCover',cover:1,k:'Myth or fact',h:'“Aluminum windows<br>are <em>cold.</em>”'},
+  {art:'solid',n:'Then',h:'One solid piece of metal.',p:'Aluminum carries heat hundreds of times faster than the polyamide used to break it. A solid frame let the cold straight into the room.'},
+  {art:'broken',n:'Now',h:'A thermal break.',p:'Today the frame is two profiles, an outer shell and an inner shell, with no solid metal path between them.'},
+  {art:'strips',n:'How',h:'Joined by polyamide strips.',p:'Glass-fibre reinforced polyamide strips are rolled in and the metal is crimped tight. Two frames, held together by something that refuses to carry heat.'},
+  {num:'0.14',h:'U-factor of Reynaers MasterLine 10 with triple glazing.',p:'Whole window, frame and glass together. Lower is better.'},
+  {art:"broken",end:1,h:'<em>Fact:</em> modern aluminum windows are slim and warm.',url:'Read: The thermal break, explained · valdagroup.com'}]},
  glossary:{tag:'Window glossary',slides:[
   {art:'glossCover',cover:1,k:'Window glossary',h:'Five numbers on every<br><em>window spec.</em>'},
   {art:'thermo',n:'U',h:'U-factor',p:'How much heat passes through the whole window. Lower is better.'},
@@ -89,7 +110,7 @@ const SETS={
 const KEY=new URLSearchParams(location.search).get('s')||'customs', D=SETS[KEY], N=D.slides.length;
 document.write(D.slides.map((s,i)=>`<section class="s">${s.art?ART[s.art]:''}<div class="top"><span>VALDA</span><span>${D.tag}</span></div>
  ${s.cover?`<div class="cover"><div class="k">${s.k}</div><h1>${s.h}</h1></div>`
- :s.end?`<div class="body end" style="top:auto;bottom:220px"><h2>${s.h}</h2><div class="url">${s.url}</div></div>`
+ :s.num?`<div class="body" style="top:220px"><div style="font:400 400px/.85 IT;letter-spacing:-.06em;color:${ACC}">${s.num}</div><h2 style="margin-top:80px">${s.h}</h2><p>${s.p}</p></div>`:s.end?`<div class="body end" style="top:auto;bottom:220px"><h2>${s.h}</h2><div class="url">${s.url}</div></div>`
  :`<div class="body${s.art?' has-art':''}" style="top:200px"><div class="n">${s.n}</div><h2>${s.h}</h2><p>${s.p}</p></div>`}
  <div class="foot"><span>${i===0?'Swipe →':''}</span><span>${i+1} / ${N}</span></div></section>`).join(''));
 </script></body></html>
