@@ -125,7 +125,7 @@ function render() {
   $('m10').setAttribute('aria-pressed', month === '10'); $('m11').setAttribute('aria-pressed', month === '11');
   const inMonth = DATA.posts.filter(p => p.date.slice(5,7) === month);
   const c = s => inMonth.filter(p => p.status === s).length;
-  $('stats').innerHTML = `<span class="stat"><b>${inMonth.length}</b> posts</span><span class="stat st-posted"><b>${c('posted')}</b> posted</span><span class="stat st-scheduled"><b>${c('scheduled')}</b> scheduled</span><span class="stat st-approve"><b>${c('to approve')+c('ready')}</b> built, to approve</span><span class="stat st-concept"><b>${c('concept')}</b> ideas</span><span class="stat"><b>${inMonth.filter(p=>p.video).length}</b> Reels</span>`;
+  $('stats').innerHTML = `<span class="stat"><b>${inMonth.length}</b> posts</span><span class="stat st-posted"><b>${c('posted')}</b> posted</span><span class="stat st-scheduled"><b>${c('scheduled')}</b> scheduled</span><span class="stat st-approve"><b>${c('to approve')+c('ready')}</b> built, to approve</span><span class="stat st-concept"><b>${c('concept')}</b> ideas</span>`;
   const y = 2026, m = +month - 1, first = new Date(y, m, 1), days = new Date(y, m + 1, 0).getDate();
   const lead = (first.getDay() + 6) % 7, total = Math.ceil((lead + days) / 7) * 7;
   let html = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => `<div class="dow">${d}</div>`).join('');
