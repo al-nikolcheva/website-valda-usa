@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+/* "POV" series carousel, 1080 x 1350: full-bleed warm photos, one light headline, short text. */
+@font-face{font-family:IT;font-weight:400;src:url(../fonts/InterTight-400.ttf)}
+@font-face{font-family:IT;font-weight:500;src:url(../fonts/InterTight-500.ttf)}
+@font-face{font-family:F;font-weight:400;font-style:italic;src:url(../fonts/fraunces-latin-400-italic.woff2)}
+*{margin:0;box-sizing:border-box}
+body{background:#1a1816;display:flex;flex-direction:column;gap:40px;padding:0}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;color:#f4efe7;font-family:IT}
+.s img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,12,.55) 0%,rgba(20,16,12,0) 30%,rgba(20,16,12,0) 50%,rgba(20,16,12,.78) 100%)}
+.s .shade.cov{background:linear-gradient(180deg,rgba(20,16,12,.72) 0%,rgba(20,16,12,.45) 42%,rgba(20,16,12,.1) 62%,rgba(20,16,12,.6) 100%)}
+.top{position:absolute;left:64px;right:64px;top:56px;display:flex;justify-content:space-between;align-items:center;font:500 24px IT;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+.tag{border:1.5px solid rgba(244,239,231,.8);border-radius:999px;padding:8px 18px;letter-spacing:.08em}
+.pov{position:absolute;left:56px;top:150px;font:400 330px/.8 IT;letter-spacing:-.06em}
+.sub{position:absolute;left:68px;right:120px;top:450px;font:400 52px/1.15 IT;letter-spacing:-.015em}
+.sub em{font:italic 400 56px F}
+.foot{position:absolute;left:64px;right:64px;bottom:64px;display:flex;justify-content:space-between;align-items:flex-end;font:500 22px IT;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.step{position:absolute;left:64px;right:64px;bottom:150px}
+.step .n{font:500 24px IT;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.step h2{font:400 84px/1.02 IT;letter-spacing:-.035em;margin-top:18px}
+.step p{font:400 34px/1.35 IT;margin-top:20px;max-width:820px;opacity:.92}
+.swipe{font:italic 400 30px F;text-transform:none;letter-spacing:0}
+</style></head><body>
+<script>
+const P='../assets/pov01/';
+const S=[
+ {cover:1,img:'f1.jpg'},
+ {img:'f2.jpg',n:'01 · Cut',h:'It starts as a bare profile.',p:'Every frame is cut to your drawing, on our own lines in Bulgaria.'},
+ {img:'f3.jpg',n:'02 · Assembled',h:'Then it becomes a frame.',p:'Corners joined and hardware fitted, frame by frame.'},
+ {img:'f4.jpg',n:'03 · Glazed',h:'The glass is made here too.',p:'Insulated glass units built in-house on our fully automatic LISEC line.'},
+ {img:'f5.jpg',n:'04 · Packed',h:'Packed for the Atlantic.',p:'Packed, loaded and documented for the trip to the US.'},
+ {img:'f6.jpg',end:1,n:'05 · Shipped',h:'Next stop: your site.',p:'Factory direct, one team from the first cut to the final window.'}];
+document.write(S.map((s,i)=>`<section class="s"><img class="ph" src="${P+s.img}"><div class="shade${s.cover?' cov':''}"></div>
+ <div class="top"><span>VALDA</span><span class="tag">ep 01</span></div>
+ ${s.cover?`<div class="pov">POV:</div><div class="sub">your windows are being made <em>in Sofia.</em></div>
+   <div class="foot"><span>Made in Europe</span><span class="swipe">swipe →</span></div>`
+ :`<div class="step"><div class="n">${s.n}</div><h2>${s.h}</h2><p>${s.p}</p></div>
+   <div class="foot"><span>POV · ep 01</span><span>${s.end?'ep 02: the glass line':`${i+1} / ${S.length}`}</span></div>`}
+ </section>`).join(''));
+</script>
+</body></html>
