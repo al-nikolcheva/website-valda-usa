@@ -128,6 +128,7 @@ function doc(kind: Doc["kind"], title: string, body: string, rest: Omit<Doc, "ki
 }
 
 const PAGES = [
+  { title: "Build your project", meta: "Pick your location, upload plans, design your windows in 3D", href: "/build", body: "build project configure configurator 3d design colour map location hurricane hvhz miami dade plans upload quote inquire" },
   { title: "Find your system", meta: "Answer four questions, get matched systems", href: "/products/finder", body: "choose right system recommend help which window door sliding hurricane impact project" },
   { title: "Ask for a colour match", meta: "Any RAL, anodised and wood-effect finishes, dual-colour too", href: "/contact", body: "colour ral finish anodised wood effect dual colour inside outside match custom" },
   { title: "Certifications", meta: "Approved for the USA, certificates on request", href: "/certifications", body: "certified certification approval florida hvhz nami aama wdma csa astm code permit" },

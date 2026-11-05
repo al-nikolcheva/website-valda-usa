@@ -23,6 +23,7 @@ const NAV: Item[] = [
       { label: "Facades", href: "/products/facades" },
     ],
   },
+  { label: "Build your project", href: "/build" },
   { label: "Projects", href: "/projects" },
   {
     label: "Certifications",
@@ -75,7 +76,7 @@ export function SiteHeader() {
   // Pages that open on a white background (no dark hero image) need dark text and logo from the top,
   // otherwise the white logo and menu are invisible until the visitor scrolls.
   const lightTop =
-    pathname.startsWith("/catalogue") || pathname === "/products/finder" || /^\/insights\/[^/]+/.test(pathname);
+    pathname.startsWith("/catalogue") || pathname === "/products/finder" || pathname === "/build" || /^\/insights\/[^/]+/.test(pathname);
   // `bar`: the frosted white bar appears once scrolled, on every page.
   // `glass`: dark text and logo, whenever the bar shows or the page starts on white.
   const bar = scrolled && !open;
