@@ -1,0 +1,25 @@
+{
+  "slug": "journey",
+  "series": "VALDA · How it gets to you",
+  "episode": "",
+  "voice": "am_michael",
+  "speed": 0.95,
+  "scenes": [
+    { "art": "view", "kicker": "From our factory to your site", "head": "How do our windows get to you?",
+      "say": "How do European windows get to your job site? Here's the whole journey." },
+    { "art": "drawing", "kicker": "Step 1 · Engineering", "head": "It starts with your openings",
+      "say": "It starts with your openings. Our engineers draw every window, and you approve the drawings." },
+    { "art": "factories", "kicker": "Step 2 · Production", "head": "Built in our own factories",
+      "say": "Then we build them in our own factories in Bulgaria, and check every single one." },
+    { "art": "pack", "kicker": "Step 3 · Packing", "head": "Packed for the Atlantic",
+      "say": "Each window is packed and protected for the Atlantic crossing." },
+    { "art": "sea", "kicker": "Step 4 · Shipping", "head": "Across the ocean",
+      "say": "We ship by sea, with full export documents." },
+    { "art": "port", "kicker": "Step 5 · Customs", "head": "Cleared at the US port",
+      "say": "At the US port, we can clear customs for you, or your own broker can." },
+    { "art": "site", "kicker": "Step 6 · Delivery", "head": "Straight to your site",
+      "say": "Then a truck brings them straight to your site, coast to coast." },
+    { "art": "endMeet", "kicker": "One team", "head": "Factory to final window",
+      "say": "One team, from the first drawing to the final window. VALDA." }
+  ]
+}

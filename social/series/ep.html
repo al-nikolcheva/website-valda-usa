@@ -55,6 +55,51 @@ function windowArt(k,x,y,w,h,glassK){ // flat two-sash window, k draws the frame
 }
 
 const ART={
+pack(t,at){
+  const w=E(S(t,at(0),at(.3))), lid=E(S(t,at(.35),at(.6))), lab=S(t,at(.6),at(.85));
+  const slat=(y)=>`<rect x="190" y="${y}" width="480" height="40" fill="#c9a877" stroke="#222224" stroke-width="4"/>`;
+  return `<rect x="170" y="250" width="520" height="520" fill="#e2c493" stroke="#222224" stroke-width="5"/>
+  <g transform="translate(0 ${-500*(1-w)})" opacity="${w}"><rect x="260" y="300" width="340" height="420" fill="#cfdcec" ${K}/>${L(R(260,300,340,420),1)}<path d="M430 300V720" ${K}/></g>
+  <g transform="translate(0 ${-600*(1-lid)})" opacity="${lid}">${[270,350,430,510,590,670].map(slat).join('')}<path d="M190 270L670 710M670 270L190 710" stroke="#222224" stroke-width="4" opacity=".5"/></g>
+  ${stamp(710,760,92,'FRAGILE','USA',lab,-8)}
+  ${fade(S(t,at(.85),at(1)),it(330,830,'packed for the Atlantic',34))}`;
+},
+sea(t,at){
+  const k=E(S(t,at(0),at(1))), x=-260+1100*k, bob=Math.sin(t*2.2)*6;
+  const waves=[0,1,2].map(i=>`<path d="M-200 ${520+i*60} q60 -22 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" fill="none" stroke="#1f4e8c" stroke-width="4" opacity="${.6-i*.15}" transform="translate(${-((t*(50+i*20))%240)} 0)"/>`).join('');
+  const box=(cx,cy,c)=>`<rect x="${cx}" y="${cy}" width="64" height="40" fill="${c}" stroke="#222224" stroke-width="3"/>`;
+  return `<circle cx="680" cy="190" r="70" fill="#a6a182" opacity=".55"/>
+  <mask id="rm"><path d="M90 300 Q 430 120 770 300" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="${1-k}" fill="none" stroke="#fff" stroke-width="14"/></mask>
+  <path d="M90 300 Q 430 120 770 300" fill="none" stroke="#1f4e8c" stroke-width="4" stroke-dasharray="12 12" mask="url(#rm)"/>
+  ${it(90,350,'Bulgaria',30)}${fade(S(k,.85,1),it(770,350,'USA',30))}
+  <g transform="translate(${x} ${bob})"><path d="M-150 470H170L130 530H-120Z" fill="#222224"/>
+   ${box(-130,428,'#b3362c')}${box(-62,428,'#1f4e8c')}${box(6,428,'#a6a182')}${box(-96,388,'#1f4e8c')}${box(-28,388,'#b3362c')}
+   <rect x="90" y="400" width="44" height="70" fill="#fff" stroke="#222224" stroke-width="3"/></g>
+  ${waves}`;
+},
+port(t,at){
+  const d=E(S(t,at(0),at(.3))), st=S(t,at(.45),at(.75)), br=S(t,at(.75),at(1));
+  const flag=(x,y,w)=>{const h=w*10/19,sh=h/13;let g='';for(let i=0;i<13;i++)g+=`<rect x="${x}" y="${y+i*sh}" width="${w}" height="${sh+.5}" fill="${i%2?'#f2ebdd':'#b3362c'}"/>`;return g+`<rect x="${x}" y="${y}" width="${w*.4}" height="${sh*7}" fill="#1f4e8c"/>`;};
+  return `${fade(d,`<line x1="660" y1="130" x2="660" y2="420" stroke="#6f6f72" stroke-width="5"/>`+flag(664,130,150))}
+  <g opacity="${d}" transform="translate(0 ${(1-d)*60})"><rect x="170" y="200" width="400" height="520" fill="#fff" ${K}/>
+   ${txt(370,270,'EXPORT DOCUMENTS',26,'middle','font-family="IT" letter-spacing="3"')}
+   ${[330,380,430,480,530].map(y=>`<line x1="210" y1="${y}" x2="${y%100?530:450}" y2="${y}" stroke="#a3a3a5" stroke-width="4"/>`).join('')}</g>
+  ${stamp(470,600,100,'US CUSTOMS','✓',st,-14)}
+  ${fade(br,it(430,800,'by us, or by your own broker',34,'middle','#1f4e8c'))}`;
+},
+site(t,at){
+  const tr=E(S(t,at(0),at(.4))), up=E(S(t,at(.45),at(.8))), done=S(t,at(.8),at(1));
+  const win=(x,y,k)=>`<rect x="${x}" y="${y}" width="90" height="120" fill="#cfdcec" stroke="#222224" stroke-width="4" opacity="${k}"/>`;
+  return `<path d="M0 700H860" ${K}/>
+  <rect x="470" y="200" width="340" height="500" fill="#f8f2e6" ${K}/>
+  ${win(500,250,1)}${win(620,250,1)}${win(500,410,1)}${win(620,410,up)}${win(500,560,1)}${win(620,560,1)}
+  <rect x="740" y="250" width="40" height="120" fill="#a6a182" opacity=".5"/>
+  <g transform="translate(${-500+560*tr} 0)">
+   <rect x="0" y="560" width="300" height="120" fill="#b3362c" stroke="#222224" stroke-width="4"/>${txt(150,632,'VALDA',44,'middle','fill="#fff" font-family="IT" letter-spacing="8"')}
+   <path d="M310 590H380L410 630V680H310Z" fill="#b3362c" stroke="#222224" stroke-width="4"/>
+   ${[60,240,360].map(x=>`<circle cx="${x}" cy="690" r="22" fill="#222224"/>`).join('')}</g>
+  ${fade(done,stamp(220,230,90,'INSTALLED','✓',done,-10))}`;
+},
 view(t,at){
   const f=S(t,0,at(.6)), v=S(t,at(.2),at(.9)), w=(t*50)%160;
   return `<defs><clipPath id="vw"><rect x="232" y="132" width="396" height="556"/></clipPath></defs>
