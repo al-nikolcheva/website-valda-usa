@@ -55,6 +55,39 @@ function windowArt(k,x,y,w,h,glassK){ // flat two-sash window, k draws the frame
 }
 
 const ART={
+view(t,at){
+  const f=S(t,0,at(.6)), v=S(t,at(.2),at(.9)), w=(t*50)%160;
+  return `<defs><clipPath id="vw"><rect x="232" y="132" width="396" height="556"/></clipPath></defs>
+  <g clip-path="url(#vw)" opacity="${E(v)}">
+    <rect x="200" y="100" width="460" height="620" fill="#cfdcec"/>
+    <circle cx="430" cy="${470-120*E(v)}" r="70" fill="#a6a182" opacity=".8"/>
+    <rect x="200" y="470" width="460" height="260" fill="#1f4e8c" opacity=".85"/>
+    ${[510,560,610,660].map((y,i)=>`<path d="M${150-w+i*30} ${y} q40 -14 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/>`).join('')}
+  </g>
+  ${L(R(210,110,440,600),f,'stroke-width="7"')}${L(R(232,132,396,556),S(f,.3,1))}${L('M430 132V688',S(f,.6,1))}
+  ${L('M160 730H700',S(f,.7,1),'stroke-width="10"')}
+  ${fade(S(t,at(.85),at(1)),it(430,800,'every view, framed',34))}`;
+},
+systems(t,at){
+  const a=E(S(t,at(0),at(.3))), p=E(S(t,at(.25),at(.55))), br=S(t,at(.5),at(.75)), c=S(t,at(.75),at(1));
+  const prof=(x,label,fill,k,inner)=>`<g opacity="${k}" transform="translate(${x} ${120+(1-k)*80})">
+    <rect x="0" y="0" width="300" height="420" rx="6" fill="${fill}" ${K}/>${inner}
+    ${txt(150,490,label,46,'middle','font-family="IT"')}</g>`;
+  const alu=`<rect x="30" y="30" width="100" height="360" fill="none" ${K}/><rect x="170" y="30" width="100" height="360" fill="none" ${K}/>
+    <rect x="130" y="${110}" width="40" height="${50*E(br)}" fill="#a6a182"/><rect x="130" y="${260}" width="40" height="${50*E(br)}" fill="#a6a182"/>`;
+  const pvc=`${[0,1,2].map(i=>`<rect x="${30+i*85}" y="30" width="70" height="360" fill="none" ${K}/>`).join('')}<rect x="45" y="60" width="40" height="300" fill="#a3a3a5" opacity="${.6*E(br)}"/>`;
+  return `${prof(70,'Aluminum','#fff',a,alu)}${prof(490,'PVC','#fff',p,pvc)}
+  ${fade(S(br,.5,1),it(430,690,'insulated, sealed, rated',34,'middle','#1f4e8c'))}
+  ${fade(c,`<circle cx="160" cy="780" r="34" fill="#a6a182" opacity=".8"/>${[0,1,2,3,4,5,6,7].map(i=>{const g=i*Math.PI/4;return `<line x1="${160+44*Math.cos(g)}" y1="${780+44*Math.sin(g)}" x2="${160+58*Math.cos(g)}" y2="${780+58*Math.sin(g)}" stroke="#a6a182" stroke-width="5"/>`}).join('')}
+    <path d="M330 790 q40 -24 80 0 t80 0 t80 0 t80 0" fill="none" stroke="#1f4e8c" stroke-width="6" transform="translate(${-(t*40)%80} 0)"/>`)}`;
+},
+endMeet(t,at){
+  return `${fade(S(t,0,.8),`<image href="../../public/valda-logo-ink.svg" x="330" y="60" width="200" height="215"/>`)}
+  ${rise(S(t,.4,1.2),it(430,400,'European windows,',58,'middle','#222224')+it(430,474,'made to measure.',58,'middle','#222224'))}
+  ${L('M330 540H530',S(t,1,1.6))}
+  ${rise(S(t,1.3,2),txt(430,640,'Send us your openings',40,'middle','font-family="IT" fill="#1f4e8c"'))}
+  ${fade(S(t,1.8,2.6),txt(430,720,'valdagroup.com',38,'middle','font-family="IT" fill="#6f6f72"'))}`;
+},
 cover(t,at){
   return `${fade(S(t,0,.8),`<circle cx="610" cy="250" r="${150*E(S(t,0,1))}" fill="#a6a182" opacity=".55"/>`)}
   ${it(130,180,'No.',60,'start','#1f4e8c')}${fade(S(t,.2,1),txt(120,330,'01',220,'start','fill="#1f4e8c" font-weight="600"'))}
@@ -149,7 +182,7 @@ window.DURATION=EP.duration;
 const starts=SC.map((s,i)=>i?s.start-.45:0);
 const root=document.getElementById('root');
 const pages=SC.map((s,i)=>{const d=document.createElement('div');d.className='page';d.innerHTML=`
-  <div class="run"><span>VALDA · How It's Made</span><span>Ep. ${EP.episode}</span></div><div class="rule"></div><div class="rule b"></div>
+  <div class="run"><span>${EP.series||"VALDA · How It's Made"}</span><span>${EP.episode?'Ep. '+EP.episode:''}</span></div><div class="rule"></div><div class="rule b"></div>
   <div class="kick">${s.kicker}</div><div class="head">${s.head}</div>
   <svg class="art" viewBox="0 0 860 860"></svg>
   <div class="cap">${s.show.split(' ').map(w=>`<span>${w}</span>`).join(' ')}</div>

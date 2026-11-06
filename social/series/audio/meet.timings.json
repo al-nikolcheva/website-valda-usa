@@ -1,0 +1,25 @@
+{
+ "duration": 30.228,
+ "scenes": [
+  {
+   "start": 0.5,
+   "speech": 2.709
+  },
+  {
+   "start": 3.909,
+   "speech": 7.275
+  },
+  {
+   "start": 11.884,
+   "speech": 5.589
+  },
+  {
+   "start": 18.173,
+   "speech": 7.275
+  },
+  {
+   "start": 26.148,
+   "speech": 2.88
+  }
+ ]
+}

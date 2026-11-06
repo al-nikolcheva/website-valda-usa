@@ -7,7 +7,7 @@ const [slug, out, flag] = process.argv.slice(2); const FPS = 30;
 const dir = path.dirname(new URL(import.meta.url).pathname);
 const cfg = JSON.parse(fs.readFileSync(`${dir}/${slug}.json`, 'utf8'));
 const tim = JSON.parse(fs.readFileSync(`${dir}/audio/${slug}.timings.json`, 'utf8'));
-const EP = { episode: cfg.episode, duration: tim.duration,
+const EP = { episode: cfg.episode, series: cfg.series, duration: tim.duration,
   scenes: cfg.scenes.map((s, i) => ({ ...s, show: s.show || s.say.replace(/P V C/g, 'PVC'), ...tim.scenes[i] })) };
 fs.mkdirSync(`${dir}/out`, { recursive: true });
 fs.writeFileSync(`${dir}/out/${slug}.data.js`, `window.EP=${JSON.stringify(EP)};`);
